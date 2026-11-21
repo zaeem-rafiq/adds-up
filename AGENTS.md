@@ -10,11 +10,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # Adds Up
 
-Adds Up reads a balance sheet from a picture and proves each number by re-adding the totals. It is an entry for the Gemini 4 NYC Hackathon of November 21, 2026. The submission deadline is 5:00 PM ET that day.
+Adds Up reads a balance sheet from a picture and proves each number that sits inside a total that re-adds. A number outside every total is marked "not proven". It is an entry for the Gemini 4 NYC Hackathon of November 21, 2026. The submission deadline is 5:00 PM ET that day.
 
 ## Read first
 
-- `docs/plan.md`: the product, the data shapes, the SEC steps, the picture, the adding rule and the speed rule.
+- `docs/plan.md`: the product, the data shapes, the SEC steps, the picture, the adding rule and the speed rule. It starts with the changes made at the event.
 - `docs/gemini-calls.md`: the Gemini calls that worked.
 - `docs/test-cases.md`: test cases with fixed expected results.
 - `docs/eval-spec.md`: the rules of the 50-filing test.
@@ -41,10 +41,10 @@ Adds Up reads a balance sheet from a picture and proves each number by re-adding
 - Every user-visible feature has one row in `FEATURES.md`, and its first proof is a browser test, named as `file#test name`.
 - Never weaken, skip or delete a test to make the check pass.
 - Every screen works at 375, 768 and 1440 pixels wide with no sideways scroll, and has its loading, empty and error states.
-- Copy every word on a screen from its picture in `design/`, except the changes that a unit's prompt names.
+- Copy every word on a screen from its picture in `design/`. `design/README.md` lists the words that differ from the pictures.
 
 ## Git and deploys
 
 - One branch today: `build/hackathon`. Render deploys it.
 - Coding agents other than Claude Code never commit and never push. Claude Code commits after each unit passes the check.
-- The repository stays private until the owner says "make public".
+- Assume every commit becomes public. Never commit a key, a contact line or a `.env` file.

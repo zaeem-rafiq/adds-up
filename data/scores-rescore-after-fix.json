@@ -1,0 +1,871 @@
+{
+  "status": "done",
+  "startedAt": "2026-11-21T18:05:54.467Z",
+  "finishedAt": "2026-11-21T18:06:42.313Z",
+  "filingsPlanned": 50,
+  "filingsScored": 50,
+  "stepsRun": {
+    "A": true,
+    "B": false,
+    "C": false,
+    "D": false,
+    "E": false,
+    "F": false
+  },
+  "totals": {
+    "addsUp": {
+      "numbers": 3030,
+      "readRight": 3030,
+      "wrongShownAsRight": 0,
+      "hiddenTried": 0,
+      "hiddenRebuilt": 0,
+      "changedTried": 0,
+      "changedCaught": 0,
+      "hard": null,
+      "cleanPagesFlagged": 1
+    },
+    "oneCall": {
+      "numbers": 0,
+      "readRight": 0,
+      "wrongShownAsRight": 0,
+      "hiddenTried": 0,
+      "hiddenRebuilt": 0,
+      "changedTried": 0,
+      "changedCaught": 0,
+      "hard": null
+    }
+  },
+  "outsideTotals": 441,
+  "passMarks": [
+    {
+      "measure": "Adds Up, wrong numbers shown as right",
+      "mark": "Zero, or at most one tenth of the one-call figure",
+      "value": "0 of 3030",
+      "met": null
+    },
+    {
+      "measure": "Clean pages flagged by mistake",
+      "mark": "At most 2 of 50",
+      "value": "1",
+      "met": true
+    },
+    {
+      "measure": "Hidden numbers rebuilt",
+      "mark": "At least 45 of 50",
+      "value": "0 of 0",
+      "met": null
+    },
+    {
+      "measure": "Changed numbers caught",
+      "mark": "At least 48 of 50",
+      "value": "0 of 0",
+      "met": null
+    }
+  ],
+  "cutoffs": null,
+  "recheck": null,
+  "causes": [],
+  "failures": [
+    {
+      "company": "Leef Brands Inc.",
+      "step": "A",
+      "number": "a whole group",
+      "shown": "marked as not adding up on a clean page",
+      "truth": "the page was not changed"
+    }
+  ],
+  "filings": [
+    {
+      "company": "IDEX CORP /DE/",
+      "cik": "832101",
+      "form": "10-Q",
+      "filed": "2026-10-28",
+      "numbers": 58,
+      "readRight": 58,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Enovis CORP",
+      "cik": "1420800",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 56,
+      "readRight": 56,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Grove Collaborative Holdings, Inc.",
+      "cik": "1841761",
+      "form": "10-Q",
+      "filed": "2026-11-10",
+      "numbers": 56,
+      "readRight": 56,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Vericel Corp",
+      "cik": "887359",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 50,
+      "readRight": 50,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "GCT Semiconductor Holding, Inc.",
+      "cik": "1851961",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "SBC Medical Group Holdings Inc",
+      "cik": "1930313",
+      "form": "10-Q",
+      "filed": "2026-11-13",
+      "numbers": 110,
+      "readRight": 110,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Cosmos Health Inc.",
+      "cik": "1474167",
+      "form": "10-Q",
+      "filed": "2026-08-18",
+      "numbers": 92,
+      "readRight": 92,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Keel Infrastructure Corp.",
+      "cik": "1812477",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 80,
+      "readRight": 80,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "AGNT, Inc.",
+      "cik": "1495932",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 51,
+      "readRight": 51,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "iRhythm Holdings, Inc.",
+      "cik": "1388658",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "PACCAR INC",
+      "cik": "75362",
+      "form": "10-Q",
+      "filed": "2026-10-28",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Ryman Hospitality Properties, Inc.",
+      "cik": "1040829",
+      "form": "10-Q",
+      "filed": "2026-11-03",
+      "numbers": 52,
+      "readRight": 52,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Byrna Technologies Inc.",
+      "cik": "1354866",
+      "form": "10-Q",
+      "filed": "2026-10-08",
+      "numbers": 60,
+      "readRight": 60,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "NRC HEALTH",
+      "cik": "70487",
+      "form": "10-Q",
+      "filed": "2026-11-04",
+      "numbers": 64,
+      "readRight": 64,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "FingerMotion, Inc.",
+      "cik": "1602409",
+      "form": "10-Q",
+      "filed": "2026-10-15",
+      "numbers": 65,
+      "readRight": 65,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "VIASAT INC",
+      "cik": "797721",
+      "form": "10-Q",
+      "filed": "2026-11-06",
+      "numbers": 56,
+      "readRight": 56,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "STURM RUGER & CO INC",
+      "cik": "95029",
+      "form": "10-Q",
+      "filed": "2026-11-04",
+      "numbers": 59,
+      "readRight": 59,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Eloxx Pharmaceuticals, Inc.",
+      "cik": "1035354",
+      "form": "10-Q",
+      "filed": "2026-11-16",
+      "numbers": 36,
+      "readRight": 36,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "GP-Act III Acquisition Corp.",
+      "cik": "1834526",
+      "form": "10-Q",
+      "filed": "2026-11-16",
+      "numbers": 36,
+      "readRight": 36,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "TYLER TECHNOLOGIES INC",
+      "cik": "860731",
+      "form": "10-Q",
+      "filed": "2026-10-28",
+      "numbers": 74,
+      "readRight": 74,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Leef Brands Inc.",
+      "cik": "1711141",
+      "form": "10-Q",
+      "filed": "2026-11-16",
+      "numbers": 61,
+      "readRight": 61,
+      "wrongTicked": 0,
+      "flagged": true,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Magnera Corp",
+      "cik": "41719",
+      "form": "10-Q",
+      "filed": "2026-08-06",
+      "numbers": 52,
+      "readRight": 52,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "RenovoRx, Inc.",
+      "cik": "1574094",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 42,
+      "readRight": 42,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Sprinklr, Inc.",
+      "cik": "1569345",
+      "form": "10-Q",
+      "filed": "2026-09-03",
+      "numbers": 56,
+      "readRight": 56,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Virtuix Holdings Inc.",
+      "cik": "1606242",
+      "form": "10-Q",
+      "filed": "2026-11-16",
+      "numbers": 71,
+      "readRight": 71,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "QUOTEMEDIA INC",
+      "cik": "1101433",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 54,
+      "readRight": 54,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Aspira Women's Health Inc.",
+      "cik": "926617",
+      "form": "10-Q",
+      "filed": "2026-11-16",
+      "numbers": 53,
+      "readRight": 53,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "TRUPANION, INC.",
+      "cik": "1371285",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 60,
+      "readRight": 60,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Contango Silver & Gold Inc.",
+      "cik": "1502377",
+      "form": "10-Q",
+      "filed": "2026-11-13",
+      "numbers": 66,
+      "readRight": 66,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "CrossAmerica Partners LP",
+      "cik": "1538849",
+      "form": "10-Q",
+      "filed": "2026-11-04",
+      "numbers": 70,
+      "readRight": 70,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Phreesia, Inc.",
+      "cik": "1412408",
+      "form": "10-Q",
+      "filed": "2026-09-03",
+      "numbers": 88,
+      "readRight": 88,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Central Plains Bancshares, Inc.",
+      "cik": "1979332",
+      "form": "10-Q",
+      "filed": "2026-11-13",
+      "numbers": 68,
+      "readRight": 68,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Antero Midstream Corp",
+      "cik": "1623925",
+      "form": "10-Q",
+      "filed": "2026-10-28",
+      "numbers": 56,
+      "readRight": 56,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "LUXFER HOLDINGS PLC",
+      "cik": "1096056",
+      "form": "10-Q",
+      "filed": "2026-10-28",
+      "numbers": 70,
+      "readRight": 70,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "NN INC",
+      "cik": "918541",
+      "form": "10-Q",
+      "filed": "2026-10-28",
+      "numbers": 66,
+      "readRight": 66,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "PROTHENA CORP PUBLIC LTD CO",
+      "cik": "1559053",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 50,
+      "readRight": 50,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "FIRST CAPITAL INC",
+      "cik": "1070296",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Otter Tail Corp",
+      "cik": "1466593",
+      "form": "10-Q",
+      "filed": "2026-11-04",
+      "numbers": 78,
+      "readRight": 78,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "ALPHA & OMEGA SEMICONDUCTOR Ltd",
+      "cik": "1387467",
+      "form": "10-Q",
+      "filed": "2026-11-06",
+      "numbers": 76,
+      "readRight": 76,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "IBEX Ltd",
+      "cik": "1720420",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 66,
+      "readRight": 66,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "TELOS CORP",
+      "cik": "320121",
+      "form": "10-Q",
+      "filed": "2026-11-09",
+      "numbers": 66,
+      "readRight": 66,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Palisades Venture Inc.",
+      "cik": "2010982",
+      "form": "10-Q",
+      "filed": "2026-11-03",
+      "numbers": 32,
+      "readRight": 32,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "USCB FINANCIAL HOLDINGS, INC.",
+      "cik": "1901637",
+      "form": "10-Q",
+      "filed": "2026-11-06",
+      "numbers": 68,
+      "readRight": 68,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Amylyx Pharmaceuticals, Inc.",
+      "cik": "1658551",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 42,
+      "readRight": 42,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Concentrix Corp",
+      "cik": "1803599",
+      "form": "10-Q",
+      "filed": "2026-10-07",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Jaws Mustang Acquisition Corp",
+      "cik": "1831359",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 36,
+      "readRight": 36,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "AES CORP",
+      "cik": "874761",
+      "form": "10-Q",
+      "filed": "2026-11-03",
+      "numbers": 96,
+      "readRight": 96,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "CRESCENT BIOPHARMA, INC.",
+      "cik": "1253689",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 48,
+      "readRight": 48,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Quantum Cyber N.V.",
+      "cik": "1874252",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 43,
+      "readRight": 43,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    },
+    {
+      "company": "Graf Global Corp.",
+      "cik": "1897463",
+      "form": "10-Q",
+      "filed": "2026-11-13",
+      "numbers": 31,
+      "readRight": 31,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 0.1
+    }
+  ],
+  "skipped": [
+    {
+      "company": "Bon Natural Life Ltd",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Start Today Co., Ltd./ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "WEBUY GLOBAL LTD",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Appia Rare Earths & Uranium Corp.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "TH International Ltd",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Prologium Holding Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "New Mountain Finance Corp",
+      "reason": "The filing has no balance sheet report."
+    },
+    {
+      "company": "Invesco Galaxy Solana ETF",
+      "reason": "The table has 14 number rows, outside 15 to 80."
+    },
+    {
+      "company": "Hall Chadwick Acquisition Corp II",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "BGM Group Ltd.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Sprott Physical Gold Trust",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Fort Technology Inc",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "ASR Nederland N.V./ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "PGIM Private Credit Fund",
+      "reason": "The filing has no balance sheet report."
+    },
+    {
+      "company": "Fidelity Wise Origin Bitcoin Fund",
+      "reason": "The filing has no balance sheet report."
+    },
+    {
+      "company": "Western Union CO",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "TXNM ENERGY INC",
+      "reason": "The table has 6 number columns, not two."
+    },
+    {
+      "company": "Century Lithium Corp.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Beijer Ref AB/ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "CID Holdco, Inc.",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "Mirasol Resources Ltd",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "AAON, INC.",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "JOST Werke SE/ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "B2GOLD CORP",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Rent the Runway, Inc.",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "Kongsberg Gruppen ASA/ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Frontier Nuclear & Minerals Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "DIVERSIFIED HEALTHCARE TRUST",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "BlackRock Science & Technology Trust",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Ostin Technology Group Co., Ltd.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Wolfden Resources Corp",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "ARBOR REALTY TRUST INC",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "Rua Gold Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "HengHong Technology Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Software Effective Solutions, Corp.",
+      "reason": "It has no 10-K or 10-Q."
+    }
+  ]
+}

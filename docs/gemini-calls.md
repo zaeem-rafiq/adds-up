@@ -25,11 +25,12 @@ const text = r.output_text;
 
 ## One sentence on the cause (Gemini 4 Carbon, or the model named in CAUSE_MODEL)
 
-The same call as above, with the model's name from `process.env.CAUSE_MODEL` and the default `"gemini-4-carbon"`. Send text, or text with a picture of the rows.
+The same call as above, with the model's name from `process.env.CAUSE_MODEL` and the default `"gemini-4-carbon"`. The product sends one text item: the rows of the group, as text. It sends no picture.
 
 - Neon accepts `thinking_level` "low". It refuses "minimal" with error 400.
-- Neon is sometimes very slow: four test calls took 6, 8, 49 and 120 seconds. Never make the page wait for it.
-- `gemini-4-carbon` answered the same question in 3 to 7 seconds.
+- Neon is sometimes very slow: four first test calls took 6, 8, 49 and 120 seconds. Never make the page wait for it.
+- In the first test, `gemini-4-carbon` answered the same question in 3 to 7 seconds.
+- Timed again at 11:43 AM ET on 2026-11-21, ten calls each, five at a time. Neon took 6.4 to 15.8 seconds, median 7.4. Carbon took 2.6 to 14.9 seconds, median 4.7. All 20 answered. A rule set before the build said Carbon takes the job if Neon's slowest call is over 12 seconds. It was, so the product uses Carbon.
 
 ## The second reader (Gemini Decision 1)
 

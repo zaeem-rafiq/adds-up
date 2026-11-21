@@ -8,7 +8,7 @@ Rows are numbered from 1. "No value" means a dash or an empty cell.
 
 ## A. Company search (unit 1)
 
-The fixture list holds eleven companies. It must include Apple Inc. (AAPL), Apple Hospitality REIT, Inc. (APLE), Applied Materials, Inc. (AMAT) and Microsoft Corp (MSFT). It lists Apple Inc. before Apple Hospitality REIT, Inc. The owner approved the second Apple company and case A8 on 2026-11-21, before 10:30 AM ET, with the reply "Apply all".
+The fixture list holds eleven companies. It must include Apple Inc. (AAPL), Apple Hospitality REIT, Inc. (APLE), Applied Materials, Inc. (AMAT) and Microsoft Corp (MSFT). It lists Apple Inc. before Apple Hospitality REIT, Inc. The second Apple company and case A8 were added on 2026-11-21, before 10:30 AM ET.
 
 | Case | The judge types | Expected |
 |---|---|---|
