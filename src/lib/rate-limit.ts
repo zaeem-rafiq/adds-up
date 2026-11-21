@@ -18,6 +18,41 @@ export const DEFAULT_RATE_LIMITS: RateLimitConfig = {
   dayWindowMs: 24 * 60 * 60 * 1000,
 };
 
+function parsePositiveIntSetting(
+  raw: string | undefined,
+  fallback: number,
+): number {
+  const trimmed = raw?.trim();
+  if (!trimmed || !/^\d+$/.test(trimmed)) {
+    return fallback;
+  }
+  const parsed = Number.parseInt(trimmed, 10);
+  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
+    return fallback;
+  }
+  return parsed;
+}
+
+export function getRateLimitConfig(
+  env: NodeJS.ProcessEnv = process.env,
+): RateLimitConfig {
+  return {
+    ...DEFAULT_RATE_LIMITS,
+    browserPerHour: parsePositiveIntSetting(
+      env.ADDS_UP_LIMIT_BROWSER_PER_HOUR,
+      DEFAULT_RATE_LIMITS.browserPerHour,
+    ),
+    ipPerHour: parsePositiveIntSetting(
+      env.ADDS_UP_LIMIT_ADDRESS_PER_HOUR,
+      DEFAULT_RATE_LIMITS.ipPerHour,
+    ),
+    globalModelCallsPerDay: parsePositiveIntSetting(
+      env.ADDS_UP_LIMIT_CALLS_PER_DAY,
+      DEFAULT_RATE_LIMITS.globalModelCallsPerDay,
+    ),
+  };
+}
+
 export type RateLimitDecision =
   | { allowed: true }
   | {
@@ -70,8 +105,12 @@ export class RateLimiter {
     limits?: Partial<RateLimitConfig>;
     now?: () => number;
   }) {
-    this.limits = { ...DEFAULT_RATE_LIMITS, ...options?.limits };
+    this.limits = { ...getRateLimitConfig(), ...options?.limits };
     this.now = options?.now ?? (() => Date.now());
+  }
+
+  getLimits(): RateLimitConfig {
+    return { ...this.limits };
   }
 
   private getWindow(map: Map<string, number[]>, key: string, cutoff: number): number[] {
@@ -101,8 +140,7 @@ export class RateLimiter {
       return {
         allowed: false,
         reason: "daily",
-        message:
-          "Adds Up has reached its daily limit of 3,000 model calls. Please try again tomorrow.",
+        message: `Adds Up has reached its daily limit of ${this.limits.globalModelCallsPerDay.toLocaleString("en-US")} model calls. Please try again tomorrow.`,
         retryAfterSeconds: retryAfter(
           this.dailyModelCalls[0],
           this.limits.dayWindowMs,
@@ -120,8 +158,7 @@ export class RateLimiter {
       return {
         allowed: false,
         reason: "browser",
-        message:
-          "You have reached the hourly limit of 120 readings for this browser. Please try again later.",
+        message: `You have reached the hourly limit of ${this.limits.browserPerHour.toLocaleString("en-US")} readings for this browser. Please try again later.`,
         retryAfterSeconds: retryAfter(
           browserHits[0],
           this.limits.hourWindowMs,
@@ -135,8 +172,7 @@ export class RateLimiter {
       return {
         allowed: false,
         reason: "ip",
-        message:
-          "This network address has reached the hourly limit of 600 readings. Please try again later.",
+        message: `This network address has reached the hourly limit of ${this.limits.ipPerHour.toLocaleString("en-US")} readings. Please try again later.`,
         retryAfterSeconds: retryAfter(ipHits[0], this.limits.hourWindowMs, now),
       };
     }
@@ -243,4 +279,8 @@ export function getGlobalRateLimiter(): RateLimiter {
     globalForRateLimit.__addsUpRateLimiter = new RateLimiter();
   }
   return globalForRateLimit.__addsUpRateLimiter;
+}
+
+export function resetGlobalRateLimiter(): void {
+  globalForRateLimit.__addsUpRateLimiter = undefined;
 }

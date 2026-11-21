@@ -76,6 +76,10 @@ export const STATEMENT_CACHE_TTL_MS = 60 * 60 * 1000;
 const SEC_MIN_INTERVAL_MS = 220; // <= 5 requests/second
 const DEFAULT_SAVED_DIR = path.join(process.cwd(), "data/saved");
 const APPLE_FIXTURE_PATH = path.join(process.cwd(), "src/fixtures/apple-statement.json");
+const NORTHSTAR_FIXTURE_PATH = path.join(
+  process.cwd(),
+  "src/fixtures/northstar-statement.json",
+);
 
 export function getSecSavedFallbackTimeoutMs(): number {
   const raw = process.env.ADDS_UP_SEC_SAVED_TIMEOUT_MS?.trim();
@@ -922,8 +926,14 @@ export async function loadStatement(
   const testMode = process.env.ADDS_UP_TEST === "1";
 
   if (testMode) {
-    if (cik === "320193") {
-      const raw = await readFile(APPLE_FIXTURE_PATH, "utf-8");
+    const fixturePath =
+      cik === "320193"
+        ? APPLE_FIXTURE_PATH
+        : cik === "990001"
+          ? NORTHSTAR_FIXTURE_PATH
+          : null;
+    if (fixturePath) {
+      const raw = await readFile(fixturePath, "utf-8");
       const parsed: unknown = JSON.parse(raw);
       if (isValidStatement(parsed)) {
         return { statement: parsed, source: "fixture" };

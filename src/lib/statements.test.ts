@@ -3,6 +3,7 @@ import path from "node:path";
 import { NextRequest } from "next/server";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import { GET as getPictureRoute } from "@/app/api/company/[cik]/picture/route";
+import { GET as getStatementRoute } from "@/app/api/company/[cik]/statement/route";
 import {
   formatFilingDate,
   getGlobalStatementCache,
@@ -690,5 +691,45 @@ describe("SEC steps 2-4, fallback, timeout and fixture statement", () => {
 
     expect(result.source).toBe("sec");
     expect(result.statement.companyName).toBe("No Saved Copy Corp.");
+  });
+
+  test("GET /api/company/[cik]/statement returns statement and source as JSON for fixture companies and 404 when missing", async () => {
+    process.env.ADDS_UP_TEST = "1";
+
+    const appleRes = await getStatementRoute(
+      new NextRequest("http://localhost/api/company/320193/statement"),
+      { params: Promise.resolve({ cik: "320193" }) },
+    );
+    expect(appleRes.status).toBe(200);
+    const appleBody = (await appleRes.json()) as {
+      statement: Statement;
+      source: string;
+    };
+    expect(appleBody.source).toBe("fixture");
+    expect(appleBody.statement.cik).toBe("320193");
+    expect(appleBody.statement.companyName).toBe("Apple Inc.");
+
+    // Second fixture company (Northstar Sample Corp) has two numbers outside every total.
+    const secondRes = await getStatementRoute(
+      new NextRequest("http://localhost/api/company/990001/statement"),
+      { params: Promise.resolve({ cik: "990001" }) },
+    );
+    expect(secondRes.status).toBe(200);
+    const secondBody = (await secondRes.json()) as {
+      statement: Statement;
+      source: string;
+    };
+    expect(secondBody.source).toBe("fixture");
+    expect(secondBody.statement.cik).toBe("990001");
+    expect(secondBody.statement.companyName).toBe("Northstar Sample Corp");
+
+    // Unknown CIK in test mode returns 404 with plain error.
+    const missingRes = await getStatementRoute(
+      new NextRequest("http://localhost/api/company/999998/statement"),
+      { params: Promise.resolve({ cik: "999998" }) },
+    );
+    expect(missingRes.status).toBe(404);
+    const missingBody = (await missingRes.json()) as { error?: string };
+    expect(missingBody.error).toBeTruthy();
   });
 });

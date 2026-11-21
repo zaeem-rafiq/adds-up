@@ -11,6 +11,7 @@ import {
 import { afterEach, describe, expect, test, vi } from "vitest";
 import { StatementView } from "./StatementView";
 import appleFixture from "@/fixtures/apple-statement.json";
+import northstarFixture from "@/fixtures/northstar-statement.json";
 import type {
   ReadingComparison,
   ReadingProgressEvent,
@@ -20,6 +21,7 @@ import type {
 import type { Statement } from "@/lib/statements";
 
 const APPLE_STATEMENT = appleFixture as unknown as Statement;
+const NORTHSTAR_STATEMENT = northstarFixture as unknown as Statement;
 
 const SAMPLE_STATEMENT: Statement = {
   cik: "320193",
@@ -1199,5 +1201,116 @@ describe("StatementView", () => {
     expect(container.querySelector('[data-cannot-rebuild="true"]')).toHaveTextContent(
       /never guesses/i,
     );
+  });
+
+  test("shows ticks at once with not proven, then updates outside-total numbers when second reader answers with all three classes", async () => {
+    const numberPairs = NORTHSTAR_STATEMENT.rows
+      .filter((r) => r.kind === "number")
+      .map((r) => r.numbers);
+    const { rows, comparison } = buildComparisonFromReadValues(
+      NORTHSTAR_STATEMENT,
+      numberPairs,
+    );
+
+    const encoder = new TextEncoder();
+    const controls: {
+      emit?: (event: ReadingProgressEvent) => void;
+      close?: () => void;
+    } = {};
+
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controls.emit = (event) => {
+          controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
+        };
+        controls.close = () => controller.close();
+      },
+    });
+
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(stream, {
+        status: 200,
+        headers: { "Content-Type": "application/x-ndjson" },
+      }),
+    );
+
+    const { container } = render(
+      <StatementView
+        statement={NORTHSTAR_STATEMENT}
+        source="fixture"
+        pictureUrl="/api/company/990001/picture"
+      />,
+    );
+
+    // Emit reading "done" first — second reader has NOT answered yet.
+    controls.emit?.({
+      type: "done",
+      result: {
+        rows,
+        comparison,
+        fromCache: false,
+        usedRepeat: false,
+        modelCalls: 1,
+      },
+    });
+
+    // Result screen and ticks show IMMEDIATELY; both outside-total numbers start as "not proven".
+    await waitFor(() => {
+      expect(screen.getByText("12 of 14 numbers proven")).toBeInTheDocument();
+    });
+    const verdict = container.querySelector('[data-verdict-band="true"]');
+    expect(verdict).toHaveTextContent("12 proven");
+    expect(verdict).toHaveTextContent("0 need your eye");
+    expect(verdict).toHaveTextContent("2 not proven");
+    expect(
+      container.querySelectorAll('[data-proof-mark="not-proven"]').length,
+    ).toBe(2);
+
+    // Now the second reader answers: row 6 unsure (0.60), row 7 disagrees (0.10).
+    controls.emit?.({
+      type: "recheck",
+      recheck: {
+        results: [
+          {
+            rowIndex: 6,
+            colIndex: 0,
+            probability: 0.6,
+            verdict: "unsure",
+            failed: false,
+          },
+          {
+            rowIndex: 7,
+            colIndex: 0,
+            probability: 0.1,
+            verdict: "disagrees",
+            failed: false,
+          },
+        ],
+        cutoffs: { upper: 0.9, lower: 0.3 },
+        modelCalls: 1,
+        fromCache: false,
+        failedBatches: 0,
+        rateLimited: false,
+      },
+    });
+    controls.close?.();
+
+    await waitFor(() => {
+      expect(screen.getByText("2 numbers need your eye")).toBeInTheDocument();
+    });
+    // Ticks never change (still 12 proven); both move from not proven to need your eye.
+    expect(verdict).toHaveTextContent("12 proven");
+    expect(verdict).toHaveTextContent("2 need your eye");
+    expect(verdict).toHaveTextContent("0 not proven");
+    expect(container.querySelector('[data-proof-mark="needs-eye"]')).not.toBeNull();
+    expect(
+      container.querySelector('[data-proof-mark="needs-eye-red"]'),
+    ).not.toBeNull();
+    expect(
+      container.querySelector('td[data-second-reader="unsure"]'),
+    ).not.toBeNull();
+    expect(
+      container.querySelector('td[data-second-reader="disagrees"]'),
+    ).not.toBeNull();
   });
 });

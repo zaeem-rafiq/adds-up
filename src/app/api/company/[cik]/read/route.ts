@@ -20,6 +20,10 @@ import {
   readStatementPictures,
   type ReadingProgressEvent,
 } from "@/lib/reading";
+import {
+  getGlobalDecisionCache,
+  recheckStatementNumbers,
+} from "@/lib/second-reader";
 import { loadStatement, StatementError } from "@/lib/statements";
 
 function applyBrowserCookie(
@@ -49,8 +53,22 @@ export async function POST(
 ) {
   const { cik } = await context.params;
   const testMode = process.env.ADDS_UP_TEST === "1";
-  // Outside test mode, ?slow=1 does nothing.
+  // Outside test mode, ?slow=1, ?doubt= and ?unsure= do nothing.
   const slow = testMode && request.nextUrl.searchParams.get("slow") === "1";
+  const doubtLabels = testMode
+    ? request.nextUrl.searchParams
+        .getAll("doubt")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : [];
+  const unsureLabels = testMode
+    ? request.nextUrl.searchParams
+        .getAll("unsure")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : [];
+  const hasTestRecheckOverrides =
+    testMode && (doubtLabels.length > 0 || unsureLabels.length > 0);
 
   const { browserId, isNew } = getOrCreateBrowserId(
     request.cookies.get(BROWSER_COOKIE_NAME)?.value,
@@ -119,8 +137,9 @@ export async function POST(
         }
       };
 
+      let readingFinished = false;
       try {
-        await readStatementPictures({
+        const readingResult = await readStatementPictures({
           statement: statementResult.statement,
           client,
           cache,
@@ -135,9 +154,33 @@ export async function POST(
           signal: request.signal,
           onProgress: send,
         });
+        readingFinished = true;
+
+        // Run the second reader AFTER sending "done" so ticks never wait for it.
+        if (!request.signal.aborted) {
+          const recheck = await recheckStatementNumbers({
+            statement: statementResult.statement,
+            readingResult,
+            client,
+            cache: getGlobalDecisionCache(),
+            rateLimiter,
+            browserId,
+            ip,
+            timeoutMs,
+            bypassCache: hasTestRecheckOverrides,
+            testContext: testMode ? { doubtLabels, unsureLabels } : undefined,
+            signal: request.signal,
+          });
+          if (recheck.results.length > 0 && !request.signal.aborted) {
+            send({ type: "recheck", recheck });
+          }
+        }
       } catch (error) {
-        if (error instanceof DOMException && error.name === "AbortError") {
-          // Client aborted (e.g. clicked Stop).
+        if (
+          readingFinished ||
+          (error instanceof DOMException && error.name === "AbortError")
+        ) {
+          // Reading already delivered its result, or client aborted (e.g. clicked Stop).
         } else if (error instanceof RateLimitError) {
           send({
             type: "error",

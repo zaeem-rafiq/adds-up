@@ -8,6 +8,11 @@ import type {
   TwoColumnProof,
 } from "@/lib/adding";
 import type { RowComparison, StatementReadingResult } from "@/lib/reading";
+import {
+  secondReaderCellKey,
+  type SecondReaderCellResult,
+  type SecondReaderVerdict,
+} from "@/lib/second-reader-types";
 import type { Statement } from "@/lib/statements";
 
 export type ResultHeadingRow = {
@@ -398,22 +403,59 @@ function NeedsEyeIcon() {
   );
 }
 
+function DisagreesEyeIcon() {
+  return (
+    <svg
+      className="h-[18px] w-[18px] shrink-0 text-[#b91c1c]"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" />
+      <path
+        d="M10 6.5v4.3"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <circle cx="10" cy="14.1" r="1.1" fill="#ffffff" />
+    </svg>
+  );
+}
+
 function getRowVisualStatus(
   leftStatus: CellProofStatus,
   rightStatus: CellProofStatus,
   isMismatchTotal: boolean,
+  leftRecheck?: SecondReaderCellResult,
+  rightRecheck?: SecondReaderCellResult,
 ):
   | "proven"
   | "mismatch-total"
   | "mismatch-member"
+  | "recheck-disagrees"
   | "unread"
+  | "recheck-unsure"
   | "not-proven"
   | "none" {
   if (leftStatus === "mismatch" || rightStatus === "mismatch") {
     return isMismatchTotal ? "mismatch-total" : "mismatch-member";
   }
+  if (
+    (leftStatus === "not_proven" && leftRecheck?.verdict === "disagrees") ||
+    (rightStatus === "not_proven" && rightRecheck?.verdict === "disagrees")
+  ) {
+    return "recheck-disagrees";
+  }
   if (leftStatus === "unread" || rightStatus === "unread") {
     return "unread";
+  }
+  if (
+    (leftStatus === "not_proven" && leftRecheck?.verdict === "unsure") ||
+    (rightStatus === "not_proven" && rightRecheck?.verdict === "unsure")
+  ) {
+    return "recheck-unsure";
   }
   if (leftStatus === "not_proven" || rightStatus === "not_proven") {
     return "not-proven";
@@ -448,6 +490,7 @@ type ResultTableProps = {
   activeHiddenCell?: SelectedCellRef | null;
   activeChangedCell?: (SelectedCellRef & { displayValue: string }) | null;
   rebuild?: RebuildResult | null;
+  secondReaderByCell?: ReadonlyMap<string, SecondReaderCellResult>;
 };
 
 export function ResultTable({
@@ -463,6 +506,7 @@ export function ResultTable({
   activeHiddenCell = null,
   activeChangedCell = null,
   rebuild = null,
+  secondReaderByCell,
 }: ResultTableProps) {
   const { totalAnnotations, bracketsByDisplayRow, totalNumberIndices } =
     buildAnnotations(displayRows, proof);
@@ -573,6 +617,14 @@ export function ResultTable({
               const idx = row.numberRowIndex;
               const leftStatus = proof.left.cellStatuses[idx] ?? "not_proven";
               const rightStatus = proof.right.cellStatuses[idx] ?? "not_proven";
+              const leftRecheck =
+                leftStatus === "not_proven"
+                  ? secondReaderByCell?.get(secondReaderCellKey(idx, 0))
+                  : undefined;
+              const rightRecheck =
+                rightStatus === "not_proven"
+                  ? secondReaderByCell?.get(secondReaderCellKey(idx, 1))
+                  : undefined;
               const annotation = totalAnnotations.get(idx);
               const bracket = bracketsByDisplayRow.get(displayIdx);
               const isTotal = row.isTotal || totalNumberIndices.has(idx);
@@ -587,6 +639,8 @@ export function ResultTable({
                 leftStatus,
                 rightStatus,
                 annotation?.kind === "mismatch",
+                leftRecheck,
+                rightRecheck,
               );
 
               const leftBrokenTotal =
@@ -652,6 +706,8 @@ export function ResultTable({
                   isRebuildTotalRow ||
                   isRebuiltHiddenRow ||
                   rowVisual === "not-proven" ||
+                  rowVisual === "recheck-unsure" ||
+                  rowVisual === "recheck-disagrees" ||
                   rowVisual === "unread";
 
               return (
@@ -665,6 +721,8 @@ export function ResultTable({
                   numberBorderClass={numberBorderClass}
                   leftStatus={leftStatus}
                   rightStatus={rightStatus}
+                  leftRecheck={leftRecheck}
+                  rightRecheck={rightRecheck}
                   leftText={
                     isLeftChanged && mode === "rechange" && activeChangedCell
                       ? activeChangedCell.displayValue
@@ -710,6 +768,8 @@ type ResultRowGroupProps = {
   numberBorderClass: string;
   leftStatus: CellProofStatus;
   rightStatus: CellProofStatus;
+  leftRecheck?: SecondReaderCellResult;
+  rightRecheck?: SecondReaderCellResult;
   leftText: string;
   rightText: string;
   leftBrokenTotal: boolean;
@@ -741,6 +801,7 @@ function NumberCellContent({
   isHidden,
   isChanged,
   isSelected,
+  recheckVerdict,
   onSelectCell,
   onQuickHide,
   onQuickChange,
@@ -755,6 +816,7 @@ function NumberCellContent({
   isHidden: boolean;
   isChanged: boolean;
   isSelected: boolean;
+  recheckVerdict?: SecondReaderVerdict;
   onSelectCell?: (cell: SelectedCellRef) => void;
   onQuickHide?: (cell: SelectedCellRef) => void;
   onQuickChange?: (cell: SelectedCellRef) => void;
@@ -821,8 +883,14 @@ function NumberCellContent({
           onClick={() => onSelectCell(cellRef)}
           className={`inline-block cursor-pointer rounded-md px-1.5 py-0.5 text-right transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d4ea8] ${
             isSelected
-              ? "border-[1.5px] border-[#1d4ea8] bg-blue-50/40 font-semibold text-slate-900"
-              : "border border-transparent hover:border-slate-300 hover:bg-slate-50"
+              ? recheckVerdict === "disagrees"
+                ? "border-[1.5px] border-[#b91c1c] bg-red-50/70 font-semibold text-[#b91c1c]"
+                : "border-[1.5px] border-[#1d4ea8] bg-blue-50/40 font-semibold text-slate-900"
+              : recheckVerdict === "disagrees"
+                ? "border-[1.5px] border-[#dc2626] bg-red-50/70 font-semibold text-[#b91c1c] hover:bg-red-50"
+                : recheckVerdict === "unsure"
+                  ? "border-[1.5px] border-dashed border-[#c27803] bg-amber-50/50 text-[#9a5b00] hover:bg-amber-50"
+                  : "border border-transparent hover:border-slate-300 hover:bg-slate-50"
           }`}
         >
           {text}
@@ -843,6 +911,8 @@ function ResultRowGroup({
   numberBorderClass,
   leftStatus,
   rightStatus,
+  leftRecheck,
+  rightRecheck,
   leftText,
   rightText,
   leftBrokenTotal,
@@ -901,14 +971,17 @@ function ResultRowGroup({
         <td
           data-col="0"
           data-proof-status={leftStatus}
+          data-second-reader={leftRecheck?.verdict}
           className={`whitespace-nowrap py-1.5 pl-1.5 text-right align-bottom font-mono text-[12px] tabular-nums sm:pl-3 sm:text-[13.5px] ${numberBorderClass} ${
             leftBrokenTotal
               ? "font-bold text-[#b53800]"
-              : leftStatus === "unread" && !isLeftHidden
-                ? "font-sans text-xs font-medium text-[#9a5b00]"
-                : leftStatus === "empty"
-                  ? "text-slate-400"
-                  : ""
+              : leftRecheck?.verdict === "disagrees"
+                ? "font-semibold text-[#b91c1c]"
+                : leftStatus === "unread" && !isLeftHidden
+                  ? "font-sans text-xs font-medium text-[#9a5b00]"
+                  : leftStatus === "empty"
+                    ? "text-slate-400"
+                    : ""
           }`}
         >
           <NumberCellContent
@@ -922,6 +995,7 @@ function ResultRowGroup({
             isHidden={isLeftHidden}
             isChanged={isLeftChanged}
             isSelected={isLeftSelected}
+            recheckVerdict={leftRecheck?.verdict}
             onSelectCell={onSelectCell}
             onQuickHide={onQuickHide}
             onQuickChange={onQuickChange}
@@ -931,14 +1005,17 @@ function ResultRowGroup({
         <td
           data-col="1"
           data-proof-status={rightStatus}
+          data-second-reader={rightRecheck?.verdict}
           className={`whitespace-nowrap py-1.5 pl-1.5 text-right align-bottom font-mono text-[12px] tabular-nums sm:pl-3 sm:text-[13.5px] ${numberBorderClass} ${
             rightBrokenTotal
               ? "font-bold text-[#b53800]"
-              : rightStatus === "unread" && !isRightHidden
-                ? "font-sans text-xs font-medium text-[#9a5b00]"
-                : rightStatus === "empty"
-                  ? "text-slate-400"
-                  : ""
+              : rightRecheck?.verdict === "disagrees"
+                ? "font-semibold text-[#b91c1c]"
+                : rightStatus === "unread" && !isRightHidden
+                  ? "font-sans text-xs font-medium text-[#9a5b00]"
+                  : rightStatus === "empty"
+                    ? "text-slate-400"
+                    : ""
           }`}
         >
           <NumberCellContent
@@ -952,6 +1029,7 @@ function ResultRowGroup({
             isHidden={isRightHidden}
             isChanged={isRightChanged}
             isSelected={isRightSelected}
+            recheckVerdict={rightRecheck?.verdict}
             onSelectCell={onSelectCell}
             onQuickHide={onQuickHide}
             onQuickChange={onQuickChange}
@@ -998,6 +1076,26 @@ function ResultRowGroup({
                     className="inline-flex"
                   >
                     <CircleMinusIcon tone="mismatch" />
+                  </span>
+                )}
+                {rowVisual === "recheck-disagrees" && (
+                  <span
+                    data-proof-mark="needs-eye-red"
+                    aria-label="Needs your eye"
+                    title="Needs your eye"
+                    className="inline-flex"
+                  >
+                    <DisagreesEyeIcon />
+                  </span>
+                )}
+                {rowVisual === "recheck-unsure" && (
+                  <span
+                    data-proof-mark="needs-eye"
+                    aria-label="Needs your eye"
+                    title="Needs your eye"
+                    className="inline-flex"
+                  >
+                    <NeedsEyeIcon />
                   </span>
                 )}
                 {rowVisual === "unread" && (
@@ -1115,8 +1213,42 @@ function ResultRowGroup({
               {!annotation &&
                 !bracket?.sideNote &&
                 !isRebuiltHiddenRow &&
+                rowVisual === "recheck-disagrees" && (
+                  <span
+                    data-recheck-label="disagrees"
+                    className="font-semibold text-[#b91c1c]"
+                  >
+                    Needs your eye
+                  </span>
+                )}
+
+              {!annotation &&
+                !bracket?.sideNote &&
+                !isRebuiltHiddenRow &&
+                rowVisual === "recheck-unsure" && (
+                  <span
+                    data-recheck-label="unsure"
+                    className="font-medium text-[#9a5b00]"
+                  >
+                    Needs your eye
+                  </span>
+                )}
+
+              {!annotation &&
+                !bracket?.sideNote &&
+                !isRebuiltHiddenRow &&
                 rowVisual === "not-proven" && (
-                  <span className="text-slate-500">not proven</span>
+                  <span
+                    data-recheck-label={
+                      leftRecheck?.verdict === "agrees" ||
+                      rightRecheck?.verdict === "agrees"
+                        ? "agrees"
+                        : undefined
+                    }
+                    className="text-slate-500"
+                  >
+                    not proven
+                  </span>
                 )}
 
               {!annotation &&
@@ -1194,8 +1326,40 @@ function ResultRowGroup({
 
                 {!annotation &&
                   !isRebuiltHiddenRow &&
+                  rowVisual === "recheck-disagrees" && (
+                    <span
+                      data-recheck-label="disagrees"
+                      className="pl-3 font-semibold text-[#b91c1c]"
+                    >
+                      Needs your eye
+                    </span>
+                  )}
+
+                {!annotation &&
+                  !isRebuiltHiddenRow &&
+                  rowVisual === "recheck-unsure" && (
+                    <span
+                      data-recheck-label="unsure"
+                      className="pl-3 font-medium text-[#9a5b00]"
+                    >
+                      Needs your eye
+                    </span>
+                  )}
+
+                {!annotation &&
+                  !isRebuiltHiddenRow &&
                   rowVisual === "not-proven" && (
-                    <span className="pl-3 text-slate-500">not proven</span>
+                    <span
+                      data-recheck-label={
+                        leftRecheck?.verdict === "agrees" ||
+                        rightRecheck?.verdict === "agrees"
+                          ? "agrees"
+                          : undefined
+                      }
+                      className="pl-3 text-slate-500"
+                    >
+                      not proven
+                    </span>
                   )}
 
                 {!annotation &&

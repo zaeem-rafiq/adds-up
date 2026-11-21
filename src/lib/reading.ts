@@ -8,6 +8,7 @@ import {
   type GeminiClient,
 } from "@/lib/gemini";
 import { RateLimitError, type RateLimiter } from "@/lib/rate-limit";
+import type { SecondReaderResult } from "@/lib/second-reader-types";
 import {
   parseNumberCell,
   type Statement,
@@ -94,6 +95,7 @@ export type ReadingProgressEvent =
     }
   | { type: "slow"; strip: number; totalStrips: number; timeoutMs: number }
   | { type: "done"; result: StatementReadingResult }
+  | { type: "recheck"; recheck: SecondReaderResult }
   | {
       type: "error";
       code: "timeout" | "rate_limit" | "missing_key" | "failed";

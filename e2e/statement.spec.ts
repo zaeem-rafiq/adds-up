@@ -381,3 +381,101 @@ test("refuses to hide a number outside every total with a plain reason", async (
   expect(consoleErrors).toEqual([]);
   expect(failedRequests).toEqual([]);
 });
+
+test("shows all three second-reader classes for numbers outside every total on the second fixture company at 375, 768 and 1440 pixels", async ({
+  page,
+  request,
+}) => {
+  const consoleErrors: string[] = [];
+  const failedRequests: string[] = [];
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(msg.text());
+  });
+  page.on("requestfailed", (req) => {
+    failedRequests.push(`${req.url()} (${req.failure()?.errorText})`);
+  });
+
+  // Verify /api/company/[cik]/statement returns JSON with statement and source.
+  const stmtRes = await request.get("/api/company/990001/statement");
+  expect(stmtRes.status()).toBe(200);
+  const stmtJson = (await stmtRes.json()) as {
+    statement: { cik: string; companyName: string };
+    source: string;
+  };
+  expect(stmtJson.source).toBe("fixture");
+  expect(stmtJson.statement.companyName).toBe("Northstar Sample Corp");
+
+  // 1) Agrees (0.97 default): numbers outside every total stay "not proven" with no question.
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/company/990001");
+
+  const verdictBand = page.locator('[data-verdict-band="true"]');
+  await expect(verdictBand).toContainText("12 of 14 numbers proven");
+  await expect(verdictBand.locator('[data-count="proven"]')).toHaveText(
+    "12 proven",
+  );
+  await expect(verdictBand.locator('[data-count="need-your-eye"]')).toHaveText(
+    "0 need your eye",
+  );
+  await expect(verdictBand.locator('[data-count="not-proven"]')).toHaveText(
+    "2 not proven",
+  );
+  await expect(page.locator('td[data-second-reader="agrees"]')).toHaveCount(2);
+  await expect(page.locator('[data-proof-mark="not-proven"]')).toHaveCount(2);
+
+  // 2) Unsure (?unsure=Restricted cash -> 0.60): shows "Needs your eye" (amber) and counts under need your eye.
+  await page.goto("/company/990001?unsure=Restricted+cash");
+  await expect(verdictBand).toContainText("1 number needs your eye");
+  await expect(verdictBand.locator('[data-count="proven"]')).toHaveText(
+    "12 proven",
+  );
+  await expect(verdictBand.locator('[data-count="need-your-eye"]')).toHaveText(
+    "1 need your eye",
+  );
+  await expect(verdictBand.locator('[data-count="not-proven"]')).toHaveText(
+    "1 not proven",
+  );
+  await expect(page.locator('td[data-second-reader="unsure"]')).toHaveCount(1);
+  await expect(page.locator('[data-proof-mark="needs-eye"]')).toHaveCount(1);
+  await expect(page.locator('td[data-second-reader="agrees"]')).toHaveCount(1);
+
+  // 3) Disagrees (?doubt=Deferred tax asset -> 0.10): shows "Needs your eye" marked in red, plus unsure on Restricted cash.
+  await page.goto(
+    "/company/990001?unsure=Restricted+cash&doubt=Deferred+tax+asset",
+  );
+  await expect(verdictBand).toContainText("2 numbers need your eye");
+  await expect(verdictBand.locator('[data-count="proven"]')).toHaveText(
+    "12 proven",
+  );
+  await expect(verdictBand.locator('[data-count="need-your-eye"]')).toHaveText(
+    "2 need your eye",
+  );
+  await expect(verdictBand.locator('[data-count="not-proven"]')).toHaveText(
+    "0 not proven",
+  );
+  await expect(page.locator('td[data-second-reader="unsure"]')).toHaveCount(1);
+  await expect(page.locator('td[data-second-reader="disagrees"]')).toHaveCount(1);
+  await expect(page.locator('[data-proof-mark="needs-eye"]')).toHaveCount(1);
+  await expect(page.locator('[data-proof-mark="needs-eye-red"]')).toHaveCount(1);
+
+  // Clicking the red disagreed cell shows the red "Needs your eye" badge in the selected panel.
+  await page
+    .locator('td[data-second-reader="disagrees"] button[data-cell-button]')
+    .click();
+  await expect(
+    page.locator('[data-selected-badge="needs-eye-red"]'),
+  ).toHaveText("Needs your eye");
+
+  // Responsive check at 375, 768 and 1440 px wide with no sideways scroll.
+  for (const width of [375, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect(verdictBand).toContainText("2 numbers need your eye");
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    );
+    expect(hasHorizontalOverflow).toBe(false);
+  }
+
+  expect(consoleErrors).toEqual([]);
+  expect(failedRequests).toEqual([]);
+});

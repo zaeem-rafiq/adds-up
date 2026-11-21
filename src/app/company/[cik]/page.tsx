@@ -13,16 +13,31 @@ import {
   type StatementLoadResult,
 } from "@/lib/statements";
 
+function extractQueryValues(
+  raw: string | string[] | undefined,
+): string[] {
+  if (!raw) return [];
+  const list = Array.isArray(raw) ? raw : [raw];
+  return list.map((item) => item.trim()).filter(Boolean);
+}
+
 async function CompanyStatementContent({
   params,
   searchParams,
 }: Pick<PageProps<"/company/[cik]">, "params" | "searchParams">) {
   const { cik } = await params;
   const resolvedSearchParams = await searchParams;
+  const isTestMode = process.env.ADDS_UP_TEST === "1";
   const slowParam = resolvedSearchParams.slow;
   const slowMode =
-    process.env.ADDS_UP_TEST === "1" &&
+    isTestMode &&
     (slowParam === "1" || (Array.isArray(slowParam) && slowParam.includes("1")));
+  const testDoubtLabels = isTestMode
+    ? extractQueryValues(resolvedSearchParams.doubt)
+    : [];
+  const testUnsureLabels = isTestMode
+    ? extractQueryValues(resolvedSearchParams.unsure)
+    : [];
   const normalizedCik = normalizeCik(cik);
 
   let company: Company | null = null;
@@ -78,6 +93,8 @@ async function CompanyStatementContent({
         source={statementResult.source}
         pictureUrl={pictureUrl}
         slowMode={slowMode}
+        testDoubtLabels={testDoubtLabels}
+        testUnsureLabels={testUnsureLabels}
       />
     );
   }

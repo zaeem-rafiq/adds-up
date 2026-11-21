@@ -29,6 +29,11 @@ import type {
   ReadingProgressEvent,
   StatementReadingResult,
 } from "@/lib/reading";
+import {
+  secondReaderCellKey,
+  type SecondReaderCellResult,
+  type SecondReaderResult,
+} from "@/lib/second-reader-types";
 import type { Statement, StatementSource } from "@/lib/statements";
 import { countStatementStrips } from "@/lib/strips";
 
@@ -127,6 +132,9 @@ type StatementViewProps = {
   source: StatementSource;
   pictureUrl: string;
   slowMode?: boolean;
+  /** Test-mode-only overrides forwarded to the server when ADDS_UP_TEST=1. */
+  testDoubtLabels?: string[];
+  testUnsureLabels?: string[];
   /** Set to false when showing a statement that has no SEC comparison data. */
   hasSecData?: boolean;
 };
@@ -330,6 +338,8 @@ export function StatementView({
   source,
   pictureUrl,
   slowMode = false,
+  testDoubtLabels,
+  testUnsureLabels,
   hasSecData = true,
 }: StatementViewProps) {
   const formattedDate = formatFilingDate(statement.filingDate);
@@ -337,6 +347,8 @@ export function StatementView({
     statement.form === "10-K" ? "annual report" : "quarterly report";
   const initialTotalNumbers = countExpectedNumbers(statement);
   const initialTotalStrips = countStatementStrips(statement);
+  const testDoubtKey = testDoubtLabels?.join("\0") ?? "";
+  const testUnsureKey = testUnsureLabels?.join("\0") ?? "";
 
   const [phase, setPhase] = useState<ReadingPhase>("loading");
   const [numbersRead, setNumbersRead] = useState(0);
@@ -349,6 +361,9 @@ export function StatementView({
   );
   const [activeResult, setActiveResult] =
     useState<StatementReadingResult | null>(null);
+  const [baseRecheck, setBaseRecheck] = useState<SecondReaderResult | null>(
+    null,
+  );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [errorCode, setErrorCode] = useState<ErrorCode | null>(null);
 
@@ -385,9 +400,27 @@ export function StatementView({
     const controller = new AbortController();
     abortRef.current = controller;
 
+    const readParams = new URLSearchParams();
+    if (runState.useSlowQuery) {
+      readParams.set("slow", "1");
+    }
+    if (testDoubtKey) {
+      for (const label of testDoubtKey.split("\0")) {
+        if (label) readParams.append("doubt", label);
+      }
+    }
+    if (testUnsureKey) {
+      for (const label of testUnsureKey.split("\0")) {
+        if (label) readParams.append("unsure", label);
+      }
+    }
+    const queryString = readParams.toString();
     const readUrl = `/api/company/${encodeURIComponent(statement.cik)}/read${
-      runState.useSlowQuery ? "?slow=1" : ""
+      queryString ? `?${queryString}` : ""
     }`;
+
+    let doneProof: TwoColumnProof | null = null;
+    let receivedRecheck = false;
 
     const applyEvent = (event: ReadingProgressEvent) => {
       if (controller.signal.aborted) return;
@@ -414,6 +447,7 @@ export function StatementView({
       } else if (event.type === "done") {
         setBaseResult(event.result);
         setActiveResult(event.result);
+        setBaseRecheck(null);
         setNumbersRead(event.result.comparison.readCount);
         setTotalNumbers(event.result.comparison.totalStatementNumbers);
         setModState({ kind: "none" });
@@ -435,6 +469,7 @@ export function StatementView({
           numberRows.map((r) => r.numbers[1]),
           { unreadMask: numberRows.map((r) => r.unread) },
         );
+        doneProof = initialProof;
         setSelectedCell(pickInitialSelectedCell(initialProof));
 
         const readCount =
@@ -467,6 +502,9 @@ export function StatementView({
         }
         setHistory(initialEntries);
         setPhase("done");
+      } else if (event.type === "recheck") {
+        receivedRecheck = true;
+        setBaseRecheck(event.recheck);
       } else if (event.type === "error") {
         setErrorCode(event.code);
         setErrorMessage(event.message);
@@ -523,6 +561,45 @@ export function StatementView({
         ) {
           return;
         }
+        if (doneProof) {
+          // Reading already succeeded and showed the result screen; if the stream
+          // broke while waiting for the second reader, leave unproved numbers as
+          // "Needs your eye" without disrupting the proven ticks.
+          if (!receivedRecheck) {
+            const fallbackCells: SecondReaderCellResult[] = [];
+            for (let i = 0; i < doneProof.left.cellStatuses.length; i += 1) {
+              if (doneProof.left.cellStatuses[i] === "not_proven") {
+                fallbackCells.push({
+                  rowIndex: i,
+                  colIndex: 0,
+                  probability: null,
+                  verdict: "unsure",
+                  failed: true,
+                });
+              }
+              if (doneProof.right.cellStatuses[i] === "not_proven") {
+                fallbackCells.push({
+                  rowIndex: i,
+                  colIndex: 1,
+                  probability: null,
+                  verdict: "unsure",
+                  failed: true,
+                });
+              }
+            }
+            if (fallbackCells.length > 0) {
+              setBaseRecheck({
+                results: fallbackCells,
+                cutoffs: { upper: 0.9, lower: 0.3 },
+                modelCalls: 0,
+                fromCache: false,
+                failedBatches: 1,
+                rateLimited: false,
+              });
+            }
+          }
+          return;
+        }
         setErrorCode("failed");
         setErrorMessage("Could not read the balance sheet picture right now.");
         setPhase("error");
@@ -536,7 +613,7 @@ export function StatementView({
       modAbortRef.current?.abort();
       causeAbortRef.current?.abort();
     };
-  }, [runState, statement]);
+  }, [runState, statement, testDoubtKey, testUnsureKey]);
 
   const handleStop = () => {
     abortRef.current?.abort();
@@ -563,6 +640,7 @@ export function StatementView({
     setSlowStrip(initialTotalStrips);
     setBaseResult(null);
     setActiveResult(null);
+    setBaseRecheck(null);
     setSelectedCell(null);
     setModState({ kind: "none" });
     setHideRefusal(null);
@@ -1130,10 +1208,58 @@ export function StatementView({
     return pictureUrl;
   }, [modState, pictureUrl]);
 
-  const verdictHeadline = (() => {
+  const secondReaderByCell = useMemo(() => {
+    const map = new Map<string, SecondReaderCellResult>();
+    if (modState.kind !== "none" || !baseRecheck) {
+      return map;
+    }
+    for (const cell of baseRecheck.results) {
+      map.set(secondReaderCellKey(cell.rowIndex, cell.colIndex), cell);
+    }
+    return map;
+  }, [baseRecheck, modState.kind]);
+
+  const verdictCounts = useMemo(() => {
     if (!provenModel) return null;
-    const { proof, rebuild, allMismatches } = provenModel;
-    const { proven, needYourEye, total } = proof.counts;
+    const { proof, mismatchCellCount, unreadCellCount } = provenModel;
+    let recheckUnsureCount = 0;
+    let recheckDisagreesCount = 0;
+
+    if (modState.kind === "none" && secondReaderByCell.size > 0) {
+      for (let i = 0; i < proof.left.cellStatuses.length; i += 1) {
+        if (proof.left.cellStatuses[i] === "not_proven") {
+          const verdict = secondReaderByCell.get(
+            secondReaderCellKey(i, 0),
+          )?.verdict;
+          if (verdict === "unsure") recheckUnsureCount += 1;
+          else if (verdict === "disagrees") recheckDisagreesCount += 1;
+        }
+        if (proof.right.cellStatuses[i] === "not_proven") {
+          const verdict = secondReaderByCell.get(
+            secondReaderCellKey(i, 1),
+          )?.verdict;
+          if (verdict === "unsure") recheckUnsureCount += 1;
+          else if (verdict === "disagrees") recheckDisagreesCount += 1;
+        }
+      }
+    }
+
+    const addedNeedsEye = recheckUnsureCount + recheckDisagreesCount;
+    return {
+      proven: proof.counts.proven,
+      needYourEye: proof.counts.needYourEye + addedNeedsEye,
+      notProven: Math.max(0, proof.counts.notProven - addedNeedsEye),
+      total: proof.counts.total,
+      redCount: mismatchCellCount + recheckDisagreesCount,
+      amberCount: unreadCellCount + recheckUnsureCount,
+      recheckDisagreesCount,
+    };
+  }, [modState.kind, provenModel, secondReaderByCell]);
+
+  const verdictHeadline = (() => {
+    if (!provenModel || !verdictCounts) return null;
+    const { rebuild, allMismatches } = provenModel;
+    const { proven, needYourEye, total, recheckDisagreesCount } = verdictCounts;
 
     // Approved change #3: after a hide, headline is "Rebuilt: <number>" ONLY when rebuilt.
     if (modState.kind === "hidden") {
@@ -1174,7 +1300,8 @@ export function StatementView({
         text: `${needYourEye} ${
           needYourEye === 1 ? "number needs" : "numbers need"
         } your eye`,
-        colorClass: "text-[#9a5b00]",
+        colorClass:
+          recheckDisagreesCount > 0 ? "text-[#b91c1c]" : "text-[#9a5b00]",
       };
     }
     return {
@@ -1184,16 +1311,16 @@ export function StatementView({
   })();
 
   const provenPct =
-    provenModel && provenModel.proof.counts.total > 0
-      ? (provenModel.proof.counts.proven / provenModel.proof.counts.total) * 100
+    verdictCounts && verdictCounts.total > 0
+      ? (verdictCounts.proven / verdictCounts.total) * 100
       : 0;
   const mismatchPct =
-    provenModel && provenModel.proof.counts.total > 0
-      ? (provenModel.mismatchCellCount / provenModel.proof.counts.total) * 100
+    verdictCounts && verdictCounts.total > 0
+      ? (verdictCounts.redCount / verdictCounts.total) * 100
       : 0;
   const unreadPct =
-    provenModel && provenModel.proof.counts.total > 0
-      ? (provenModel.unreadCellCount / provenModel.proof.counts.total) * 100
+    verdictCounts && verdictCounts.total > 0
+      ? (verdictCounts.amberCount / verdictCounts.total) * 100
       : 0;
 
   const tableMode: TableMode =
@@ -1235,18 +1362,31 @@ export function StatementView({
     const formattedValue =
       row.rawValues[col] ||
       (row.numbers[col] !== null ? formatProofNumber(row.numbers[col]!) : "—");
+    const recheckResult =
+      status === "not_proven"
+        ? secondReaderByCell.get(
+            secondReaderCellKey(selectedCell.rowIndex, col),
+          )
+        : undefined;
 
     return {
       cell: selectedCell,
       row,
       columnHeading: statement.columns[col],
       status,
+      recheckResult,
       containingTotalLabel,
       totalGroup,
       matchesSec,
       formattedValue,
     };
-  }, [activeResult, provenModel, selectedCell, statement.columns]);
+  }, [
+    activeResult,
+    provenModel,
+    secondReaderByCell,
+    selectedCell,
+    statement.columns,
+  ]);
 
   const hiddenCountNote = (() => {
     if (modState.kind !== "hidden" || !provenModel) return null;
@@ -1439,19 +1579,21 @@ export function StatementView({
                 <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600 sm:text-[13px]">
                   <span data-count="proven">
                     <strong className="font-bold text-slate-900">
-                      {provenModel.proof.counts.proven}
+                      {verdictCounts?.proven ?? provenModel.proof.counts.proven}
                     </strong>{" "}
                     proven
                   </span>
                   <span data-count="need-your-eye">
                     <strong className="font-bold text-slate-900">
-                      {provenModel.proof.counts.needYourEye}
+                      {verdictCounts?.needYourEye ??
+                        provenModel.proof.counts.needYourEye}
                     </strong>{" "}
                     need your eye
                   </span>
                   <span data-count="not-proven">
                     <strong className="font-bold text-slate-900">
-                      {provenModel.proof.counts.notProven}
+                      {verdictCounts?.notProven ??
+                        provenModel.proof.counts.notProven}
                     </strong>{" "}
                     not proven
                   </span>
@@ -1617,6 +1759,9 @@ export function StatementView({
                   : null
               }
               rebuild={provenModel.rebuild}
+              secondReaderByCell={
+                modState.kind === "none" ? secondReaderByCell : undefined
+              }
             />
           )}
 
@@ -1769,11 +1914,34 @@ export function StatementView({
                     <span>Proven</span>
                   </span>
                 )}
-                {selectedCellInfo.status === "not_proven" && (
-                  <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
-                    Not proven
-                  </span>
-                )}
+                {selectedCellInfo.status === "not_proven" &&
+                  selectedCellInfo.recheckResult?.verdict === "disagrees" && (
+                    <span
+                      data-selected-badge="needs-eye-red"
+                      className="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-semibold text-[#b91c1c]"
+                    >
+                      Needs your eye
+                    </span>
+                  )}
+                {selectedCellInfo.status === "not_proven" &&
+                  selectedCellInfo.recheckResult?.verdict === "unsure" && (
+                    <span
+                      data-selected-badge="needs-eye"
+                      className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-[#9a5b00]"
+                    >
+                      Needs your eye
+                    </span>
+                  )}
+                {selectedCellInfo.status === "not_proven" &&
+                  selectedCellInfo.recheckResult?.verdict !== "disagrees" &&
+                  selectedCellInfo.recheckResult?.verdict !== "unsure" && (
+                    <span
+                      data-selected-badge="not-proven"
+                      className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600"
+                    >
+                      Not proven
+                    </span>
+                  )}
                 {(selectedCellInfo.status === "mismatch" ||
                   selectedCellInfo.status === "unread") && (
                   <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-[#9a5b00]">
@@ -1816,6 +1984,35 @@ export function StatementView({
                     <span>Sits outside every total on this balance sheet.</span>
                   </li>
                 )}
+                {selectedCellInfo.status === "not_proven" &&
+                  selectedCellInfo.recheckResult?.verdict === "agrees" && (
+                    <li className="flex items-start gap-2.5 text-slate-600">
+                      <PendingStepIcon />
+                      <span>
+                        The second reader agrees this number is on the picture.
+                      </span>
+                    </li>
+                  )}
+                {selectedCellInfo.status === "not_proven" &&
+                  selectedCellInfo.recheckResult?.verdict === "unsure" && (
+                    <li className="flex items-start gap-2.5 text-[#9a5b00]">
+                      <WarningTriangleIcon />
+                      <span>
+                        {selectedCellInfo.recheckResult.failed
+                          ? "The second reader did not answer, so this number needs your eye."
+                          : "The second reader is unsure about this number."}
+                      </span>
+                    </li>
+                  )}
+                {selectedCellInfo.status === "not_proven" &&
+                  selectedCellInfo.recheckResult?.verdict === "disagrees" && (
+                    <li className="flex items-start gap-2.5 font-medium text-[#b91c1c]">
+                      <WarningTriangleIcon />
+                      <span>
+                        The second reader disagrees with this number.
+                      </span>
+                    </li>
+                  )}
                 {showSecMatch && selectedCellInfo.matchesSec && (
                   <li className="flex items-start gap-2.5">
                     <GreenCheckIcon />

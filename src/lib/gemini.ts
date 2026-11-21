@@ -2,6 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import type { Statement, StatementRow } from "@/lib/statements";
 
 export const GEMINI_HYDROGEN_MODEL = "gemini-4-hydrogen";
+export const GEMINI_DECISION_MODEL = "gemini-decision-1";
 export const DEFAULT_CAUSE_MODEL = "gemini-4-carbon";
 export const FAKE_CAUSE_SENTENCE =
   "The printed total still fits the rest of the statement, so one line in this group is off.";
@@ -69,10 +70,34 @@ export type ExplainCauseRequest = {
   signal?: AbortSignal;
 };
 
+export type DecisionQuestion = {
+  id: string;
+  instructions: string;
+  /** Row label used only by the fake test-mode client. */
+  rowLabel?: string;
+  colIndex?: 0 | 1;
+};
+
+export type FakeDecideContext = {
+  doubtLabels?: string[];
+  unsureLabels?: string[];
+};
+
+export type DecideQuestionsRequest = {
+  png: Buffer;
+  questions: DecisionQuestion[];
+  signal?: AbortSignal;
+  /** Context used only by the fake test-mode client; ignored by the real client. */
+  testContext?: FakeDecideContext;
+};
+
 export type GeminiClient = {
   readonly isFake: boolean;
   readPicture(request: ReadPictureRequest): Promise<string>;
   explainCause?(request: ExplainCauseRequest): Promise<string>;
+  decideQuestions?(
+    request: DecideQuestionsRequest,
+  ): Promise<Record<string, number>>;
 };
 
 export function hasGeminiApiKey(): boolean {
@@ -212,6 +237,61 @@ export function createRealGeminiClient(): GeminiClient {
 
       return (response.output_text ?? "").trim();
     },
+    async decideQuestions(
+      request: DecideQuestionsRequest,
+    ): Promise<Record<string, number>> {
+      if (!hasGeminiApiKey()) {
+        throw new GeminiConfigError(
+          "Second reader is unavailable because GEMINI_API_KEY is not set on the server.",
+        );
+      }
+
+      if (!cachedAi) {
+        cachedAi = new GoogleGenAI({ apiVersion: "v1beta" });
+      }
+
+      const pngBase64 = request.png.toString("base64");
+      const questionsPayload: Record<
+        string,
+        { type: "noul"; instructions: string }
+      > = {};
+      for (const question of request.questions) {
+        questionsPayload[question.id] = {
+          type: "noul",
+          instructions: question.instructions,
+        };
+      }
+
+      const response = await cachedAi.decisions.create(
+        {
+          model: GEMINI_DECISION_MODEL,
+          input: [
+            {
+              type: "image",
+              data: pngBase64,
+              mime_type: "image/png",
+              resolution: "ultra_high",
+            },
+          ],
+          questions: questionsPayload,
+        },
+        request.signal ? { signal: request.signal } : undefined,
+      );
+
+      const probabilities: Record<string, number> = {};
+      for (const question of request.questions) {
+        const answer = response.answers?.[question.id];
+        if (
+          answer &&
+          "noul" in answer &&
+          typeof answer.noul === "number" &&
+          Number.isFinite(answer.noul)
+        ) {
+          probabilities[question.id] = answer.noul;
+        }
+      }
+      return probabilities;
+    },
   };
 }
 
@@ -257,6 +337,33 @@ export function createFakeGeminiClient(
     },
     async explainCause(): Promise<string> {
       return options?.causeSentence ?? FAKE_CAUSE_SENTENCE;
+    },
+    async decideQuestions(
+      request: DecideQuestionsRequest,
+    ): Promise<Record<string, number>> {
+      const doubtSet = new Set(
+        (request.testContext?.doubtLabels ?? [])
+          .map((label) => label.trim().toLowerCase())
+          .filter(Boolean),
+      );
+      const unsureSet = new Set(
+        (request.testContext?.unsureLabels ?? [])
+          .map((label) => label.trim().toLowerCase())
+          .filter(Boolean),
+      );
+
+      const probabilities: Record<string, number> = {};
+      for (const question of request.questions) {
+        const normalizedLabel = (question.rowLabel ?? "").trim().toLowerCase();
+        if (normalizedLabel && doubtSet.has(normalizedLabel)) {
+          probabilities[question.id] = 0.1;
+        } else if (normalizedLabel && unsureSet.has(normalizedLabel)) {
+          probabilities[question.id] = 0.6;
+        } else {
+          probabilities[question.id] = 0.97;
+        }
+      }
+      return probabilities;
     },
   };
 }
