@@ -9,7 +9,7 @@ const formatCount = (value: number) => value.toLocaleString("en-US");
 const PROOF_NUMBERS = [
   {
     value: `${formatCount(addsUp.wrongShownAsRight)} of ${formatCount(addsUp.numbers)}`,
-    label: `numbers were wrong and still got a tick, on ${scores.filingsScored} SEC filings a script picked.`,
+    label: `numbers got a tick while wrong. The ${scores.filingsScored} SEC filings were chosen by a fixed rule, not by us.`,
   },
   {
     value: `${formatCount(addsUp.hiddenRebuilt)} of ${formatCount(addsUp.hiddenTried)}`,
