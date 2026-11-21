@@ -141,7 +141,7 @@ test("shows the running state with progress banner and unrun steps at 375, 768 a
   expect(failedRequests).toEqual([]);
 });
 
-test("shows the empty state when scores are empty or missing at 375, 768 and 1440 pixels", async ({
+test("shows the empty state when scores are empty at 375, 768 and 1440 pixels", async ({
   page,
 }) => {
   const consoleErrors: string[] = [];
@@ -157,8 +157,10 @@ test("shows the empty state when scores are empty or missing at 375, 768 and 144
   await page.goto("/");
   await page.getByRole("link", { name: "Test results" }).click();
   await expect(page).toHaveURL(/\/results$/);
+  // The repository now holds the real results in data/scores.json, so the plain page shows them.
+  // A missing file is covered by the unit tests in src/lib/scores.test.ts.
   await expect(
-    page.getByRole("heading", { name: "No test has run yet" }),
+    page.getByRole("heading", { name: "Does it work on pages we did not pick?" }),
   ).toBeVisible();
 
   await page.goto("/results?scores=empty");
