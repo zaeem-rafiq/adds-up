@@ -15,7 +15,7 @@ services:
       - key: NEXT_TELEMETRY_DISABLED
         value: "1"
       - key: CAUSE_MODEL
-        value: gemini-4-neon
+        value: gemini-4-carbon
       - key: GEMINI_API_KEY
         sync: false
       - key: SEC_USER_AGENT

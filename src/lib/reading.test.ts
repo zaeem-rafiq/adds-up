@@ -1,4 +1,5 @@
 import { describe, expect, test, vi } from "vitest";
+import { drawStatementWithLayout } from "@/lib/draw-statement";
 import {
   createFakeGeminiClient,
   createRealGeminiClient,
@@ -10,12 +11,15 @@ import { RateLimiter, RateLimitError } from "@/lib/rate-limit";
 import {
   compareReadingWithStatement,
   joinHalfReadings,
+  joinStripReadings,
   parseReadingReply,
   ReadingCache,
   ReadingTimeoutError,
   readPictureWithSpeedRule,
   readStatementPictures,
   splitStatementForReading,
+  splitStatementIntoStrips,
+  type ReadingProgressEvent,
   type ReadRow,
 } from "@/lib/reading";
 import type { Statement, StatementRow } from "@/lib/statements";
@@ -89,6 +93,40 @@ const APPLE_SAMPLE: Statement = {
     },
   ],
 };
+
+function makeNumberedStatement(numberRowCount: number, seed = 0): Statement {
+  const rows: StatementRow[] = [];
+  for (let i = 1; i <= numberRowCount; i += 1) {
+    if (i === 1 || i === 13 || i === 25) {
+      rows.push({
+        kind: "heading",
+        label: `Section ${Math.ceil(i / 12)}:`,
+        indent: 0,
+      });
+    }
+    const left = i * 100 + seed;
+    const right = i * 100 + seed - 10;
+    rows.push({
+      kind: "number",
+      label: `Row ${i}`,
+      indent: 1,
+      isTotal: false,
+      values: [left.toLocaleString("en-US"), right.toLocaleString("en-US")],
+      numbers: [left, right],
+    });
+  }
+
+  return {
+    cik: "320193",
+    companyName: "Test Co.",
+    form: "10-K",
+    filingDate: "2026-11-03",
+    title: "CONSOLIDATED BALANCE SHEETS",
+    columns: ["Sep. 26, 2026", "Sep. 27, 2025"],
+    unitLine: "USD ($) $ in Millions",
+    rows,
+  };
+}
 
 function makeSmallStatement(seed: number): Statement {
   const a = 100 + seed;
@@ -204,16 +242,15 @@ describe("Section E: Reading replies (unit 3)", () => {
       "Row 7",
     ]);
 
-    // Also verify readStatementPictures preserves half A before half B even if half B resolves first.
-    const sevenRowStatement: Statement = {
-      ...APPLE_SAMPLE,
-      rows: APPLE_SAMPLE.rows.filter((r) => r.kind === "number"),
-    };
+    // Also verify readStatementPictures preserves strip 1 before strip 2 even if strip 2 resolves first.
+    const sixteenRowStatement = makeNumberedStatement(16);
+    const seenStrips: number[] = [];
     const delayedClient: GeminiClient = {
       isFake: true,
       async readPicture(req) {
-        const half = req.testContext?.half;
-        if (half === "A") {
+        const strip = req.testContext?.strip ?? 1;
+        seenStrips.push(strip);
+        if (strip === 1) {
           await new Promise((r) => setTimeout(r, 25));
         }
         return formatStatementRowsAsReply(req.testContext?.rows ?? []);
@@ -221,12 +258,16 @@ describe("Section E: Reading replies (unit 3)", () => {
     };
 
     const result = await readStatementPictures({
-      statement: sevenRowStatement,
+      statement: sixteenRowStatement,
       client: delayedClient,
     });
-    expect(result.rows).toHaveLength(7);
+    expect(seenStrips).toEqual([1, 2]);
+    expect(result.modelCalls).toBe(2);
+    expect(result.rows).toHaveLength(16);
     expect(result.rows.map((r) => r.label)).toEqual(
-      sevenRowStatement.rows.map((r) => r.label),
+      sixteenRowStatement.rows
+        .filter((r) => r.kind === "number")
+        .map((r) => r.label),
     );
   });
 
@@ -431,8 +472,8 @@ describe("Section E: Reading replies (unit 3)", () => {
       cache,
     });
     expect(first.fromCache).toBe(false);
-    expect(first.modelCalls).toBe(2);
-    expect(callCount).toBe(2);
+    expect(first.modelCalls).toBe(1);
+    expect(callCount).toBe(1);
 
     const second = await readStatementPictures({
       statement: APPLE_SAMPLE,
@@ -441,7 +482,7 @@ describe("Section E: Reading replies (unit 3)", () => {
     });
     expect(second.fromCache).toBe(true);
     expect(second.modelCalls).toBe(0);
-    expect(callCount).toBe(2);
+    expect(callCount).toBe(1);
     expect(second.rows).toEqual(first.rows);
     expect(second.comparison.matchCount).toBe(first.comparison.matchCount);
   });
@@ -485,7 +526,7 @@ describe("Section E: Reading replies (unit 3)", () => {
       ip,
     });
     expect(result120.fromCache).toBe(false);
-    expect(modelCalls).toBe(2);
+    expect(modelCalls).toBe(1);
 
     // Reading the same picture again answers from memory and is NOT counted or blocked.
     const cachedRepeat = await readStatementPictures({
@@ -497,7 +538,7 @@ describe("Section E: Reading replies (unit 3)", () => {
       ip,
     });
     expect(cachedRepeat.fromCache).toBe(true);
-    expect(modelCalls).toBe(2);
+    expect(modelCalls).toBe(1);
 
     // 121st request that needs a model call is rejected with no model call made.
     const stmt121 = makeSmallStatement(121);
@@ -511,7 +552,7 @@ describe("Section E: Reading replies (unit 3)", () => {
         ip,
       }),
     ).rejects.toBeInstanceOf(RateLimitError);
-    expect(modelCalls).toBe(2);
+    expect(modelCalls).toBe(1);
   });
 
   test("E13: 40 browsers behind one network address sending 10 reading requests each within one hour are all served", () => {
@@ -564,14 +605,135 @@ describe("Section E: Reading replies (unit 3)", () => {
     }
   });
 
-  test("splits statement at the middle number row without cutting a row", () => {
-    const { halfA, halfB } = splitStatementForReading(APPLE_SAMPLE);
+  test("splits a statement of 30 number rows into 3 pictures of 12, 12 and 6 rows, and 12 rows into 1 picture", () => {
     const countNum = (rows: StatementRow[]) =>
       rows.filter((r) => r.kind === "number").length;
 
-    expect(countNum(halfA)).toBe(4);
-    expect(countNum(halfB)).toBe(3);
-    expect([...halfA, ...halfB]).toEqual(APPLE_SAMPLE.rows);
+    const thirtyRowStatement = makeNumberedStatement(30);
+    const thirtyStrips = splitStatementForReading(thirtyRowStatement);
+    expect(thirtyStrips).toHaveLength(3);
+    expect(thirtyStrips.map(countNum)).toEqual([12, 12, 6]);
+    expect(thirtyStrips.flat()).toEqual(thirtyRowStatement.rows);
+
+    // Every picture carries the title line and the two column headings above its rows.
+    for (const stripRows of thirtyStrips) {
+      const { png, layout } = drawStatementWithLayout(thirtyRowStatement, {
+        rows: stripRows,
+      });
+      expect(png.byteLength).toBeGreaterThan(2000);
+      expect(layout.rowBoxes[0]?.y).toBeGreaterThan(100);
+    }
+
+    const twelveRowStatement = makeNumberedStatement(12);
+    const twelveStrips = splitStatementIntoStrips(twelveRowStatement);
+    expect(twelveStrips).toHaveLength(1);
+    expect(countNum(twelveStrips[0])).toBe(12);
+    expect(twelveStrips[0]).toEqual(twelveRowStatement.rows);
+  });
+
+  test("reads a 30-row statement as 3 parallel pictures and keeps printed order when pictures return out of order", async () => {
+    const statement = makeNumberedStatement(30);
+    const events: ReadingProgressEvent[] = [];
+    const startedStrips: number[] = [];
+    const resolvers = new Map<number, () => void>();
+
+    const outOfOrderClient: GeminiClient = {
+      isFake: true,
+      async readPicture(req) {
+        const strip = req.testContext?.strip ?? 1;
+        startedStrips.push(strip);
+        await new Promise<void>((resolve) => {
+          resolvers.set(strip, resolve);
+        });
+        return formatStatementRowsAsReply(req.testContext?.rows ?? []);
+      },
+    };
+
+    const readingPromise = readStatementPictures({
+      statement,
+      client: outOfOrderClient,
+      onProgress: (event) => events.push(event),
+    });
+
+    // All 3 pictures are sent at the same time.
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    expect(startedStrips).toEqual([1, 2, 3]);
+
+    // Resolve out of order: 3, then 1, then 2.
+    resolvers.get(3)?.();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    resolvers.get(1)?.();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    resolvers.get(2)?.();
+
+    const result = await readingPromise;
+    expect(result.modelCalls).toBe(3);
+    expect(result.rows).toHaveLength(30);
+    expect(result.rows.map((r) => r.label)).toEqual(
+      Array.from({ length: 30 }, (_, i) => `Row ${i + 1}`),
+    );
+    expect(joinStripReadings([result.rows.slice(0, 12), result.rows.slice(12, 24), result.rows.slice(24)])).toEqual(
+      result.rows,
+    );
+
+    const startedEvent = events.find((e) => e.type === "started");
+    expect(startedEvent).toEqual({
+      type: "started",
+      totalNumbers: 60,
+      totalStrips: 3,
+    });
+    const stripDoneEvents = events.filter((e) => e.type === "strip_done");
+    expect(stripDoneEvents).toHaveLength(3);
+    expect(stripDoneEvents.map((e) => e.completedStrips)).toEqual([1, 2, 3]);
+    expect(stripDoneEvents.every((e) => e.totalStrips === 3)).toBe(true);
+  });
+
+  test("a statement that needs 5 pictures costs 5 model calls against the limits", async () => {
+    const now = 1_700_000_000_000;
+    const rateLimiter = new RateLimiter({ now: () => now });
+    const browserId = "browser-five-strips-1234";
+    const ip = "198.51.100.88";
+    const sixtyRowStatement = makeNumberedStatement(60);
+
+    const result = await readStatementPictures({
+      statement: sixtyRowStatement,
+      client: createFakeGeminiClient(),
+      rateLimiter,
+      browserId,
+      ip,
+    });
+
+    expect(result.modelCalls).toBe(5);
+    expect(
+      rateLimiter.getCounts({ browserId, ip }).dailyModelCalls,
+    ).toBe(5);
+
+    // If only 4 daily calls remain, a 5-picture statement is rejected before any model call.
+    const tightLimiter = new RateLimiter({
+      now: () => now,
+      limits: { globalModelCallsPerDay: 9 },
+    });
+    tightLimiter.recordModelCalls(5);
+    let callCount = 0;
+    const baseClient = createFakeGeminiClient();
+    const countingClient: GeminiClient = {
+      isFake: true,
+      async readPicture(req) {
+        callCount += 1;
+        return baseClient.readPicture(req);
+      },
+    };
+
+    await expect(
+      readStatementPictures({
+        statement: sixtyRowStatement,
+        client: countingClient,
+        rateLimiter: tightLimiter,
+        browserId,
+        ip,
+      }),
+    ).rejects.toBeInstanceOf(RateLimitError);
+    expect(callCount).toBe(0);
   });
 
   test("real Gemini client throws GeminiConfigError when GEMINI_API_KEY is missing", async () => {

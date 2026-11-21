@@ -19,7 +19,7 @@ Google's Antigravity wrote the product code, one small unit per prompt. Claude C
 | Model | Job |
 |---|---|
 | Gemini 4 Hydrogen | Reads every number from the picture. |
-| Gemini 4 Neon | Reads the rows of a group that does not add up, and writes the cause in one sentence. |
+| Gemini 4 Carbon | Reads the rows of a group that does not add up, and writes the cause in one sentence. Neon had this job in the plan. On the day, Neon's slowest of 10 test calls took 15.8 seconds and Carbon's median was 4.7 seconds, so Carbon took it. |
 | Gemini Decision 1 | Reads numbers a second time, in batches of 20, and gives a probability. |
 
 Plain code re-adds the totals. A tick comes from adding alone. No model's opinion earns a tick.

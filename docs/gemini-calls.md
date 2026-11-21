@@ -23,9 +23,9 @@ const r = await ai.interactions.create({
 const text = r.output_text;
 ```
 
-## One sentence on the cause (Gemini 4 Neon, or the model named in CAUSE_MODEL)
+## One sentence on the cause (Gemini 4 Carbon, or the model named in CAUSE_MODEL)
 
-The same call as above, with the model's name from `process.env.CAUSE_MODEL` and the default `"gemini-4-neon"`. Send text, or text with a picture of the rows.
+The same call as above, with the model's name from `process.env.CAUSE_MODEL` and the default `"gemini-4-carbon"`. Send text, or text with a picture of the rows.
 
 - Neon accepts `thinking_level` "low". It refuses "minimal" with error 400.
 - Neon is sometimes very slow: four test calls took 6, 8, 49 and 120 seconds. Never make the page wait for it.

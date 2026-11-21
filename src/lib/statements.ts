@@ -65,13 +65,135 @@ export type LoadStatementOptions = {
   savedDir?: string;
   fetchImpl?: typeof fetch;
   timeoutMs?: number;
+  savedFallbackTimeoutMs?: number;
   rateLimitMs?: number;
+  cache?: StatementCache;
 };
 
-const SEC_TIMEOUT_MS = 8_000;
+export const SEC_TIMEOUT_MS = 8_000;
+export const SEC_SAVED_FALLBACK_TIMEOUT_MS = 3_000;
+export const STATEMENT_CACHE_TTL_MS = 60 * 60 * 1000;
 const SEC_MIN_INTERVAL_MS = 220; // <= 5 requests/second
 const DEFAULT_SAVED_DIR = path.join(process.cwd(), "data/saved");
 const APPLE_FIXTURE_PATH = path.join(process.cwd(), "src/fixtures/apple-statement.json");
+
+export function getSecSavedFallbackTimeoutMs(): number {
+  const raw = process.env.ADDS_UP_SEC_SAVED_TIMEOUT_MS?.trim();
+  if (raw) {
+    const parsed = Number(raw);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return parsed;
+    }
+  }
+  return SEC_SAVED_FALLBACK_TIMEOUT_MS;
+}
+
+type CachedStatementEntry = {
+  statement: Statement;
+  expiresAt: number;
+};
+
+type InFlightStatementEntry = {
+  promise: Promise<Statement>;
+  startedAt: number;
+};
+
+export class StatementCache {
+  private readonly ttlMs: number;
+  private readonly now: () => number;
+  private readonly entries = new Map<string, CachedStatementEntry>();
+  private readonly inFlight = new Map<string, InFlightStatementEntry>();
+
+  constructor(options?: { ttlMs?: number; now?: () => number }) {
+    this.ttlMs = options?.ttlMs ?? STATEMENT_CACHE_TTL_MS;
+    this.now = options?.now ?? (() => Date.now());
+  }
+
+  get(rawCik: string): Statement | undefined {
+    const cik = normalizeCik(rawCik);
+    const entry = this.entries.get(cik);
+    if (!entry) return undefined;
+    if (this.now() >= entry.expiresAt) {
+      this.entries.delete(cik);
+      return undefined;
+    }
+    return entry.statement;
+  }
+
+  set(rawCik: string, statement: Statement): void {
+    const cik = normalizeCik(rawCik);
+    this.entries.set(cik, {
+      statement,
+      expiresAt: this.now() + this.ttlMs,
+    });
+  }
+
+  getOrStartFetch(
+    rawCik: string,
+    fetcher: () => Promise<Statement>,
+  ): {
+    promise: Promise<Statement>;
+    startedAt: number;
+    joinedExisting: boolean;
+  } {
+    const cik = normalizeCik(rawCik);
+    const existing = this.inFlight.get(cik);
+    if (existing) {
+      return {
+        promise: existing.promise,
+        startedAt: existing.startedAt,
+        joinedExisting: true,
+      };
+    }
+
+    const startedAt = this.now();
+    const promise = fetcher()
+      .then((statement) => {
+        this.set(cik, statement);
+        return statement;
+      })
+      .finally(() => {
+        const current = this.inFlight.get(cik);
+        if (current && current.promise === promise) {
+          this.inFlight.delete(cik);
+        }
+      });
+
+    // Prevent unhandled rejection if callers stop waiting early (e.g. saved-copy fallback).
+    promise.catch(() => {});
+
+    this.inFlight.set(cik, { promise, startedAt });
+    return {
+      promise,
+      startedAt,
+      joinedExisting: false,
+    };
+  }
+
+  currentTime(): number {
+    return this.now();
+  }
+
+  clear(): void {
+    this.entries.clear();
+    this.inFlight.clear();
+  }
+
+  get size(): number {
+    return this.entries.size;
+  }
+}
+
+const globalForStatementCache = globalThis as typeof globalThis & {
+  __addsUpStatementCache?: StatementCache;
+};
+
+export function getGlobalStatementCache(): StatementCache {
+  if (!globalForStatementCache.__addsUpStatementCache) {
+    globalForStatementCache.__addsUpStatementCache = new StatementCache();
+  }
+  return globalForStatementCache.__addsUpStatementCache;
+}
 
 const NAMED_ENTITIES: Record<string, string> = {
   nbsp: "\u00a0",
@@ -819,6 +941,12 @@ export async function loadStatement(
     );
   }
 
+  const cache = options?.cache ?? getGlobalStatementCache();
+  const cached = cache.get(cik);
+  if (cached) {
+    return { statement: cached, source: "sec" };
+  }
+
   const userAgent = process.env.SEC_USER_AGENT?.trim();
   if (!userAgent) {
     const saved = await loadSavedStatement(cik, savedDir);
@@ -836,21 +964,55 @@ export async function loadStatement(
     );
   }
 
-  try {
-    const statement = await fetchSecStatement(
-      cik,
-      options?.companyName ?? "",
-      {
+  const saved = await loadSavedStatement(cik, savedDir);
+  const { promise: secPromise, startedAt, joinedExisting } =
+    cache.getOrStartFetch(cik, () =>
+      fetchSecStatement(cik, options?.companyName ?? "", {
         userAgent,
         fetchImpl: options?.fetchImpl,
         timeoutMs: options?.timeoutMs,
         rateLimitMs: options?.rateLimitMs,
-      },
+      }),
     );
-    return { statement, source: "sec" };
-  } catch (error) {
-    const saved = await loadSavedStatement(cik, savedDir);
-    if (saved) {
+
+  if (saved) {
+    const savedFallbackTimeoutMs =
+      options?.savedFallbackTimeoutMs ?? getSecSavedFallbackTimeoutMs();
+    const remainingWaitMs = joinedExisting
+      ? Math.max(0, startedAt + savedFallbackTimeoutMs - cache.currentTime())
+      : savedFallbackTimeoutMs;
+
+    if (joinedExisting && remainingWaitMs === 0) {
+      return {
+        statement: saved,
+        source: "saved",
+        fallbackReason: "The SEC did not answer within 3 seconds.",
+      };
+    }
+
+    let fallbackTimer: ReturnType<typeof setTimeout> | null = null;
+    try {
+      const outcome = await Promise.race([
+        secPromise.then((statement) => ({ kind: "sec" as const, statement })),
+        new Promise<{ kind: "timeout" }>((resolve) => {
+          fallbackTimer = setTimeout(() => {
+            resolve({ kind: "timeout" });
+          }, remainingWaitMs);
+        }),
+      ]);
+
+      if (outcome.kind === "sec") {
+        return { statement: outcome.statement, source: "sec" };
+      }
+
+      // SEC has not answered within the saved-copy wait; return saved copy at once.
+      // The shared SEC fetch keeps running in the background and populates the cache when it arrives.
+      return {
+        statement: saved,
+        source: "saved",
+        fallbackReason: "The SEC did not answer within 3 seconds.",
+      };
+    } catch (error) {
       return {
         statement: saved,
         source: "saved",
@@ -859,8 +1021,17 @@ export async function loadStatement(
             ? error.message
             : "The SEC request failed.",
       };
+    } finally {
+      if (fallbackTimer !== null) {
+        clearTimeout(fallbackTimer);
+      }
     }
+  }
 
+  try {
+    const statement = await secPromise;
+    return { statement, source: "sec" };
+  } catch (error) {
     if (error instanceof StatementError) {
       throw error;
     }

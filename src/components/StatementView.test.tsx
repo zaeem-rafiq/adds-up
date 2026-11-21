@@ -194,8 +194,113 @@ describe("StatementView", () => {
     expect(screen.getByRole("heading", { name: "Working" })).toBeInTheDocument();
     expect(screen.getByText("Found the filing.")).toBeInTheDocument();
     expect(screen.getByText("Took the picture.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Hydrogen is reading strip 1 of 1."),
+    ).toBeInTheDocument();
     expect(screen.getByText("Re-add every total.")).toBeInTheDocument();
     expect(screen.getByText("Compare with SEC data.")).toBeInTheDocument();
+  });
+
+  test("loading screen and progress line count returning pictures using the real number of strips", async () => {
+    const thirtyRowStatement: Statement = {
+      cik: "320193",
+      companyName: "Big Bank Corp.",
+      form: "10-K",
+      filingDate: "2026-11-03",
+      title: "CONSOLIDATED STATEMENTS OF CONDITION",
+      columns: ["Dec. 31, 2026", "Dec. 31, 2025"],
+      unitLine: "USD ($) $ in Millions",
+      rows: Array.from({ length: 30 }, (_, idx) => ({
+        kind: "number" as const,
+        label: `Line ${idx + 1}`,
+        indent: 1,
+        isTotal: false,
+        values: [String((idx + 1) * 10), String((idx + 1) * 10)],
+        numbers: [(idx + 1) * 10, (idx + 1) * 10] as [number, number],
+      })),
+    };
+
+    const encoder = new TextEncoder();
+    const controls: {
+      emit?: (event: ReadingProgressEvent) => void;
+      close?: () => void;
+    } = {};
+
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controls.emit = (event) => {
+          controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
+        };
+        controls.close = () => controller.close();
+      },
+    });
+
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(stream, {
+        status: 200,
+        headers: { "Content-Type": "application/x-ndjson" },
+      }),
+    );
+
+    render(
+      <StatementView
+        statement={thirtyRowStatement}
+        source="sec"
+        pictureUrl="/api/company/320193/picture"
+      />,
+    );
+
+    // Before the server even streams started, the real strip count (3) is shown, not 2.
+    expect(screen.getByText("Reading: 0 of 60 numbers")).toBeInTheDocument();
+    expect(
+      screen.getByText("Hydrogen is reading strip 1 of 3."),
+    ).toBeInTheDocument();
+
+    controls.emit?.({ type: "started", totalNumbers: 60, totalStrips: 3 });
+    controls.emit?.({
+      type: "strip_done",
+      strip: 3,
+      completedStrips: 1,
+      totalStrips: 3,
+      numbersRead: 12,
+      totalNumbers: 60,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("Reading: 12 of 60 numbers")).toBeInTheDocument();
+    });
+    expect(
+      screen.getByText("Hydrogen is reading strip 2 of 3."),
+    ).toBeInTheDocument();
+
+    controls.emit?.({
+      type: "strip_done",
+      strip: 1,
+      completedStrips: 2,
+      totalStrips: 3,
+      numbersRead: 36,
+      totalNumbers: 60,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("Reading: 36 of 60 numbers")).toBeInTheDocument();
+    });
+    expect(
+      screen.getByText("Hydrogen is reading strip 3 of 3."),
+    ).toBeInTheDocument();
+
+    controls.emit?.({
+      type: "slow",
+      strip: 2,
+      totalStrips: 3,
+      timeoutMs: 12000,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("Strip 2 of 3 timed out.")).toBeInTheDocument();
+    });
+
+    controls.close?.();
   });
 
   test("shows the proven result screen with verdict band, ticks, brackets, Matches SEC data, and heading rows without marks", async () => {

@@ -11,6 +11,17 @@ import {
   type StatementNumberRow,
   type StatementRow,
 } from "@/lib/statements";
+import {
+  countStatementStrips,
+  MAX_NUMBER_ROWS_PER_PICTURE,
+  splitStatementIntoStrips,
+} from "@/lib/strips";
+
+export {
+  countStatementStrips,
+  MAX_NUMBER_ROWS_PER_PICTURE,
+  splitStatementIntoStrips,
+};
 
 export const DEFAULT_READ_TIMEOUT_MS = 12_000;
 
@@ -73,6 +84,7 @@ export type ReadingProgressEvent =
   | {
       type: "strip_done";
       strip: number;
+      completedStrips?: number;
       totalStrips: number;
       numbersRead: number;
       totalNumbers: number;
@@ -187,33 +199,19 @@ export function countReadNumbers(rows: ReadRow[]): number {
   return total;
 }
 
-export function splitStatementForReading(statement: Statement): {
-  halfA: StatementRow[];
-  halfB: StatementRow[];
-} {
-  const numberRowIndices: number[] = [];
-  for (let i = 0; i < statement.rows.length; i += 1) {
-    if (statement.rows[i].kind === "number") {
-      numberRowIndices.push(i);
-    }
-  }
+export function splitStatementForReading(
+  statement: Statement,
+  maxNumberRows = MAX_NUMBER_ROWS_PER_PICTURE,
+): StatementRow[][] {
+  return splitStatementIntoStrips(statement, maxNumberRows);
+}
 
-  if (numberRowIndices.length <= 1) {
-    return { halfA: statement.rows, halfB: [] };
-  }
-
-  const midCount = Math.ceil(numberRowIndices.length / 2);
-  // Split right after the middle number row so any heading introducing the
-  // second half stays with half B and no number row is cut.
-  const splitIndex = numberRowIndices[midCount - 1] + 1;
-  return {
-    halfA: statement.rows.slice(0, splitIndex),
-    halfB: statement.rows.slice(splitIndex),
-  };
+export function joinStripReadings(strips: ReadRow[][]): ReadRow[] {
+  return strips.flat();
 }
 
 export function joinHalfReadings(halfA: ReadRow[], halfB: ReadRow[]): ReadRow[] {
-  return [...halfA, ...halfB];
+  return joinStripReadings([halfA, halfB]);
 }
 
 function normalizeLabel(label: string): string {
@@ -681,28 +679,12 @@ export async function readStatementPictures(
     onProgress,
   } = options;
 
-  const { halfA, halfB } = splitStatementForReading(statement);
-  const parts: Array<{ half: "A" | "B" | "whole"; rows: StatementRow[]; png: Buffer }> =
-    halfB.length > 0
-      ? [
-          {
-            half: "A",
-            rows: halfA,
-            png: drawStatementPng(statement, { rows: halfA }),
-          },
-          {
-            half: "B",
-            rows: halfB,
-            png: drawStatementPng(statement, { rows: halfB }),
-          },
-        ]
-      : [
-          {
-            half: "whole",
-            rows: halfA,
-            png: drawStatementPng(statement, { rows: halfA }),
-          },
-        ];
+  const rowStrips = splitStatementIntoStrips(statement);
+  const parts = rowStrips.map((rows, index) => ({
+    strip: index + 1,
+    rows,
+    png: drawStatementPng(statement, { rows }),
+  }));
 
   const totalNumbers = countStatementNumbers(statement.rows);
   const totalStrips = parts.length;
@@ -745,10 +727,11 @@ export async function readStatementPictures(
   onProgress?.({ type: "started", totalNumbers, totalStrips });
 
   let numbersReadSoFar = 0;
+  let completedStripsCount = 0;
   let slowEmitted = false;
 
-  const partPromises = parts.map((part, index) => {
-    const stripNumber = index + 1;
+  const partPromises = parts.map((part) => {
+    const stripNumber = part.strip;
     return readPictureWithSpeedRule({
       timeoutMs,
       signal,
@@ -776,13 +759,15 @@ export async function readStatementPictures(
           testContext: {
             statement,
             rows: part.rows,
-            half: part.half,
+            strip: stripNumber,
+            totalStrips,
             slow,
             attempt,
             timeoutMs,
           },
         }),
     }).then((outcome) => {
+      completedStripsCount += 1;
       numbersReadSoFar = Math.min(
         totalNumbers,
         numbersReadSoFar + countReadNumbers(outcome.rows),
@@ -790,6 +775,7 @@ export async function readStatementPictures(
       onProgress?.({
         type: "strip_done",
         strip: stripNumber,
+        completedStrips: completedStripsCount,
         totalStrips,
         numbersRead: numbersReadSoFar,
         totalNumbers,
@@ -800,10 +786,7 @@ export async function readStatementPictures(
 
   const outcomes = await Promise.all(partPromises);
 
-  const joinedRows =
-    outcomes.length === 2
-      ? joinHalfReadings(outcomes[0].rows, outcomes[1].rows)
-      : outcomes[0].rows;
+  const joinedRows = joinStripReadings(outcomes.map((outcome) => outcome.rows));
 
   const usedRepeat = outcomes.some((outcome) => outcome.usedRepeat);
   const modelCalls = outcomes.reduce((sum, outcome) => sum + outcome.modelCalls, 0);

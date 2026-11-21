@@ -26,7 +26,8 @@ export class GeminiConfigError extends Error {
 export type FakeReadContext = {
   statement: Statement;
   rows: StatementRow[];
-  half: "A" | "B" | "whole";
+  strip: number;
+  totalStrips: number;
   slow?: boolean;
   attempt: number;
   timeoutMs: number;
@@ -138,7 +139,7 @@ export function createFakeGeminiClient(
 
       if (ctx?.slow) {
         const timeoutMs = Math.max(100, ctx.timeoutMs);
-        if (ctx.half === "B" || ctx.half === "whole") {
+        if (ctx.strip === ctx.totalStrips) {
           if (ctx.attempt === 1) {
             const delayMs =
               options?.slowFirstDelayMs ?? Math.max(timeoutMs * 4, 2_000);

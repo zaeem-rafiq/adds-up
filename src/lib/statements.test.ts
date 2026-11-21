@@ -5,10 +5,12 @@ import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import { GET as getPictureRoute } from "@/app/api/company/[cik]/picture/route";
 import {
   formatFilingDate,
+  getGlobalStatementCache,
   loadStatement,
   parseFilingSummaryXml,
   parseSecReportHtml,
   parseSecSubmissions,
+  StatementCache,
   StatementError,
   type Statement,
   type StatementNumberRow,
@@ -38,6 +40,7 @@ describe("Reading the SEC's report table — section B of docs/test-cases.md", (
   afterEach(() => {
     process.env.ADDS_UP_TEST = "1";
     delete process.env.SEC_USER_AGENT;
+    getGlobalStatementCache().clear();
   });
 
   test("B1: statement has 1 heading row and 6 number rows, with no rows from authRefData", () => {
@@ -175,6 +178,7 @@ describe("SEC steps 2-4, fallback, timeout and fixture statement", () => {
   afterEach(() => {
     process.env.ADDS_UP_TEST = "1";
     delete process.env.SEC_USER_AGENT;
+    getGlobalStatementCache().clear();
   });
 
   test("parseSecSubmissions picks the newest 10-K or 10-Q and ignores other forms", () => {
@@ -410,5 +414,281 @@ describe("SEC steps 2-4, fallback, timeout and fixture statement", () => {
       0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
     ]);
     expect(bytes.byteLength).toBeGreaterThan(2000);
+  });
+
+  test("caches fetched SEC statement in memory for one hour so a second load makes no fetch", async () => {
+    process.env.ADDS_UP_TEST = "0";
+    process.env.SEC_USER_AGENT = "AddsUpTestAgent/1.0";
+
+    const fixtureHtml = await readFile(FIXTURE_B_PATH, "utf-8");
+    let now = 1_700_000_000_000;
+    const cache = new StatementCache({ now: () => now });
+    let fetchCount = 0;
+
+    const mockFetch: typeof fetch = async (input) => {
+      fetchCount += 1;
+      const url = String(input);
+      if (url.includes("submissions/CIK0000320193.json")) {
+        return new Response(
+          JSON.stringify({
+            name: "Apple Inc.",
+            filings: {
+              recent: {
+                form: ["10-K"],
+                filingDate: ["2026-11-03"],
+                accessionNumber: ["0000320193-26-000106"],
+              },
+            },
+          }),
+          { status: 200 },
+        );
+      }
+      if (url.endsWith("/FilingSummary.xml")) {
+        return new Response(
+          `<FilingSummary><MyReports><Report>
+            <MenuCategory>Statements</MenuCategory>
+            <ShortName>CONSOLIDATED BALANCE SHEETS</ShortName>
+            <HtmlFileName>R5.htm</HtmlFileName>
+          </Report></MyReports></FilingSummary>`,
+          { status: 200 },
+        );
+      }
+      return new Response(fixtureHtml, { status: 200 });
+    };
+
+    const first = await loadStatement("0000320193", {
+      companyName: "Apple Inc.",
+      fetchImpl: mockFetch,
+      rateLimitMs: 0,
+      cache,
+    });
+    expect(first.source).toBe("sec");
+    expect(fetchCount).toBe(3);
+
+    // 30 minutes later: still inside the one-hour window, so no SEC fetch is made.
+    now += 30 * 60 * 1000;
+    const second = await loadStatement("320193", {
+      companyName: "Apple Inc.",
+      fetchImpl: mockFetch,
+      rateLimitMs: 0,
+      cache,
+    });
+    expect(second.source).toBe("sec");
+    expect(second.statement).toEqual(first.statement);
+    expect(fetchCount).toBe(3);
+
+    // Past one hour: cache entry expires and a fresh SEC fetch runs.
+    now += 31 * 60 * 1000;
+    const third = await loadStatement("320193", {
+      companyName: "Apple Inc.",
+      fetchImpl: mockFetch,
+      rateLimitMs: 0,
+      cache,
+    });
+    expect(third.source).toBe("sec");
+    expect(fetchCount).toBe(6);
+  });
+
+  test("deduplicates concurrent loads for the same company into one SEC fetch", async () => {
+    process.env.ADDS_UP_TEST = "0";
+    process.env.SEC_USER_AGENT = "AddsUpTestAgent/1.0";
+
+    const fixtureHtml = await readFile(FIXTURE_B_PATH, "utf-8");
+    const cache = new StatementCache();
+    let fetchCount = 0;
+    const controls: { releaseSubmissions?: () => void } = {};
+    const submissionsGate = new Promise<void>((resolve) => {
+      controls.releaseSubmissions = resolve;
+    });
+
+    const mockFetch: typeof fetch = async (input) => {
+      fetchCount += 1;
+      const url = String(input);
+      if (url.includes("submissions/CIK0000320193.json")) {
+        await submissionsGate;
+        return new Response(
+          JSON.stringify({
+            name: "Apple Inc.",
+            filings: {
+              recent: {
+                form: ["10-K"],
+                filingDate: ["2026-11-03"],
+                accessionNumber: ["0000320193-26-000106"],
+              },
+            },
+          }),
+          { status: 200 },
+        );
+      }
+      if (url.endsWith("/FilingSummary.xml")) {
+        return new Response(
+          `<FilingSummary><MyReports><Report>
+            <MenuCategory>Statements</MenuCategory>
+            <ShortName>CONSOLIDATED BALANCE SHEETS</ShortName>
+            <HtmlFileName>R5.htm</HtmlFileName>
+          </Report></MyReports></FilingSummary>`,
+          { status: 200 },
+        );
+      }
+      return new Response(fixtureHtml, { status: 200 });
+    };
+
+    const loadA = loadStatement("320193", {
+      companyName: "Apple Inc.",
+      savedDir: path.join(process.cwd(), "src/fixtures/does-not-exist"),
+      fetchImpl: mockFetch,
+      rateLimitMs: 0,
+      cache,
+    });
+    const loadB = loadStatement("0000320193", {
+      companyName: "Apple Inc.",
+      savedDir: path.join(process.cwd(), "src/fixtures/does-not-exist"),
+      fetchImpl: mockFetch,
+      rateLimitMs: 0,
+      cache,
+    });
+
+    // Give both calls a tick to join the shared in-flight fetch before releasing it.
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    controls.releaseSubmissions?.();
+
+    const [resA, resB] = await Promise.all([loadA, loadB]);
+    expect(resA.source).toBe("sec");
+    expect(resB.source).toBe("sec");
+    expect(resA.statement).toEqual(resB.statement);
+    // Only one 3-request SEC fetch ran for both callers.
+    expect(fetchCount).toBe(3);
+  });
+
+  test("slow SEC with a saved copy answers with the saved copy within the shortened timeout and caches the SEC answer when it arrives", async () => {
+    process.env.ADDS_UP_TEST = "0";
+    process.env.SEC_USER_AGENT = "AddsUpTestAgent/1.0";
+
+    const fixtureHtml = await readFile(FIXTURE_B_PATH, "utf-8");
+    const cache = new StatementCache();
+    let fetchCount = 0;
+    const controls: { releaseSec?: () => void } = {};
+    const secGate = new Promise<void>((resolve) => {
+      controls.releaseSec = resolve;
+    });
+
+    const mockFetch: typeof fetch = async (input) => {
+      fetchCount += 1;
+      const url = String(input);
+      if (url.includes("submissions/CIK0000320193.json")) {
+        await secGate;
+        return new Response(
+          JSON.stringify({
+            name: "Apple Inc.",
+            filings: {
+              recent: {
+                form: ["10-K"],
+                filingDate: ["2026-11-20"],
+                accessionNumber: ["0000320193-26-000106"],
+              },
+            },
+          }),
+          { status: 200 },
+        );
+      }
+      if (url.endsWith("/FilingSummary.xml")) {
+        return new Response(
+          `<FilingSummary><MyReports><Report>
+            <MenuCategory>Statements</MenuCategory>
+            <ShortName>CONSOLIDATED BALANCE SHEETS</ShortName>
+            <HtmlFileName>R5.htm</HtmlFileName>
+          </Report></MyReports></FilingSummary>`,
+          { status: 200 },
+        );
+      }
+      return new Response(fixtureHtml, { status: 200 });
+    };
+
+    const startedAt = Date.now();
+    const first = await loadStatement("320193", {
+      companyName: "Apple Inc.",
+      savedDir: FIXTURE_SAVED_DIR,
+      fetchImpl: mockFetch,
+      savedFallbackTimeoutMs: 40,
+      timeoutMs: 5_000,
+      rateLimitMs: 0,
+      cache,
+    });
+    const elapsedMs = Date.now() - startedAt;
+
+    expect(first.source).toBe("saved");
+    expect(first.statement.companyName).toBe("Apple Inc.");
+    expect(first.statement.filingDate).toBe("2026-11-03");
+    expect(elapsedMs).toBeLessThan(1_000);
+
+    // Now let the slow SEC fetch finish in the background.
+    controls.releaseSec?.();
+    await new Promise((resolve) => setTimeout(resolve, 40));
+
+    // The next view gets the SEC's answer from memory with no extra SEC fetch.
+    const second = await loadStatement("320193", {
+      companyName: "Apple Inc.",
+      savedDir: FIXTURE_SAVED_DIR,
+      fetchImpl: mockFetch,
+      savedFallbackTimeoutMs: 40,
+      timeoutMs: 5_000,
+      rateLimitMs: 0,
+      cache,
+    });
+    expect(second.source).toBe("sec");
+    expect(second.statement.filingDate).toBe("2026-11-20");
+    expect(fetchCount).toBe(3);
+  });
+
+  test("without a saved copy, keeps waiting past the 3-second saved-copy timeout up to the 8-second SEC timeout", async () => {
+    process.env.ADDS_UP_TEST = "0";
+    process.env.SEC_USER_AGENT = "AddsUpTestAgent/1.0";
+
+    const fixtureHtml = await readFile(FIXTURE_B_PATH, "utf-8");
+    const cache = new StatementCache();
+
+    const slowFetch: typeof fetch = async (input) => {
+      const url = String(input);
+      if (url.includes("submissions/CIK0000999999.json")) {
+        await new Promise((resolve) => setTimeout(resolve, 70));
+        return new Response(
+          JSON.stringify({
+            name: "No Saved Copy Corp.",
+            filings: {
+              recent: {
+                form: ["10-K"],
+                filingDate: ["2026-11-10"],
+                accessionNumber: ["0000999999-26-000001"],
+              },
+            },
+          }),
+          { status: 200 },
+        );
+      }
+      if (url.endsWith("/FilingSummary.xml")) {
+        return new Response(
+          `<FilingSummary><MyReports><Report>
+            <MenuCategory>Statements</MenuCategory>
+            <ShortName>CONSOLIDATED BALANCE SHEETS</ShortName>
+            <HtmlFileName>R5.htm</HtmlFileName>
+          </Report></MyReports></FilingSummary>`,
+          { status: 200 },
+        );
+      }
+      return new Response(fixtureHtml, { status: 200 });
+    };
+
+    const result = await loadStatement("999999", {
+      companyName: "No Saved Copy Corp.",
+      savedDir: FIXTURE_SAVED_DIR,
+      fetchImpl: slowFetch,
+      savedFallbackTimeoutMs: 25,
+      timeoutMs: 2_000,
+      rateLimitMs: 0,
+      cache,
+    });
+
+    expect(result.source).toBe("sec");
+    expect(result.statement.companyName).toBe("No Saved Copy Corp.");
   });
 });

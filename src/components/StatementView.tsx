@@ -13,6 +13,7 @@ import type {
   StatementReadingResult,
 } from "@/lib/reading";
 import type { Statement, StatementSource } from "@/lib/statements";
+import { countStatementStrips } from "@/lib/strips";
 
 function formatFilingDate(isoDate: string): string {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate.trim());
@@ -152,13 +153,14 @@ export function StatementView({
   const reportLabel =
     statement.form === "10-K" ? "annual report" : "quarterly report";
   const initialTotalNumbers = countExpectedNumbers(statement);
+  const initialTotalStrips = countStatementStrips(statement);
 
   const [phase, setPhase] = useState<ReadingPhase>("loading");
   const [numbersRead, setNumbersRead] = useState(0);
   const [totalNumbers, setTotalNumbers] = useState(initialTotalNumbers);
-  const [totalStrips, setTotalStrips] = useState(2);
+  const [totalStrips, setTotalStrips] = useState(initialTotalStrips);
   const [completedStrips, setCompletedStrips] = useState(0);
-  const [slowStrip, setSlowStrip] = useState(2);
+  const [slowStrip, setSlowStrip] = useState(initialTotalStrips);
   const [result, setResult] = useState<StatementReadingResult | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [errorCode, setErrorCode] = useState<ErrorCode | null>(null);
@@ -183,11 +185,19 @@ export function StatementView({
       if (event.type === "started") {
         setTotalNumbers(event.totalNumbers);
         setTotalStrips(event.totalStrips);
+        setCompletedStrips(0);
       } else if (event.type === "strip_done") {
         setNumbersRead(event.numbersRead);
         setTotalNumbers(event.totalNumbers);
         setTotalStrips(event.totalStrips);
-        setCompletedStrips((prev) => Math.min(event.totalStrips, prev + 1));
+        setCompletedStrips((prev) =>
+          Math.min(
+            event.totalStrips,
+            event.completedStrips !== undefined
+              ? event.completedStrips
+              : prev + 1,
+          ),
+        );
       } else if (event.type === "slow") {
         setSlowStrip(event.strip);
         setTotalStrips(event.totalStrips);
@@ -321,9 +331,9 @@ export function StatementView({
     setPhase("loading");
     setNumbersRead(0);
     setTotalNumbers(initialTotalNumbers);
-    setTotalStrips(2);
+    setTotalStrips(initialTotalStrips);
     setCompletedStrips(0);
-    setSlowStrip(2);
+    setSlowStrip(initialTotalStrips);
     setResult(null);
     setErrorMessage(null);
     setErrorCode(null);
