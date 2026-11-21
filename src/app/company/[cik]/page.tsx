@@ -164,9 +164,29 @@ export default function CompanyStatementPage({
         fallback={
           <div
             role="status"
-            className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500 shadow-2xs"
+            className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-2xs"
           >
-            Loading balance sheet...
+            <svg
+              className="h-5 w-5 shrink-0 animate-spin text-[#1d4ea8]"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+            >
+              <circle
+                cx="10"
+                cy="10"
+                r="7.5"
+                stroke="#cbd5e1"
+                strokeWidth="2.2"
+              />
+              <path
+                d="M10 2.5A7.5 7.5 0 0 1 17.5 10"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+            </svg>
+            <span>Loading balance sheet...</span>
           </div>
         }
       >

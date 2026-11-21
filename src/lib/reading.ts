@@ -94,7 +94,8 @@ export type ReadingProgressEvent =
       totalNumbers: number;
     }
   | { type: "slow"; strip: number; totalStrips: number; timeoutMs: number }
-  | { type: "done"; result: StatementReadingResult }
+  | { type: "done"; result: StatementReadingResult; modPictureKey?: string }
+  | { type: "bad_upload"; fileName: string; rowCount: number }
   | { type: "recheck"; recheck: SecondReaderResult }
   | {
       type: "error";

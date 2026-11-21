@@ -1,0 +1,247 @@
+// @vitest-environment jsdom
+import "@testing-library/jest-dom/vitest";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import appleFixture from "@/fixtures/apple-statement.json";
+import { UploadView } from "./UploadView";
+import {
+  formatStatementRowsAsReplyForTest,
+  type ReadingProgressEvent,
+} from "@/lib/reading-test-helpers";
+import type { Statement } from "@/lib/statements";
+import { PDF_REFUSAL_MESSAGE } from "@/lib/upload-validation";
+
+const pushMock = vi.fn();
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: pushMock }),
+}));
+
+const APPLE_STATEMENT = appleFixture as unknown as Statement;
+const APPLE_READ_ROWS = formatStatementRowsAsReplyForTest(APPLE_STATEMENT.rows);
+
+function makeNdjsonResponse(events: ReadingProgressEvent[]): Response {
+  const payload = events.map((e) => `${JSON.stringify(e)}\n`).join("");
+  return new Response(payload, {
+    status: 200,
+    headers: { "Content-Type": "application/x-ndjson" },
+  });
+}
+
+describe("UploadView", () => {
+  beforeEach(() => {
+    pushMock.mockReset();
+  });
+
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
+
+  test("shows the loading screen while an uploaded picture is being read", () => {
+    vi.spyOn(globalThis, "fetch").mockImplementation(
+      () => new Promise(() => {}),
+    );
+
+    render(
+      <UploadView
+        uploadId="test-id-1"
+        fileName="statement-apple.png"
+        pictureUrl="/api/upload/test-id-1/picture"
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Your statement" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("statement-apple.png · uploaded just now"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Reading your statement")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Working" })).toBeInTheDocument();
+    expect(screen.getByText("Got your picture.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Hydrogen is reading the picture."),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Stop" })).toBeInTheDocument();
+    expect(
+      screen.queryByText(/Compare with SEC data/i),
+    ).not.toBeInTheDocument();
+  });
+
+  test("shows the upload result screen without Matches SEC data", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 0, totalStrips: 1 },
+        {
+          type: "done",
+          result: {
+            rows: APPLE_READ_ROWS,
+            comparison: {
+              totalStatementNumbers: 0,
+              readCount: 26,
+              matchCount: 0,
+              unreadCount: 0,
+              rows: [],
+            },
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 1,
+          },
+        },
+      ]),
+    );
+
+    const { container } = render(
+      <UploadView
+        uploadId="test-id-2"
+        fileName="statement-apple.png"
+        pictureUrl="/api/upload/test-id-2/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("26 of 26 numbers proven")).toBeInTheDocument();
+    });
+
+    expect(
+      screen.getByRole("heading", { name: "Your statement" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("statement-apple.png · uploaded just now"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Upload another" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/Matches SEC data/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/\bSEC\b/)).not.toBeInTheDocument();
+
+    expect(
+      container.querySelectorAll('[data-proof-mark="proven"]').length,
+    ).toBe(13);
+  });
+
+  test("shows the desktop-badupload.png screen when reading returns fewer than three number rows", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 0, totalStrips: 1 },
+        { type: "bad_upload", fileName: "holiday-photo.png", rowCount: 0 },
+      ]),
+    );
+
+    render(
+      <UploadView
+        uploadId="test-id-3"
+        fileName="holiday-photo.png"
+        pictureUrl="/api/upload/test-id-3/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("heading", {
+          name: "We could not find a statement in this file",
+        }),
+      ).toBeInTheDocument();
+    });
+
+    expect(
+      screen.getByText("holiday-photo.png · uploaded just now"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Use one PDF page or one picture that shows a single financial statement.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Drop a PDF page or a picture here"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Choose a file" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Pick a company" }),
+    ).toHaveAttribute("href", "/");
+  });
+
+  test("shows a plain error and Try again button when reading fails twice", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 0, totalStrips: 1 },
+        {
+          type: "error",
+          code: "failed",
+          message: "Could not read this uploaded picture right now.",
+        },
+      ]),
+    );
+
+    render(
+      <UploadView
+        uploadId="test-id-4"
+        fileName="statement-apple.png"
+        pictureUrl="/api/upload/test-id-4/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Could not read this statement"),
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.getByText("Could not read this uploaded picture right now."),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Try again" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /Uploaded balance sheet picture/i }),
+    ).toBeInTheDocument();
+  });
+
+  test("refuses a PDF selected from Upload another without calling the server", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 0, totalStrips: 1 },
+        { type: "bad_upload", fileName: "holiday-photo.png", rowCount: 0 },
+      ]),
+    );
+
+    const { container } = render(
+      <UploadView
+        uploadId="test-id-5"
+        fileName="holiday-photo.png"
+        pictureUrl="/api/upload/test-id-5/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("heading", {
+          name: "We could not find a statement in this file",
+        }),
+      ).toBeInTheDocument();
+    });
+
+    const input = container.querySelector(
+      'input[data-upload-input="true"]',
+    ) as HTMLInputElement;
+    const pdfFile = new File(["%PDF-1.7"], "annual-report.pdf", {
+      type: "application/pdf",
+    });
+    fireEvent.change(input, { target: { files: [pdfFile] } });
+
+    await waitFor(() => {
+      expect(screen.getByText(PDF_REFUSAL_MESSAGE)).toBeInTheDocument();
+    });
+    // Only the initial /read call happened; no /api/upload call was sent for the PDF.
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});

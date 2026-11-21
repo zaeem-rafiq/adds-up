@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Company } from "@/lib/companies";
+import { validateUploadFileMeta } from "@/lib/upload-validation";
 
 const EXAMPLE_COMPANIES: readonly Company[] = [
   { cik: "320193", ticker: "AAPL", name: "Apple Inc." },
@@ -26,6 +27,7 @@ export function CompanySearch() {
   const listboxId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   const [query, setQuery] = useState("");
@@ -36,6 +38,8 @@ export function CompanySearch() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [notListedQuery, setNotListedQuery] = useState<string | null>(null);
   const [lastSearchedQuery, setLastSearchedQuery] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   async function runSearch(trimmedQuery: string): Promise<Company[] | null> {
     abortRef.current?.abort();
@@ -152,6 +156,48 @@ export function CompanySearch() {
   function pickCompany(company: Company) {
     setIsOpen(false);
     router.push(`/company/${encodeURIComponent(company.cik)}`);
+  }
+
+  async function handleFileSelected(file: File | null | undefined) {
+    if (!file) return;
+    setUploadError(null);
+
+    const validation = validateUploadFileMeta({
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    });
+    if (!validation.ok) {
+      setUploadError(validation.message);
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const payload = (await response.json().catch(() => ({}))) as {
+        id?: string;
+        error?: string;
+      };
+
+      if (!response.ok || !payload.id) {
+        setUploadError(
+          payload.error ?? "Could not upload that file right now. Please try again.",
+        );
+        return;
+      }
+
+      router.push(`/upload/${encodeURIComponent(payload.id)}`);
+    } catch {
+      setUploadError("Could not upload that file right now. Please try again.");
+    } finally {
+      setIsUploading(false);
+    }
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -312,10 +358,46 @@ export function CompanySearch() {
       {errorMessage && (
         <div
           role="alert"
-          className="mx-auto mt-4 flex max-w-[560px] items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3.5 text-left text-sm text-red-900"
+          className="mx-auto mt-4 flex max-w-[560px] flex-col gap-2.5 rounded-xl border border-red-200 bg-red-50 px-4 py-3.5 text-left text-sm text-red-900 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div className="flex items-start gap-3">
+            <svg
+              className="mt-0.5 h-5 w-5 shrink-0 text-red-700"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              aria-hidden="true"
+            >
+              <path
+                d="M10 3.2L17.5 16.2H2.5L10 3.2Z"
+                strokeLinejoin="round"
+              />
+              <path d="M10 8V11.5" strokeLinecap="round" />
+              <circle cx="10" cy="14" r="0.8" fill="currentColor" stroke="none" />
+            </svg>
+            <p className="leading-relaxed">{errorMessage}</p>
+          </div>
+          {lastSearchedQuery && (
+            <button
+              type="button"
+              onClick={() => void runSearch(lastSearchedQuery)}
+              className="w-fit shrink-0 cursor-pointer rounded-lg border border-red-300 bg-white px-3 py-1.5 text-xs font-semibold text-red-900 transition-colors hover:bg-red-100"
+            >
+              Try again
+            </button>
+          )}
+        </div>
+      )}
+
+      {uploadError && (
+        <div
+          role="alert"
+          data-upload-error="true"
+          className="mx-auto mt-4 flex max-w-[560px] items-start gap-3 rounded-xl border border-amber-200 bg-[#fceee5] px-4 py-3.5 text-left text-sm text-[#7c2d12]"
         >
           <svg
-            className="mt-0.5 h-5 w-5 shrink-0 text-red-700"
+            className="mt-0.5 h-5 w-5 shrink-0 text-[#9a3412]"
             viewBox="0 0 20 20"
             fill="none"
             stroke="currentColor"
@@ -329,7 +411,30 @@ export function CompanySearch() {
             <path d="M10 8V11.5" strokeLinecap="round" />
             <circle cx="10" cy="14" r="0.8" fill="currentColor" stroke="none" />
           </svg>
-          <p className="leading-relaxed">{errorMessage}</p>
+          <p className="leading-relaxed font-medium">{uploadError}</p>
+        </div>
+      )}
+
+      {isUploading && (
+        <div
+          role="status"
+          className="mx-auto mt-4 flex max-w-[560px] items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-2xs"
+        >
+          <svg
+            className="h-4 w-4 shrink-0 animate-spin text-[#1d4ea8]"
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle cx="10" cy="10" r="7.5" stroke="#cbd5e1" strokeWidth="2.2" />
+            <path
+              d="M10 2.5A7.5 7.5 0 0 1 17.5 10"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+            />
+          </svg>
+          <span>Uploading statement picture...</span>
         </div>
       )}
 
@@ -377,6 +482,29 @@ export function CompanySearch() {
             {EXAMPLE_LABELS[company.cik]}
           </button>
         ))}
+        <span className="text-sm text-slate-500">or</span>
+        <input
+          ref={fileInputRef}
+          type="file"
+          aria-hidden="true"
+          tabIndex={-1}
+          data-upload-input="true"
+          accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf"
+          className="sr-only"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            event.target.value = "";
+            void handleFileSelected(file);
+          }}
+        />
+        <button
+          type="button"
+          disabled={isUploading}
+          onClick={() => fileInputRef.current?.click()}
+          className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-2xs transition-colors hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d4ea8] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          Upload a statement
+        </button>
       </div>
     </div>
   );

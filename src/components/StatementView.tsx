@@ -1304,6 +1304,12 @@ export function StatementView({
           recheckDisagreesCount > 0 ? "text-[#b91c1c]" : "text-[#9a5b00]",
       };
     }
+    if (total === 0) {
+      return {
+        text: "No numbers found on this balance sheet",
+        colorClass: "text-slate-900",
+      };
+    }
     return {
       text: `${proven} of ${total} numbers proven`,
       colorClass: proven > 0 ? "text-[#146c43]" : "text-slate-900",
@@ -1513,6 +1519,24 @@ export function StatementView({
             </div>
           )}
 
+          {phase === "error" && errorMessage && (
+            <div className="min-w-0 flex-1" role="alert">
+              <p className="text-2xl font-bold tracking-tight text-[#b53800] sm:text-[28px]">
+                {errorCode === "rate_limit"
+                  ? "Reading limit reached"
+                  : errorCode === "missing_key"
+                    ? "Reading is unavailable"
+                    : "Could not read this balance sheet"}
+              </p>
+              <p className="mt-2 text-xs text-slate-700 sm:text-sm">
+                {errorMessage}
+              </p>
+              <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+                Nothing was guessed.
+              </p>
+            </div>
+          )}
+
           {phase === "done" && modState.kind === "rehiding" && (
             <div className="min-w-0 flex-1" role="status" aria-live="polite">
               <p className="text-2xl font-bold tracking-tight text-slate-900 sm:text-[28px]">
@@ -1664,7 +1688,8 @@ export function StatementView({
               </button>
             )}
 
-            {phase === "timeout" && (
+            {(phase === "timeout" ||
+              (phase === "error" && errorCode === "failed")) && (
               <button
                 type="button"
                 onClick={handleRetry}
@@ -1783,24 +1808,6 @@ export function StatementView({
               />
             </div>
           </section>
-
-          {phase === "error" && errorMessage && (
-            <div
-              role="alert"
-              className="flex flex-col gap-3 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-900 sm:flex-row sm:items-center sm:justify-between"
-            >
-              <p className="font-medium">{errorMessage}</p>
-              {errorCode === "failed" && (
-                <button
-                  type="button"
-                  onClick={handleRetry}
-                  className="inline-flex w-fit shrink-0 items-center justify-center rounded-lg border border-red-300 bg-white px-3.5 py-1.5 text-sm font-semibold text-red-900 transition-colors hover:bg-red-100"
-                >
-                  Try again
-                </button>
-              )}
-            </div>
-          )}
         </div>
 
         {phase === "loading" && (

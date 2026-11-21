@@ -479,7 +479,7 @@ function formatCellDisplay(
 
 type ResultTableProps = {
   statement: Statement;
-  source: "sec" | "saved" | "fixture";
+  source: "sec" | "saved" | "fixture" | "upload";
   displayRows: ResultDisplayRow[];
   proof: TwoColumnProof;
   mode?: TableMode;
@@ -531,7 +531,9 @@ export function ResultTable({
       ? "Picture sent to the models, with your number hidden"
       : mode === "rechange" || mode === "changed"
         ? "Picture sent to the models, with your change"
-        : "Proved from the reading";
+        : source === "upload"
+          ? "Picture made from your file"
+          : "Proved from the reading";
 
   const hiddenRowLabel = (() => {
     if (!activeHiddenCell) return "";

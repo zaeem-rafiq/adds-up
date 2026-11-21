@@ -1313,4 +1313,40 @@ describe("StatementView", () => {
       container.querySelector('td[data-second-reader="disagrees"]'),
     ).not.toBeNull();
   });
+
+  test("shows a plain error and Try again button in the verdict band when reading fails twice", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 2, totalStrips: 1 },
+        {
+          type: "error",
+          code: "failed",
+          message: "The model returned no readable balance sheet rows.",
+        },
+      ]),
+    );
+
+    render(
+      <StatementView
+        statement={SAMPLE_STATEMENT}
+        source="sec"
+        pictureUrl="/api/company/320193/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Could not read this balance sheet"),
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.getByText("The model returned no readable balance sheet rows."),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Try again" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /Apple Inc\. balance sheet/i }),
+    ).toBeInTheDocument();
+  });
 });
