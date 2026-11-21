@@ -1,0 +1,22 @@
+# Render Blueprint for Adds Up: one web service on the free plan.
+services:
+  - type: web
+    name: adds-up
+    runtime: node
+    plan: free
+    branch: build/hackathon
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: "26"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: CAUSE_MODEL
+        value: gemini-4-neon
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SEC_USER_AGENT
+        sync: false
