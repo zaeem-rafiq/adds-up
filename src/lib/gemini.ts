@@ -2,6 +2,13 @@ import { GoogleGenAI } from "@google/genai";
 import type { Statement, StatementRow } from "@/lib/statements";
 
 export const GEMINI_HYDROGEN_MODEL = "gemini-4-hydrogen";
+export const DEFAULT_CAUSE_MODEL = "gemini-4-carbon";
+export const FAKE_CAUSE_SENTENCE =
+  "The printed total still fits the rest of the statement, so one line in this group is off.";
+
+export function getCauseModelName(): string {
+  return process.env.CAUSE_MODEL?.trim() || DEFAULT_CAUSE_MODEL;
+}
 
 export const READING_PROMPT = [
   "Read every printed row in this balance sheet picture that has a number, a dash, or a black covered box.",
@@ -31,6 +38,10 @@ export type FakeReadContext = {
   slow?: boolean;
   attempt: number;
   timeoutMs: number;
+  /** 0-based index within `rows` */
+  coverCell?: { rowIndex: number; colIndex: 0 | 1 };
+  /** 0-based index within `rows` */
+  overrideCell?: { rowIndex: number; colIndex: 0 | 1; value: string };
 };
 
 export type ReadPictureRequest = {
@@ -41,21 +52,78 @@ export type ReadPictureRequest = {
   testContext?: FakeReadContext;
 };
 
+export type CauseGroupRow = {
+  label: string;
+  value: string;
+  number: number;
+};
+
+export type ExplainCauseRequest = {
+  groupLabel: string;
+  rows: CauseGroupRow[];
+  statedTotal: number;
+  computedSum: number;
+  gap: number;
+  diff: number;
+  model?: string;
+  signal?: AbortSignal;
+};
+
 export type GeminiClient = {
   readonly isFake: boolean;
   readPicture(request: ReadPictureRequest): Promise<string>;
+  explainCause?(request: ExplainCauseRequest): Promise<string>;
 };
 
 export function hasGeminiApiKey(): boolean {
   return Boolean(process.env.GEMINI_API_KEY?.trim());
 }
 
-export function formatStatementRowsAsReply(rows: StatementRow[]): string {
+export function buildCausePrompt(request: ExplainCauseRequest): string {
+  const fmt = (n: number) =>
+    new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(n);
+  const direction =
+    request.diff > 0
+      ? `the rows add up to ${fmt(request.gap)} more than the stated total`
+      : `the rows add up to ${fmt(request.gap)} less than the stated total`;
+  const rowLines = request.rows.map(
+    (row) => `- ${row.label}: ${row.value || fmt(row.number)}`,
+  );
+
+  return [
+    "These rows from one balance sheet group do not add up to the stated total.",
+    `Group total label: ${request.groupLabel}`,
+    "Group rows:",
+    ...rowLines,
+    `Sum of the rows: ${fmt(request.computedSum)}`,
+    `Stated total: ${fmt(request.statedTotal)}`,
+    `Gap: ${fmt(request.gap)} (${direction}).`,
+    "",
+    "Write one plain sentence of at most 25 words explaining the likely cause of this gap. Output only that one sentence.",
+  ].join("\n");
+}
+
+export function formatStatementRowsAsReply(
+  rows: StatementRow[],
+  options?: {
+    coverCell?: { rowIndex: number; colIndex: 0 | 1 };
+    overrideCell?: { rowIndex: number; colIndex: 0 | 1; value: string };
+  },
+): string {
   const lines: string[] = [];
-  for (const row of rows) {
+  for (let i = 0; i < rows.length; i += 1) {
+    const row = rows[i];
     if (row.kind !== "number") continue;
-    const left = row.values[0] ?? "";
-    const right = row.values[1] ?? "";
+    let left = row.values[0] ?? "";
+    let right = row.values[1] ?? "";
+    if (options?.coverCell?.rowIndex === i) {
+      if (options.coverCell.colIndex === 0) left = "HIDDEN";
+      else right = "HIDDEN";
+    }
+    if (options?.overrideCell?.rowIndex === i) {
+      if (options.overrideCell.colIndex === 0) left = options.overrideCell.value;
+      else right = options.overrideCell.value;
+    }
     lines.push(`${row.label} | ${left} | ${right}`);
   }
   return lines.join("\n");
@@ -120,12 +188,37 @@ export function createRealGeminiClient(): GeminiClient {
 
       return response.output_text ?? "";
     },
+    async explainCause(request: ExplainCauseRequest): Promise<string> {
+      if (!hasGeminiApiKey()) {
+        throw new GeminiConfigError(
+          "Cause explanation is unavailable because GEMINI_API_KEY is not set on the server.",
+        );
+      }
+
+      if (!cachedAi) {
+        cachedAi = new GoogleGenAI({ apiVersion: "v1beta" });
+      }
+
+      const model = request.model?.trim() || getCauseModelName();
+      const prompt = buildCausePrompt(request);
+      const response = await cachedAi.interactions.create(
+        {
+          model,
+          input: [{ type: "text", text: prompt }],
+          generation_config: { thinking_level: "low" },
+        },
+        request.signal ? { signal: request.signal } : undefined,
+      );
+
+      return (response.output_text ?? "").trim();
+    },
   };
 }
 
 export type FakeGeminiClientOptions = {
   slowFirstDelayMs?: number;
   slowRepeatDelayMs?: number;
+  causeSentence?: string;
 };
 
 export function createFakeGeminiClient(
@@ -157,7 +250,13 @@ export function createFakeGeminiClient(
         }
       }
 
-      return formatStatementRowsAsReply(rows);
+      return formatStatementRowsAsReply(rows, {
+        coverCell: ctx?.coverCell,
+        overrideCell: ctx?.overrideCell,
+      });
+    },
+    async explainCause(): Promise<string> {
+      return options?.causeSentence ?? FAKE_CAUSE_SENTENCE;
     },
   };
 }

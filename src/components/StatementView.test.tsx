@@ -1,6 +1,13 @@
 // @vitest-environment jsdom
 import "@testing-library/jest-dom/vitest";
-import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { afterEach, describe, expect, test, vi } from "vitest";
 import { StatementView } from "./StatementView";
 import appleFixture from "@/fixtures/apple-statement.json";
@@ -743,5 +750,454 @@ describe("StatementView", () => {
     expect(
       screen.getByRole("img", { name: /Apple Inc\. balance sheet/i }),
     ).toBeInTheDocument();
+  });
+
+  test("auto-selects first proven left-column number, shows Hide it and Change it, and adds the verdict band prompt line", async () => {
+    const numberPairs = APPLE_STATEMENT.rows
+      .filter((r) => r.kind === "number")
+      .map((r) => r.numbers);
+    const { rows, comparison } = buildComparisonFromReadValues(
+      APPLE_STATEMENT,
+      numberPairs,
+    );
+
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        {
+          type: "done",
+          result: {
+            rows,
+            comparison,
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 2,
+          },
+        },
+      ]),
+    );
+
+    const { container } = render(
+      <StatementView
+        statement={APPLE_STATEMENT}
+        source="saved"
+        pictureUrl="/api/company/320193/picture"
+        hasSecData={false}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("26 of 26 numbers proven")).toBeInTheDocument();
+    });
+
+    // Approved change #1: verdict band line below counts (including saved-copy & upload forms).
+    const verdict = container.querySelector('[data-verdict-band="true"]');
+    expect(verdict).toHaveTextContent(
+      "Hide any number on this balance sheet. Adds Up works out what it was.",
+    );
+
+    // Approved change #2: first proven left-column number selected automatically with side panel buttons.
+    const selectedPanel = container.querySelector('[data-selected-panel="true"]');
+    expect(selectedPanel).not.toBeNull();
+    expect(selectedPanel).toHaveTextContent("Cash and cash equivalents");
+    expect(
+      within(selectedPanel as HTMLElement).getByRole("button", {
+        name: "Hide it",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      within(selectedPanel as HTMLElement).getByRole("button", {
+        name: "Change it",
+      }),
+    ).toBeInTheDocument();
+  });
+
+  test("hides Inventories, shows Rebuilt: 14,541 with math breakdown, updates What happened, and restores on Undo", async () => {
+    const numberPairs = APPLE_STATEMENT.rows
+      .filter((r) => r.kind === "number")
+      .map((r) => r.numbers);
+    const initial = buildComparisonFromReadValues(APPLE_STATEMENT, numberPairs);
+
+    const hiddenPairs = numberPairs.map(
+      (pair, idx) =>
+        (idx === 4 ? [null, pair[1]] : pair) as [number | null, number | null],
+    );
+    const hiddenBuild = buildComparisonFromReadValues(
+      APPLE_STATEMENT,
+      hiddenPairs,
+    );
+    hiddenBuild.rows[4].cells[0].hidden = true;
+    hiddenBuild.rows[4].cells[0].raw = "HIDDEN";
+    hiddenBuild.comparison.rows[4].cells[0].hidden = true;
+
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = typeof input === "string" ? input : input.toString();
+      if (url.includes("/modify")) {
+        return makeNdjsonResponse([
+          {
+            type: "done",
+            result: {
+              rows: hiddenBuild.rows,
+              comparison: hiddenBuild.comparison,
+              fromCache: false,
+              usedRepeat: false,
+              modelCalls: 1,
+            },
+          },
+        ]);
+      }
+      return makeNdjsonResponse([
+        {
+          type: "done",
+          result: {
+            rows: initial.rows,
+            comparison: initial.comparison,
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 2,
+          },
+        },
+      ]);
+    });
+
+    const { container } = render(
+      <StatementView
+        statement={APPLE_STATEMENT}
+        source="fixture"
+        pictureUrl="/api/company/320193/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("26 of 26 numbers proven")).toBeInTheDocument();
+    });
+
+    // Select Inventories (row index 4, left col 0) and click Hide it.
+    const inventoriesCellBtn = container.querySelector(
+      '[data-cell-button="4-0"]',
+    ) as HTMLButtonElement;
+    fireEvent.click(inventoriesCellBtn);
+
+    fireEvent.click(screen.getByRole("button", { name: "Hide it" }));
+
+    await waitFor(() => {
+      expect(screen.getByText("Rebuilt: 14,541")).toBeInTheDocument();
+    });
+
+    const hiddenPanel = container.querySelector('[data-hidden-panel="true"]');
+    expect(hiddenPanel).toHaveTextContent("The hidden number is");
+    expect(hiddenPanel).toHaveTextContent("14,541");
+    expect(hiddenPanel).toHaveTextContent("173,857");
+    expect(hiddenPanel).toHaveTextContent("159,316");
+    expect(hiddenPanel).toHaveTextContent(
+      "The models saw a black box. Plain code did this sum.",
+    );
+
+    // What happened logs the hide and rebuild.
+    expect(screen.getByText("You hid Inventories.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Rebuilt 14,541 from the total."),
+    ).toBeInTheDocument();
+
+    // Undo / Reveal restores the unchanged statement.
+    fireEvent.click(screen.getByRole("button", { name: "Reveal the number" }));
+    await waitFor(() => {
+      expect(screen.getByText("26 of 26 numbers proven")).toBeInTheDocument();
+    });
+  });
+
+  test("D5 UI: refuses to hide a number outside every total and makes no modify request", async () => {
+    const noGroupStatement: Statement = {
+      cik: "999999",
+      companyName: "Example Corp.",
+      form: "10-K",
+      filingDate: "2026-11-03",
+      title: "BALANCE SHEET",
+      columns: ["2026", "2025"],
+      unitLine: "In millions",
+      rows: [
+        {
+          kind: "number",
+          label: "Standalone item",
+          indent: 1,
+          isTotal: false,
+          values: ["10", "10"],
+          numbers: [10, 10],
+        },
+        {
+          kind: "number",
+          label: "Other item",
+          indent: 1,
+          isTotal: false,
+          values: ["25", "25"],
+          numbers: [25, 25],
+        },
+      ],
+    };
+
+    const { rows, comparison } = buildComparisonFromReadValues(
+      noGroupStatement,
+      [
+        [10, 10],
+        [25, 25],
+      ],
+    );
+
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        {
+          type: "done",
+          result: {
+            rows,
+            comparison,
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 1,
+          },
+        },
+      ]),
+    );
+
+    render(
+      <StatementView
+        statement={noGroupStatement}
+        source="fixture"
+        pictureUrl="/api/company/999999/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("0 of 4 numbers proven")).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Hide it" }));
+
+    const refusal = screen.getByRole("alert");
+    expect(refusal).toHaveTextContent(/outside every total/i);
+    expect(refusal).toHaveTextContent(/cannot be hidden/i);
+    // Only the initial /read call ran; no /modify call was made.
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("refuses non-number change input without calling server, then shows gap immediately on valid change and appends cause sentence when it arrives", async () => {
+    const numberPairs = APPLE_STATEMENT.rows
+      .filter((r) => r.kind === "number")
+      .map((r) => r.numbers);
+    const initial = buildComparisonFromReadValues(APPLE_STATEMENT, numberPairs);
+
+    const changedPairs = numberPairs.map(
+      (pair, idx) =>
+        (idx === 4 ? [15541, pair[1]] : pair) as [number | null, number | null],
+    );
+    const changedBuild = buildComparisonFromReadValues(
+      APPLE_STATEMENT,
+      changedPairs,
+    );
+
+    const causeControl: { resolve?: (sentence: string | null) => void } = {};
+    const fetchSpy = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementation(async (input) => {
+        const url = typeof input === "string" ? input : input.toString();
+        if (url.includes("/modify")) {
+          return makeNdjsonResponse([
+            {
+              type: "done",
+              result: {
+                rows: changedBuild.rows,
+                comparison: changedBuild.comparison,
+                fromCache: false,
+                usedRepeat: false,
+                modelCalls: 1,
+              },
+            },
+          ]);
+        }
+        if (url.includes("/cause")) {
+          const sentence = await new Promise<string | null>((resolve) => {
+            causeControl.resolve = resolve;
+          });
+          return new Response(
+            JSON.stringify({ sentence, model: "gemini-4-carbon" }),
+            {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
+            },
+          );
+        }
+        return makeNdjsonResponse([
+          {
+            type: "done",
+            result: {
+              rows: initial.rows,
+              comparison: initial.comparison,
+              fromCache: false,
+              usedRepeat: false,
+              modelCalls: 2,
+            },
+          },
+        ]);
+      });
+
+    const { container } = render(
+      <StatementView
+        statement={APPLE_STATEMENT}
+        source="fixture"
+        pictureUrl="/api/company/320193/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("26 of 26 numbers proven")).toBeInTheDocument();
+    });
+
+    // Select Inventories (row 4, col 0) and open Change form.
+    fireEvent.click(
+      container.querySelector('[data-cell-button="4-0"]') as HTMLButtonElement,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Change it" }));
+
+    const input = screen.getByLabelText(/New value for Inventories/i);
+    fireEvent.change(input, { target: { value: "not a number" } });
+    fireEvent.click(screen.getByRole("button", { name: "Apply change" }));
+
+    expect(screen.getByText(/Enter a valid number/i)).toBeInTheDocument();
+    expect(fetchSpy).toHaveBeenCalledTimes(1); // No /modify call made!
+
+    // Now enter valid changed value 15,541.
+    fireEvent.change(input, { target: { value: "15,541" } });
+    fireEvent.click(screen.getByRole("button", { name: "Apply change" }));
+
+    // Gap and headline appear IMMEDIATELY before /cause resolves!
+    await waitFor(() => {
+      expect(
+        screen.getAllByText("Current assets are off by 1,000").length,
+      ).toBeGreaterThanOrEqual(2);
+    });
+    expect(container.querySelector('[data-cause-sentence="true"]')).toBeNull();
+    expect(screen.getByText("Gap: 1,000")).toBeInTheDocument();
+
+    // Now resolve the async cause call and verify the sentence appears.
+    causeControl.resolve?.(
+      "The printed total still fits the rest of the statement, so one line in this group is off.",
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          "The printed total still fits the rest of the statement, so one line in this group is off.",
+        ),
+      ).toBeInTheDocument();
+    });
+  });
+
+  test("D6 UI: when a hidden number cannot be rebuilt, does not show Rebuilt headline and never guesses", async () => {
+    const oneColGroupStmt: Statement = {
+      cik: "320193",
+      companyName: "Apple Inc.",
+      form: "10-K",
+      filingDate: "2026-11-03",
+      title: "CONSOLIDATED BALANCE SHEETS",
+      columns: ["Sep. 26, 2026", "Sep. 27, 2025"],
+      unitLine: "In millions",
+      rows: [
+        {
+          kind: "number",
+          label: "Cash",
+          indent: 1,
+          isTotal: false,
+          values: ["10", "10"],
+          numbers: [10, 10],
+        },
+        {
+          kind: "number",
+          label: "Inventories",
+          indent: 1,
+          isTotal: false,
+          values: ["20", "20"],
+          numbers: [20, 20],
+        },
+        {
+          kind: "number",
+          label: "Total current assets",
+          indent: 0,
+          isTotal: true,
+          values: ["30", "999"],
+          numbers: [30, 999],
+        },
+      ],
+    };
+
+    const initial = buildComparisonFromReadValues(oneColGroupStmt, [
+      [10, 10],
+      [20, 20],
+      [30, 999],
+    ]);
+    const hiddenBuild = buildComparisonFromReadValues(oneColGroupStmt, [
+      [10, 10],
+      [null, 20],
+      [30, 999],
+    ]);
+    hiddenBuild.rows[1].cells[0].hidden = true;
+    hiddenBuild.rows[1].cells[0].raw = "HIDDEN";
+    hiddenBuild.comparison.rows[1].cells[0].hidden = true;
+
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = typeof input === "string" ? input : input.toString();
+      if (url.includes("/modify")) {
+        return makeNdjsonResponse([
+          {
+            type: "done",
+            result: {
+              rows: hiddenBuild.rows,
+              comparison: hiddenBuild.comparison,
+              fromCache: false,
+              usedRepeat: false,
+              modelCalls: 1,
+            },
+          },
+        ]);
+      }
+      return makeNdjsonResponse([
+        {
+          type: "done",
+          result: {
+            rows: initial.rows,
+            comparison: initial.comparison,
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 1,
+          },
+        },
+      ]);
+    });
+
+    const { container } = render(
+      <StatementView
+        statement={oneColGroupStmt}
+        source="fixture"
+        pictureUrl="/api/company/320193/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("One group does not add up")).toBeInTheDocument();
+    });
+
+    // Left col row 1 (Inventories, 20) is proven because left col adds up (10+20=30),
+    // while right col has no group (10+20 != 999).
+    fireEvent.click(
+      container.querySelector('[data-cell-button="1-0"]') as HTMLButtonElement,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Hide it" }));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Could not rebuild the hidden number"),
+      ).toBeInTheDocument();
+    });
+    expect(screen.queryByText(/^Rebuilt:/i)).not.toBeInTheDocument();
+    expect(container.querySelector('[data-cannot-rebuild="true"]')).toHaveTextContent(
+      /never guesses/i,
+    );
   });
 });

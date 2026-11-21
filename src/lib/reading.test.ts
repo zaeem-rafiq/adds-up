@@ -3,13 +3,17 @@ import { drawStatementWithLayout } from "@/lib/draw-statement";
 import {
   createFakeGeminiClient,
   createRealGeminiClient,
+  DEFAULT_CAUSE_MODEL,
+  FAKE_CAUSE_SENTENCE,
   formatStatementRowsAsReply,
   GeminiConfigError,
   type GeminiClient,
 } from "@/lib/gemini";
 import { RateLimiter, RateLimitError } from "@/lib/rate-limit";
 import {
+  CauseCache,
   compareReadingWithStatement,
+  explainMismatchCause,
   joinHalfReadings,
   joinStripReadings,
   parseReadingReply,
@@ -17,6 +21,7 @@ import {
   ReadingTimeoutError,
   readPictureWithSpeedRule,
   readStatementPictures,
+  readStatementWithModification,
   splitStatementForReading,
   splitStatementIntoStrips,
   type ReadingProgressEvent,
@@ -750,6 +755,254 @@ describe("Section E: Reading replies (unit 3)", () => {
     } finally {
       if (previous !== undefined) {
         process.env.GEMINI_API_KEY = previous;
+      }
+    }
+  });
+});
+
+describe("Unit 5: hide/change single-strip re-reading, whole-picture fallback, and cause model", () => {
+  test("hide redraws and reads ONLY the modified strip (1 model call) and reuses earlier readings for other strips", async () => {
+    const stmt = makeNumberedStatement(16); // 2 strips: 12 rows + 4 rows
+    const cache = new ReadingCache();
+    const rateLimiter = new RateLimiter();
+    const baseClient = createFakeGeminiClient();
+    const calls: Array<{ strip: number; totalStrips: number }> = [];
+
+    const countingClient: GeminiClient = {
+      isFake: true,
+      async readPicture(req) {
+        calls.push({
+          strip: req.testContext?.strip ?? 1,
+          totalStrips: req.testContext?.totalStrips ?? 1,
+        });
+        return baseClient.readPicture(req);
+      },
+    };
+
+    const initial = await readStatementPictures({
+      statement: stmt,
+      client: countingClient,
+      cache,
+      rateLimiter,
+      browserId: "browser-hide-12345678",
+      ip: "198.51.100.5",
+    });
+    expect(initial.modelCalls).toBe(2);
+    expect(calls).toHaveLength(2);
+
+    // Hide row 4 (index 4, inside strip 1) -> only strip 1 is read (1 model call).
+    const hidden = await readStatementWithModification({
+      statement: stmt,
+      modification: { kind: "hide", numberRowIndex: 4, colIndex: 0 },
+      previousRows: initial.rows,
+      client: countingClient,
+      cache,
+      rateLimiter,
+      browserId: "browser-hide-12345678",
+      ip: "198.51.100.5",
+    });
+
+    expect(hidden.modelCalls).toBe(1);
+    expect(hidden.usedWholePictureFallback).toBe(false);
+    expect(calls).toHaveLength(3);
+    expect(calls[2].strip).toBe(1);
+    expect(hidden.rows).toHaveLength(16);
+    expect(hidden.comparison.rows[4].cells[0].hidden).toBe(true);
+    expect(hidden.comparison.rows[4].cells[0].read).toBeNull();
+    expect(hidden.comparison.rows[15].cells[0].read).toBe(1600);
+
+    // Repeating the same hide answers from cache with 0 model calls.
+    const cachedRepeat = await readStatementWithModification({
+      statement: stmt,
+      modification: { kind: "hide", numberRowIndex: 4, colIndex: 0 },
+      previousRows: initial.rows,
+      client: countingClient,
+      cache,
+      rateLimiter,
+      browserId: "browser-hide-12345678",
+      ip: "198.51.100.5",
+    });
+    expect(cachedRepeat.fromCache).toBe(true);
+    expect(cachedRepeat.modelCalls).toBe(0);
+    expect(calls).toHaveLength(3);
+  });
+
+  test("hide falls back to reading the whole statement as one picture once when the covered strip returns no HIDDEN cell", async () => {
+    const stmt = makeNumberedStatement(16); // 2 strips
+    const cache = new ReadingCache();
+    const baseClient = createFakeGeminiClient();
+
+    const initial = await readStatementPictures({
+      statement: stmt,
+      client: baseClient,
+      cache,
+    });
+
+    const seenRowCounts: number[] = [];
+    const fallbackClient: GeminiClient = {
+      isFake: true,
+      async readPicture(req) {
+        const rows = req.testContext?.rows ?? [];
+        const numberRowsCount = rows.filter((r) => r.kind === "number").length;
+        seenRowCounts.push(numberRowsCount);
+        // Strip read (12 rows) misses the black box and omits HIDDEN;
+        // whole-statement read (16 rows) properly returns HIDDEN.
+        if (numberRowsCount < 16) {
+          return formatStatementRowsAsReply(rows);
+        }
+        return formatStatementRowsAsReply(rows, {
+          coverCell: req.testContext?.coverCell,
+        });
+      },
+    };
+
+    const result = await readStatementWithModification({
+      statement: stmt,
+      modification: { kind: "hide", numberRowIndex: 4, colIndex: 0 },
+      previousRows: initial.rows,
+      client: fallbackClient,
+      cache,
+    });
+
+    expect(result.usedWholePictureFallback).toBe(true);
+    expect(result.modelCalls).toBe(2); // 1 strip attempt + 1 whole-statement fallback
+    expect(seenRowCounts).toEqual([12, 16]);
+    expect(result.comparison.rows[4].cells[0].hidden).toBe(true);
+    expect(result.comparison.rows[4].cells[0].read).toBeNull();
+  });
+
+  test("change redraws and reads ONLY the modified strip (1 model call) and returns the changed value", async () => {
+    const stmt = makeNumberedStatement(16); // 2 strips
+    const cache = new ReadingCache();
+    const baseClient = createFakeGeminiClient();
+    let calls = 0;
+
+    const countingClient: GeminiClient = {
+      isFake: true,
+      async readPicture(req) {
+        calls += 1;
+        return baseClient.readPicture(req);
+      },
+    };
+
+    const initial = await readStatementPictures({
+      statement: stmt,
+      client: countingClient,
+      cache,
+    });
+    expect(calls).toBe(2);
+
+    const changed = await readStatementWithModification({
+      statement: stmt,
+      modification: {
+        kind: "change",
+        numberRowIndex: 14, // inside strip 2
+        colIndex: 0,
+        newValue: "9,999",
+      },
+      previousRows: initial.rows,
+      client: countingClient,
+      cache,
+    });
+
+    expect(changed.modelCalls).toBe(1);
+    expect(calls).toBe(3);
+    expect(changed.comparison.rows[14].cells[0].read).toBe(9999);
+    expect(changed.comparison.rows[0].cells[0].read).toBe(100);
+  });
+
+  test("explainMismatchCause uses CAUSE_MODEL (default gemini-4-carbon), caches, respects rate limits, retries once, and returns null when both attempts fail", async () => {
+    const previousModel = process.env.CAUSE_MODEL;
+    delete process.env.CAUSE_MODEL;
+    try {
+      const cache = new CauseCache();
+      const rateLimiter = new RateLimiter();
+      const seenModels: string[] = [];
+
+      const client: GeminiClient = {
+        isFake: true,
+        async readPicture() {
+          return "";
+        },
+        async explainCause(req) {
+          seenModels.push(req.model ?? "");
+          return FAKE_CAUSE_SENTENCE;
+        },
+      };
+
+      const first = await explainMismatchCause({
+        groupLabel: "Total current assets",
+        rows: [
+          { label: "Cash", value: "36,305", number: 36305 },
+          { label: "Inventories", value: "15,541", number: 15541 },
+        ],
+        statedTotal: 173857,
+        computedSum: 174857,
+        gap: 1000,
+        diff: 1000,
+        client,
+        cache,
+        rateLimiter,
+        browserId: "browser-cause-1234567",
+        ip: "198.51.100.9",
+      });
+
+      expect(first.model).toBe(DEFAULT_CAUSE_MODEL);
+      expect(seenModels).toEqual([DEFAULT_CAUSE_MODEL]);
+      expect(first.sentence).toBe(FAKE_CAUSE_SENTENCE);
+      expect(first.fromCache).toBe(false);
+      expect(first.modelCalls).toBe(1);
+
+      // Cached second call makes 0 model calls.
+      const second = await explainMismatchCause({
+        groupLabel: "Total current assets",
+        rows: [
+          { label: "Cash", value: "36,305", number: 36305 },
+          { label: "Inventories", value: "15,541", number: 15541 },
+        ],
+        statedTotal: 173857,
+        computedSum: 174857,
+        gap: 1000,
+        diff: 1000,
+        client,
+        cache,
+        rateLimiter,
+        browserId: "browser-cause-1234567",
+        ip: "198.51.100.9",
+      });
+      expect(second.fromCache).toBe(true);
+      expect(second.modelCalls).toBe(0);
+      expect(second.sentence).toBe(FAKE_CAUSE_SENTENCE);
+
+      // Failing first call retries once; when both fail, returns sentence: null without throwing.
+      let failAttempts = 0;
+      const failingClient: GeminiClient = {
+        isFake: true,
+        async readPicture() {
+          return "";
+        },
+        async explainCause() {
+          failAttempts += 1;
+          throw new Error("model error");
+        },
+      };
+
+      const failed = await explainMismatchCause({
+        groupLabel: "Total current assets",
+        rows: [{ label: "Cash", value: "100", number: 100 }],
+        statedTotal: 200,
+        computedSum: 100,
+        gap: 100,
+        diff: -100,
+        client: failingClient,
+        timeoutMs: 500,
+      });
+      expect(failAttempts).toBe(2);
+      expect(failed.sentence).toBeNull();
+      expect(failed.usedRepeat).toBe(true);
+    } finally {
+      if (previousModel !== undefined) {
+        process.env.CAUSE_MODEL = previousModel;
       }
     }
   });

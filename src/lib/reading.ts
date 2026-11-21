@@ -1,7 +1,10 @@
 import { createHash } from "node:crypto";
 import { drawStatementPng } from "@/lib/draw-statement";
 import {
+  getCauseModelName,
   READING_PROMPT,
+  type CauseGroupRow,
+  type ExplainCauseRequest,
   type GeminiClient,
 } from "@/lib/gemini";
 import { RateLimitError, type RateLimiter } from "@/lib/rate-limit";
@@ -793,6 +796,10 @@ export async function readStatementPictures(
 
   if (cache) {
     cache.set(cacheKey, joinedRows);
+    for (let i = 0; i < parts.length; i += 1) {
+      const stripKey = computePictureCacheKey([parts[i].png]);
+      cache.set(stripKey, outcomes[i].rows);
+    }
   }
 
   const comparison = compareReadingWithStatement(statement, joinedRows);
@@ -806,4 +813,750 @@ export async function readStatementPictures(
 
   onProgress?.({ type: "done", result });
   return result;
+}
+
+export type StatementModification =
+  | {
+      kind: "hide";
+      /** 0-based index among statement number rows */
+      numberRowIndex: number;
+      colIndex: 0 | 1;
+    }
+  | {
+      kind: "change";
+      /** 0-based index among statement number rows */
+      numberRowIndex: number;
+      colIndex: 0 | 1;
+      /** Formatted display value printed on the picture */
+      newValue: string;
+    };
+
+export type ReadModifiedStatementOptions = {
+  statement: Statement;
+  modification: StatementModification;
+  /** Earlier full reading rows used as fallback if an unaffected strip is no longer in server cache */
+  previousRows?: ReadRow[];
+  client: GeminiClient;
+  cache?: ReadingCache;
+  rateLimiter?: RateLimiter;
+  browserId?: string;
+  ip?: string;
+  timeoutMs?: number;
+  bypassCache?: boolean;
+  signal?: AbortSignal;
+  onProgress?: (event: ReadingProgressEvent) => void;
+};
+
+export type ModifiedReadingResult = StatementReadingResult & {
+  usedWholePictureFallback: boolean;
+};
+
+export function findStatementRowIndexForNumberRow(
+  statement: Statement,
+  numberRowIndex: number,
+): number {
+  let seen = 0;
+  for (let i = 0; i < statement.rows.length; i += 1) {
+    if (statement.rows[i].kind === "number") {
+      if (seen === numberRowIndex) return i;
+      seen += 1;
+    }
+  }
+  return -1;
+}
+
+function locateTargetInStrips(
+  rowStrips: StatementRow[][],
+  numberRowIndex: number,
+): { stripIndex: number; rowIndexInStrip: number } | null {
+  let seenNumbers = 0;
+  for (let s = 0; s < rowStrips.length; s += 1) {
+    const stripRows = rowStrips[s];
+    for (let r = 0; r < stripRows.length; r += 1) {
+      if (stripRows[r].kind === "number") {
+        if (seenNumbers === numberRowIndex) {
+          return { stripIndex: s, rowIndexInStrip: r };
+        }
+        seenNumbers += 1;
+      }
+    }
+  }
+  return null;
+}
+
+function slicePreviousRowsForStrip(
+  rowStrips: StatementRow[][],
+  stripIndex: number,
+  previousRows?: ReadRow[],
+): ReadRow[] | undefined {
+  if (!previousRows || previousRows.length === 0) return undefined;
+  let offset = 0;
+  for (let s = 0; s < rowStrips.length; s += 1) {
+    const count = rowStrips[s].filter((r) => r.kind === "number").length;
+    if (s === stripIndex) {
+      if (previousRows.length >= offset + count) {
+        return previousRows.slice(offset, offset + count);
+      }
+      return undefined;
+    }
+    offset += count;
+  }
+  return undefined;
+}
+
+function hasHiddenCell(rows: ReadRow[]): boolean {
+  return rows.some((row) => row.cells[0].hidden || row.cells[1].hidden);
+}
+
+/**
+ * Draws and reads ONLY the strip that holds the hidden or changed cell,
+ * reusing earlier readings for all other strips (1 model call).
+ * For a hide: if the covered strip returns no HIDDEN cell and the statement
+ * has more than one strip, falls back once to reading the whole statement
+ * as a single picture and uses that.
+ */
+export async function readStatementWithModification(
+  options: ReadModifiedStatementOptions,
+): Promise<ModifiedReadingResult> {
+  const {
+    statement,
+    modification,
+    previousRows,
+    client,
+    cache,
+    rateLimiter,
+    browserId = "anonymous",
+    ip = "unknown",
+    timeoutMs = getReadTimeoutMs(),
+    bypassCache = false,
+    signal,
+    onProgress,
+  } = options;
+
+  const statementRowIndex = findStatementRowIndexForNumberRow(
+    statement,
+    modification.numberRowIndex,
+  );
+  if (statementRowIndex === -1) {
+    throw new ReadingFailedError("The selected balance sheet row was not found.");
+  }
+
+  const rowStrips = splitStatementIntoStrips(statement);
+  const targetLocation = locateTargetInStrips(
+    rowStrips,
+    modification.numberRowIndex,
+  );
+  if (!targetLocation) {
+    throw new ReadingFailedError("The selected balance sheet row was not found.");
+  }
+
+  const { stripIndex: targetStripIndex, rowIndexInStrip } = targetLocation;
+  const coverCell =
+    modification.kind === "hide"
+      ? { rowIndex: rowIndexInStrip, colIndex: modification.colIndex }
+      : undefined;
+  const overrideCell =
+    modification.kind === "change"
+      ? {
+          rowIndex: rowIndexInStrip,
+          colIndex: modification.colIndex,
+          value: modification.newValue,
+        }
+      : undefined;
+
+  const stripParts = rowStrips.map((rows, idx) => {
+    const isTarget = idx === targetStripIndex;
+    const png = isTarget
+      ? drawStatementPng(statement, { rows, coverCell, overrideCell })
+      : drawStatementPng(statement, { rows });
+    return {
+      strip: idx + 1,
+      rows,
+      png,
+      stripKey: computePictureCacheKey([png]),
+      isTarget,
+    };
+  });
+
+  const totalNumbers = countStatementNumbers(statement.rows);
+  const totalStrips = stripParts.length;
+  const combinedCacheKey = computePictureCacheKey(
+    stripParts.map((part) => part.png),
+  );
+
+  // Check full modified-statement cache first (0 model calls, not counted).
+  if (cache && !bypassCache) {
+    const cachedFull = cache.get(combinedCacheKey);
+    if (cachedFull) {
+      const comparison = compareReadingWithStatement(statement, cachedFull);
+      const result: ModifiedReadingResult = {
+        rows: cachedFull,
+        comparison,
+        fromCache: true,
+        usedRepeat: false,
+        modelCalls: 0,
+        usedWholePictureFallback: false,
+      };
+      onProgress?.({ type: "done", result });
+      return result;
+    }
+  }
+
+  // Reuse cached or previous readings for unaffected strips, and check whether
+  // any strip actually needs a model call.
+  const reusedByStrip = new Map<number, ReadRow[]>();
+  const stripsToRead: typeof stripParts = [];
+
+  for (let i = 0; i < stripParts.length; i += 1) {
+    const part = stripParts[i];
+    if (!bypassCache && cache) {
+      const cachedStrip = cache.get(part.stripKey);
+      if (cachedStrip) {
+        reusedByStrip.set(i, cachedStrip);
+        continue;
+      }
+    }
+
+    if (!part.isTarget) {
+      const fromPrevious = slicePreviousRowsForStrip(
+        rowStrips,
+        i,
+        previousRows,
+      );
+      if (fromPrevious) {
+        reusedByStrip.set(i, fromPrevious);
+        continue;
+      }
+    }
+
+    stripsToRead.push(part);
+  }
+
+  if (stripsToRead.length === 0) {
+    const joinedRows = joinStripReadings(
+      stripParts.map((_, idx) => reusedByStrip.get(idx) ?? []),
+    );
+    if (cache) {
+      cache.set(combinedCacheKey, joinedRows);
+    }
+    const comparison = compareReadingWithStatement(statement, joinedRows);
+    const result: ModifiedReadingResult = {
+      rows: joinedRows,
+      comparison,
+      fromCache: true,
+      usedRepeat: false,
+      modelCalls: 0,
+      usedWholePictureFallback: false,
+    };
+    onProgress?.({ type: "done", result });
+    return result;
+  }
+
+  // Enforce rate limits before making any model call.
+  if (rateLimiter) {
+    const decision = rateLimiter.checkAndConsumeRequest({
+      browserId,
+      ip,
+      plannedModelCalls: stripsToRead.length,
+    });
+    if (!decision.allowed) {
+      throw new RateLimitError(
+        decision.message,
+        decision.reason,
+        decision.retryAfterSeconds,
+      );
+    }
+  }
+
+  onProgress?.({ type: "started", totalNumbers, totalStrips: stripsToRead.length });
+
+  let usedRepeat = false;
+  let modelCalls = 0;
+  let slowEmitted = false;
+  let completed = 0;
+
+  const readOutcomes = await Promise.all(
+    stripsToRead.map((part) => {
+      const stripIdx = part.strip - 1;
+      return readPictureWithSpeedRule({
+        timeoutMs,
+        signal,
+        strip: part.strip,
+        totalStrips,
+        onModelCall: () => {
+          rateLimiter?.recordModelCalls(1);
+        },
+        onSlow: () => {
+          if (!slowEmitted) {
+            slowEmitted = true;
+            onProgress?.({
+              type: "slow",
+              strip: part.strip,
+              totalStrips,
+              timeoutMs,
+            });
+          }
+        },
+        call: (attempt, attemptSignal) =>
+          client.readPicture({
+            png: part.png,
+            prompt: READING_PROMPT,
+            signal: attemptSignal,
+            testContext: {
+              statement,
+              rows: part.rows,
+              strip: part.strip,
+              totalStrips,
+              attempt,
+              timeoutMs,
+              coverCell: part.isTarget ? coverCell : undefined,
+              overrideCell: part.isTarget ? overrideCell : undefined,
+            },
+          }),
+      }).then((outcome) => {
+        completed += 1;
+        onProgress?.({
+          type: "strip_done",
+          strip: part.strip,
+          completedStrips: completed,
+          totalStrips: stripsToRead.length,
+          numbersRead: countReadNumbers(outcome.rows),
+          totalNumbers,
+        });
+        return { stripIdx, part, outcome };
+      });
+    }),
+  );
+
+  for (const { stripIdx, part, outcome } of readOutcomes) {
+    reusedByStrip.set(stripIdx, outcome.rows);
+    usedRepeat = usedRepeat || outcome.usedRepeat;
+    modelCalls += outcome.modelCalls;
+    if (cache && (!part.isTarget || modification.kind !== "hide" || hasHiddenCell(outcome.rows))) {
+      cache.set(part.stripKey, outcome.rows);
+    }
+  }
+
+  let joinedRows = joinStripReadings(
+    stripParts.map((_, idx) => reusedByStrip.get(idx) ?? []),
+  );
+  let usedWholePictureFallback = false;
+
+  // Hide fallback: if reading the covered picture returned no HIDDEN cell and
+  // we had split into multiple strips, read the whole statement as one picture
+  // once and use that.
+  if (
+    modification.kind === "hide" &&
+    !hasHiddenCell(reusedByStrip.get(targetStripIndex) ?? []) &&
+    rowStrips.length > 1
+  ) {
+    const wholeCoverCell = {
+      rowIndex: statementRowIndex,
+      colIndex: modification.colIndex,
+    };
+    const wholePng = drawStatementPng(statement, {
+      coverCell: wholeCoverCell,
+    });
+    const wholeKey = computePictureCacheKey([wholePng]);
+    const cachedWhole = !bypassCache ? cache?.get(wholeKey) : undefined;
+
+    if (cachedWhole) {
+      joinedRows = cachedWhole;
+      usedWholePictureFallback = true;
+    } else {
+      if (rateLimiter) {
+        const decision = rateLimiter.check({
+          browserId,
+          ip,
+          plannedModelCalls: 1,
+        });
+        if (!decision.allowed) {
+          throw new RateLimitError(
+            decision.message,
+            decision.reason,
+            decision.retryAfterSeconds,
+          );
+        }
+      }
+
+      const wholeOutcome = await readPictureWithSpeedRule({
+        timeoutMs,
+        signal,
+        strip: 1,
+        totalStrips: 1,
+        onModelCall: () => {
+          rateLimiter?.recordModelCalls(1);
+        },
+        onSlow: () => {
+          if (!slowEmitted) {
+            slowEmitted = true;
+            onProgress?.({
+              type: "slow",
+              strip: 1,
+              totalStrips: 1,
+              timeoutMs,
+            });
+          }
+        },
+        call: (attempt, attemptSignal) =>
+          client.readPicture({
+            png: wholePng,
+            prompt: READING_PROMPT,
+            signal: attemptSignal,
+            testContext: {
+              statement,
+              rows: statement.rows,
+              strip: 1,
+              totalStrips: 1,
+              attempt,
+              timeoutMs,
+              coverCell: wholeCoverCell,
+            },
+          }),
+      });
+
+      joinedRows = wholeOutcome.rows;
+      usedRepeat = usedRepeat || wholeOutcome.usedRepeat;
+      modelCalls += wholeOutcome.modelCalls;
+      usedWholePictureFallback = true;
+
+      if (cache) {
+        cache.set(wholeKey, joinedRows);
+      }
+    }
+  }
+
+  if (cache) {
+    cache.set(combinedCacheKey, joinedRows);
+  }
+
+  const comparison = compareReadingWithStatement(statement, joinedRows);
+  const result: ModifiedReadingResult = {
+    rows: joinedRows,
+    comparison,
+    fromCache: false,
+    usedRepeat,
+    modelCalls,
+    usedWholePictureFallback,
+  };
+
+  onProgress?.({ type: "done", result });
+  return result;
+}
+
+export class CauseCache {
+  private readonly maxEntries: number;
+  private readonly entries = new Map<string, string>();
+
+  constructor(maxEntries = 200) {
+    this.maxEntries = maxEntries;
+  }
+
+  get(key: string): string | undefined {
+    const value = this.entries.get(key);
+    if (!value) return undefined;
+    this.entries.delete(key);
+    this.entries.set(key, value);
+    return value;
+  }
+
+  set(key: string, sentence: string): void {
+    if (this.entries.has(key)) {
+      this.entries.delete(key);
+    } else if (this.entries.size >= this.maxEntries) {
+      const oldestKey = this.entries.keys().next().value;
+      if (oldestKey !== undefined) {
+        this.entries.delete(oldestKey);
+      }
+    }
+    this.entries.set(key, sentence);
+  }
+
+  clear(): void {
+    this.entries.clear();
+  }
+
+  get size(): number {
+    return this.entries.size;
+  }
+}
+
+const globalForCauseCache = globalThis as typeof globalThis & {
+  __addsUpCauseCache?: CauseCache;
+};
+
+export function getGlobalCauseCache(): CauseCache {
+  if (!globalForCauseCache.__addsUpCauseCache) {
+    globalForCauseCache.__addsUpCauseCache = new CauseCache();
+  }
+  return globalForCauseCache.__addsUpCauseCache;
+}
+
+export function computeCauseCacheKey(
+  model: string,
+  request: Omit<ExplainCauseRequest, "signal" | "model">,
+): string {
+  const hash = createHash("sha256");
+  hash.update(model);
+  hash.update(":");
+  hash.update(
+    JSON.stringify({
+      groupLabel: request.groupLabel,
+      rows: request.rows,
+      statedTotal: request.statedTotal,
+      computedSum: request.computedSum,
+      gap: request.gap,
+      diff: request.diff,
+    }),
+  );
+  return hash.digest("hex");
+}
+
+function sanitizeCauseSentence(raw: string): string | null {
+  const singleLine = raw
+    .replace(/\r?\n+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^["'`]+|["'`]+$/g, "")
+    .trim();
+  if (!singleLine) return null;
+  return singleLine;
+}
+
+function callCauseWithSpeedRule(options: {
+  call: (attempt: 1 | 2, signal: AbortSignal) => Promise<string>;
+  timeoutMs: number;
+  signal?: AbortSignal;
+  onModelCall?: () => void;
+}): Promise<{ sentence: string | null; modelCalls: number; usedRepeat: boolean }> {
+  const { call, timeoutMs, signal: outerSignal, onModelCall } = options;
+
+  return new Promise((resolve) => {
+    if (outerSignal?.aborted) {
+      resolve({ sentence: null, modelCalls: 0, usedRepeat: false });
+      return;
+    }
+
+    let settled = false;
+    let repeatStarted = false;
+    let modelCalls = 0;
+    let activeAttempts = 0;
+
+    let firstTimer: ReturnType<typeof setTimeout> | null = null;
+    let secondTimer: ReturnType<typeof setTimeout> | null = null;
+    const controllers: AbortController[] = [];
+
+    const cleanup = () => {
+      if (firstTimer !== null) {
+        clearTimeout(firstTimer);
+        firstTimer = null;
+      }
+      if (secondTimer !== null) {
+        clearTimeout(secondTimer);
+        secondTimer = null;
+      }
+      outerSignal?.removeEventListener("abort", onOuterAbort);
+      for (const controller of controllers) {
+        if (!controller.signal.aborted) {
+          controller.abort();
+        }
+      }
+    };
+
+    const finish = (sentence: string | null) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      resolve({ sentence, modelCalls, usedRepeat: repeatStarted });
+    };
+
+    const onOuterAbort = () => {
+      finish(null);
+    };
+    outerSignal?.addEventListener("abort", onOuterAbort, { once: true });
+
+    const startRepeat = () => {
+      if (settled || repeatStarted) return;
+      repeatStarted = true;
+      secondTimer = setTimeout(() => {
+        finish(null);
+      }, timeoutMs);
+      startAttempt(2);
+    };
+
+    const startAttempt = (attempt: 1 | 2) => {
+      const controller = new AbortController();
+      controllers.push(controller);
+      activeAttempts += 1;
+      modelCalls += 1;
+      onModelCall?.();
+
+      void call(attempt, controller.signal)
+        .then((raw) => {
+          if (settled) return;
+          const clean = sanitizeCauseSentence(raw);
+          if (clean) {
+            finish(clean);
+            return;
+          }
+          activeAttempts -= 1;
+          if (!repeatStarted) {
+            if (firstTimer !== null) {
+              clearTimeout(firstTimer);
+              firstTimer = null;
+            }
+            startRepeat();
+          } else if (activeAttempts === 0) {
+            finish(null);
+          }
+        })
+        .catch(() => {
+          if (settled) return;
+          activeAttempts -= 1;
+          if (!repeatStarted) {
+            if (firstTimer !== null) {
+              clearTimeout(firstTimer);
+              firstTimer = null;
+            }
+            startRepeat();
+          } else if (activeAttempts === 0) {
+            finish(null);
+          }
+        });
+    };
+
+    firstTimer = setTimeout(() => {
+      startRepeat();
+    }, timeoutMs);
+
+    startAttempt(1);
+  });
+}
+
+export type ExplainMismatchCauseOptions = {
+  groupLabel: string;
+  rows: CauseGroupRow[];
+  statedTotal: number;
+  computedSum: number;
+  gap: number;
+  diff: number;
+  client: GeminiClient;
+  cache?: CauseCache;
+  rateLimiter?: RateLimiter;
+  browserId?: string;
+  ip?: string;
+  model?: string;
+  timeoutMs?: number;
+  signal?: AbortSignal;
+};
+
+export type ExplainMismatchCauseResult = {
+  sentence: string | null;
+  model: string;
+  fromCache: boolean;
+  modelCalls: number;
+  usedRepeat: boolean;
+};
+
+/**
+ * Calls the cause model (CAUSE_MODEL, defaulting to gemini-4-carbon) with a
+ * 12-second timeout and one repeat. Uses memory cache and unit 3 rate limits.
+ * Returns { sentence: null } when both attempts fail or limits are hit.
+ */
+export async function explainMismatchCause(
+  options: ExplainMismatchCauseOptions,
+): Promise<ExplainMismatchCauseResult> {
+  const {
+    groupLabel,
+    rows,
+    statedTotal,
+    computedSum,
+    gap,
+    diff,
+    client,
+    cache,
+    rateLimiter,
+    browserId = "anonymous",
+    ip = "unknown",
+    model = getCauseModelName(),
+    timeoutMs = getReadTimeoutMs(),
+    signal,
+  } = options;
+
+  if (!client.explainCause) {
+    return {
+      sentence: null,
+      model,
+      fromCache: false,
+      modelCalls: 0,
+      usedRepeat: false,
+    };
+  }
+
+  const requestPayload = {
+    groupLabel,
+    rows,
+    statedTotal,
+    computedSum,
+    gap,
+    diff,
+  };
+  const cacheKey = computeCauseCacheKey(model, requestPayload);
+
+  if (cache) {
+    const cached = cache.get(cacheKey);
+    if (cached) {
+      return {
+        sentence: cached,
+        model,
+        fromCache: true,
+        modelCalls: 0,
+        usedRepeat: false,
+      };
+    }
+  }
+
+  if (rateLimiter) {
+    const decision = rateLimiter.checkAndConsumeRequest({
+      browserId,
+      ip,
+      plannedModelCalls: 1,
+    });
+    if (!decision.allowed) {
+      return {
+        sentence: null,
+        model,
+        fromCache: false,
+        modelCalls: 0,
+        usedRepeat: false,
+      };
+    }
+  }
+
+  const explainFn = client.explainCause.bind(client);
+  const outcome = await callCauseWithSpeedRule({
+    timeoutMs,
+    signal,
+    onModelCall: () => {
+      rateLimiter?.recordModelCalls(1);
+    },
+    call: (_attempt, attemptSignal) =>
+      explainFn({
+        ...requestPayload,
+        model,
+        signal: attemptSignal,
+      }),
+  });
+
+  if (outcome.sentence && cache) {
+    cache.set(cacheKey, outcome.sentence);
+  }
+
+  return {
+    sentence: outcome.sentence,
+    model,
+    fromCache: false,
+    modelCalls: outcome.modelCalls,
+    usedRepeat: outcome.usedRepeat,
+  };
 }

@@ -1,6 +1,14 @@
 import fc from "fast-check";
 import { describe, expect, test } from "vitest";
-import { classifyColumn, findGroups, proveColumns } from "./adding";
+import {
+  canHideCell,
+  classifyColumn,
+  findGroups,
+  parseChangedNumberInput,
+  proveColumns,
+  proveColumnsWithHidden,
+  rebuildHiddenCell,
+} from "./adding";
 
 /** Helper to convert 0-based groups to 1-based row numbers matching docs/test-cases.md. */
 function toOneBased(groups: ReturnType<typeof findGroups>) {
@@ -275,5 +283,193 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
       }),
       { numRuns: 200 },
     );
+  });
+});
+
+describe("Hide and change (Section D of docs/test-cases.md)", () => {
+  const LEFT_C11 = [36305, 20417, 43817, 39896, 14541, 18881, 173857];
+  const RIGHT_C11 = [35934, 18763, 39777, 33180, 5718, 14585, 147957];
+  const C12 = [
+    36305, 20417, 43817, 39896, 14541, 18881, 173857, 100, 200, 300, 174157,
+  ];
+
+  test("D1: hides row 5 on the left (14,541) -> rebuilds 14,541 as 173,857 minus 159,316", () => {
+    const leftHidden: Array<number | null> = [...LEFT_C11];
+    leftHidden[4] = null; // Row 5 (1-based) = index 4
+
+    const { proof, rebuild } = proveColumnsWithHidden(leftHidden, RIGHT_C11, {
+      rowIndex: 4,
+      colIndex: 0,
+    });
+
+    expect(rebuild.status).toBe("rebuilt");
+    if (rebuild.status === "rebuilt") {
+      expect(rebuild.value).toBe(14541);
+      expect(rebuild.agreed).toBe(true);
+      expect(rebuild.ways).toHaveLength(1);
+      expect(rebuild.ways[0]).toEqual({
+        kind: "total_minus_others",
+        memberIndices: [0, 1, 2, 3, 4, 5],
+        totalIndex: 6,
+        value: 14541,
+        otherMembersSum: 159316,
+        printedTotal: 173857,
+      });
+    }
+    expect(proof.counts).toEqual({
+      proven: 14,
+      needYourEye: 0,
+      notProven: 0,
+      total: 14,
+    });
+  });
+
+  test("D2: hides row 7 on the left (the total) -> rebuilds 173,857 as sum of rows 1 to 6", () => {
+    const leftHidden: Array<number | null> = [...LEFT_C11];
+    leftHidden[6] = null; // Row 7 (1-based) = index 6
+
+    const { proof, rebuild } = proveColumnsWithHidden(leftHidden, RIGHT_C11, {
+      rowIndex: 6,
+      colIndex: 0,
+    });
+
+    expect(rebuild.status).toBe("rebuilt");
+    if (rebuild.status === "rebuilt") {
+      expect(rebuild.value).toBe(173857);
+      expect(rebuild.agreed).toBe(true);
+      expect(rebuild.ways).toHaveLength(1);
+      expect(rebuild.ways[0]).toEqual({
+        kind: "sum_of_members",
+        memberIndices: [0, 1, 2, 3, 4, 5],
+        totalIndex: 6,
+        value: 173857,
+        otherMembersSum: 173857,
+        printedTotal: null,
+      });
+    }
+    expect(proof.left.cellStatuses).toEqual(new Array(7).fill("proven"));
+  });
+
+  test("D3: uses C12 on both sides and hides row 7 on the left -> rebuilds 173,857 two ways and both agree", () => {
+    const leftHidden: Array<number | null> = [...C12];
+    leftHidden[6] = null; // Row 7 (1-based) = index 6
+
+    const rebuild = rebuildHiddenCell(leftHidden, C12, {
+      rowIndex: 6,
+      colIndex: 0,
+    });
+
+    expect(rebuild.status).toBe("rebuilt");
+    if (rebuild.status === "rebuilt") {
+      expect(rebuild.value).toBe(173857);
+      expect(rebuild.agreed).toBe(true);
+      expect(rebuild.ways).toHaveLength(2);
+      expect(rebuild.ways).toContainEqual({
+        kind: "sum_of_members",
+        memberIndices: [0, 1, 2, 3, 4, 5],
+        totalIndex: 6,
+        value: 173857,
+        otherMembersSum: 173857,
+        printedTotal: null,
+      });
+      expect(rebuild.ways).toContainEqual({
+        kind: "total_minus_others",
+        memberIndices: [6, 9],
+        totalIndex: 10,
+        value: 173857,
+        otherMembersSum: 300,
+        printedTotal: 174157,
+      });
+    }
+  });
+
+  test("D4: changes row 5 on the left to 15,541 -> marks rows 1 to 7 on the left as not adding up (174,857 vs 173,857, gap 1,000) while right keeps ticks", () => {
+    const leftChanged = [...LEFT_C11];
+    leftChanged[4] = 15541;
+
+    const proof = proveColumns(leftChanged, RIGHT_C11);
+
+    expect(proof.left.groups).toEqual([]);
+    expect(proof.left.mismatches).toEqual([
+      {
+        memberIndices: [0, 1, 2, 3, 4, 5],
+        totalIndex: 6,
+        computedSum: 174857,
+        printedTotal: 173857,
+        gap: 1000,
+        diff: 1000,
+      },
+    ]);
+    expect(proof.left.cellStatuses).toEqual(new Array(7).fill("mismatch"));
+    expect(proof.right.mismatches).toEqual([]);
+    expect(proof.right.cellStatuses).toEqual(new Array(7).fill("proven"));
+  });
+
+  test("D5: trying to hide a number outside every total is refused with a plain reason", () => {
+    const left = [10, 20, 31, 5];
+    const right = [10, 20, 31, 5];
+    const proof = proveColumns(left, right);
+
+    const decision = canHideCell(proof, 0, 0);
+    expect(decision.allowed).toBe(false);
+    if (!decision.allowed) {
+      expect(decision.reason).toMatch(/outside every total/i);
+    }
+
+    // Also verify a proven cell IS allowed.
+    const provenProof = proveColumns(LEFT_C11, RIGHT_C11);
+    expect(canHideCell(provenProof, 4, 0)).toEqual({ allowed: true });
+  });
+
+  test("D6: hides a number while the other column has no group for those rows -> cannot rebuild and never guesses", () => {
+    const leftHidden: Array<number | null> = [...LEFT_C11];
+    leftHidden[4] = null;
+    // Other column has no group for rows 1..7 (e.g., broken total).
+    const rightNoGroup = [35934, 18763, 39777, 33180, 5718, 14585, 999999];
+
+    const { proof, rebuild } = proveColumnsWithHidden(leftHidden, rightNoGroup, {
+      rowIndex: 4,
+      colIndex: 0,
+    });
+
+    expect(rebuild.status).toBe("cannot_rebuild");
+    if (rebuild.status === "cannot_rebuild") {
+      expect(rebuild.reason).toMatch(/cannot rebuild/i);
+      expect(rebuild.reason).toMatch(/never guesses/i);
+    }
+    expect(proof.left.cellStatuses[4]).toBe("unread");
+  });
+
+  test("parseChangedNumberInput accepts valid numbers and refuses non-numbers with a plain message", () => {
+    expect(parseChangedNumberInput("15541")).toEqual({
+      ok: true,
+      number: 15541,
+      formatted: "15,541",
+    });
+    expect(parseChangedNumberInput("15,541")).toEqual({
+      ok: true,
+      number: 15541,
+      formatted: "15,541",
+    });
+    expect(parseChangedNumberInput("(1,234)")).toEqual({
+      ok: true,
+      number: -1234,
+      formatted: "(1,234)",
+    });
+    expect(parseChangedNumberInput("-500")).toEqual({
+      ok: true,
+      number: -500,
+      formatted: "(500)",
+    });
+    expect(parseChangedNumberInput("0")).toEqual({
+      ok: true,
+      number: 0,
+      formatted: "0",
+    });
+
+    for (const bad of ["", "   ", "abc", "15,541abc", "--", "NaN", "1,2,3"]) {
+      const res = parseChangedNumberInput(bad);
+      expect(res.ok).toBe(false);
+    }
   });
 });

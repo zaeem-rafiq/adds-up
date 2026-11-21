@@ -4,6 +4,7 @@ import type {
   AddingGroup,
   CellProofStatus,
   MismatchedGroup,
+  RebuildResult,
   TwoColumnProof,
 } from "@/lib/adding";
 import type { RowComparison, StatementReadingResult } from "@/lib/reading";
@@ -24,9 +25,17 @@ export type ResultNumberRow = {
   rawValues: [string, string];
   numbers: [number | null, number | null];
   unread: [boolean, boolean];
+  hidden: [boolean, boolean];
 };
 
 export type ResultDisplayRow = ResultHeadingRow | ResultNumberRow;
+
+export type SelectedCellRef = {
+  rowIndex: number;
+  colIndex: 0 | 1;
+};
+
+export type TableMode = "normal" | "rehide" | "hidden" | "rechange" | "changed";
 
 export function formatProofNumber(value: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -71,6 +80,8 @@ export function buildResultDisplayRows(
 
       const leftNumber = leftCell ? leftCell.read : null;
       const rightNumber = rightCell ? rightCell.read : null;
+      const leftHidden = leftCell ? leftCell.hidden : false;
+      const rightHidden = rightCell ? rightCell.hidden : false;
       const leftUnread = leftCell ? leftCell.unread || leftCell.hidden : false;
       const rightUnread = rightCell
         ? rightCell.unread || rightCell.hidden
@@ -92,6 +103,7 @@ export function buildResultDisplayRows(
         rawValues: [leftRaw, rightRaw],
         numbers: [leftNumber, rightNumber],
         unread: [leftUnread, rightUnread],
+        hidden: [leftHidden, rightHidden],
       });
       numberRowIndex += 1;
     }
@@ -110,6 +122,7 @@ export function buildResultDisplayRows(
     rawValues: [readRow.cells[0].raw, readRow.cells[1].raw],
     numbers: [readRow.cells[0].number, readRow.cells[1].number],
     unread: [readRow.cells[0].hidden, readRow.cells[1].hidden],
+    hidden: [readRow.cells[0].hidden, readRow.cells[1].hidden],
   }));
 }
 
@@ -303,6 +316,25 @@ function ProvenCheckIcon({ size = "sm" }: { size?: "sm" | "xs" }) {
   );
 }
 
+function RowSpinnerIcon() {
+  return (
+    <svg
+      className="h-[18px] w-[18px] shrink-0 animate-spin text-[#1d4ea8]"
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="7.5" stroke="#cbd5e1" strokeWidth="2.2" />
+      <path
+        d="M10 2.5A7.5 7.5 0 0 1 17.5 10"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 function CircleMinusIcon({
   tone = "muted",
 }: {
@@ -370,7 +402,13 @@ function getRowVisualStatus(
   leftStatus: CellProofStatus,
   rightStatus: CellProofStatus,
   isMismatchTotal: boolean,
-): "proven" | "mismatch-total" | "mismatch-member" | "unread" | "not-proven" | "none" {
+):
+  | "proven"
+  | "mismatch-total"
+  | "mismatch-member"
+  | "unread"
+  | "not-proven"
+  | "none" {
   if (leftStatus === "mismatch" || rightStatus === "mismatch") {
     return isMismatchTotal ? "mismatch-total" : "mismatch-member";
   }
@@ -402,6 +440,14 @@ type ResultTableProps = {
   source: "sec" | "saved" | "fixture";
   displayRows: ResultDisplayRow[];
   proof: TwoColumnProof;
+  mode?: TableMode;
+  selectedCell?: SelectedCellRef | null;
+  onSelectCell?: (cell: SelectedCellRef) => void;
+  onQuickHide?: (cell: SelectedCellRef) => void;
+  onQuickChange?: (cell: SelectedCellRef) => void;
+  activeHiddenCell?: SelectedCellRef | null;
+  activeChangedCell?: (SelectedCellRef & { displayValue: string }) | null;
+  rebuild?: RebuildResult | null;
 };
 
 export function ResultTable({
@@ -409,6 +455,14 @@ export function ResultTable({
   source,
   displayRows,
   proof,
+  mode = "normal",
+  selectedCell = null,
+  onSelectCell,
+  onQuickHide,
+  onQuickChange,
+  activeHiddenCell = null,
+  activeChangedCell = null,
+  rebuild = null,
 }: ResultTableProps) {
   const { totalAnnotations, bracketsByDisplayRow, totalNumberIndices } =
     buildAnnotations(displayRows, proof);
@@ -426,13 +480,31 @@ export function ResultTable({
       : `(${statement.unitLine})`
     : "";
 
+  const isCheckingAgain = mode === "rehide" || mode === "rechange";
+
+  const headerTitle =
+    mode === "rehide" || mode === "hidden"
+      ? "Picture sent to the models, with your number hidden"
+      : mode === "rechange" || mode === "changed"
+        ? "Picture sent to the models, with your change"
+        : "Proved from the reading";
+
+  const hiddenRowLabel = (() => {
+    if (!activeHiddenCell) return "";
+    const row = displayRows.find(
+      (r): r is ResultNumberRow =>
+        r.kind === "number" && r.numberRowIndex === activeHiddenCell.rowIndex,
+    );
+    return row?.label ?? "";
+  })();
+
   return (
     <section
       aria-label="Balance sheet proof"
       className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs"
     >
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-3 text-xs text-slate-500 sm:px-6">
-        <span>Proved from the reading</span>
+        <span>{headerTitle}</span>
         {source === "saved" && <span>Saved copy</span>}
       </div>
 
@@ -483,10 +555,7 @@ export function ResultTable({
               if (row.kind === "heading") {
                 const isMajor = row.label === row.label.toUpperCase();
                 return (
-                  <tr
-                    key={`heading-${displayIdx}`}
-                    data-row-kind="heading"
-                  >
+                  <tr key={`heading-${displayIdx}`} data-row-kind="heading">
                     <th
                       scope="rowgroup"
                       colSpan={4}
@@ -521,9 +590,13 @@ export function ResultTable({
               );
 
               const leftBrokenTotal =
-                annotation?.kind === "mismatch" && annotation.brokenCols[0];
+                !isCheckingAgain &&
+                annotation?.kind === "mismatch" &&
+                annotation.brokenCols[0];
               const rightBrokenTotal =
-                annotation?.kind === "mismatch" && annotation.brokenCols[1];
+                !isCheckingAgain &&
+                annotation?.kind === "mismatch" &&
+                annotation.brokenCols[1];
 
               const numberBorderClass = isTotal
                 ? isGrandTotal
@@ -542,26 +615,81 @@ export function ResultTable({
                 rightStatus,
               );
 
-              const showMobileSubRow =
-                Boolean(annotation) ||
-                rowVisual === "not-proven" ||
-                rowVisual === "unread";
+              const isLeftHidden =
+                (mode === "rehide" || mode === "hidden") &&
+                activeHiddenCell?.rowIndex === idx &&
+                activeHiddenCell.colIndex === 0;
+              const isRightHidden =
+                (mode === "rehide" || mode === "hidden") &&
+                activeHiddenCell?.rowIndex === idx &&
+                activeHiddenCell.colIndex === 1;
+
+              const isLeftChanged =
+                (mode === "rechange" || mode === "changed") &&
+                activeChangedCell?.rowIndex === idx &&
+                activeChangedCell.colIndex === 0;
+              const isRightChanged =
+                (mode === "rechange" || mode === "changed") &&
+                activeChangedCell?.rowIndex === idx &&
+                activeChangedCell.colIndex === 1;
+
+              const primaryWay =
+                mode === "hidden" && rebuild?.status === "rebuilt"
+                  ? rebuild.ways[0]
+                  : null;
+              const isRebuildTotalRow =
+                primaryWay !== null &&
+                primaryWay.kind === "total_minus_others" &&
+                primaryWay.totalIndex === idx;
+              const isRebuiltHiddenRow =
+                mode === "hidden" &&
+                rebuild?.status === "rebuilt" &&
+                rebuild.rowIndex === idx;
+
+              const showMobileSubRow = isCheckingAgain
+                ? isTotal
+                : Boolean(annotation) ||
+                  isRebuildTotalRow ||
+                  isRebuiltHiddenRow ||
+                  rowVisual === "not-proven" ||
+                  rowVisual === "unread";
 
               return (
                 <ResultRowGroup
                   key={`num-${idx}`}
                   row={row}
+                  columns={statement.columns}
+                  mode={mode}
+                  isCheckingAgain={isCheckingAgain}
                   isTotal={isTotal}
                   numberBorderClass={numberBorderClass}
                   leftStatus={leftStatus}
                   rightStatus={rightStatus}
-                  leftText={leftText}
-                  rightText={rightText}
+                  leftText={
+                    isLeftChanged && mode === "rechange" && activeChangedCell
+                      ? activeChangedCell.displayValue
+                      : leftText
+                  }
+                  rightText={
+                    isRightChanged && mode === "rechange" && activeChangedCell
+                      ? activeChangedCell.displayValue
+                      : rightText
+                  }
                   leftBrokenTotal={leftBrokenTotal}
                   rightBrokenTotal={rightBrokenTotal}
+                  isLeftHidden={isLeftHidden}
+                  isRightHidden={isRightHidden}
+                  isLeftChanged={isLeftChanged}
+                  isRightChanged={isRightChanged}
+                  selectedCell={selectedCell}
+                  onSelectCell={onSelectCell}
+                  onQuickHide={onQuickHide}
+                  onQuickChange={onQuickChange}
                   rowVisual={rowVisual}
                   annotation={annotation}
                   bracket={bracket}
+                  rebuild={rebuild}
+                  hiddenRowLabel={hiddenRowLabel}
                   showMobileSubRow={showMobileSubRow}
                 />
               );
@@ -575,6 +703,9 @@ export function ResultTable({
 
 type ResultRowGroupProps = {
   row: ResultNumberRow;
+  columns: [string, string];
+  mode: TableMode;
+  isCheckingAgain: boolean;
   isTotal: boolean;
   numberBorderClass: string;
   leftStatus: CellProofStatus;
@@ -583,14 +714,131 @@ type ResultRowGroupProps = {
   rightText: string;
   leftBrokenTotal: boolean;
   rightBrokenTotal: boolean;
+  isLeftHidden: boolean;
+  isRightHidden: boolean;
+  isLeftChanged: boolean;
+  isRightChanged: boolean;
+  selectedCell: SelectedCellRef | null;
+  onSelectCell?: (cell: SelectedCellRef) => void;
+  onQuickHide?: (cell: SelectedCellRef) => void;
+  onQuickChange?: (cell: SelectedCellRef) => void;
   rowVisual: ReturnType<typeof getRowVisualStatus>;
   annotation: GroupAnnotation | undefined;
   bracket: BracketSegment | undefined;
+  rebuild: RebuildResult | null;
+  hiddenRowLabel: string;
   showMobileSubRow: boolean;
 };
 
+function NumberCellContent({
+  rowIndex,
+  colIndex,
+  rowLabel,
+  columnLabel,
+  text,
+  status,
+  mode,
+  isHidden,
+  isChanged,
+  isSelected,
+  onSelectCell,
+  onQuickHide,
+  onQuickChange,
+}: {
+  rowIndex: number;
+  colIndex: 0 | 1;
+  rowLabel: string;
+  columnLabel: string;
+  text: string;
+  status: CellProofStatus;
+  mode: TableMode;
+  isHidden: boolean;
+  isChanged: boolean;
+  isSelected: boolean;
+  onSelectCell?: (cell: SelectedCellRef) => void;
+  onQuickHide?: (cell: SelectedCellRef) => void;
+  onQuickChange?: (cell: SelectedCellRef) => void;
+}) {
+  if (isHidden) {
+    return (
+      <span
+        data-hidden-cell="true"
+        role="img"
+        aria-label={`Hidden number for ${rowLabel}`}
+        className="inline-block h-[22px] w-[58px] rounded-md bg-[#0f1c32] align-middle sm:w-[74px]"
+      />
+    );
+  }
+
+  if (isChanged) {
+    return (
+      <span
+        data-changed-cell="true"
+        className="inline-block rounded-md border-[1.5px] border-[#b53800] bg-orange-50/40 px-1.5 py-0.5 font-semibold text-slate-900"
+      >
+        {text}
+      </span>
+    );
+  }
+
+  if (mode === "normal" && onSelectCell && status !== "empty") {
+    const cellRef: SelectedCellRef = { rowIndex, colIndex };
+    return (
+      <span className="relative inline-flex items-center justify-end">
+        {isSelected && onQuickHide && onQuickChange && (
+          <span
+            className="absolute right-full top-1/2 z-10 mr-2 hidden -translate-y-1/2 items-center gap-1 rounded-xl border border-slate-300 bg-white p-1 font-sans shadow-md lg:inline-flex"
+            data-inline-actions="true"
+          >
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                onQuickHide(cellRef);
+              }}
+              className="rounded-lg bg-[#1d4ea8] px-2.5 py-1 text-xs font-semibold text-white transition-colors hover:bg-[#173f8a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d4ea8]"
+            >
+              Hide
+            </button>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                onQuickChange(cellRef);
+              }}
+              className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-900 transition-colors hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d4ea8]"
+            >
+              Change
+            </button>
+          </span>
+        )}
+        <button
+          type="button"
+          data-cell-button={`${rowIndex}-${colIndex}`}
+          data-selected={isSelected ? "true" : undefined}
+          aria-pressed={isSelected}
+          title={`Select ${rowLabel} (${columnLabel})`}
+          onClick={() => onSelectCell(cellRef)}
+          className={`inline-block cursor-pointer rounded-md px-1.5 py-0.5 text-right transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d4ea8] ${
+            isSelected
+              ? "border-[1.5px] border-[#1d4ea8] bg-blue-50/40 font-semibold text-slate-900"
+              : "border border-transparent hover:border-slate-300 hover:bg-slate-50"
+          }`}
+        >
+          {text}
+        </button>
+      </span>
+    );
+  }
+
+  return <>{text}</>;
+}
+
 function ResultRowGroup({
   row,
+  columns,
+  mode,
+  isCheckingAgain,
   isTotal,
   numberBorderClass,
   leftStatus,
@@ -599,13 +847,43 @@ function ResultRowGroup({
   rightText,
   leftBrokenTotal,
   rightBrokenTotal,
+  isLeftHidden,
+  isRightHidden,
+  isLeftChanged,
+  isRightChanged,
+  selectedCell,
+  onSelectCell,
+  onQuickHide,
+  onQuickChange,
   rowVisual,
   annotation,
   bracket,
+  rebuild,
+  hiddenRowLabel,
   showMobileSubRow,
 }: ResultRowGroupProps) {
-  const indentClass =
-    !isTotal && row.indent >= 1 ? "pl-3 sm:pl-5" : "pl-0";
+  const indentClass = !isTotal && row.indent >= 1 ? "pl-3 sm:pl-5" : "pl-0";
+
+  const isLeftSelected =
+    mode === "normal" &&
+    selectedCell?.rowIndex === row.numberRowIndex &&
+    selectedCell.colIndex === 0;
+  const isRightSelected =
+    mode === "normal" &&
+    selectedCell?.rowIndex === row.numberRowIndex &&
+    selectedCell.colIndex === 1;
+
+  const primaryWay =
+    mode === "hidden" && rebuild?.status === "rebuilt" ? rebuild.ways[0] : null;
+  const isRebuiltHiddenRow =
+    mode === "hidden" &&
+    rebuild?.status === "rebuilt" &&
+    rebuild.rowIndex === row.numberRowIndex;
+  const isRebuildSubtractTotal =
+    primaryWay !== null &&
+    primaryWay.kind === "total_minus_others" &&
+    primaryWay.totalIndex === row.numberRowIndex &&
+    primaryWay.printedTotal !== null;
 
   return (
     <>
@@ -626,14 +904,28 @@ function ResultRowGroup({
           className={`whitespace-nowrap py-1.5 pl-1.5 text-right align-bottom font-mono text-[12px] tabular-nums sm:pl-3 sm:text-[13.5px] ${numberBorderClass} ${
             leftBrokenTotal
               ? "font-bold text-[#b53800]"
-              : leftStatus === "unread"
+              : leftStatus === "unread" && !isLeftHidden
                 ? "font-sans text-xs font-medium text-[#9a5b00]"
                 : leftStatus === "empty"
                   ? "text-slate-400"
                   : ""
           }`}
         >
-          {leftText}
+          <NumberCellContent
+            rowIndex={row.numberRowIndex}
+            colIndex={0}
+            rowLabel={row.label}
+            columnLabel={columns[0]}
+            text={leftText}
+            status={leftStatus}
+            mode={mode}
+            isHidden={isLeftHidden}
+            isChanged={isLeftChanged}
+            isSelected={isLeftSelected}
+            onSelectCell={onSelectCell}
+            onQuickHide={onQuickHide}
+            onQuickChange={onQuickChange}
+          />
         </td>
 
         <td
@@ -642,67 +934,93 @@ function ResultRowGroup({
           className={`whitespace-nowrap py-1.5 pl-1.5 text-right align-bottom font-mono text-[12px] tabular-nums sm:pl-3 sm:text-[13.5px] ${numberBorderClass} ${
             rightBrokenTotal
               ? "font-bold text-[#b53800]"
-              : rightStatus === "unread"
+              : rightStatus === "unread" && !isRightHidden
                 ? "font-sans text-xs font-medium text-[#9a5b00]"
                 : rightStatus === "empty"
                   ? "text-slate-400"
                   : ""
           }`}
         >
-          {rightText}
+          <NumberCellContent
+            rowIndex={row.numberRowIndex}
+            colIndex={1}
+            rowLabel={row.label}
+            columnLabel={columns[1]}
+            text={rightText}
+            status={rightStatus}
+            mode={mode}
+            isHidden={isRightHidden}
+            isChanged={isRightChanged}
+            isSelected={isRightSelected}
+            onSelectCell={onSelectCell}
+            onQuickHide={onQuickHide}
+            onQuickChange={onQuickChange}
+          />
         </td>
 
         <td className="py-1.5 pl-1.5 text-center align-bottom">
           <div className="flex items-center justify-center">
-            {rowVisual === "proven" && (
+            {isCheckingAgain ? (
               <span
-                data-proof-mark="proven"
-                aria-label="Proven"
-                title="Proven"
+                data-checking-again="true"
+                aria-label="Checking again"
                 className="inline-flex"
               >
-                <ProvenCheckIcon />
+                <RowSpinnerIcon />
               </span>
-            )}
-            {rowVisual === "mismatch-total" && (
-              <span
-                data-proof-mark="mismatch-total"
-                aria-label="Does not add up"
-                title="Does not add up"
-                className="inline-flex"
-              >
-                <MismatchTriangleIcon />
-              </span>
-            )}
-            {rowVisual === "mismatch-member" && (
-              <span
-                data-proof-mark="mismatch-member"
-                aria-label="In group that does not add up"
-                title="In group that does not add up"
-                className="inline-flex"
-              >
-                <CircleMinusIcon tone="mismatch" />
-              </span>
-            )}
-            {rowVisual === "unread" && (
-              <span
-                data-proof-mark="unread"
-                aria-label="Needs your eye"
-                title="Needs your eye"
-                className="inline-flex"
-              >
-                <NeedsEyeIcon />
-              </span>
-            )}
-            {rowVisual === "not-proven" && (
-              <span
-                data-proof-mark="not-proven"
-                aria-label="Not proven"
-                title="Not proven"
-                className="inline-flex"
-              >
-                <CircleMinusIcon tone="muted" />
-              </span>
+            ) : (
+              <>
+                {rowVisual === "proven" && (
+                  <span
+                    data-proof-mark="proven"
+                    aria-label="Proven"
+                    title="Proven"
+                    className="inline-flex"
+                  >
+                    <ProvenCheckIcon />
+                  </span>
+                )}
+                {rowVisual === "mismatch-total" && (
+                  <span
+                    data-proof-mark="mismatch-total"
+                    aria-label="Does not add up"
+                    title="Does not add up"
+                    className="inline-flex"
+                  >
+                    <MismatchTriangleIcon />
+                  </span>
+                )}
+                {rowVisual === "mismatch-member" && (
+                  <span
+                    data-proof-mark="mismatch-member"
+                    aria-label="In group that does not add up"
+                    title="In group that does not add up"
+                    className="inline-flex"
+                  >
+                    <CircleMinusIcon tone="mismatch" />
+                  </span>
+                )}
+                {rowVisual === "unread" && (
+                  <span
+                    data-proof-mark="unread"
+                    aria-label="Needs your eye"
+                    title="Needs your eye"
+                    className="inline-flex"
+                  >
+                    <NeedsEyeIcon />
+                  </span>
+                )}
+                {rowVisual === "not-proven" && (
+                  <span
+                    data-proof-mark="not-proven"
+                    aria-label="Not proven"
+                    title="Not proven"
+                    className="inline-flex"
+                  >
+                    <CircleMinusIcon tone="muted" />
+                  </span>
+                )}
+              </>
             )}
           </div>
         </td>
@@ -710,10 +1028,14 @@ function ResultRowGroup({
         <td className="relative hidden py-1.5 pl-4 align-bottom text-xs md:table-cell">
           {bracket && (
             <span
-              data-proof-bracket={bracket.kind}
+              data-proof-bracket={isCheckingAgain ? "checking" : bracket.kind}
               aria-hidden="true"
               className={`pointer-events-none absolute left-1.5 w-[2px] ${
-                bracket.kind === "mismatch" ? "bg-[#b53800]" : "bg-[#146c43]"
+                isCheckingAgain
+                  ? "bg-slate-300"
+                  : bracket.kind === "mismatch"
+                    ? "bg-[#b53800]"
+                    : "bg-[#146c43]"
               } ${
                 bracket.position === "start"
                   ? "top-2 bottom-0"
@@ -724,50 +1046,88 @@ function ResultRowGroup({
             />
           )}
 
-          {bracket?.sideNote && (
-            <span className="font-semibold text-[#b53800]">
-              {bracket.sideNote}
-            </span>
-          )}
-
-          {annotation?.kind === "proven" && (
-            <span className="inline-flex items-center gap-1.5 font-medium text-[#146c43]">
-              <ProvenCheckIcon size="xs" />
-              <span>
-                {annotation.memberIndices.length} {annotation.unitWord} add to{" "}
-                <span className="font-mono font-semibold tabular-nums">
-                  {formatProofNumber(annotation.sum)}
+          {isCheckingAgain ? (
+            isTotal ? (
+              <span className="text-slate-500">checking again</span>
+            ) : null
+          ) : (
+            <>
+              {isRebuiltHiddenRow && rebuild?.status === "rebuilt" && (
+                <span className="font-semibold text-[#146c43]">
+                  rebuilt:{" "}
+                  <span className="font-mono tabular-nums">
+                    {formatProofNumber(rebuild.value)}
+                  </span>
                 </span>
-              </span>
-            </span>
-          )}
+              )}
 
-          {annotation?.kind === "mismatch" && (
-            <span className="inline-flex items-center gap-1.5 font-semibold text-[#b53800]">
-              <MismatchTriangleIcon size="xs" />
-              <span>
-                {annotation.unitWord} add to{" "}
-                <span className="font-mono tabular-nums">
-                  {formatProofNumber(annotation.computedSum)}
+              {!isRebuiltHiddenRow && bracket?.sideNote && (
+                <span className="font-semibold text-[#b53800]">
+                  {bracket.sideNote}
                 </span>
-                {!bracket && (
-                  <>
-                    , off by{" "}
-                    <span className="font-mono tabular-nums">
-                      {formatProofNumber(annotation.gap)}
+              )}
+
+              {isRebuildSubtractTotal && primaryWay ? (
+                <span className="inline-flex items-center gap-1.5 font-medium text-[#146c43]">
+                  <ProvenCheckIcon size="xs" />
+                  <span className="font-mono font-semibold tabular-nums">
+                    {formatProofNumber(primaryWay.printedTotal!)} −{" "}
+                    {formatProofNumber(primaryWay.otherMembersSum)}
+                  </span>
+                </span>
+              ) : (
+                <>
+                  {!isRebuiltHiddenRow && annotation?.kind === "proven" && (
+                    <span className="inline-flex items-center gap-1.5 font-medium text-[#146c43]">
+                      <ProvenCheckIcon size="xs" />
+                      <span>
+                        {annotation.memberIndices.length} {annotation.unitWord}{" "}
+                        add to{" "}
+                        <span className="font-mono font-semibold tabular-nums">
+                          {formatProofNumber(annotation.sum)}
+                        </span>
+                      </span>
                     </span>
-                  </>
+                  )}
+
+                  {!isRebuiltHiddenRow && annotation?.kind === "mismatch" && (
+                    <span className="inline-flex items-center gap-1.5 font-semibold text-[#b53800]">
+                      <MismatchTriangleIcon size="xs" />
+                      <span>
+                        {annotation.unitWord} add to{" "}
+                        <span className="font-mono tabular-nums">
+                          {formatProofNumber(annotation.computedSum)}
+                        </span>
+                        {!bracket && (
+                          <>
+                            , off by{" "}
+                            <span className="font-mono tabular-nums">
+                              {formatProofNumber(annotation.gap)}
+                            </span>
+                          </>
+                        )}
+                      </span>
+                    </span>
+                  )}
+                </>
+              )}
+
+              {!annotation &&
+                !bracket?.sideNote &&
+                !isRebuiltHiddenRow &&
+                rowVisual === "not-proven" && (
+                  <span className="text-slate-500">not proven</span>
                 )}
-              </span>
-            </span>
-          )}
 
-          {!annotation && !bracket?.sideNote && rowVisual === "not-proven" && (
-            <span className="text-slate-500">not proven</span>
-          )}
-
-          {!annotation && !bracket?.sideNote && rowVisual === "unread" && (
-            <span className="font-medium text-[#9a5b00]">needs your eye</span>
+              {!annotation &&
+                !bracket?.sideNote &&
+                !isRebuiltHiddenRow &&
+                rowVisual === "unread" && (
+                  <span className="font-medium text-[#9a5b00]">
+                    needs your eye
+                  </span>
+                )}
+            </>
           )}
         </td>
       </tr>
@@ -775,42 +1135,77 @@ function ResultRowGroup({
       {showMobileSubRow && (
         <tr className="md:hidden" data-mobile-proof-for={row.numberRowIndex}>
           <td colSpan={4} className="pt-0.5 pb-2.5 text-xs">
-            {annotation?.kind === "proven" && (
+            {isCheckingAgain ? (
+              <span className="text-slate-500">checking again</span>
+            ) : isRebuildSubtractTotal &&
+              rebuild?.status === "rebuilt" &&
+              hiddenRowLabel ? (
               <span className="inline-flex items-center gap-1.5 font-medium text-[#146c43]">
                 <ProvenCheckIcon size="xs" />
                 <span>
-                  {annotation.memberIndices.length} {annotation.unitWord} add to{" "}
+                  {hiddenRowLabel} rebuilt:{" "}
                   <span className="font-mono font-semibold tabular-nums">
-                    {formatProofNumber(annotation.sum)}
+                    {formatProofNumber(rebuild.value)}
                   </span>
                 </span>
               </span>
-            )}
-
-            {annotation?.kind === "mismatch" && (
-              <span className="inline-flex items-center gap-1.5 font-semibold text-[#b53800]">
-                <MismatchTriangleIcon size="xs" />
+            ) : isRebuiltHiddenRow &&
+              rebuild?.status === "rebuilt" &&
+              primaryWay?.kind === "sum_of_members" ? (
+              <span className="inline-flex items-center gap-1.5 font-medium text-[#146c43]">
+                <ProvenCheckIcon size="xs" />
                 <span>
-                  {annotation.unitWord} add to{" "}
-                  <span className="font-mono tabular-nums">
-                    {formatProofNumber(annotation.computedSum)}
-                  </span>
-                  , off by{" "}
-                  <span className="font-mono tabular-nums">
-                    {formatProofNumber(annotation.gap)}
+                  {row.label} rebuilt:{" "}
+                  <span className="font-mono font-semibold tabular-nums">
+                    {formatProofNumber(rebuild.value)}
                   </span>
                 </span>
               </span>
-            )}
+            ) : (
+              <>
+                {annotation?.kind === "proven" && !isRebuiltHiddenRow && (
+                  <span className="inline-flex items-center gap-1.5 font-medium text-[#146c43]">
+                    <ProvenCheckIcon size="xs" />
+                    <span>
+                      {annotation.memberIndices.length} {annotation.unitWord}{" "}
+                      add to{" "}
+                      <span className="font-mono font-semibold tabular-nums">
+                        {formatProofNumber(annotation.sum)}
+                      </span>
+                    </span>
+                  </span>
+                )}
 
-            {!annotation && rowVisual === "not-proven" && (
-              <span className="pl-3 text-slate-500">not proven</span>
-            )}
+                {annotation?.kind === "mismatch" && (
+                  <span className="inline-flex items-center gap-1.5 font-semibold text-[#b53800]">
+                    <MismatchTriangleIcon size="xs" />
+                    <span>
+                      {annotation.unitWord} add to{" "}
+                      <span className="font-mono tabular-nums">
+                        {formatProofNumber(annotation.computedSum)}
+                      </span>
+                      , off by{" "}
+                      <span className="font-mono tabular-nums">
+                        {formatProofNumber(annotation.gap)}
+                      </span>
+                    </span>
+                  </span>
+                )}
 
-            {!annotation && rowVisual === "unread" && (
-              <span className="pl-3 font-medium text-[#9a5b00]">
-                needs your eye
-              </span>
+                {!annotation &&
+                  !isRebuiltHiddenRow &&
+                  rowVisual === "not-proven" && (
+                    <span className="pl-3 text-slate-500">not proven</span>
+                  )}
+
+                {!annotation &&
+                  !isRebuiltHiddenRow &&
+                  rowVisual === "unread" && (
+                    <span className="pl-3 font-medium text-[#9a5b00]">
+                      needs your eye
+                    </span>
+                  )}
+              </>
             )}
           </td>
         </tr>

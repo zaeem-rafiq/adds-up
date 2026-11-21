@@ -56,6 +56,61 @@ export type ProveColumnsOptions = {
   unreadMask?: ReadonlyArray<readonly [boolean, boolean]>;
 };
 
+export type HideCellTarget = {
+  /** 0-based index among number rows */
+  rowIndex: number;
+  /** 0 for left column, 1 for right column */
+  colIndex: 0 | 1;
+};
+
+export type CanHideResult =
+  | { allowed: true }
+  | { allowed: false; reason: string };
+
+export type RebuildWay = {
+  kind: "total_minus_others" | "sum_of_members";
+  /** 0-based indices of all member rows in the group from the other column */
+  memberIndices: number[];
+  /** 0-based index of the total row in the group from the other column */
+  totalIndex: number;
+  /** Rebuilt value for the hidden cell */
+  value: number;
+  /** Sum of the visible member rows (all members when total is hidden, other members when a member is hidden) */
+  otherMembersSum: number;
+  /** Printed total value in this column (null when the total itself is hidden) */
+  printedTotal: number | null;
+};
+
+export type RebuildResult =
+  | {
+      status: "rebuilt";
+      rowIndex: number;
+      colIndex: 0 | 1;
+      value: number;
+      ways: RebuildWay[];
+      agreed: true;
+    }
+  | {
+      status: "cannot_rebuild";
+      rowIndex: number;
+      colIndex: 0 | 1;
+      reason: string;
+      ways: [];
+      agreed: false;
+    }
+  | {
+      status: "conflict";
+      rowIndex: number;
+      colIndex: 0 | 1;
+      reason: string;
+      ways: RebuildWay[];
+      agreed: false;
+    };
+
+export type ChangedNumberInputResult =
+  | { ok: true; number: number; formatted: string }
+  | { ok: false; error: string };
+
 const EPSILON = 1e-6;
 
 function roundClean(value: number): number {
@@ -299,5 +354,263 @@ export function proveColumns(
       notProven,
       total: proven + needYourEye + notProven,
     },
+  };
+}
+
+/**
+ * Checks whether a cell can be hidden by the judge.
+ * A number outside every total cannot be hidden (Section D, Case D5).
+ */
+export function canHideCell(
+  proof: TwoColumnProof,
+  rowIndex: number,
+  colIndex: 0 | 1,
+): CanHideResult {
+  const columnProof = colIndex === 0 ? proof.left : proof.right;
+  const status = columnProof.cellStatuses[rowIndex];
+
+  if (status === "proven") {
+    return { allowed: true };
+  }
+
+  if (status === "empty" || status === undefined) {
+    return {
+      allowed: false,
+      reason: "There is no number in this cell to hide.",
+    };
+  }
+
+  if (status === "mismatch") {
+    return {
+      allowed: false,
+      reason:
+        "This number is in a group that does not add up, so it cannot be hidden and rebuilt.",
+    };
+  }
+
+  return {
+    allowed: false,
+    reason:
+      "This number sits outside every total, so it cannot be hidden or rebuilt from adding.",
+  };
+}
+
+/**
+ * Rebuilds a hidden cell using only the groups found in the OTHER column
+ * (Section D of docs/test-cases.md). Never guesses when no matching group
+ * exists or when two groups disagree.
+ */
+export function rebuildHiddenCell(
+  left: ReadonlyArray<number | null>,
+  right: ReadonlyArray<number | null>,
+  hiddenCell: HideCellTarget,
+): RebuildResult {
+  const { rowIndex, colIndex } = hiddenCell;
+  const targetColumn = colIndex === 0 ? left : right;
+  const otherColumn = colIndex === 0 ? right : left;
+
+  const otherGroups = findGroups(otherColumn);
+  const ways: RebuildWay[] = [];
+
+  for (const group of otherGroups) {
+    if (group.totalIndex === rowIndex) {
+      // Hidden cell is the total: rebuild as sum of all member rows in targetColumn.
+      let sum = 0;
+      let allPresent = true;
+      for (const memberIdx of group.memberIndices) {
+        const val = targetColumn[memberIdx];
+        if (val === null || val === undefined || !Number.isFinite(val)) {
+          allPresent = false;
+          break;
+        }
+        sum += val;
+      }
+      if (!allPresent) continue;
+
+      const cleanSum = roundClean(sum);
+      ways.push({
+        kind: "sum_of_members",
+        memberIndices: [...group.memberIndices],
+        totalIndex: group.totalIndex,
+        value: cleanSum,
+        otherMembersSum: cleanSum,
+        printedTotal: null,
+      });
+      continue;
+    }
+
+    if (group.memberIndices.includes(rowIndex)) {
+      // Hidden cell is a member: rebuild as printed total minus the other member rows.
+      const printedTotal = targetColumn[group.totalIndex];
+      if (
+        printedTotal === null ||
+        printedTotal === undefined ||
+        !Number.isFinite(printedTotal)
+      ) {
+        continue;
+      }
+
+      let otherSum = 0;
+      let allOtherPresent = true;
+      for (const memberIdx of group.memberIndices) {
+        if (memberIdx === rowIndex) continue;
+        const val = targetColumn[memberIdx];
+        if (val === null || val === undefined || !Number.isFinite(val)) {
+          allOtherPresent = false;
+          break;
+        }
+        otherSum += val;
+      }
+      if (!allOtherPresent) continue;
+
+      const cleanOtherSum = roundClean(otherSum);
+      const cleanTotal = roundClean(printedTotal);
+      const rebuilt = roundClean(cleanTotal - cleanOtherSum);
+      ways.push({
+        kind: "total_minus_others",
+        memberIndices: [...group.memberIndices],
+        totalIndex: group.totalIndex,
+        value: rebuilt,
+        otherMembersSum: cleanOtherSum,
+        printedTotal: cleanTotal,
+      });
+    }
+  }
+
+  if (ways.length === 0) {
+    return {
+      status: "cannot_rebuild",
+      rowIndex,
+      colIndex,
+      reason:
+        "Cannot rebuild this number because the other column has no group for these rows. Adds Up never guesses.",
+      ways: [],
+      agreed: false,
+    };
+  }
+
+  const firstValue = ways[0].value;
+  const allAgree = ways.every((way) => numbersEqual(way.value, firstValue));
+  if (!allAgree) {
+    return {
+      status: "conflict",
+      rowIndex,
+      colIndex,
+      reason:
+        "Two groups gave different numbers for the hidden cell, so it cannot be rebuilt. Adds Up never guesses.",
+      ways,
+      agreed: false,
+    };
+  }
+
+  return {
+    status: "rebuilt",
+    rowIndex,
+    colIndex,
+    value: firstValue,
+    ways,
+    agreed: true,
+  };
+}
+
+/**
+ * Rebuilds a hidden cell from the other column's groups and computes the
+ * resulting two-column proof. When the hidden number is rebuilt, it is
+ * plugged back into the column so every total (including parent totals)
+ * re-adds cleanly. When it cannot be rebuilt, it stays null (never guessed).
+ */
+export function proveColumnsWithHidden(
+  left: ReadonlyArray<number | null>,
+  right: ReadonlyArray<number | null>,
+  hiddenCell: HideCellTarget,
+  options?: ProveColumnsOptions,
+): { proof: TwoColumnProof; rebuild: RebuildResult } {
+  const rebuild = rebuildHiddenCell(left, right, hiddenCell);
+
+  if (rebuild.status === "rebuilt") {
+    const leftCopy = [...left];
+    const rightCopy = [...right];
+    if (hiddenCell.colIndex === 0) {
+      leftCopy[hiddenCell.rowIndex] = rebuild.value;
+    } else {
+      rightCopy[hiddenCell.rowIndex] = rebuild.value;
+    }
+
+    const updatedMask = options?.unreadMask?.map((pair, idx) => {
+      if (idx !== hiddenCell.rowIndex) return pair;
+      return hiddenCell.colIndex === 0
+        ? ([false, pair[1]] as const)
+        : ([pair[0], false] as const);
+    });
+
+    const proof = proveColumns(leftCopy, rightCopy, {
+      unreadMask: updatedMask,
+    });
+    return { proof, rebuild };
+  }
+
+  const proof = proveColumns(left, right, options);
+  return { proof, rebuild };
+}
+
+/**
+ * Validates and formats a judge-typed replacement number for the Change flow.
+ * Accepts standard accounting numbers (with optional commas, $, sign, or
+ * parentheses for negatives) and refuses anything else with a plain message.
+ */
+export function parseChangedNumberInput(raw: string): ChangedNumberInputResult {
+  const trimmed = raw.trim();
+  if (!trimmed) {
+    return { ok: false, error: "Enter a number." };
+  }
+
+  let negative = false;
+  let working = trimmed;
+
+  const parenMatch = /^\$?\s*\(\s*\$?\s*(.+?)\s*\)$/.exec(working);
+  if (parenMatch) {
+    negative = true;
+    working = parenMatch[1].trim();
+  } else {
+    working = working.replace(/^\$\s*/, "");
+    if (/^[-−]/.test(working)) {
+      negative = true;
+      working = working.slice(1).trim();
+    } else if (working.startsWith("+")) {
+      working = working.slice(1).trim();
+    }
+  }
+
+  working = working.replace(/^\$\s*/, "").trim();
+
+  // Reject malformed comma groupings (like "1,2,3") while accepting either
+  // plain digits ("15541", "15541.5") or standard thousands commas ("15,541").
+  const validNumericPattern = /^(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
+  if (!validNumericPattern.test(working)) {
+    return {
+      ok: false,
+      error: "Enter a valid number, such as 15,541.",
+    };
+  }
+
+  const numericStr = working.replace(/,/g, "");
+  const parsed = Number(numericStr);
+  if (!Number.isFinite(parsed)) {
+    return {
+      ok: false,
+      error: "Enter a valid number, such as 15,541.",
+    };
+  }
+
+  const signed = negative && parsed !== 0 ? -parsed : parsed;
+  const absFormatted = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 6,
+  }).format(Math.abs(signed));
+  const formatted = signed < 0 ? `(${absFormatted})` : absFormatted;
+
+  return {
+    ok: true,
+    number: signed,
+    formatted,
   };
 }
