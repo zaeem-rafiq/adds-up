@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { parseChangedNumberInput } from "@/lib/adding";
+import {
+  canHideCell,
+  parseChangedNumberInput,
+  proveColumns,
+} from "@/lib/adding";
 import { findCompanyByCik } from "@/lib/companies";
 import {
   GeminiConfigError,
@@ -14,6 +18,7 @@ import {
   RateLimitError,
 } from "@/lib/rate-limit";
 import {
+  compareReadingWithStatement,
   getGlobalReadingCache,
   getReadTimeoutMs,
   ReadingFailedError,
@@ -173,6 +178,52 @@ export async function POST(
     return applyBrowserCookie(
       request,
       NextResponse.json({ code: "failed", error: message }, { status }),
+      browserId,
+      isNew,
+    );
+  }
+
+  // Check whether the selected cell can be hidden or changed BEFORE any model call.
+  const beforeProof = (() => {
+    if (previousRows && previousRows.length > 0) {
+      const comparison = compareReadingWithStatement(
+        statementResult.statement,
+        previousRows,
+      );
+      return proveColumns(
+        comparison.rows.map((r) => r.cells[0].read),
+        comparison.rows.map((r) => r.cells[1].read),
+        {
+          unreadMask: comparison.rows.map(
+            (r) =>
+              [
+                r.cells[0].unread || r.cells[0].hidden,
+                r.cells[1].unread || r.cells[1].hidden,
+              ] as const,
+          ),
+        },
+      );
+    }
+    const numberRows = statementResult.statement.rows.filter(
+      (r) => r.kind === "number",
+    );
+    return proveColumns(
+      numberRows.map((r) => r.numbers[0]),
+      numberRows.map((r) => r.numbers[1]),
+      {
+        unreadMask: numberRows.map(() => [false, false] as const),
+      },
+    );
+  })();
+
+  const cellCheck = canHideCell(beforeProof, numberRowIndex, colIndex);
+  if (!cellCheck.allowed) {
+    return applyBrowserCookie(
+      request,
+      NextResponse.json(
+        { code: "cannot_modify", error: cellCheck.reason },
+        { status: 400 },
+      ),
       browserId,
       isNew,
     );

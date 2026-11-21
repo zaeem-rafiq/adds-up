@@ -18,9 +18,12 @@ import {
 } from "@/components/ResultTable";
 import {
   canHideCell,
+  CHANGE_NOT_CAUGHT_MESSAGE,
   parseChangedNumberInput,
   proveColumns,
+  proveColumnsWithChange,
   proveColumnsWithHidden,
+  type ChangedProofOutcome,
   type MismatchedGroup,
   type RebuildResult,
   type TwoColumnProof,
@@ -104,6 +107,16 @@ function formatCauseModelLabel(model: string | null): string {
 function pickInitialSelectedCell(
   proof: TwoColumnProof,
 ): SelectedCellRef | null {
+  for (let i = 0; i < proof.left.cellStatuses.length; i += 1) {
+    if (canHideCell(proof, i, 0).allowed) {
+      return { rowIndex: i, colIndex: 0 };
+    }
+  }
+  for (let i = 0; i < proof.right.cellStatuses.length; i += 1) {
+    if (canHideCell(proof, i, 1).allowed) {
+      return { rowIndex: i, colIndex: 1 };
+    }
+  }
   for (let i = 0; i < proof.left.cellStatuses.length; i += 1) {
     if (proof.left.cellStatuses[i] === "proven") {
       return { rowIndex: i, colIndex: 0 };
@@ -671,6 +684,19 @@ export function StatementView({
     }
   };
 
+  const baseProof = useMemo(() => {
+    if (!baseResult) return null;
+    const displayRows = buildResultDisplayRows(statement, baseResult);
+    const numberRows = displayRows.filter(
+      (row): row is ResultNumberRow => row.kind === "number",
+    );
+    return proveColumns(
+      numberRows.map((row) => row.numbers[0]),
+      numberRows.map((row) => row.numbers[1]),
+      { unreadMask: numberRows.map((row) => row.unread) },
+    );
+  }, [baseResult, statement]);
+
   const provenModel = useMemo(() => {
     if (!activeResult) return null;
     const displayRows = buildResultDisplayRows(statement, activeResult);
@@ -683,6 +709,7 @@ export function StatementView({
 
     let proof: TwoColumnProof;
     let rebuild: RebuildResult | null = null;
+    let changeOutcome: ChangedProofOutcome | null = null;
 
     if (modState.kind === "hidden") {
       const targetCell = modState.cell;
@@ -713,6 +740,15 @@ export function StatementView({
           agreed: false,
         };
       }
+    } else if (modState.kind === "changed" && baseProof) {
+      changeOutcome = proveColumnsWithChange(
+        baseProof,
+        leftColumn,
+        rightColumn,
+        modState.cell,
+        { unreadMask },
+      );
+      proof = changeOutcome.proof;
     } else {
       proof = proveColumns(leftColumn, rightColumn, { unreadMask });
     }
@@ -733,13 +769,15 @@ export function StatementView({
       numberRows,
       proof,
       rebuild,
+      changeOutcome,
       allMismatches,
       mismatchCellCount,
       unreadCellCount,
     };
-  }, [activeResult, modState, statement]);
+  }, [activeResult, baseProof, modState, statement]);
 
-  // Primary mismatch for the changed screen (prefer the group containing the changed cell).
+  // Primary mismatch for the changed screen: ONLY an earlier group of the
+  // changed column that contains the changed row and failed with the new reading.
   const primaryChangedMismatch = useMemo((): {
     mismatch: MismatchedGroup;
     colIndex: 0 | 1;
@@ -748,29 +786,8 @@ export function StatementView({
     heading: string;
   } | null => {
     if (!provenModel || modState.kind !== "changed") return null;
-    const colProof =
-      modState.cell.colIndex === 0
-        ? provenModel.proof.left
-        : provenModel.proof.right;
-    const otherColProof =
-      modState.cell.colIndex === 0
-        ? provenModel.proof.right
-        : provenModel.proof.left;
-
-    const matchingTarget =
-      colProof.mismatches.find(
-        (m) =>
-          m.memberIndices.includes(modState.cell.rowIndex) ||
-          m.totalIndex === modState.cell.rowIndex,
-      ) ?? colProof.mismatches[0];
-
-    const chosen = matchingTarget ?? otherColProof.mismatches[0];
+    const chosen = provenModel.changeOutcome?.caughtMismatches[0] ?? null;
     if (!chosen) return null;
-    const chosenCol: 0 | 1 = matchingTarget
-      ? modState.cell.colIndex
-      : modState.cell.colIndex === 0
-        ? 1
-        : 0;
     const totalLabel =
       provenModel.numberRows[chosen.totalIndex]?.label ?? "This group";
     const { groupName, heading } = formatMismatchGroupHeading(
@@ -780,7 +797,7 @@ export function StatementView({
 
     return {
       mismatch: chosen,
-      colIndex: chosenCol,
+      colIndex: modState.cell.colIndex,
       totalLabel,
       groupName,
       heading,
@@ -796,7 +813,19 @@ export function StatementView({
   };
 
   const handleOpenChangeForm = (cell: SelectedCellRef) => {
-    if (!provenModel) return;
+    if (!provenModel || !baseProof) return;
+
+    // A number that cannot be hidden also cannot be changed, with the same reason.
+    const check = canHideCell(baseProof, cell.rowIndex, cell.colIndex);
+    if (!check.allowed) {
+      setSelectedCell(cell);
+      setChangeFormOpen(false);
+      setChangeInputError(null);
+      setModError(null);
+      setHideRefusal(check.reason);
+      return;
+    }
+
     setSelectedCell(cell);
     setHideRefusal(null);
     setModError(null);
@@ -813,10 +842,10 @@ export function StatementView({
   };
 
   const handleStartHide = async (cell: SelectedCellRef) => {
-    if (!provenModel || !baseResult) return;
+    if (!provenModel || !baseResult || !baseProof) return;
 
-    // D5: A number outside every total cannot be hidden — refuse immediately with NO model call.
-    const check = canHideCell(provenModel.proof, cell.rowIndex, cell.colIndex);
+    // D5 & D7: Refuse immediately with NO model call if the cell cannot be rebuilt.
+    const check = canHideCell(baseProof, cell.rowIndex, cell.colIndex);
     if (!check.allowed) {
       setSelectedCell(cell);
       setChangeFormOpen(false);
@@ -989,7 +1018,15 @@ export function StatementView({
 
   const handleSubmitChange = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!selectedCell || !provenModel || !baseResult) return;
+    if (!selectedCell || !provenModel || !baseResult || !baseProof) return;
+
+    const check = canHideCell(baseProof, selectedCell.rowIndex, selectedCell.colIndex);
+    if (!check.allowed) {
+      setChangeFormOpen(false);
+      setChangeInputError(null);
+      setHideRefusal(check.reason);
+      return;
+    }
 
     const parsed = parseChangedNumberInput(changeInput);
     if (!parsed.ok) {
@@ -1087,24 +1124,15 @@ export function StatementView({
       const nextNumberRows = nextDisplayRows.filter(
         (r): r is ResultNumberRow => r.kind === "number",
       );
-      const nextProof = proveColumns(
+      const changeOutcome = proveColumnsWithChange(
+        baseProof,
         nextNumberRows.map((r) => r.numbers[0]),
         nextNumberRows.map((r) => r.numbers[1]),
+        cell,
         { unreadMask: nextNumberRows.map((r) => r.unread) },
       );
 
-      const colProof =
-        cell.colIndex === 0 ? nextProof.left : nextProof.right;
-      const otherColProof =
-        cell.colIndex === 0 ? nextProof.right : nextProof.left;
-      const targetMismatch =
-        colProof.mismatches.find(
-          (m) =>
-            m.memberIndices.includes(cell.rowIndex) ||
-            m.totalIndex === cell.rowIndex,
-        ) ??
-        colProof.mismatches[0] ??
-        otherColProof.mismatches[0];
+      const targetMismatch = changeOutcome.caughtMismatches[0] ?? null;
 
       // Show the gap from plain code at once; never wait for the cause call.
       setActiveResult(finalResult);
@@ -1116,11 +1144,7 @@ export function StatementView({
       });
 
       if (targetMismatch) {
-        const chosenCol: 0 | 1 = colProof.mismatches.includes(targetMismatch)
-          ? cell.colIndex
-          : cell.colIndex === 0
-            ? 1
-            : 0;
+        const chosenCol: 0 | 1 = cell.colIndex;
         const totalLabel =
           nextNumberRows[targetMismatch.totalIndex]?.label ?? "This group";
         const { groupName } = formatMismatchGroupHeading(
@@ -1157,7 +1181,7 @@ export function StatementView({
           });
         }
       } else {
-        appendHistory(`Checked the change on ${rowLabel}.`);
+        appendHistory(CHANGE_NOT_CAUGHT_MESSAGE);
       }
     } catch (error) {
       if (
@@ -1276,10 +1300,16 @@ export function StatementView({
     }
 
     // Approved change #3: after a change, headline repeats the side panel's heading.
-    if (modState.kind === "changed" && primaryChangedMismatch) {
+    if (modState.kind === "changed") {
+      if (primaryChangedMismatch) {
+        return {
+          text: primaryChangedMismatch.heading,
+          colorClass: "text-[#b53800]",
+        };
+      }
       return {
-        text: primaryChangedMismatch.heading,
-        colorClass: "text-[#b53800]",
+        text: CHANGE_NOT_CAUGHT_MESSAGE,
+        colorClass: "text-[#9a5b00]",
       };
     }
 
@@ -1624,11 +1654,13 @@ export function StatementView({
                   {hiddenCountNote && (
                     <span data-hidden-summary="true">{hiddenCountNote}</span>
                   )}
-                  {modState.kind === "changed" && primaryChangedMismatch ? (
-                    <span data-verdict-gap="true">
-                      Gap:{" "}
-                      {formatProofNumber(primaryChangedMismatch.mismatch.gap)}
-                    </span>
+                  {modState.kind === "changed" ? (
+                    primaryChangedMismatch && (
+                      <span data-verdict-gap="true">
+                        Gap:{" "}
+                        {formatProofNumber(primaryChangedMismatch.mismatch.gap)}
+                      </span>
+                    )
                   ) : (
                     provenModel.allMismatches.length === 1 && (
                       <span data-verdict-gap="true">
@@ -2379,8 +2411,11 @@ export function StatementView({
             ) : (
               <>
                 <p className="text-xs font-medium text-slate-500">Checked</p>
-                <h2 className="mt-1 text-lg font-bold text-slate-900">
-                  No group stopped adding up
+                <h2
+                  data-change-not-caught="true"
+                  className="mt-1 text-lg font-bold text-slate-900"
+                >
+                  {CHANGE_NOT_CAUGHT_MESSAGE}
                 </h2>
                 <p className="mt-1.5 text-sm text-slate-600">
                   {modState.rowLabel} was changed to {modState.newValue}.

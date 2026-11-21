@@ -92,6 +92,9 @@ When a cell is covered or changed, its own column no longer adds up. The page th
 | D4 | Changes row 5 on the left to 15,541. | The page marks the group of rows 1 to 7 on the left as not adding up. It says the rows add to 174,857, the total says 173,857, and the gap is 1,000. The right column keeps its ticks. |
 | D5 | Tries to hide a number that sits outside every total. | The page refuses, with the reason. |
 | D6 | Hides a number while the other column has no group for those rows. | The page says it cannot rebuild the number. It never guesses. |
+| D7 | Left column is `7, 5, 20, 32` (row 4 totals rows 1 to 3) and right column is `no value, 5, 20, 25` (row 4 totals rows 2 and 3). Tries to hide or change row 3 on the left (20). | The page refuses without a model call, with the reason: "This number's group does not exist in both columns, so the page cannot rebuild it." |
+
+Case D7 was added at the event on 2026-11-21 after a review found that differing groups between columns gave a wrong rebuilt number (27 instead of 20).
 
 ## E. Reading replies (unit 3)
 

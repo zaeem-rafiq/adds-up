@@ -63,9 +63,24 @@ export type HideCellTarget = {
   colIndex: 0 | 1;
 };
 
+export type ChangeCellTarget = HideCellTarget;
+
 export type CanHideResult =
   | { allowed: true }
   | { allowed: false; reason: string };
+
+export const GROUP_NOT_IN_BOTH_COLUMNS_REASON =
+  "This number's group does not exist in both columns, so the page cannot rebuild it.";
+
+export const CHANGE_NOT_CAUGHT_MESSAGE =
+  "The page could not catch this change.";
+
+export type ChangedProofOutcome = {
+  proof: TwoColumnProof;
+  caughtMismatches: MismatchedGroup[];
+  caught: boolean;
+  uncaughtMessage: string | null;
+};
 
 export type RebuildWay = {
   kind: "total_minus_others" | "sum_of_members";
@@ -352,9 +367,27 @@ export function proveColumns(
   };
 }
 
+function groupsHaveSameStructure(a: AddingGroup, b: AddingGroup): boolean {
+  if (a.totalIndex !== b.totalIndex) return false;
+  if (a.memberIndices.length !== b.memberIndices.length) return false;
+  for (let i = 0; i < a.memberIndices.length; i += 1) {
+    if (a.memberIndices[i] !== b.memberIndices[i]) return false;
+  }
+  return true;
+}
+
+function groupContainsRow(group: AddingGroup, rowIndex: number): boolean {
+  return (
+    group.totalIndex === rowIndex || group.memberIndices.includes(rowIndex)
+  );
+}
+
 /**
- * Checks whether a cell can be hidden by the judge.
+ * Checks whether a cell can be hidden or changed by the judge.
  * A number outside every total cannot be hidden (Section D, Case D5).
+ * A proven number is allowed only when every group of its own column that
+ * contains the row (as a member or as the total) also exists in the other
+ * column's groups with the same member rows and the same total row (Case D7).
  */
 export function canHideCell(
   proof: TwoColumnProof,
@@ -362,9 +395,28 @@ export function canHideCell(
   colIndex: 0 | 1,
 ): CanHideResult {
   const columnProof = colIndex === 0 ? proof.left : proof.right;
+  const otherColumnProof = colIndex === 0 ? proof.right : proof.left;
   const status = columnProof.cellStatuses[rowIndex];
 
   if (status === "proven") {
+    const ownGroupsForRow = columnProof.groups.filter((group) =>
+      groupContainsRow(group, rowIndex),
+    );
+    const everyGroupInBothColumns =
+      ownGroupsForRow.length > 0 &&
+      ownGroupsForRow.every((ownGroup) =>
+        otherColumnProof.groups.some((otherGroup) =>
+          groupsHaveSameStructure(ownGroup, otherGroup),
+        ),
+      );
+
+    if (!everyGroupInBothColumns) {
+      return {
+        allowed: false,
+        reason: GROUP_NOT_IN_BOTH_COLUMNS_REASON,
+      };
+    }
+
     return { allowed: true };
   }
 
@@ -546,6 +598,179 @@ export function proveColumnsWithHidden(
 
   const proof = proveColumns(left, right, options);
   return { proof, rebuild };
+}
+
+/**
+ * Judges a changed cell against the groups that held BEFORE the change:
+ * re-adds every earlier group of the changed column that contains the changed
+ * row (as a member or as the total) using the new reading.
+ *
+ * When one or more earlier groups fail, marks only those failed groups with
+ * their gaps. Never names a group that does not contain the changed row.
+ * When no earlier group fails, returns caught=false with the plain message
+ * "The page could not catch this change."
+ */
+export function proveColumnsWithChange(
+  beforeProof: TwoColumnProof,
+  afterLeft: ReadonlyArray<number | null>,
+  afterRight: ReadonlyArray<number | null>,
+  changedCell: ChangeCellTarget,
+  options?: ProveColumnsOptions,
+): ChangedProofOutcome {
+  const { rowIndex, colIndex } = changedCell;
+  const beforeOwnGroups =
+    colIndex === 0 ? beforeProof.left.groups : beforeProof.right.groups;
+  const afterChangedColumn = colIndex === 0 ? afterLeft : afterRight;
+  const afterOtherColumn = colIndex === 0 ? afterRight : afterLeft;
+
+  const caughtMismatches: MismatchedGroup[] = [];
+  const stillProvenOwnGroups: AddingGroup[] = [];
+
+  for (const group of beforeOwnGroups) {
+    if (group.totalIndex >= afterChangedColumn.length) continue;
+    const printedTotal = afterChangedColumn[group.totalIndex];
+    if (
+      printedTotal === null ||
+      printedTotal === undefined ||
+      !Number.isFinite(printedTotal)
+    ) {
+      continue;
+    }
+
+    let computedSum = 0;
+    let allPresent = true;
+    for (const memberIndex of group.memberIndices) {
+      const memberValue = afterChangedColumn[memberIndex];
+      if (
+        memberValue === null ||
+        memberValue === undefined ||
+        !Number.isFinite(memberValue)
+      ) {
+        allPresent = false;
+        break;
+      }
+      computedSum += memberValue;
+    }
+    if (!allPresent) continue;
+
+    const cleanSum = roundClean(computedSum);
+    const cleanTotal = roundClean(printedTotal);
+
+    if (numbersEqual(cleanSum, cleanTotal)) {
+      stillProvenOwnGroups.push({
+        memberIndices: [...group.memberIndices],
+        totalIndex: group.totalIndex,
+        sum: cleanTotal,
+      });
+    } else if (groupContainsRow(group, rowIndex)) {
+      const diff = roundClean(cleanSum - cleanTotal);
+      caughtMismatches.push({
+        memberIndices: [...group.memberIndices],
+        totalIndex: group.totalIndex,
+        computedSum: cleanSum,
+        printedTotal: cleanTotal,
+        gap: roundClean(Math.abs(diff)),
+        diff,
+      });
+    }
+  }
+
+  const otherGroups = findGroups(afterOtherColumn);
+  const otherMismatches = findCrossColumnMismatches(
+    afterOtherColumn,
+    otherGroups,
+    beforeOwnGroups,
+  );
+
+  // Marks that were already on the changed column before the change stay on it.
+  // They come from groups of the other column that this column did not add up to,
+  // and they are not part of the answer to the change.
+  const alreadyMarkedMismatches = findCrossColumnMismatches(
+    afterChangedColumn,
+    stillProvenOwnGroups,
+    otherGroups,
+  ).filter(
+    (mismatch) =>
+      !caughtMismatches.some(
+        (caughtMismatch) =>
+          caughtMismatch.totalIndex === mismatch.totalIndex &&
+          caughtMismatch.memberIndices.length === mismatch.memberIndices.length &&
+          caughtMismatch.memberIndices.every(
+            (memberIndex, i) => memberIndex === mismatch.memberIndices[i],
+          ),
+      ),
+  );
+  const changedColumnMismatches = [
+    ...caughtMismatches,
+    ...alreadyMarkedMismatches,
+  ];
+
+  const leftUnreadFlags = options?.unreadMask?.map((pair) => pair[0]);
+  const rightUnreadFlags = options?.unreadMask?.map((pair) => pair[1]);
+
+  const leftProof =
+    colIndex === 0
+      ? buildColumnProof(
+          afterLeft,
+          stillProvenOwnGroups,
+          changedColumnMismatches,
+          leftUnreadFlags,
+        )
+      : buildColumnProof(
+          afterLeft,
+          otherGroups,
+          otherMismatches,
+          leftUnreadFlags,
+        );
+
+  const rightProof =
+    colIndex === 1
+      ? buildColumnProof(
+          afterRight,
+          stillProvenOwnGroups,
+          changedColumnMismatches,
+          rightUnreadFlags,
+        )
+      : buildColumnProof(
+          afterRight,
+          otherGroups,
+          otherMismatches,
+          rightUnreadFlags,
+        );
+
+  let proven = 0;
+  let needYourEye = 0;
+  let notProven = 0;
+
+  for (const status of [
+    ...leftProof.cellStatuses,
+    ...rightProof.cellStatuses,
+  ]) {
+    if (status === "proven") {
+      proven += 1;
+    } else if (status === "mismatch" || status === "unread") {
+      needYourEye += 1;
+    } else if (status === "not_proven") {
+      notProven += 1;
+    }
+  }
+
+  const caught = caughtMismatches.length > 0;
+  return {
+    proof: {
+      left: leftProof,
+      right: rightProof,
+      counts: {
+        proven,
+        needYourEye,
+        notProven,
+        total: proven + needYourEye + notProven,
+      },
+    },
+    caughtMismatches,
+    caught,
+    uncaughtMessage: caught ? null : CHANGE_NOT_CAUGHT_MESSAGE,
+  };
 }
 
 /**

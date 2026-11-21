@@ -1092,7 +1092,9 @@ describe("StatementView", () => {
     });
   });
 
-  test("D6 UI: when a hidden number cannot be rebuilt, does not show Rebuilt headline and never guesses", async () => {
+  test("D6 UI: when the other column has no group for the rows, hiding is refused before any model call, never guesses and never shows Rebuilt", async () => {
+    // The new rule refuses this hide up front. Before it, the page called the model
+    // and then said it could not rebuild the number. Both end with no guessed number.
     const oneColGroupStmt: Statement = {
       cik: "320193",
       companyName: "Apple Inc.",
@@ -1134,32 +1136,9 @@ describe("StatementView", () => {
       [20, 20],
       [30, 999],
     ]);
-    const hiddenBuild = buildComparisonFromReadValues(oneColGroupStmt, [
-      [10, 10],
-      [null, 20],
-      [30, 999],
-    ]);
-    hiddenBuild.rows[1].cells[0].hidden = true;
-    hiddenBuild.rows[1].cells[0].raw = "HIDDEN";
-    hiddenBuild.comparison.rows[1].cells[0].hidden = true;
 
-    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
-      const url = typeof input === "string" ? input : input.toString();
-      if (url.includes("/modify")) {
-        return makeNdjsonResponse([
-          {
-            type: "done",
-            result: {
-              rows: hiddenBuild.rows,
-              comparison: hiddenBuild.comparison,
-              fromCache: false,
-              usedRepeat: false,
-              modelCalls: 1,
-            },
-          },
-        ]);
-      }
-      return makeNdjsonResponse([
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      makeNdjsonResponse([
         {
           type: "done",
           result: {
@@ -1170,8 +1149,8 @@ describe("StatementView", () => {
             modelCalls: 1,
           },
         },
-      ]);
-    });
+      ]),
+    );
 
     const { container } = render(
       <StatementView
@@ -1192,15 +1171,210 @@ describe("StatementView", () => {
     );
     fireEvent.click(screen.getByRole("button", { name: "Hide it" }));
 
+    expect(container.querySelector('[data-hide-refusal="true"]')).toHaveTextContent(
+      "This number's group does not exist in both columns, so the page cannot rebuild it.",
+    );
+    expect(screen.queryByText(/^Rebuilt:/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Could not rebuild the hidden number"),
+    ).not.toBeInTheDocument();
+    // Only the first reading ran. No /modify call was made.
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(
+      fetchSpy.mock.calls.some(([input]) => String(input).includes("/modify")),
+    ).toBe(false);
+  });
+
+  test("when the model returns no covered cell for a hide that was allowed, the page says it could not rebuild the number and never shows Rebuilt", async () => {
+    const sameGroupStmt: Statement = {
+      cik: "320193",
+      companyName: "Apple Inc.",
+      form: "10-K",
+      filingDate: "2026-11-03",
+      title: "CONSOLIDATED BALANCE SHEETS",
+      columns: ["Sep. 26, 2026", "Sep. 27, 2025"],
+      unitLine: "In millions",
+      rows: [
+        {
+          kind: "number",
+          label: "Cash",
+          indent: 1,
+          isTotal: false,
+          values: ["10", "10"],
+          numbers: [10, 10],
+        },
+        {
+          kind: "number",
+          label: "Inventories",
+          indent: 1,
+          isTotal: false,
+          values: ["20", "20"],
+          numbers: [20, 20],
+        },
+        {
+          kind: "number",
+          label: "Total current assets",
+          indent: 0,
+          isTotal: true,
+          values: ["30", "30"],
+          numbers: [30, 30],
+        },
+      ],
+    };
+
+    const initial = buildComparisonFromReadValues(sameGroupStmt, [
+      [10, 10],
+      [20, 20],
+      [30, 30],
+    ]);
+
+    // The reply to the hide shows the unchanged picture: no cell is reported as covered.
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      makeNdjsonResponse([
+        {
+          type: "done",
+          result: {
+            rows: initial.rows,
+            comparison: initial.comparison,
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 1,
+          },
+        },
+      ]),
+    );
+
+    const { container } = render(
+      <StatementView
+        statement={sameGroupStmt}
+        source="fixture"
+        pictureUrl="/api/company/320193/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("6 of 6 numbers proven")).toBeInTheDocument();
+    });
+
+    fireEvent.click(
+      container.querySelector('[data-cell-button="1-0"]') as HTMLButtonElement,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Hide it" }));
+
     await waitFor(() => {
       expect(
         screen.getByText("Could not rebuild the hidden number"),
       ).toBeInTheDocument();
     });
     expect(screen.queryByText(/^Rebuilt:/i)).not.toBeInTheDocument();
-    expect(container.querySelector('[data-cannot-rebuild="true"]')).toHaveTextContent(
-      /never guesses/i,
+    expect(
+      container.querySelector('[data-cannot-rebuild="true"]'),
+    ).toHaveTextContent(/did not report a covered cell/i);
+    // The hide was allowed, so the model was asked once more.
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+  });
+
+  test("D7 UI: left 7, 5, 20, 32 and right no value, 5, 20, 25 -> Hide it and Change it on the 20 are both refused with the group reason and make no model call", async () => {
+    const d7Statement: Statement = {
+      cik: "999999",
+      companyName: "Example Corp.",
+      form: "10-K",
+      filingDate: "2026-11-03",
+      title: "BALANCE SHEET",
+      columns: ["2026", "2025"],
+      unitLine: "In millions",
+      rows: [
+        {
+          kind: "number",
+          label: "Cash",
+          indent: 1,
+          isTotal: false,
+          values: ["7", null],
+          numbers: [7, null],
+        },
+        {
+          kind: "number",
+          label: "Receivables",
+          indent: 1,
+          isTotal: false,
+          values: ["5", "5"],
+          numbers: [5, 5],
+        },
+        {
+          kind: "number",
+          label: "Inventories",
+          indent: 1,
+          isTotal: false,
+          values: ["20", "20"],
+          numbers: [20, 20],
+        },
+        {
+          kind: "number",
+          label: "Total current assets",
+          indent: 0,
+          isTotal: true,
+          values: ["32", "25"],
+          numbers: [32, 25],
+        },
+      ],
+    };
+
+    const { rows, comparison } = buildComparisonFromReadValues(d7Statement, [
+      [7, null],
+      [5, 5],
+      [20, 20],
+      [32, 25],
+    ]);
+
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        {
+          type: "done",
+          result: {
+            rows,
+            comparison,
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 1,
+          },
+        },
+      ]),
     );
+
+    const { container } = render(
+      <StatementView
+        statement={d7Statement}
+        source="fixture"
+        pictureUrl="/api/company/999999/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(
+        container.querySelector('[data-cell-button="2-0"]'),
+      ).not.toBeNull();
+    });
+
+    const reason =
+      "This number's group does not exist in both columns, so the page cannot rebuild it.";
+
+    // Select the 20 on the left (row 3), then try to hide it.
+    fireEvent.click(
+      container.querySelector('[data-cell-button="2-0"]') as HTMLButtonElement,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Hide it" }));
+    expect(screen.getByRole("alert")).toHaveTextContent(reason);
+    expect(screen.queryByText(/^Rebuilt:/i)).not.toBeInTheDocument();
+
+    // Change it gets the same reason and opens no form.
+    fireEvent.click(screen.getByRole("button", { name: "Change it" }));
+    expect(screen.getByRole("alert")).toHaveTextContent(reason);
+    expect(
+      screen.queryByRole("button", { name: "Apply change" }),
+    ).not.toBeInTheDocument();
+
+    // Only the first reading ran. No /modify call was made.
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
   test("shows ticks at once with not proven, then updates outside-total numbers when second reader answers with all three classes", async () => {

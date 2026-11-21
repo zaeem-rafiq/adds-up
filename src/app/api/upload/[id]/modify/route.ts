@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { parseChangedNumberInput } from "@/lib/adding";
+import {
+  canHideCell,
+  parseChangedNumberInput,
+  proveColumns,
+} from "@/lib/adding";
 import {
   GeminiConfigError,
   getGeminiClient,
@@ -154,6 +158,32 @@ export async function POST(
       colIndex,
       newValue: parsedValue.formatted,
     };
+  }
+
+  // Check whether the selected cell can be hidden or changed BEFORE any model call.
+  if (record.reading?.status === "ok") {
+    const readRows = record.reading.result.rows;
+    const beforeProof = proveColumns(
+      readRows.map((r) => r.cells[0].number),
+      readRows.map((r) => r.cells[1].number),
+      {
+        unreadMask: readRows.map(
+          (r) => [r.cells[0].hidden, r.cells[1].hidden] as const,
+        ),
+      },
+    );
+    const cellCheck = canHideCell(beforeProof, numberRowIndex, colIndex);
+    if (!cellCheck.allowed) {
+      return applyBrowserCookie(
+        request,
+        NextResponse.json(
+          { code: "cannot_modify", error: cellCheck.reason },
+          { status: 400 },
+        ),
+        browserId,
+        isNew,
+      );
+    }
   }
 
   const client = getGeminiClient();

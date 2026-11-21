@@ -14,6 +14,7 @@ import {
   formatStatementRowsAsReplyForTest,
   type ReadingProgressEvent,
 } from "@/lib/reading-test-helpers";
+import type { ReadRow } from "@/lib/reading";
 import type { Statement } from "@/lib/statements";
 import { PDF_REFUSAL_MESSAGE } from "@/lib/upload-validation";
 
@@ -125,6 +126,78 @@ describe("UploadView", () => {
     expect(
       container.querySelectorAll('[data-proof-mark="proven"]').length,
     ).toBe(13);
+  });
+
+  test("D7 UI: left 7, 5, 20, 32 and right no value, 5, 20, 25 -> Hide it and Change it on the 20 are both refused with the group reason and make no model call", async () => {
+    const cell = (raw: string, number: number | null) => ({
+      raw,
+      number,
+      hidden: false,
+    });
+    const rows: ReadRow[] = [
+      { label: "Cash", cells: [cell("7", 7), cell("", null)] },
+      { label: "Receivables", cells: [cell("5", 5), cell("5", 5)] },
+      { label: "Inventories", cells: [cell("20", 20), cell("20", 20)] },
+      {
+        label: "Total current assets",
+        cells: [cell("32", 32), cell("25", 25)],
+      },
+    ];
+
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 0, totalStrips: 1 },
+        {
+          type: "done",
+          result: {
+            rows,
+            comparison: {
+              totalStatementNumbers: 0,
+              readCount: 7,
+              matchCount: 0,
+              unreadCount: 0,
+              rows: [],
+            },
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 1,
+          },
+        },
+      ]),
+    );
+
+    const { container } = render(
+      <UploadView
+        uploadId="test-id-d7"
+        fileName="statement-d7.png"
+        pictureUrl="/api/upload/test-id-d7/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(
+        container.querySelector('[data-cell-button="2-0"]'),
+      ).not.toBeNull();
+    });
+
+    const reason =
+      "This number's group does not exist in both columns, so the page cannot rebuild it.";
+
+    fireEvent.click(
+      container.querySelector('[data-cell-button="2-0"]') as HTMLButtonElement,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Hide it" }));
+    expect(screen.getByRole("alert")).toHaveTextContent(reason);
+    expect(screen.queryByText(/^Rebuilt:/i)).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Change it" }));
+    expect(screen.getByRole("alert")).toHaveTextContent(reason);
+    expect(
+      screen.queryByRole("button", { name: "Apply change" }),
+    ).not.toBeInTheDocument();
+
+    // Only the first reading ran. No /modify call was made.
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
   test("shows the desktop-badupload.png screen when reading returns fewer than three number rows", async () => {
