@@ -141,7 +141,7 @@ export default function Home() {
               >
                 ?
               </span>
-              <span>Hide doubt. When two readings differ, it asks you.</span>
+              <span>Hide doubt. When two readings differ, the number gets no tick.</span>
             </li>
           </ul>
         </div>
