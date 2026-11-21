@@ -160,6 +160,100 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
     });
   });
 
+  test("C15: Luxfer Holdings current liabilities -> no group marked as not adding up, left 6 numbers and right 7 numbers are all proven", () => {
+    const left: Array<number | null> = [null, 22, 34.6, 5.8, 0, 14.9, 77.3];
+    const right: Array<number | null> = [25, 24.6, 27.2, 2.6, 2.8, 16, 98.2];
+
+    const proof = proveColumns(left, right, {
+      unreadMask: left.map(() => [false, false] as const),
+    });
+
+    expect(toOneBased(proof.left.groups)).toEqual([
+      { members: [2, 3, 4, 5, 6], total: 7, sum: 77.3 },
+    ]);
+    expect(toOneBased(proof.right.groups)).toEqual([
+      { members: [1, 2, 3, 4, 5, 6], total: 7, sum: 98.2 },
+    ]);
+    expect(proof.left.mismatches).toEqual([]);
+    expect(proof.right.mismatches).toEqual([]);
+    expect(proof.left.cellStatuses).toEqual([
+      "empty",
+      "proven",
+      "proven",
+      "proven",
+      "proven",
+      "proven",
+      "proven",
+    ]);
+    expect(proof.right.cellStatuses).toEqual(new Array(7).fill("proven"));
+    expect(proof.counts).toEqual({
+      proven: 13,
+      needYourEye: 0,
+      notProven: 0,
+      total: 13,
+    });
+
+    const proofWithoutMask = proveColumns(left, right);
+    expect(proofWithoutMask.left.mismatches).toEqual([]);
+    expect(proofWithoutMask.right.mismatches).toEqual([]);
+    expect(proofWithoutMask.left.cellStatuses.slice(1)).toEqual(
+      new Array(6).fill("proven"),
+    );
+    expect(proofWithoutMask.right.cellStatuses).toEqual(
+      new Array(7).fill("proven"),
+    );
+  });
+
+  test("Leef Brands: empty cell in right column does not mark left column as not adding up, and every number is proven", () => {
+    const left: Array<number | null> = [
+      7989928, 138010289, -336879, -141451648, 4211690,
+    ];
+    const right: Array<number | null> = [
+      null,
+      131445688,
+      -336879,
+      -139377110,
+      -8268301,
+    ];
+
+    const proof = proveColumns(left, right, {
+      unreadMask: left.map(() => [false, false] as const),
+    });
+
+    expect(toOneBased(proof.left.groups)).toEqual([
+      { members: [1, 2, 3, 4], total: 5, sum: 4211690 },
+    ]);
+    expect(toOneBased(proof.right.groups)).toEqual([
+      { members: [2, 3, 4], total: 5, sum: -8268301 },
+    ]);
+    expect(proof.left.mismatches).toEqual([]);
+    expect(proof.right.mismatches).toEqual([]);
+    expect(proof.left.cellStatuses).toEqual(new Array(5).fill("proven"));
+    expect(proof.right.cellStatuses).toEqual([
+      "empty",
+      "proven",
+      "proven",
+      "proven",
+      "proven",
+    ]);
+    expect(proof.counts).toEqual({
+      proven: 9,
+      needYourEye: 0,
+      notProven: 0,
+      total: 9,
+    });
+
+    const proofWithoutMask = proveColumns(left, right);
+    expect(proofWithoutMask.left.mismatches).toEqual([]);
+    expect(proofWithoutMask.right.mismatches).toEqual([]);
+    expect(proofWithoutMask.left.cellStatuses).toEqual(
+      new Array(5).fill("proven"),
+    );
+    expect(proofWithoutMask.right.cellStatuses.slice(1)).toEqual(
+      new Array(4).fill("proven"),
+    );
+  });
+
   test("two-column rule with nested Apple balance sheet when one left current asset is off by 5,000", () => {
     const left = [
       36305, 20417, 48817, 39896, 14541, 18881, 173857, 80213, 52084, 20278,

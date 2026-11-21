@@ -70,6 +70,9 @@ Each case is one column of values, top to bottom. "None" is an unreadable cell.
 | C13 | 36305, 20417, 43817, 39896, 15541, 18881, 173857 | No group. Row 5 was changed, so nothing adds up. |
 
 | C14 | Two columns. Left: the values of C11. Right: 35934, 18768, 39777, 33180, 5718, 14585, 147957, where row 2 was misread. | The left column gives the group of rows 1 to 7, and its 7 numbers are "proven". The right column does not add up. The page marks rows 1 to 7 on the right as not adding up: the rows add to 147,962, the total says 147,957, and the gap is 5. |
+| C15 | Two columns (Luxfer Holdings, current liabilities). Left: no value, 22, 34.6, 5.8, 0, 14.9, 77.3. Right: 25, 24.6, 27.2, 2.6, 2.8, 16, 98.2. | No group is marked as not adding up. The left column's 6 numbers and the right column's 7 numbers are all "proven". |
+
+Case C15 was added at the event on 2026-11-21 after the 50-filing test found it.
 
 States for the page, from C12: all 11 numbers are "proven". From C6: all 4 numbers are "not proven".
 

@@ -122,10 +122,6 @@ function numbersEqual(a: number, b: number): boolean {
   return Math.abs(a - b) < EPSILON;
 }
 
-function groupKey(memberIndices: readonly number[], totalIndex: number): string {
-  return `${memberIndices.join(",")}->${totalIndex}`;
-}
-
 /**
  * Pure single-column adding rule from docs/plan.md.
  *
@@ -209,14 +205,13 @@ function findCrossColumnMismatches(
   ownGroups: ReadonlyArray<AddingGroup>,
   otherGroups: ReadonlyArray<AddingGroup>,
 ): MismatchedGroup[] {
-  const ownKeys = new Set(
-    ownGroups.map((group) => groupKey(group.memberIndices, group.totalIndex)),
-  );
+  const ownTotalIndices = new Set(ownGroups.map((group) => group.totalIndex));
   const mismatches: MismatchedGroup[] = [];
 
   for (const group of otherGroups) {
-    const key = groupKey(group.memberIndices, group.totalIndex);
-    if (ownKeys.has(key)) continue;
+    // Do not mark a group as not adding up if its total row already re-adds
+    // as the total of a group of its own in this column (C15).
+    if (ownTotalIndices.has(group.totalIndex)) continue;
 
     if (group.totalIndex >= targetColumn.length) continue;
     const printedTotal = targetColumn[group.totalIndex];
