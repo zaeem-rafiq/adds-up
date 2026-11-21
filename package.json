@@ -11,7 +11,8 @@
     "test": "vitest run",
     "e2e": "playwright test",
     "save-copies": "node scripts/save-copies.mjs",
-    "check": "./check"
+    "check": "./check",
+    "run-eval": "node scripts/run-eval.mjs"
   },
   "dependencies": {
     "@google/genai": "3.6.1",
