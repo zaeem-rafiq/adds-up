@@ -1,7 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
 
 // The browser tests run against the built app in test mode. `./check` builds first.
-const PORT = 3210;
+// A second copy of the repository sets E2E_PORT, so two checks can run at once.
+const PORT = Number(process.env.E2E_PORT ?? 3210);
 
 export default defineConfig({
   testDir: "./e2e",
