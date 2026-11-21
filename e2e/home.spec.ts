@@ -43,7 +43,7 @@ test("shows the not-listed message for an unknown company (A6)", async ({
 test("picks Apple Inc. from Try an example", async ({ page }) => {
   await page.goto("/");
 
-  await page.getByRole("button", { name: "Apple", exact: true }).click();
+  await page.getByRole("link", { name: "Apple", exact: true }).click();
 
   await expect(page).toHaveURL(/\/company\/320193$/);
   await expect(page.getByRole("heading", { name: "Apple Inc." })).toBeVisible();

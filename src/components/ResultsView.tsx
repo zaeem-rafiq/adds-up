@@ -406,7 +406,11 @@ function ReadyResultsView({ scores }: { scores: ScoresFile }) {
                 </div>
                 <div className="flex shrink-0 items-center justify-between gap-3 sm:justify-end">
                   <span className="font-mono text-sm font-semibold tabular-nums text-slate-900">
-                    {item.met === null ? "not run" : item.value}
+                    {item.met === null
+                      ? "not run"
+                      : item.value.replace(/\b\d{4,}\b/g, (digits) =>
+                          Number(digits).toLocaleString("en-US"),
+                        )}
                   </span>
                   <PassMarkBadge met={item.met} />
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Company } from "@/lib/companies";
 import { validateUploadFileMeta } from "@/lib/upload-validation";
@@ -40,6 +41,7 @@ export function CompanySearch() {
   const [lastSearchedQuery, setLastSearchedQuery] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [showEmptyHint, setShowEmptyHint] = useState(false);
 
   async function runSearch(trimmedQuery: string): Promise<Company[] | null> {
     abortRef.current?.abort();
@@ -118,6 +120,7 @@ export function CompanySearch() {
 
   function handleQueryChange(nextValue: string) {
     setQuery(nextValue);
+    setShowEmptyHint(false);
 
     if (!nextValue.trim()) {
       abortRef.current?.abort();
@@ -156,6 +159,12 @@ export function CompanySearch() {
   function pickCompany(company: Company) {
     setIsOpen(false);
     router.push(`/company/${encodeURIComponent(company.cik)}`);
+    // QA: the start screen can be kept alive while away, so "Start over"
+    // should come back to an empty box with no open list.
+    setQuery("");
+    setMatches([]);
+    setActiveIndex(0);
+    setNotListedQuery(null);
   }
 
   async function handleFileSelected(file: File | null | undefined) {
@@ -204,6 +213,7 @@ export function CompanySearch() {
     event.preventDefault();
     const trimmed = query.trim();
     if (!trimmed) {
+      setShowEmptyHint(true);
       inputRef.current?.focus();
       return;
     }
@@ -355,6 +365,16 @@ export function CompanySearch() {
         </button>
       </form>
 
+      {showEmptyHint && (
+        <p
+          role="status"
+          data-empty-hint="true"
+          className="mx-auto mt-3 max-w-[560px] text-center text-sm text-slate-700"
+        >
+          Type a company name or ticker first, such as Apple or AAPL.
+        </p>
+      )}
+
       {errorMessage && (
         <div
           role="alert"
@@ -458,9 +478,12 @@ export function CompanySearch() {
             <path d="M10 8V11.5" strokeLinecap="round" />
             <circle cx="10" cy="14" r="0.8" fill="currentColor" stroke="none" />
           </svg>
-          <div className="space-y-0.5 leading-relaxed">
-            <p className="font-semibold">
-              {notListedQuery} is not in the SEC&apos;s list.
+          <div className="min-w-0 space-y-0.5 leading-relaxed">
+            <p className="font-semibold [overflow-wrap:anywhere]">
+              {notListedQuery.length > 60
+                ? `${notListedQuery.slice(0, 60)}…`
+                : notListedQuery}{" "}
+              is not in the SEC&apos;s list.
             </p>
             <p>
               Private and foreign companies do not file there. Pick a listed
@@ -473,14 +496,15 @@ export function CompanySearch() {
       <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5">
         <span className="text-sm text-slate-600">Try an example</span>
         {EXAMPLE_COMPANIES.map((company) => (
-          <button
+          // QA: a link works on a slow phone before the page's script loads.
+          <Link
             key={company.cik}
-            type="button"
-            onClick={() => pickCompany(company)}
+            href={`/company/${encodeURIComponent(company.cik)}`}
+            prefetch={false}
             className="cursor-pointer rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-2xs transition-colors hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d4ea8]"
           >
             {EXAMPLE_LABELS[company.cik]}
-          </button>
+          </Link>
         ))}
         <span className="text-sm text-slate-500">or</span>
         <input
@@ -506,6 +530,14 @@ export function CompanySearch() {
           Upload a statement
         </button>
       </div>
+      <p
+        data-upload-note="true"
+        className="mx-auto mt-3 max-w-[560px] text-center text-xs leading-relaxed text-slate-600"
+      >
+        Upload one page as a PNG or JPEG, up to 8 MB. Google&apos;s Gemini
+        models read it. It stays in server memory for one hour and is never
+        saved to disk. Anyone with its link can open it during that hour.
+      </p>
     </div>
   );
 }

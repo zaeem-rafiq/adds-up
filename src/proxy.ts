@@ -8,9 +8,11 @@ export function proxy(request: NextRequest) {
   const segments = request.nextUrl.pathname.split("/");
   if (segments.length === 3 && segments[1] === "company") {
     if (!isValidCik(segments[2] ?? "")) {
-      return new NextResponse("Not Found", {
+      // QA: show the app's own 404 page (with the top bar) instead of a bare
+      // "Not Found" line. The path below does not exist, so it renders the
+      // not-found page with a 404 status.
+      return NextResponse.rewrite(new URL("/company-not-found", request.url), {
         status: 404,
-        headers: { "Content-Type": "text/plain; charset=utf-8" },
       });
     }
   }

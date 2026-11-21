@@ -65,6 +65,35 @@ describe("CompanySearch component", () => {
     ).toBeInTheDocument();
   });
 
+  test("Check it with an empty box shows a hint instead of doing nothing (QA)", () => {
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+    render(<CompanySearch />);
+    fireEvent.click(screen.getByRole("button", { name: "Check it" }));
+    expect(
+      screen.getByText("Type a company name or ticker first, such as Apple or AAPL."),
+    ).toBeInTheDocument();
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  test("a very long unknown name is shortened in the not-listed message (QA)", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(JSON.stringify({ companies: [] }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }),
+    );
+    render(<CompanySearch />);
+    const input = screen.getByRole("combobox", {
+      name: "Type a US public company",
+    });
+    fireEvent.change(input, { target: { value: "a".repeat(5000) } });
+    await waitFor(() => {
+      expect(
+        screen.getByText(`${"a".repeat(60)}… is not in the SEC's list.`),
+      ).toBeInTheDocument();
+    });
+  });
+
   test("arrow keys move through rows and Enter picks the marked row", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new Response(

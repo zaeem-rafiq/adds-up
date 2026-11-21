@@ -506,6 +506,20 @@ export function UploadView({
     null,
   );
   const [modState, setModState] = useState<ModState>({ kind: "none" });
+
+  // QA: after a hide or change finishes, bring the headline into view so the
+  // result is not left above the screen when the number was lower down.
+  useEffect(() => {
+    if (phase !== "done") return;
+    if (modState.kind !== "hidden" && modState.kind !== "changed") return;
+    const band = document.querySelector<HTMLElement>('[data-verdict-band="true"]');
+    if (!band) return;
+    const top = band.getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * 0.5) {
+      band.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [phase, modState.kind]);
+
   const [hideRefusal, setHideRefusal] = useState<string | null>(null);
   const [changeFormOpen, setChangeFormOpen] = useState(false);
   const [changeInput, setChangeInput] = useState("");
@@ -1109,6 +1123,17 @@ export function UploadView({
       setChangeInputError(parsed.error);
       return;
     }
+    const currentNumber =
+      provenModel.numberRows[selectedCell.rowIndex]?.numbers[selectedCell.colIndex];
+    if (
+      typeof currentNumber === "number" &&
+      Math.abs(currentNumber - parsed.number) < 1e-9
+    ) {
+      setChangeInputError(
+        "That is the number already on the page. Type a different number.",
+      );
+      return;
+    }
 
     const cell = selectedCell;
     const row = provenModel.numberRows[cell.rowIndex];
@@ -1591,8 +1616,8 @@ export function UploadView({
                 />
               </div>
               <p className="mt-2 text-xs text-slate-500 sm:text-sm">
-                Hydrogen is reading the uploaded picture. This takes a few
-                seconds.
+                Hydrogen and Carbon are each reading the uploaded picture.
+                This takes a few seconds.
               </p>
             </div>
           )}
@@ -1943,7 +1968,7 @@ export function UploadView({
               </li>
               <li className="flex items-start gap-2.5 font-medium text-slate-900">
                 <SpinnerIcon />
-                <span>Hydrogen is reading the picture.</span>
+                <span>Hydrogen and Carbon are each reading the picture.</span>
               </li>
               <li className="flex items-start gap-2.5 text-slate-500">
                 <PendingStepIcon />

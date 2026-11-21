@@ -1050,6 +1050,17 @@ export function StatementView({
       setChangeInputError(parsed.error);
       return;
     }
+    const currentNumber =
+      provenModel.numberRows[selectedCell.rowIndex]?.numbers[selectedCell.colIndex];
+    if (
+      typeof currentNumber === "number" &&
+      Math.abs(currentNumber - parsed.number) < 1e-9
+    ) {
+      setChangeInputError(
+        "That is the number already on the page. Type a different number.",
+      );
+      return;
+    }
 
     const cell = selectedCell;
     const row = provenModel.numberRows[cell.rowIndex];
@@ -1226,6 +1237,19 @@ export function StatementView({
     phase === "slow" ||
     phase === "timeout" ||
     (phase === "done" && provenModel !== null);
+
+  // QA: after a hide or change finishes, bring the headline into view so the
+  // result is not left above the screen when the number was lower down.
+  useEffect(() => {
+    if (phase !== "done") return;
+    if (modState.kind !== "hidden" && modState.kind !== "changed") return;
+    const band = document.querySelector<HTMLElement>('[data-verdict-band="true"]');
+    if (!band) return;
+    const top = band.getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * 0.5) {
+      band.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [phase, modState.kind]);
 
   const isModifying =
     modState.kind === "rehiding" || modState.kind === "rechanging";

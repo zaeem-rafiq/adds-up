@@ -68,7 +68,7 @@ describe("UploadView", () => {
     expect(screen.getByRole("heading", { name: "Working" })).toBeInTheDocument();
     expect(screen.getByText("Got your picture.")).toBeInTheDocument();
     expect(
-      screen.getByText("Hydrogen is reading the picture."),
+      screen.getByText("Hydrogen and Carbon are each reading the picture."),
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Stop" })).toBeInTheDocument();
     expect(

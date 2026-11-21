@@ -1140,6 +1140,15 @@ export function parseChangedNumberInput(raw: string): ChangedNumberInputResult {
     };
   }
 
+  // QA: past 15 digits a JavaScript number loses digits, so the page would
+  // show a number the judge never typed.
+  if (numericStr.split(".")[0].replace(/^0+/, "").length > 15) {
+    return {
+      ok: false,
+      error: "Enter a number with at most 15 digits.",
+    };
+  }
+
   const signed = negative && parsed !== 0 ? -parsed : parsed;
   const absFormatted = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 6,

@@ -1021,6 +1021,20 @@ describe("Hide and change (Section D of docs/test-cases.md)", () => {
     }
   });
 
+  test("parseChangedNumberInput refuses more than 15 digits so no digit is silently lost (QA)", () => {
+    expect(parseChangedNumberInput("1".repeat(40))).toEqual({
+      ok: false,
+      error: "Enter a number with at most 15 digits.",
+    });
+    expect(parseChangedNumberInput("1234567890123456")).toEqual({
+      ok: false,
+      error: "Enter a number with at most 15 digits.",
+    });
+    const fifteen = parseChangedNumberInput("123,456,789,012,345");
+    expect(fifteen.ok).toBe(true);
+    if (fifteen.ok) expect(fifteen.number).toBe(123456789012345);
+  });
+
   test("parseChangedNumberInput accepts valid numbers and refuses non-numbers with a plain message", () => {
     expect(parseChangedNumberInput("15541")).toEqual({
       ok: true,

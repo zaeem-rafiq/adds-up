@@ -642,7 +642,7 @@ export function ResultTable({
   return (
     <section
       aria-label="Balance sheet proof"
-      className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs"
+      className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-2xs"
     >
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-3 text-xs text-slate-500 sm:px-6">
         <span>{headerTitle}</span>
@@ -959,7 +959,7 @@ function NumberCellContent({
       <span className="relative inline-flex items-center justify-end">
         {isSelected && onQuickHide && onQuickChange && (
           <span
-            className="absolute right-full top-1/2 z-10 mr-2 hidden -translate-y-1/2 items-center gap-1 rounded-xl border border-slate-300 bg-white p-1 font-sans shadow-md lg:inline-flex"
+            className="absolute bottom-full right-0 z-10 mb-1.5 inline-flex items-center gap-1 rounded-xl border border-slate-300 bg-white p-1 font-sans shadow-md"
             data-inline-actions="true"
           >
             <button
@@ -1357,7 +1357,8 @@ function ResultRowGroup({
                     <span className="inline-flex items-center gap-1.5 font-semibold text-[#b53800]">
                       <MismatchTriangleIcon size="xs" />
                       <span>
-                        {annotation.unitWord} add to{" "}
+                        {annotation.memberIndices.length} {annotation.unitWord}{" "}
+                        add to{" "}
                         <span className="font-mono tabular-nums">
                           {formatProofNumber(annotation.computedSum)}
                         </span>
@@ -1481,7 +1482,8 @@ function ResultRowGroup({
                   <span className="inline-flex items-center gap-1.5 font-semibold text-[#b53800]">
                     <MismatchTriangleIcon size="xs" />
                     <span>
-                      {annotation.unitWord} add to{" "}
+                      {annotation.memberIndices.length} {annotation.unitWord}{" "}
+                      add to{" "}
                       <span className="font-mono tabular-nums">
                         {formatProofNumber(annotation.computedSum)}
                       </span>
