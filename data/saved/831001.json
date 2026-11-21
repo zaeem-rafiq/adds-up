@@ -1,0 +1,595 @@
+{
+  "cik": "831001",
+  "companyName": "CITIGROUP INC",
+  "form": "10-Q",
+  "filingDate": "2026-11-05",
+  "title": "CONSOLIDATED BALANCE SHEET - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and due from banks (including segregated cash and other deposits)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 23,451",
+        "$ 23,717"
+      ],
+      "numbers": [
+        23451,
+        23717
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deposits with banks, net of allowance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "331,390",
+        "325,862"
+      ],
+      "numbers": [
+        331390,
+        325862
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Securities borrowed and purchased under agreements to resell (including $230,016 and $206,110 as of September 30, 2026 and December 31, 2025, respectively, at fair value), net of allowance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "411,327",
+        "356,195"
+      ],
+      "numbers": [
+        411327,
+        356195
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Brokerage receivables, net of allowance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "102,766",
+        "62,679"
+      ],
+      "numbers": [
+        102766,
+        62679
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading account assets (including $205,263 and $228,816 pledged to creditors as of September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "635,077",
+        "537,139"
+      ],
+      "numbers": [
+        635077,
+        537139
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Investments:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Available-for-sale debt securities (including $15,706 and $4,931 pledged to creditors as of September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "306,850",
+        "246,720"
+      ],
+      "numbers": [
+        306850,
+        246720
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Held-to-maturity debt securities, net of allowance (fair value of which is $143,205 and $179,520 as of September 30, 2026 and December 31, 2025, respectively) (including $732 and $70 pledged to creditors as of September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "157,501",
+        "189,831"
+      ],
+      "numbers": [
+        157501,
+        189831
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity securities (including $556 and $921 as of September 30, 2026 and December 31, 2025, respectively, at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,415",
+        "7,678"
+      ],
+      "numbers": [
+        8415,
+        7678
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total investments",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "472,766",
+        "444,229"
+      ],
+      "numbers": [
+        472766,
+        444229
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Loans:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Loans, net of unearned income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "819,705",
+        "752,230"
+      ],
+      "numbers": [
+        819705,
+        752230
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Allowance for credit losses on loans (ACLL)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(20,091)",
+        "(19,247)"
+      ],
+      "numbers": [
+        -20091,
+        -19247
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total loans, net",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "799,614",
+        "732,983"
+      ],
+      "numbers": [
+        799614,
+        732983
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,072",
+        "19,098"
+      ],
+      "numbers": [
+        19072,
+        19098
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets (including MSRs of $895 and $759 as of September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,033",
+        "4,284"
+      ],
+      "numbers": [
+        5033,
+        4284
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Premises and equipment, net of depreciation and amortization",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,075",
+        "33,339"
+      ],
+      "numbers": [
+        34075,
+        33339
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets (including $17,023 and $15,840 as of September 30, 2026 and December 31, 2025, respectively, at fair value), net of allowance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "106,700",
+        "117,677"
+      ],
+      "numbers": [
+        106700,
+        117677
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,941,271",
+        "2,657,202"
+      ],
+      "numbers": [
+        2941271,
+        2657202
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Deposits (including $7,396 and $4,222 as of September 30, 2026 and December 31, 2025, respectively, at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,505,322",
+        "1,403,573"
+      ],
+      "numbers": [
+        1505322,
+        1403573
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Securities loaned and sold under agreements to repurchase (including $136,356 and $199,422 as of September 30, 2026 and December 31, 2025, respectively, at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "410,174",
+        "348,098"
+      ],
+      "numbers": [
+        410174,
+        348098
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Brokerage payables (including $4,657 and $5,492 as of September 30, 2026 and December 31, 2025, respectively, at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "120,445",
+        "74,836"
+      ],
+      "numbers": [
+        120445,
+        74836
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading account liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "212,635",
+        "162,798"
+      ],
+      "numbers": [
+        212635,
+        162798
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings (including $26,069 and $21,567 as of September 30, 2026 and December 31, 2025, respectively, at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "61,518",
+        "51,878"
+      ],
+      "numbers": [
+        61518,
+        51878
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt (including $148,606 and $130,726 as of September 30, 2026 and December 31, 2025, respectively, at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "345,785",
+        "315,827"
+      ],
+      "numbers": [
+        345785,
+        315827
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities, plus allowances",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "73,609",
+        "86,370"
+      ],
+      "numbers": [
+        73609,
+        86370
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,729,488",
+        "2,443,380"
+      ],
+      "numbers": [
+        2729488,
+        2443380
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock ($1.00 par value; authorized shares: 30 million), issued shares: as of September 30, 2026—722,000 and as of December 31, 2025—802,000, at aggregate liquidation value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,050",
+        "20,050"
+      ],
+      "numbers": [
+        18050,
+        20050
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock ($0.01 par value; authorized shares: 6 billion), issued shares: as of September 30, 2026—3,099,787,635 and as of December 31, 2025—3,099,752,593",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "31",
+        "31"
+      ],
+      "numbers": [
+        31,
+        31
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "107,451",
+        "108,452"
+      ],
+      "numbers": [
+        107451,
+        108452
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "227,733",
+        "215,128"
+      ],
+      "numbers": [
+        227733,
+        215128
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost: September 30, 2026—1,444,583,116 shares and December 31, 2025— 1,352,205,592 shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(102,418)",
+        "(89,473)"
+      ],
+      "numbers": [
+        -102418,
+        -89473
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss) (AOCI)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(41,438)",
+        "(41,897)"
+      ],
+      "numbers": [
+        -41438,
+        -41897
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Citigroup stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "209,409",
+        "212,291"
+      ],
+      "numbers": [
+        209409,
+        212291
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests—equity (NCI—equity)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,374",
+        "1,531"
+      ],
+      "numbers": [
+        2374,
+        1531
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "211,783",
+        "213,822"
+      ],
+      "numbers": [
+        211783,
+        213822
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,941,271",
+        "2,657,202"
+      ],
+      "numbers": [
+        2941271,
+        2657202
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Loans:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Loans, net of unearned income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "418,417",
+        "408,533"
+      ],
+      "numbers": [
+        418417,
+        408533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Allowance for credit losses on loans (ACLL)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(16,721)",
+        "(16,194)"
+      ],
+      "numbers": [
+        -16721,
+        -16194
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Loans:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Loans, net of unearned income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "401,288",
+        "343,697"
+      ],
+      "numbers": [
+        401288,
+        343697
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Allowance for credit losses on loans (ACLL)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ (3,370)",
+        "$ (3,053)"
+      ],
+      "numbers": [
+        -3370,
+        -3053
+      ]
+    }
+  ]
+}

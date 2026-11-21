@@ -1,0 +1,398 @@
+{
+  "cik": "707549",
+  "companyName": "LAM RESEARCH CORP",
+  "form": "10-Q",
+  "filingDate": "2026-10-22",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 27, 2026",
+    "Jun. 28, 2026"
+  ],
+  "unitLine": "$ in Thousands",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 7,437,384",
+        "$ 5,579,171"
+      ],
+      "numbers": [
+        7437384,
+        5579171
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, less allowance of $8,358 as of September 27, 2026, and $8,071 as of June 28, 2026",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,658,379",
+        "5,339,682"
+      ],
+      "numbers": [
+        5658379,
+        5339682
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,550,544",
+        "4,276,111"
+      ],
+      "numbers": [
+        4550544,
+        4276111
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "477,805",
+        "415,741"
+      ],
+      "numbers": [
+        477805,
+        415741
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "18,124,112",
+        "15,610,705"
+      ],
+      "numbers": [
+        18124112,
+        15610705
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,126,029",
+        "2,956,472"
+      ],
+      "numbers": [
+        3126029,
+        2956472
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill and intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,911,547",
+        "1,895,859"
+      ],
+      "numbers": [
+        1911547,
+        1895859
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,191,368",
+        "3,066,707"
+      ],
+      "numbers": [
+        3191368,
+        3066707
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "26,353,056",
+        "23,529,743"
+      ],
+      "numbers": [
+        26353056,
+        23529743
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "LIABILITIES AND STOCKHOLDERS’ EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,592,208",
+        "1,302,467"
+      ],
+      "numbers": [
+        1592208,
+        1302467
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,287,463",
+        "2,351,541"
+      ],
+      "numbers": [
+        3287463,
+        2351541
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred profit",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,429,342",
+        "2,279,168"
+      ],
+      "numbers": [
+        2429342,
+        2279168
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt and finance lease obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,486",
+        "4,073"
+      ],
+      "numbers": [
+        3486,
+        4073
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "7,312,499",
+        "5,937,249"
+      ],
+      "numbers": [
+        7312499,
+        5937249
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt and finance lease obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,731,958",
+        "3,730,490"
+      ],
+      "numbers": [
+        3731958,
+        3730490
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "684,273",
+        "681,197"
+      ],
+      "numbers": [
+        684273,
+        681197
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "715,852",
+        "709,886"
+      ],
+      "numbers": [
+        715852,
+        709886
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,444,582",
+        "11,058,822"
+      ],
+      "numbers": [
+        12444582,
+        11058822
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (refer to Note 12)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, at par value of $0.001 per share; authorized, 5,000 shares, none outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, at par value of $0.001 per share; authorized, 4,000,000 shares as of September 27, 2026 and June 28, 2026; issued and outstanding, 1,249,145 shares as of September 27, 2026, and 1,251,278 shares as of June 28, 2026",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,249",
+        "1,251"
+      ],
+      "numbers": [
+        1249,
+        1251
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,363,408",
+        "9,244,449"
+      ],
+      "numbers": [
+        9363408,
+        9244449
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost; 1,712,490 shares as of September 27, 2026, and 1,710,109 shares as of June 28, 2026",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(32,620,072)",
+        "(31,597,945)"
+      ],
+      "numbers": [
+        -32620072,
+        -31597945
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(127,285)",
+        "(127,088)"
+      ],
+      "numbers": [
+        -127285,
+        -127088
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "37,291,174",
+        "34,950,254"
+      ],
+      "numbers": [
+        37291174,
+        34950254
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,908,474",
+        "12,470,921"
+      ],
+      "numbers": [
+        13908474,
+        12470921
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 26,353,056",
+        "$ 23,529,743"
+      ],
+      "numbers": [
+        26353056,
+        23529743
+      ]
+    }
+  ]
+}

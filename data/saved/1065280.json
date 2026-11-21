@@ -1,0 +1,370 @@
+{
+  "cik": "1065280",
+  "companyName": "NETFLIX INC",
+  "form": "10-Q",
+  "filingDate": "2026-10-21",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Thousands",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 8,194,275",
+        "$ 9,033,681"
+      ],
+      "numbers": [
+        8194275,
+        9033681
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "28,678",
+        "28,678"
+      ],
+      "numbers": [
+        28678,
+        28678
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,999,384",
+        "3,957,832"
+      ],
+      "numbers": [
+        4999384,
+        3957832
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,222,337",
+        "13,020,191"
+      ],
+      "numbers": [
+        13222337,
+        13020191
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Content assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,605,477",
+        "32,778,392"
+      ],
+      "numbers": [
+        34605477,
+        32778392
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,560,619",
+        "2,004,350"
+      ],
+      "numbers": [
+        2560619,
+        2004350
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,293,521",
+        "7,794,060"
+      ],
+      "numbers": [
+        8293521,
+        7794060
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "58,681,954",
+        "55,596,993"
+      ],
+      "numbers": [
+        58681954,
+        55596993
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Current content liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,885,069",
+        "4,084,854"
+      ],
+      "numbers": [
+        3885069,
+        4084854
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "860,098",
+        "900,612"
+      ],
+      "numbers": [
+        860098,
+        900612
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,301,264",
+        "3,220,869"
+      ],
+      "numbers": [
+        3301264,
+        3220869
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,779,633",
+        "1,775,730"
+      ],
+      "numbers": [
+        1779633,
+        1775730
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,474,796",
+        "998,865"
+      ],
+      "numbers": [
+        2474796,
+        998865
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,300,860",
+        "10,980,930"
+      ],
+      "numbers": [
+        12300860,
+        10980930
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-current content liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,723,034",
+        "1,579,476"
+      ],
+      "numbers": [
+        1723034,
+        1579476
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,657,598",
+        "13,463,971"
+      ],
+      "numbers": [
+        12657598,
+        13463971
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,714,209",
+        "2,957,128"
+      ],
+      "numbers": [
+        2714209,
+        2957128
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "29,395,701",
+        "28,981,505"
+      ],
+      "numbers": [
+        29395701,
+        28981505
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 9)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.001 par value; 49,900,000,000 shares authorized at September 30, 2026 and December 31, 2025; 4,106,325,903 and 4,222,162,150 issued and outstanding at September 30, 2026 and December 31, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,898,264",
+        "7,286,410"
+      ],
+      "numbers": [
+        7898264,
+        7286410
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock at cost (477,363,677 and 346,541,145 shares at September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(33,232,809)",
+        "(22,372,658)"
+      ],
+      "numbers": [
+        -33232809,
+        -22372658
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(9,452)",
+        "(580,382)"
+      ],
+      "numbers": [
+        -9452,
+        -580382
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "54,630,250",
+        "42,282,118"
+      ],
+      "numbers": [
+        54630250,
+        42282118
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "29,286,253",
+        "26,615,488"
+      ],
+      "numbers": [
+        29286253,
+        26615488
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 58,681,954",
+        "$ 55,596,993"
+      ],
+      "numbers": [
+        58681954,
+        55596993
+      ]
+    }
+  ]
+}

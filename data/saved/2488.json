@@ -1,0 +1,454 @@
+{
+  "cik": "2488",
+  "companyName": "ADVANCED MICRO DEVICES INC",
+  "form": "10-Q",
+  "filingDate": "2026-11-04",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 26, 2026",
+    "Dec. 27, 2025"
+  ],
+  "unitLine": "shares in Thousands, $ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 7,404",
+        "$ 5,539"
+      ],
+      "numbers": [
+        7404,
+        5539
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,372",
+        "5,013"
+      ],
+      "numbers": [
+        8372,
+        5013
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,209",
+        "6,315"
+      ],
+      "numbers": [
+        9209,
+        6315
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,463",
+        "7,920"
+      ],
+      "numbers": [
+        11463,
+        7920
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,023",
+        "2,160"
+      ],
+      "numbers": [
+        3023,
+        2160
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "39,471",
+        "26,947"
+      ],
+      "numbers": [
+        39471,
+        26947
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,929",
+        "2,312"
+      ],
+      "numbers": [
+        3929,
+        2312
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,470",
+        "25,126"
+      ],
+      "numbers": [
+        25470,
+        25126
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Acquisition-related intangibles, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,101",
+        "16,705"
+      ],
+      "numbers": [
+        15101,
+        16705
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "821",
+        "384"
+      ],
+      "numbers": [
+        821,
+        384
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,020",
+        "5,452"
+      ],
+      "numbers": [
+        10020,
+        5452
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "94,812",
+        "76,926"
+      ],
+      "numbers": [
+        94812,
+        76926
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,756",
+        "2,929"
+      ],
+      "numbers": [
+        7756,
+        2929
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,231",
+        "5,250"
+      ],
+      "numbers": [
+        6231,
+        5250
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "874"
+      ],
+      "numbers": [
+        0,
+        874
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "499",
+        "402"
+      ],
+      "numbers": [
+        499,
+        402
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "14,486",
+        "9,455"
+      ],
+      "numbers": [
+        14486,
+        9455
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,079",
+        "2,348"
+      ],
+      "numbers": [
+        7079,
+        2348
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,837",
+        "625"
+      ],
+      "numbers": [
+        1837,
+        625
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "295",
+        "313"
+      ],
+      "numbers": [
+        295,
+        313
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,726",
+        "1,186"
+      ],
+      "numbers": [
+        2726,
+        1186
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (See Note 11)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Capital stock:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value $0.01; shares authorized: 4,000; shares issued: 1,640 and 1,695; shares outstanding: 1,640 and 1,630",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16",
+        "17"
+      ],
+      "numbers": [
+        16,
+        17
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "61,769",
+        "63,365"
+      ],
+      "numbers": [
+        61769,
+        63365
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost (shares held: — and 65)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "(7,079)"
+      ],
+      "numbers": [
+        0,
+        -7079
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,720",
+        "6,699"
+      ],
+      "numbers": [
+        6720,
+        6699
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(116)",
+        "(3)"
+      ],
+      "numbers": [
+        -116,
+        -3
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "68,389",
+        "62,999"
+      ],
+      "numbers": [
+        68389,
+        62999
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 94,812",
+        "$ 76,926"
+      ],
+      "numbers": [
+        94812,
+        76926
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, authorized (in shares)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,000,000",
+        "4,000,000"
+      ],
+      "numbers": [
+        4000000,
+        4000000
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value (in dollars per share)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0.01",
+        "$ 0.01"
+      ],
+      "numbers": [
+        0.01,
+        0.01
+      ]
+    }
+  ]
+}

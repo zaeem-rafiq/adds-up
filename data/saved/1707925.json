@@ -1,0 +1,449 @@
+{
+  "cik": "1707925",
+  "companyName": "LINDE PLC",
+  "form": "10-Q",
+  "filingDate": "2026-10-29",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEET - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 3,947",
+        "$ 5,056"
+      ],
+      "numbers": [
+        3947,
+        5056
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,595",
+        "4,966"
+      ],
+      "numbers": [
+        5595,
+        4966
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "447",
+        "269"
+      ],
+      "numbers": [
+        447,
+        269
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,129",
+        "2,055"
+      ],
+      "numbers": [
+        2129,
+        2055
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,298",
+        "979"
+      ],
+      "numbers": [
+        1298,
+        979
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,416",
+        "13,325"
+      ],
+      "numbers": [
+        13416,
+        13325
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "29,830",
+        "28,260"
+      ],
+      "numbers": [
+        29830,
+        28260
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,900",
+        "27,927"
+      ],
+      "numbers": [
+        27900,
+        27927
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,426",
+        "11,871"
+      ],
+      "numbers": [
+        11426,
+        11871
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,503",
+        "5,434"
+      ],
+      "numbers": [
+        5503,
+        5434
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "88,075",
+        "86,817"
+      ],
+      "numbers": [
+        88075,
+        86817
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities and Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,854",
+        "2,810"
+      ],
+      "numbers": [
+        2854,
+        2810
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,645",
+        "4,510"
+      ],
+      "numbers": [
+        4645,
+        4510
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,464",
+        "1,796"
+      ],
+      "numbers": [
+        1464,
+        1796
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,170",
+        "1,231"
+      ],
+      "numbers": [
+        1170,
+        1231
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,510",
+        "4,851"
+      ],
+      "numbers": [
+        5510,
+        4851
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "15,643",
+        "15,198"
+      ],
+      "numbers": [
+        15643,
+        15198
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,593",
+        "20,683"
+      ],
+      "numbers": [
+        20593,
+        20683
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,844",
+        "11,195"
+      ],
+      "numbers": [
+        10844,
+        11195
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "47,080",
+        "47,076"
+      ],
+      "numbers": [
+        47080,
+        47076
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10",
+        "13"
+      ],
+      "numbers": [
+        10,
+        13
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Linde plc Shareholders’ Equity (Note 10):",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Ordinary shares, €0.001 par value, authorized 1,750,000,000 shares, 2026 and 2025 issued: 490,766,972 ordinary shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1",
+        "1"
+      ],
+      "numbers": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,169",
+        "39,430"
+      ],
+      "numbers": [
+        39169,
+        39430
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,746",
+        "16,608"
+      ],
+      "numbers": [
+        19746,
+        16608
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(5,632)",
+        "(6,233)"
+      ],
+      "numbers": [
+        -5632,
+        -6233
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less: Treasury shares, at cost (2026 – 31,683,193 shares and 2025 – 27,086,030 shares)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(13,862)",
+        "(11,561)"
+      ],
+      "numbers": [
+        -13862,
+        -11561
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Linde plc Shareholders’ Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "39,422",
+        "38,245"
+      ],
+      "numbers": [
+        39422,
+        38245
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,563",
+        "1,483"
+      ],
+      "numbers": [
+        1563,
+        1483
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "40,985",
+        "39,728"
+      ],
+      "numbers": [
+        40985,
+        39728
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 88,075",
+        "$ 86,817"
+      ],
+      "numbers": [
+        88075,
+        86817
+      ]
+    }
+  ]
+}

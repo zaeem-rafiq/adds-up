@@ -1,0 +1,534 @@
+{
+  "cik": "1690820",
+  "companyName": "CARVANA CO.",
+  "form": "10-Q",
+  "filingDate": "2026-10-28",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 3,049",
+        "$ 2,327"
+      ],
+      "numbers": [
+        3049,
+        2327
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Restricted cash",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "123",
+        "102"
+      ],
+      "numbers": [
+        123,
+        102
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "320",
+        "245"
+      ],
+      "numbers": [
+        320,
+        245
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Finance receivables held for sale, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "896",
+        "813"
+      ],
+      "numbers": [
+        896,
+        813
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Vehicle inventory",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,456",
+        "2,408"
+      ],
+      "numbers": [
+        3456,
+        2408
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Beneficial interests in securitizations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "557",
+        "486"
+      ],
+      "numbers": [
+        557,
+        486
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets, including $12 and $5, respectively, due from related parties",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "227",
+        "168"
+      ],
+      "numbers": [
+        227,
+        168
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "8,628",
+        "6,549"
+      ],
+      "numbers": [
+        8628,
+        6549
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,914",
+        "2,814"
+      ],
+      "numbers": [
+        2914,
+        2814
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets, including $9 and $6, respectively, from leases with related parties",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "434",
+        "443"
+      ],
+      "numbers": [
+        434,
+        443
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "51",
+        "47"
+      ],
+      "numbers": [
+        51,
+        47
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12",
+        "10"
+      ],
+      "numbers": [
+        12,
+        10
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,905",
+        "3,064"
+      ],
+      "numbers": [
+        2905,
+        3064
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "251",
+        "274"
+      ],
+      "numbers": [
+        251,
+        274
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "15,195",
+        "13,201"
+      ],
+      "numbers": [
+        15195,
+        13201
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued liabilities, including $35 and $21, respectively, due to related parties",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,574",
+        "1,100"
+      ],
+      "numbers": [
+        1574,
+        1100
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term revolving facilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "71",
+        "58"
+      ],
+      "numbers": [
+        71,
+        58
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "283",
+        "227"
+      ],
+      "numbers": [
+        283,
+        227
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities, including $79 and $31, respectively, due to related parties",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "202",
+        "134"
+      ],
+      "numbers": [
+        202,
+        134
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,130",
+        "1,519"
+      ],
+      "numbers": [
+        2130,
+        1519
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt, excluding current portion",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,874",
+        "4,830"
+      ],
+      "numbers": [
+        4874,
+        4830
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities, excluding current portion, including $7 and $5, respectively, from leases with related parties",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "388",
+        "406"
+      ],
+      "numbers": [
+        388,
+        406
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Tax receivable agreement liability, including $1,645 and $1,721, respectively, due to related parties",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,130",
+        "2,228"
+      ],
+      "numbers": [
+        2130,
+        2228
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20",
+        "15"
+      ],
+      "numbers": [
+        20,
+        15
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "9,542",
+        "8,998"
+      ],
+      "numbers": [
+        9542,
+        8998
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 16)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $0.01 par value - 50,000 shares authorized; none issued and outstanding as of each of September 30, 2026 and December 31, 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,498",
+        "3,449"
+      ],
+      "numbers": [
+        3498,
+        3449
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13",
+        "0"
+      ],
+      "numbers": [
+        13,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings (accumulated deficit)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "840",
+        "(9)"
+      ],
+      "numbers": [
+        840,
+        -9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders' equity attributable to Carvana Co.",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "4,352",
+        "3,441"
+      ],
+      "numbers": [
+        4352,
+        3441
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-controlling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,301",
+        "762"
+      ],
+      "numbers": [
+        1301,
+        762
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,653",
+        "4,203"
+      ],
+      "numbers": [
+        5653,
+        4203
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities & stockholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "15,195",
+        "13,201"
+      ],
+      "numbers": [
+        15195,
+        13201
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1",
+        "1"
+      ],
+      "numbers": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0",
+        "$ 0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    }
+  ]
+}

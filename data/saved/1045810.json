@@ -1,0 +1,454 @@
+{
+  "cik": "1045810",
+  "companyName": "NVIDIA CORP",
+  "form": "10-Q",
+  "filingDate": "2026-08-26",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Jul. 26, 2026",
+    "Jan. 25, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 22,443",
+        "$ 10,605"
+      ],
+      "numbers": [
+        22443,
+        10605
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable debt securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,143",
+        "39,065"
+      ],
+      "numbers": [
+        34143,
+        39065
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable equity securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "42,783",
+        "12,886"
+      ],
+      "numbers": [
+        42783,
+        12886
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "63,059",
+        "38,466"
+      ],
+      "numbers": [
+        63059,
+        38466
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "31,575",
+        "21,403"
+      ],
+      "numbers": [
+        31575,
+        21403
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,409",
+        "3,180"
+      ],
+      "numbers": [
+        3409,
+        3180
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "197,412",
+        "125,605"
+      ],
+      "numbers": [
+        197412,
+        125605
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,285",
+        "10,383"
+      ],
+      "numbers": [
+        14285,
+        10383
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,390",
+        "2,867"
+      ],
+      "numbers": [
+        5390,
+        2867
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,125",
+        "20,832"
+      ],
+      "numbers": [
+        21125,
+        20832
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,998",
+        "3,306"
+      ],
+      "numbers": [
+        2998,
+        3306
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,159",
+        "13,258"
+      ],
+      "numbers": [
+        12159,
+        13258
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "51,157",
+        "22,251"
+      ],
+      "numbers": [
+        51157,
+        22251
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,746",
+        "8,301"
+      ],
+      "numbers": [
+        15746,
+        8301
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "320,272",
+        "206,803"
+      ],
+      "numbers": [
+        320272,
+        206803
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,059",
+        "9,812"
+      ],
+      "numbers": [
+        15059,
+        9812
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued and other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,960",
+        "21,352"
+      ],
+      "numbers": [
+        26960,
+        21352
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,000",
+        "999"
+      ],
+      "numbers": [
+        1000,
+        999
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "43,019",
+        "32,163"
+      ],
+      "numbers": [
+        43019,
+        32163
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "32,366",
+        "7,469"
+      ],
+      "numbers": [
+        32366,
+        7469
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,985",
+        "2,572"
+      ],
+      "numbers": [
+        4985,
+        2572
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,918",
+        "7,306"
+      ],
+      "numbers": [
+        10918,
+        7306
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "91,288",
+        "49,510"
+      ],
+      "numbers": [
+        91288,
+        49510
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24",
+        "24"
+      ],
+      "numbers": [
+        24,
+        24
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,828",
+        "10,118"
+      ],
+      "numbers": [
+        9828,
+        10118
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(25)",
+        "178"
+      ],
+      "numbers": [
+        -25,
+        178
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "219,157",
+        "146,973"
+      ],
+      "numbers": [
+        219157,
+        146973
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "228,984",
+        "157,293"
+      ],
+      "numbers": [
+        228984,
+        157293
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 320,272",
+        "$ 206,803"
+      ],
+      "numbers": [
+        320272,
+        206803
+      ]
+    }
+  ]
+}

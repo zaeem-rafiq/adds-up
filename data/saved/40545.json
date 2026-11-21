@@ -1,0 +1,551 @@
+{
+  "cik": "40545",
+  "companyName": "GENERAL ELECTRIC CO",
+  "form": "10-Q",
+  "filingDate": "2026-10-20",
+  "title": "STATEMENT OF FINANCIAL POSITION (UNAUDITED) - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Statement of Financial Position [Abstract]",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash, cash equivalents and restricted cash",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 8,764",
+        "$ 12,392"
+      ],
+      "numbers": [
+        8764,
+        12392
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current receivables (Note 4)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,019",
+        "11,773"
+      ],
+      "numbers": [
+        14019,
+        11773
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories, including deferred inventory costs (Note 5)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,743",
+        "11,868"
+      ],
+      "numbers": [
+        12743,
+        11868
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current contract assets (Note 8)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,527",
+        "3,511"
+      ],
+      "numbers": [
+        3527,
+        3511
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other current assets (Note 9)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,474",
+        "1,052"
+      ],
+      "numbers": [
+        2474,
+        1052
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "41,528",
+        "40,596"
+      ],
+      "numbers": [
+        41528,
+        40596
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investment securities (Note 3)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "35,949",
+        "38,788"
+      ],
+      "numbers": [
+        35949,
+        38788
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment – net (Note 6)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,333",
+        "7,987"
+      ],
+      "numbers": [
+        8333,
+        7987
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill (Note 7)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,967",
+        "9,060"
+      ],
+      "numbers": [
+        8967,
+        9060
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets – net (Note 7)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,030",
+        "4,225"
+      ],
+      "numbers": [
+        4030,
+        4225
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract and other deferred assets (Note 8)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,988",
+        "4,920"
+      ],
+      "numbers": [
+        4988,
+        4920
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other assets (Note 9)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,262",
+        "15,277"
+      ],
+      "numbers": [
+        15262,
+        15277
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes (Note 15)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,777",
+        "7,459"
+      ],
+      "numbers": [
+        6777,
+        7459
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Assets of discontinued operations (Note 2)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,361",
+        "1,855"
+      ],
+      "numbers": [
+        1361,
+        1855
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "127,195",
+        "130,169"
+      ],
+      "numbers": [
+        127195,
+        130169
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings (Note 10)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,335",
+        "1,686"
+      ],
+      "numbers": [
+        2335,
+        1686
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable (Note 11)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,983",
+        "10,078"
+      ],
+      "numbers": [
+        10983,
+        10078
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Progress collections (Note 8)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,201",
+        "7,662"
+      ],
+      "numbers": [
+        8201,
+        7662
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract liabilities and deferred income (Note 8)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,342",
+        "10,333"
+      ],
+      "numbers": [
+        10342,
+        10333
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Sales discounts and allowances (Note 14)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,601",
+        "4,037"
+      ],
+      "numbers": [
+        5601,
+        4037
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other current liabilities (Note 14)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,932",
+        "5,185"
+      ],
+      "numbers": [
+        4932,
+        5185
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "42,395",
+        "38,980"
+      ],
+      "numbers": [
+        42395,
+        38980
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income (Note 8)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "976",
+        "1,065"
+      ],
+      "numbers": [
+        976,
+        1065
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term borrowings (Note 10)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16,991",
+        "18,808"
+      ],
+      "numbers": [
+        16991,
+        18808
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Insurance liabilities and annuity benefits (Note 12)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,123",
+        "36,894"
+      ],
+      "numbers": [
+        34123,
+        36894
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-current compensation and benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,431",
+        "6,833"
+      ],
+      "numbers": [
+        6431,
+        6833
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other liabilities (Note 14)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,433",
+        "7,276"
+      ],
+      "numbers": [
+        7433,
+        7276
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Liabilities of discontinued operations (Note 2)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,096",
+        "1,413"
+      ],
+      "numbers": [
+        1096,
+        1413
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "109,444",
+        "111,271"
+      ],
+      "numbers": [
+        109444,
+        111271
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock (1,033,351,921 and 1,048,766,702 shares outstanding at September 30, 2026 and December 31, 2025, respectively) (Note 16)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15",
+        "15"
+      ],
+      "numbers": [
+        15,
+        15
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss) – net attributable to the Company (Note 16)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(5,056)",
+        "(4,798)"
+      ],
+      "numbers": [
+        -5056,
+        -4798
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,902",
+        "23,599"
+      ],
+      "numbers": [
+        22902,
+        23599
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "92,755",
+        "87,663"
+      ],
+      "numbers": [
+        92755,
+        87663
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less common stock held in treasury",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(93,093)",
+        "(87,801)"
+      ],
+      "numbers": [
+        -93093,
+        -87801
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "17,522",
+        "18,677"
+      ],
+      "numbers": [
+        17522,
+        18677
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "228",
+        "221"
+      ],
+      "numbers": [
+        228,
+        221
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "17,751",
+        "18,898"
+      ],
+      "numbers": [
+        17751,
+        18898
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 127,195",
+        "$ 130,169"
+      ],
+      "numbers": [
+        127195,
+        130169
+      ]
+    }
+  ]
+}

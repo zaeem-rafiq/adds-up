@@ -1,0 +1,491 @@
+{
+  "cik": "354950",
+  "companyName": "HOME DEPOT, INC.",
+  "form": "10-Q",
+  "filingDate": "2026-11-20",
+  "title": "CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Nov. 01, 2026",
+    "Feb. 01, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 1,968",
+        "$ 1,389"
+      ],
+      "numbers": [
+        1968,
+        1389
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,924",
+        "5,597"
+      ],
+      "numbers": [
+        6924,
+        5597
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Merchandise inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,603",
+        "25,817"
+      ],
+      "numbers": [
+        27603,
+        25817
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,760",
+        "1,588"
+      ],
+      "numbers": [
+        1760,
+        1588
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "38,255",
+        "34,391"
+      ],
+      "numbers": [
+        38255,
+        34391
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Net property and equipment",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "28,249",
+        "28,021"
+      ],
+      "numbers": [
+        28249,
+        28021
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,104",
+        "9,204"
+      ],
+      "numbers": [
+        9104,
+        9204
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23,129",
+        "22,344"
+      ],
+      "numbers": [
+        23129,
+        22344
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,522",
+        "10,329"
+      ],
+      "numbers": [
+        10522,
+        10329
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "843",
+        "806"
+      ],
+      "numbers": [
+        843,
+        806
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "110,102",
+        "105,095"
+      ],
+      "numbers": [
+        110102,
+        105095
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,609",
+        "4,464"
+      ],
+      "numbers": [
+        5609,
+        4464
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,178",
+        "11,491"
+      ],
+      "numbers": [
+        13178,
+        11491
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued salaries and related expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,223",
+        "2,529"
+      ],
+      "numbers": [
+        2223,
+        2529
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Sales taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "710",
+        "508"
+      ],
+      "numbers": [
+        710,
+        508
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,680",
+        "2,575"
+      ],
+      "numbers": [
+        2680,
+        2575
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "360",
+        "114"
+      ],
+      "numbers": [
+        360,
+        114
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current installments of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,945",
+        "4,967"
+      ],
+      "numbers": [
+        3945,
+        4967
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,498",
+        "1,418"
+      ],
+      "numbers": [
+        1498,
+        1418
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,084",
+        "4,358"
+      ],
+      "numbers": [
+        5084,
+        4358
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "35,287",
+        "32,424"
+      ],
+      "numbers": [
+        35287,
+        32424
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt, excluding current installments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "42,929",
+        "46,341"
+      ],
+      "numbers": [
+        42929,
+        46341
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,990",
+        "8,160"
+      ],
+      "numbers": [
+        7990,
+        8160
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,850",
+        "2,845"
+      ],
+      "numbers": [
+        2850,
+        2845
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,912",
+        "2,512"
+      ],
+      "numbers": [
+        2912,
+        2512
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "91,968",
+        "92,282"
+      ],
+      "numbers": [
+        91968,
+        92282
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Contingencies (Note 9)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value $0.05; authorized: 10,000 shares; issued: 1,804 shares at November 1, 2026 and 1,802 shares at February 1, 2026; outstanding: 998 shares at November 1, 2026 and 996 shares at February 1, 2026",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "90",
+        "90"
+      ],
+      "numbers": [
+        90,
+        90
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,403",
+        "14,809"
+      ],
+      "numbers": [
+        15403,
+        14809
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "99,337",
+        "94,537"
+      ],
+      "numbers": [
+        99337,
+        94537
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(725)",
+        "(652)"
+      ],
+      "numbers": [
+        -725,
+        -652
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost, 806 shares at November 1, 2026 and February 1, 2026",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(95,971)",
+        "(95,971)"
+      ],
+      "numbers": [
+        -95971,
+        -95971
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "18,134",
+        "12,813"
+      ],
+      "numbers": [
+        18134,
+        12813
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 110,102",
+        "$ 105,095"
+      ],
+      "numbers": [
+        110102,
+        105095
+      ]
+    }
+  ]
+}

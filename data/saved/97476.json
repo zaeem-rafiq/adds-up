@@ -1,0 +1,547 @@
+{
+  "cik": "97476",
+  "companyName": "TEXAS INSTRUMENTS INC",
+  "form": "10-Q",
+  "filingDate": "2026-10-23",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 4,211",
+        "$ 3,225"
+      ],
+      "numbers": [
+        4211,
+        3225
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,931",
+        "1,656"
+      ],
+      "numbers": [
+        3931,
+        1656
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net of allowances of ($27) and ($22)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,620",
+        "1,963"
+      ],
+      "numbers": [
+        2620,
+        1963
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Raw materials",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "497",
+        "465"
+      ],
+      "numbers": [
+        497,
+        465
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Work in process",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,482",
+        "2,372"
+      ],
+      "numbers": [
+        2482,
+        2372
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Finished goods",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,693",
+        "1,967"
+      ],
+      "numbers": [
+        1693,
+        1967
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "4,672",
+        "4,804"
+      ],
+      "numbers": [
+        4672,
+        4804
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,446",
+        "2,102"
+      ],
+      "numbers": [
+        1446,
+        2102
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "16,880",
+        "13,750"
+      ],
+      "numbers": [
+        16880,
+        13750
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,072",
+        "17,682"
+      ],
+      "numbers": [
+        18072,
+        17682
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated depreciation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(6,239)",
+        "(5,362)"
+      ],
+      "numbers": [
+        -6239,
+        -5362
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "11,833",
+        "12,320"
+      ],
+      "numbers": [
+        11833,
+        12320
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,330",
+        "4,330"
+      ],
+      "numbers": [
+        4330,
+        4330
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,054",
+        "967"
+      ],
+      "numbers": [
+        1054,
+        967
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capitalized software licenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "301",
+        "238"
+      ],
+      "numbers": [
+        301,
+        238
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Overfunded retirement plans",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "320",
+        "324"
+      ],
+      "numbers": [
+        320,
+        324
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,121",
+        "2,656"
+      ],
+      "numbers": [
+        2121,
+        2656
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "36,839",
+        "34,585"
+      ],
+      "numbers": [
+        36839,
+        34585
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "650",
+        "500"
+      ],
+      "numbers": [
+        650,
+        500
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "837",
+        "756"
+      ],
+      "numbers": [
+        837,
+        756
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued compensation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "675",
+        "829"
+      ],
+      "numbers": [
+        675,
+        829
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "60",
+        "67"
+      ],
+      "numbers": [
+        60,
+        67
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "795",
+        "1,007"
+      ],
+      "numbers": [
+        795,
+        1007
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "3,017",
+        "3,159"
+      ],
+      "numbers": [
+        3017,
+        3159
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,905",
+        "13,548"
+      ],
+      "numbers": [
+        12905,
+        13548
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Underfunded retirement plans",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "118",
+        "124"
+      ],
+      "numbers": [
+        118,
+        124
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "62",
+        "66"
+      ],
+      "numbers": [
+        62,
+        66
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,552",
+        "1,415"
+      ],
+      "numbers": [
+        1552,
+        1415
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "17,654",
+        "18,312"
+      ],
+      "numbers": [
+        17654,
+        18312
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $25 par value. Shares authorized – 10; none issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $1 par value. Shares authorized – 2,400; shares issued – 1,741",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,741",
+        "1,741"
+      ],
+      "numbers": [
+        1741,
+        1741
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,202",
+        "4,511"
+      ],
+      "numbers": [
+        5202,
+        4511
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "54,282",
+        "52,236"
+      ],
+      "numbers": [
+        54282,
+        52236
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury common stock at cost Shares: September 30, 2026 – 827; December 31, 2025 – 834",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(41,955)",
+        "(42,130)"
+      ],
+      "numbers": [
+        -41955,
+        -42130
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss), net of taxes (AOCI)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(85)",
+        "(85)"
+      ],
+      "numbers": [
+        -85,
+        -85
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "19,185",
+        "16,273"
+      ],
+      "numbers": [
+        19185,
+        16273
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 36,839",
+        "$ 34,585"
+      ],
+      "numbers": [
+        36839,
+        34585
+      ]
+    }
+  ]
+}

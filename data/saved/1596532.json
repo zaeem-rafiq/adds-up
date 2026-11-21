@@ -1,0 +1,398 @@
+{
+  "cik": "1596532",
+  "companyName": "Arista Networks, Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-11-04",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "CURRENT ASSETS:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 2,288.1",
+        "$ 1,963.9"
+      ],
+      "numbers": [
+        2288.1,
+        1963.9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,070.9",
+        "8,779.1"
+      ],
+      "numbers": [
+        12070.9,
+        8779.1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,327.8",
+        "1,886.9"
+      ],
+      "numbers": [
+        2327.8,
+        1886.9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,209.8",
+        "2,247.1"
+      ],
+      "numbers": [
+        3209.8,
+        2247.1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,235.7",
+        "1,510.0"
+      ],
+      "numbers": [
+        2235.7,
+        1510
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "22,132.3",
+        "16,387.0"
+      ],
+      "numbers": [
+        22132.3,
+        16387
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "378.8",
+        "203.1"
+      ],
+      "numbers": [
+        378.8,
+        203.1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "416.1",
+        "416.1"
+      ],
+      "numbers": [
+        416.1,
+        416.1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,437.7",
+        "1,773.6"
+      ],
+      "numbers": [
+        1437.7,
+        1773.6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "899.2",
+        "668.8"
+      ],
+      "numbers": [
+        899.2,
+        668.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL ASSETS",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "25,264.1",
+        "19,448.6"
+      ],
+      "numbers": [
+        25264.1,
+        19448.6
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "CURRENT LIABILITIES:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "682.6",
+        "651.7"
+      ],
+      "numbers": [
+        682.6,
+        651.7
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "640.8",
+        "475.4"
+      ],
+      "numbers": [
+        640.8,
+        475.4
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,102.2",
+        "4,002.6"
+      ],
+      "numbers": [
+        5102.2,
+        4002.6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "296.4",
+        "246.8"
+      ],
+      "numbers": [
+        296.4,
+        246.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,722.0",
+        "5,376.5"
+      ],
+      "numbers": [
+        6722,
+        5376.5
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue, non-current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,737.3",
+        "1,369.8"
+      ],
+      "numbers": [
+        1737.3,
+        1369.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "358.1",
+        "331.8"
+      ],
+      "numbers": [
+        358.1,
+        331.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "8,817.4",
+        "7,078.1"
+      ],
+      "numbers": [
+        8817.4,
+        7078.1
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and Contingencies (Note 4)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "STOCKHOLDERS’ EQUITY:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $0.0001 par value—100 shares authorized and no shares issued and outstanding as of September 30, 2026 and December 31, 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0.0",
+        "0.0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.0001 par value—4,000 shares authorized as of September 30, 2026 and December 31, 2025; 1,263.4 and 1,256.5 shares issued and outstanding as of September 30, 2026 and December 31, 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0.1",
+        "0.1"
+      ],
+      "numbers": [
+        0.1,
+        0.1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,304.4",
+        "2,911.8"
+      ],
+      "numbers": [
+        3304.4,
+        2911.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,243.2",
+        "9,446.6"
+      ],
+      "numbers": [
+        13243.2,
+        9446.6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(101.0)",
+        "12.0"
+      ],
+      "numbers": [
+        -101,
+        12
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL STOCKHOLDERS’ EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "16,446.7",
+        "12,370.5"
+      ],
+      "numbers": [
+        16446.7,
+        12370.5
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES AND STOCKHOLDERS’ EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 25,264.1",
+        "$ 19,448.6"
+      ],
+      "numbers": [
+        25264.1,
+        19448.6
+      ]
+    }
+  ]
+}

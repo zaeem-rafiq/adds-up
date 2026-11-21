@@ -1,0 +1,445 @@
+{
+  "cik": "316709",
+  "companyName": "SCHWAB CHARLES CORP",
+  "form": "10-Q",
+  "filingDate": "2026-11-06",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents (including resale agreements of $3,400 at September 30, 2026)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 36,657",
+        "$ 46,030"
+      ],
+      "numbers": [
+        36657,
+        46030
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Cash and investments segregated and on deposit for regulatory purposes (including resale agreements of $12,226 and $16,901 at September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "31,768",
+        "42,931"
+      ],
+      "numbers": [
+        31768,
+        42931
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables from brokers, dealers, and clearing organizations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,229",
+        "7,190"
+      ],
+      "numbers": [
+        27229,
+        7190
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables from brokerage clients — net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "128,143",
+        "104,660"
+      ],
+      "numbers": [
+        128143,
+        104660
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Available for sale securities (amortized cost of $63,531 and $66,225 at September 30, 2026 and December 31, 2025, respectively; including assets pledged of $4,165 and $281, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "58,964",
+        "62,357"
+      ],
+      "numbers": [
+        58964,
+        62357
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Held to maturity securities (including assets pledged of $1,270 at December 31, 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "126,572",
+        "133,969"
+      ],
+      "numbers": [
+        126572,
+        133969
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Bank loans — net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "72,292",
+        "57,955"
+      ],
+      "numbers": [
+        72292,
+        57955
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equipment, office facilities, and property — net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,782",
+        "3,091"
+      ],
+      "numbers": [
+        3782,
+        3091
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,290",
+        "11,951"
+      ],
+      "numbers": [
+        12290,
+        11951
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Acquired intangible assets — net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,141",
+        "7,233"
+      ],
+      "numbers": [
+        7141,
+        7233
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,836",
+        "13,628"
+      ],
+      "numbers": [
+        15836,
+        13628
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "520,674",
+        "490,995"
+      ],
+      "numbers": [
+        520674,
+        490995
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities and Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Bank deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "244,108",
+        "255,747"
+      ],
+      "numbers": [
+        244108,
+        255747
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Payables to brokers, dealers, and clearing organizations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "46,452",
+        "25,689"
+      ],
+      "numbers": [
+        46452,
+        25689
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Payables to brokerage clients",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "125,240",
+        "116,341"
+      ],
+      "numbers": [
+        125240,
+        116341
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,407",
+        "12,831"
+      ],
+      "numbers": [
+        13407,
+        12831
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other short-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,213",
+        "6,913"
+      ],
+      "numbers": [
+        14213,
+        6913
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal Home Loan Bank borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,000",
+        "1,850"
+      ],
+      "numbers": [
+        2000,
+        1850
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23,808",
+        "22,199"
+      ],
+      "numbers": [
+        23808,
+        22199
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "469,228",
+        "441,570"
+      ],
+      "numbers": [
+        469228,
+        441570
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock — $.01 par value per share; aggregate liquidation preference of $6,315 and $6,871 at September 30, 2026 and December 31, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,213",
+        "6,763"
+      ],
+      "numbers": [
+        6213,
+        6763
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "28,303",
+        "27,996"
+      ],
+      "numbers": [
+        28303,
+        27996
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "50,312",
+        "44,065"
+      ],
+      "numbers": [
+        50312,
+        44065
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost — 348,720,630 and 315,863,800 shares at September 30, 2026 and December 31, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(22,197)",
+        "(18,437)"
+      ],
+      "numbers": [
+        -22197,
+        -18437
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(11,206)",
+        "(10,983)"
+      ],
+      "numbers": [
+        -11206,
+        -10983
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,446",
+        "49,425"
+      ],
+      "numbers": [
+        51446,
+        49425
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "520,674",
+        "490,995"
+      ],
+      "numbers": [
+        520674,
+        490995
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21",
+        "21"
+      ],
+      "numbers": [
+        21,
+        21
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0",
+        "$ 0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1278 @@
+{
+  "cik": "753308",
+  "companyName": "NEXTERA ENERGY INC",
+  "form": "10-Q",
+  "filingDate": "2026-10-21",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 5,579",
+        "$ 2,812"
+      ],
+      "numbers": [
+        5579,
+        2812
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer receivables, net of allowances",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,841",
+        "4,018"
+      ],
+      "numbers": [
+        4841,
+        4018
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,500",
+        "1,733"
+      ],
+      "numbers": [
+        1500,
+        1733
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Materials, supplies and fuel inventory",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,836",
+        "2,420"
+      ],
+      "numbers": [
+        2836,
+        2420
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "239",
+        "433"
+      ],
+      "numbers": [
+        239,
+        433
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,325",
+        "997"
+      ],
+      "numbers": [
+        2325,
+        997
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,266",
+        "1,171"
+      ],
+      "numbers": [
+        1266,
+        1171
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "18,586",
+        "13,584"
+      ],
+      "numbers": [
+        18586,
+        13584
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Other assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment – net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "177,078",
+        "156,197"
+      ],
+      "numbers": [
+        177078,
+        156197
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Special use funds",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,677",
+        "10,954"
+      ],
+      "numbers": [
+        11677,
+        10954
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investment in equity method investees",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,087",
+        "5,528"
+      ],
+      "numbers": [
+        6087,
+        5528
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid benefit costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,957",
+        "2,868"
+      ],
+      "numbers": [
+        2957,
+        2868
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,232",
+        "5,639"
+      ],
+      "numbers": [
+        7232,
+        5639
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,879",
+        "1,998"
+      ],
+      "numbers": [
+        3879,
+        1998
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,152",
+        "4,849"
+      ],
+      "numbers": [
+        5152,
+        4849
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,404",
+        "11,104"
+      ],
+      "numbers": [
+        12404,
+        11104
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total other assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "226,466",
+        "199,137"
+      ],
+      "numbers": [
+        226466,
+        199137
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL ASSETS",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "245,052",
+        "212,721"
+      ],
+      "numbers": [
+        245052,
+        212721
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Commercial paper",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,716",
+        "1,955"
+      ],
+      "numbers": [
+        3716,
+        1955
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,258",
+        "608"
+      ],
+      "numbers": [
+        4258,
+        608
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,833",
+        "3,500"
+      ],
+      "numbers": [
+        8833,
+        3500
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,536",
+        "7,583"
+      ],
+      "numbers": [
+        7536,
+        7583
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,177",
+        "709"
+      ],
+      "numbers": [
+        1177,
+        709
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued interest and taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,150",
+        "1,185"
+      ],
+      "numbers": [
+        2150,
+        1185
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,067",
+        "1,113"
+      ],
+      "numbers": [
+        1067,
+        1113
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued construction-related expenditures",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,672",
+        "2,966"
+      ],
+      "numbers": [
+        2672,
+        2966
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "489",
+        "356"
+      ],
+      "numbers": [
+        489,
+        356
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,240",
+        "2,842"
+      ],
+      "numbers": [
+        3240,
+        2842
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "35,138",
+        "22,817"
+      ],
+      "numbers": [
+        35138,
+        22817
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Other liabilities and deferred credits:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "97,125",
+        "89,556"
+      ],
+      "numbers": [
+        97125,
+        89556
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Asset retirement obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,939",
+        "3,669"
+      ],
+      "numbers": [
+        3939,
+        3669
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,302",
+        "12,359"
+      ],
+      "numbers": [
+        14302,
+        12359
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,320",
+        "11,474"
+      ],
+      "numbers": [
+        13320,
+        11474
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,731",
+        "2,148"
+      ],
+      "numbers": [
+        1731,
+        2148
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,155",
+        "4,219"
+      ],
+      "numbers": [
+        5155,
+        4219
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total other liabilities and deferred credits",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "135,572",
+        "123,425"
+      ],
+      "numbers": [
+        135572,
+        123425
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "170,710",
+        "146,242"
+      ],
+      "numbers": [
+        170710,
+        146242
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "COMMITMENTS AND CONTINGENCIES",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "REDEEMABLE NONCONTROLLING INTERESTS",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,477",
+        "0"
+      ],
+      "numbers": [
+        1477,
+        0
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21",
+        "21"
+      ],
+      "numbers": [
+        21,
+        21
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,293",
+        "19,494"
+      ],
+      "numbers": [
+        20293,
+        19494
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "41,297",
+        "35,102"
+      ],
+      "numbers": [
+        41297,
+        35102
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(113)",
+        "(9)"
+      ],
+      "numbers": [
+        -113,
+        -9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total common shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "61,498",
+        "54,608"
+      ],
+      "numbers": [
+        61498,
+        54608
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,367",
+        "11,871"
+      ],
+      "numbers": [
+        11367,
+        11871
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "72,865",
+        "66,479"
+      ],
+      "numbers": [
+        72865,
+        66479
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES, REDEEMABLE NONCONTROLLING INTERESTS AND EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "245,052",
+        "212,721"
+      ],
+      "numbers": [
+        245052,
+        212721
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "819",
+        "42"
+      ],
+      "numbers": [
+        819,
+        42
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer receivables, net of allowances",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,191",
+        "1,667"
+      ],
+      "numbers": [
+        2191,
+        1667
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "373",
+        "413"
+      ],
+      "numbers": [
+        373,
+        413
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Materials, supplies and fuel inventory",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,450",
+        "1,373"
+      ],
+      "numbers": [
+        1450,
+        1373
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "217",
+        "401"
+      ],
+      "numbers": [
+        217,
+        401
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9",
+        "39"
+      ],
+      "numbers": [
+        9,
+        39
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "199",
+        "255"
+      ],
+      "numbers": [
+        199,
+        255
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,249",
+        "4,151"
+      ],
+      "numbers": [
+        5249,
+        4151
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Other assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Electric utility plant and other property – net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "87,409",
+        "81,755"
+      ],
+      "numbers": [
+        87409,
+        81755
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Special use funds",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,158",
+        "7,684"
+      ],
+      "numbers": [
+        8158,
+        7684
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid benefit costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,134",
+        "2,072"
+      ],
+      "numbers": [
+        2134,
+        2072
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,048",
+        "5,405"
+      ],
+      "numbers": [
+        7048,
+        5405
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        null,
+        "1"
+      ],
+      "numbers": [
+        null,
+        1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,965",
+        "2,965"
+      ],
+      "numbers": [
+        2965,
+        2965
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "925",
+        "1,126"
+      ],
+      "numbers": [
+        925,
+        1126
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total other assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "108,639",
+        "101,007"
+      ],
+      "numbers": [
+        108639,
+        101007
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL ASSETS",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "113,888",
+        "105,158"
+      ],
+      "numbers": [
+        113888,
+        105158
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Commercial paper",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "1,130"
+      ],
+      "numbers": [
+        0,
+        1130
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "328",
+        "641"
+      ],
+      "numbers": [
+        328,
+        641
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,254",
+        "1,084"
+      ],
+      "numbers": [
+        1254,
+        1084
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,143",
+        "685"
+      ],
+      "numbers": [
+        1143,
+        685
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued interest and taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,385",
+        "470"
+      ],
+      "numbers": [
+        1385,
+        470
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15",
+        "15"
+      ],
+      "numbers": [
+        15,
+        15
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued construction-related expenditures",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "780",
+        "1,153"
+      ],
+      "numbers": [
+        780,
+        1153
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "472",
+        "344"
+      ],
+      "numbers": [
+        472,
+        344
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "565",
+        "687"
+      ],
+      "numbers": [
+        565,
+        687
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,927",
+        "6,194"
+      ],
+      "numbers": [
+        5927,
+        6194
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Other liabilities and deferred credits:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "30,192",
+        "28,041"
+      ],
+      "numbers": [
+        30192,
+        28041
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Asset retirement obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,235",
+        "2,158"
+      ],
+      "numbers": [
+        2235,
+        2158
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,624",
+        "10,156"
+      ],
+      "numbers": [
+        10624,
+        10156
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,156",
+        "11,280"
+      ],
+      "numbers": [
+        13156,
+        11280
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivatives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "33",
+        "1"
+      ],
+      "numbers": [
+        33,
+        1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "374",
+        "343"
+      ],
+      "numbers": [
+        374,
+        343
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total other liabilities and deferred credits",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "56,581",
+        "51,978"
+      ],
+      "numbers": [
+        56581,
+        51978
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "62,508",
+        "58,172"
+      ],
+      "numbers": [
+        62508,
+        58172
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "COMMITMENTS AND CONTINGENCIES",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,373",
+        "1,373"
+      ],
+      "numbers": [
+        1373,
+        1373
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,866",
+        "26,866"
+      ],
+      "numbers": [
+        26866,
+        26866
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23,141",
+        "18,747"
+      ],
+      "numbers": [
+        23141,
+        18747
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,380",
+        "46,986"
+      ],
+      "numbers": [
+        51380,
+        46986
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES, REDEEMABLE NONCONTROLLING INTERESTS AND EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 113,888",
+        "$ 105,158"
+      ],
+      "numbers": [
+        113888,
+        105158
+      ]
+    }
+  ]
+}

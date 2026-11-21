@@ -1,0 +1,656 @@
+{
+  "cik": "1403161",
+  "companyName": "VISA INC.",
+  "form": "10-K",
+  "filingDate": "2026-11-05",
+  "title": "CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Sep. 30, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 12,938",
+        "$ 17,164"
+      ],
+      "numbers": [
+        12938,
+        17164
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Restricted cash equivalents—U.S. litigation escrow",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "628",
+        "2,990"
+      ],
+      "numbers": [
+        628,
+        2990
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investment securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,145",
+        "1,833"
+      ],
+      "numbers": [
+        1145,
+        1833
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Settlement receivable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,029",
+        "4,191"
+      ],
+      "numbers": [
+        2029,
+        4191
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,749",
+        "3,126"
+      ],
+      "numbers": [
+        3749,
+        3126
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer collateral",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,349",
+        "3,625"
+      ],
+      "numbers": [
+        4349,
+        3625
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of client incentives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,492",
+        "2,158"
+      ],
+      "numbers": [
+        2492,
+        2158
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,156",
+        "2,679"
+      ],
+      "numbers": [
+        3156,
+        2679
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "30,486",
+        "37,766"
+      ],
+      "numbers": [
+        30486,
+        37766
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investment securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "94",
+        "999"
+      ],
+      "numbers": [
+        94,
+        999
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Client incentives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,098",
+        "5,157"
+      ],
+      "numbers": [
+        6098,
+        5157
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, equipment and technology, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,066",
+        "4,236"
+      ],
+      "numbers": [
+        5066,
+        4236
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,801",
+        "19,879"
+      ],
+      "numbers": [
+        20801,
+        19879
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,370",
+        "27,646"
+      ],
+      "numbers": [
+        27370,
+        27646
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,445",
+        "3,944"
+      ],
+      "numbers": [
+        4445,
+        3944
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "94,360",
+        "99,627"
+      ],
+      "numbers": [
+        94360,
+        99627
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "606",
+        "555"
+      ],
+      "numbers": [
+        606,
+        555
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Settlement payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,861",
+        "4,568"
+      ],
+      "numbers": [
+        2861,
+        4568
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer collateral",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,349",
+        "3,625"
+      ],
+      "numbers": [
+        4349,
+        3625
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued compensation and benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,391",
+        "1,863"
+      ],
+      "numbers": [
+        2391,
+        1863
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Client incentives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,150",
+        "10,369"
+      ],
+      "numbers": [
+        12150,
+        10369
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,525",
+        "5,466"
+      ],
+      "numbers": [
+        5525,
+        5466
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current maturities of debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,716",
+        "5,569"
+      ],
+      "numbers": [
+        2716,
+        5569
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued litigation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "990",
+        "3,033"
+      ],
+      "numbers": [
+        990,
+        3033
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "31,588",
+        "35,048"
+      ],
+      "numbers": [
+        31588,
+        35048
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,355",
+        "19,602"
+      ],
+      "numbers": [
+        19355,
+        19602
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,184",
+        "5,549"
+      ],
+      "numbers": [
+        5184,
+        5549
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,122",
+        "1,519"
+      ],
+      "numbers": [
+        2122,
+        1519
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "58,249",
+        "61,718"
+      ],
+      "numbers": [
+        58249,
+        61718
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 18 and Note 20)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock and additional paid-in capital, $0.0001 par value, 5 shares issued and outstanding as of September 30, 2026 and 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "507",
+        "745"
+      ],
+      "numbers": [
+        507,
+        745
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,343",
+        "21,934"
+      ],
+      "numbers": [
+        22343,
+        21934
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Right to recover for covered losses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(119)",
+        "(124)"
+      ],
+      "numbers": [
+        -119,
+        -124
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,632",
+        "15,106"
+      ],
+      "numbers": [
+        13632,
+        15106
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Accumulated other comprehensive income (loss):",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Available-for-sale debt securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1",
+        "12"
+      ],
+      "numbers": [
+        1,
+        12
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Defined benefit pension and other postretirement plans",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(27)",
+        "(32)"
+      ],
+      "numbers": [
+        -27,
+        -32
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Cash flow hedges",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(135)",
+        "(307)"
+      ],
+      "numbers": [
+        -135,
+        -307
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Foreign currency translation adjustments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(91)",
+        "575"
+      ],
+      "numbers": [
+        -91,
+        575
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total accumulated other comprehensive income (loss)",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "(252)",
+        "248"
+      ],
+      "numbers": [
+        -252,
+        248
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "36,111",
+        "37,909"
+      ],
+      "numbers": [
+        36111,
+        37909
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "94,360",
+        "99,627"
+      ],
+      "numbers": [
+        94360,
+        99627
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0",
+        "$ 0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    }
+  ]
+}

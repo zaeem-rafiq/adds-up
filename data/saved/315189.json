@@ -1,0 +1,511 @@
+{
+  "cik": "315189",
+  "companyName": "DEERE & CO",
+  "form": "10-Q",
+  "filingDate": "2026-08-27",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Aug. 02, 2026",
+    "Nov. 02, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 8,928",
+        "$ 8,276"
+      ],
+      "numbers": [
+        8928,
+        8276
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,350",
+        "1,411"
+      ],
+      "numbers": [
+        1350,
+        1411
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts and notes receivable - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,723",
+        "5,317"
+      ],
+      "numbers": [
+        7723,
+        5317
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,466",
+        "2,403"
+      ],
+      "numbers": [
+        2466,
+        2403
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equipment on operating leases - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,400",
+        "7,600"
+      ],
+      "numbers": [
+        7400,
+        7600
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,811",
+        "7,406"
+      ],
+      "numbers": [
+        7811,
+        7406
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,006",
+        "8,079"
+      ],
+      "numbers": [
+        8006,
+        8079
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,466",
+        "4,188"
+      ],
+      "numbers": [
+        4466,
+        4188
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "940",
+        "892"
+      ],
+      "numbers": [
+        940,
+        892
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retirement benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,541",
+        "3,273"
+      ],
+      "numbers": [
+        3541,
+        3273
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,343",
+        "2,284"
+      ],
+      "numbers": [
+        2343,
+        2284
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,457",
+        "3,461"
+      ],
+      "numbers": [
+        3457,
+        3461
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "107,607",
+        "105,996"
+      ],
+      "numbers": [
+        107607,
+        105996
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "LIABILITIES",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,115",
+        "13,796"
+      ],
+      "numbers": [
+        17115,
+        13796
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term securitization borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,095",
+        "6,596"
+      ],
+      "numbers": [
+        6095,
+        6596
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,668",
+        "13,909"
+      ],
+      "numbers": [
+        13668,
+        13909
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "411",
+        "434"
+      ],
+      "numbers": [
+        411,
+        434
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "40,626",
+        "43,544"
+      ],
+      "numbers": [
+        40626,
+        43544
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retirement benefits and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,651",
+        "1,710"
+      ],
+      "numbers": [
+        1651,
+        1710
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "79,566",
+        "79,989"
+      ],
+      "numbers": [
+        79566,
+        79989
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 17)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "44",
+        "51"
+      ],
+      "numbers": [
+        44,
+        51
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "STOCKHOLDERS' EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $1 par value (issued shares at August 2, 2026 - 536,431,204)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,826",
+        "5,668"
+      ],
+      "numbers": [
+        5826,
+        5668
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock in treasury",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(37,029)",
+        "(36,362)"
+      ],
+      "numbers": [
+        -37029,
+        -36362
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "62,169",
+        "59,676"
+      ],
+      "numbers": [
+        62169,
+        59676
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(2,976)",
+        "(3,032)"
+      ],
+      "numbers": [
+        -2976,
+        -3032
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Deere & Company stockholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "27,990",
+        "25,950"
+      ],
+      "numbers": [
+        27990,
+        25950
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7",
+        "6"
+      ],
+      "numbers": [
+        7,
+        6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "27,997",
+        "25,956"
+      ],
+      "numbers": [
+        27997,
+        25956
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Stockholders' Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "107,607",
+        "105,996"
+      ],
+      "numbers": [
+        107607,
+        105996
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Financing receivables - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "42,860",
+        "44,575"
+      ],
+      "numbers": [
+        42860,
+        44575
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Financing receivables - net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 6,316",
+        "$ 6,831"
+      ],
+      "numbers": [
+        6316,
+        6831
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Location of liability for pledged asset",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 156",
+        "$ 171"
+      ],
+      "numbers": [
+        156,
+        171
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 6,472",
+        "$ 7,002"
+      ],
+      "numbers": [
+        6472,
+        7002
+      ]
+    }
+  ]
+}

@@ -1,0 +1,463 @@
+{
+  "cik": "310158",
+  "companyName": "Merck & Co., Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-11-04",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEET - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 9,550",
+        "$ 14,565"
+      ],
+      "numbers": [
+        9550,
+        14565
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "100",
+        "0"
+      ],
+      "numbers": [
+        100,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable (net of allowance for doubtful accounts of $108 in 2026 and $97 in 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,744",
+        "11,775"
+      ],
+      "numbers": [
+        12744,
+        11775
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories (excludes inventories of $6,341 in 2026 and $5,681 in 2025 classified in Other assets - see Note 6)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,164",
+        "6,658"
+      ],
+      "numbers": [
+        6164,
+        6658
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,383",
+        "10,518"
+      ],
+      "numbers": [
+        10383,
+        10518
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "38,941",
+        "43,516"
+      ],
+      "numbers": [
+        38941,
+        43516
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,603",
+        "956"
+      ],
+      "numbers": [
+        1603,
+        956
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, Plant and Equipment, at cost, net of accumulated depreciation of $22,402 in 2026 and $21,914 in 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,904",
+        "25,316"
+      ],
+      "numbers": [
+        25904,
+        25316
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,951",
+        "21,579"
+      ],
+      "numbers": [
+        21951,
+        21579
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Intangibles, Net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,476",
+        "26,681"
+      ],
+      "numbers": [
+        24476,
+        26681
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,898",
+        "18,818"
+      ],
+      "numbers": [
+        19898,
+        18818
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "132,773",
+        "136,866"
+      ],
+      "numbers": [
+        132773,
+        136866
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Loans payable and current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,088",
+        "2,589"
+      ],
+      "numbers": [
+        4088,
+        2589
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,031",
+        "4,404"
+      ],
+      "numbers": [
+        5031,
+        4404
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued and other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,239",
+        "14,468"
+      ],
+      "numbers": [
+        13239,
+        14468
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,309",
+        "4,726"
+      ],
+      "numbers": [
+        4309,
+        4726
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Dividends payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,134",
+        "2,140"
+      ],
+      "numbers": [
+        2134,
+        2140
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "28,801",
+        "28,327"
+      ],
+      "numbers": [
+        28801,
+        28327
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-Term Debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "49,689",
+        "46,750"
+      ],
+      "numbers": [
+        49689,
+        46750
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred Income Taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,460",
+        "1,439"
+      ],
+      "numbers": [
+        1460,
+        1439
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Noncurrent Liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,877",
+        "7,688"
+      ],
+      "numbers": [
+        7877,
+        7688
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Merck & Co., Inc. Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.50 par value Authorized - 6,500,000,000 shares Issued - 3,577,103,522 shares in 2026 and 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,788",
+        "1,788"
+      ],
+      "numbers": [
+        1788,
+        1788
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "45,362",
+        "45,029"
+      ],
+      "numbers": [
+        45362,
+        45029
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "66,223",
+        "73,075"
+      ],
+      "numbers": [
+        66223,
+        73075
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(3,888)",
+        "(4,287)"
+      ],
+      "numbers": [
+        -3888,
+        -4287
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Stockholders' equity before deduction for treasury stock",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "109,485",
+        "115,605"
+      ],
+      "numbers": [
+        109485,
+        115605
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less treasury stock, at cost: 1,110,329,221 shares in 2026 and 1,102,476,756 shares in 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "64,592",
+        "62,999"
+      ],
+      "numbers": [
+        64592,
+        62999
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Merck & Co., Inc. stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "44,893",
+        "52,606"
+      ],
+      "numbers": [
+        44893,
+        52606
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling Interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "53",
+        "56"
+      ],
+      "numbers": [
+        53,
+        56
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "44,946",
+        "52,662"
+      ],
+      "numbers": [
+        44946,
+        52662
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 132,773",
+        "$ 136,866"
+      ],
+      "numbers": [
+        132773,
+        136866
+      ]
+    }
+  ]
+}

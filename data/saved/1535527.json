@@ -1,0 +1,510 @@
+{
+  "cik": "1535527",
+  "companyName": "CrowdStrike Holdings, Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-08-27",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Jul. 31, 2026",
+    "Jan. 31, 2026"
+  ],
+  "unitLine": "$ in Thousands",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 5,013,847",
+        "$ 5,230,125"
+      ],
+      "numbers": [
+        5013847,
+        5230125
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net of allowance for credit losses of $3.3 million and $3.0 million as of July 31, 2026 and January 31, 2026, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,038,575",
+        "1,361,844"
+      ],
+      "numbers": [
+        1038575,
+        1361844
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred contract acquisition costs, current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "389,070",
+        "447,455"
+      ],
+      "numbers": [
+        389070,
+        447455
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "513,686",
+        "379,695"
+      ],
+      "numbers": [
+        513686,
+        379695
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,955,178",
+        "7,419,119"
+      ],
+      "numbers": [
+        6955178,
+        7419119
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Strategic investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "69,263",
+        "76,832"
+      ],
+      "numbers": [
+        69263,
+        76832
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,174,851",
+        "976,331"
+      ],
+      "numbers": [
+        1174851,
+        976331
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "68,389",
+        "69,860"
+      ],
+      "numbers": [
+        68389,
+        69860
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred contract acquisition costs, noncurrent",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "805,537",
+        "655,658"
+      ],
+      "numbers": [
+        805537,
+        655658
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,251,426",
+        "1,363,294"
+      ],
+      "numbers": [
+        2251426,
+        1363294
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "273,235",
+        "136,702"
+      ],
+      "numbers": [
+        273235,
+        136702
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "427,122",
+        "388,888"
+      ],
+      "numbers": [
+        427122,
+        388888
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,025,001",
+        "11,086,684"
+      ],
+      "numbers": [
+        12025001,
+        11086684
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "114,487",
+        "105,319"
+      ],
+      "numbers": [
+        114487,
+        105319
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "220,069",
+        "181,089"
+      ],
+      "numbers": [
+        220069,
+        181089
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued payroll and benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "418,070",
+        "389,690"
+      ],
+      "numbers": [
+        418070,
+        389690
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities, current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,067",
+        "18,232"
+      ],
+      "numbers": [
+        22067,
+        18232
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,497,144",
+        "3,421,051"
+      ],
+      "numbers": [
+        3497144,
+        3421051
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "157,851",
+        "68,811"
+      ],
+      "numbers": [
+        157851,
+        68811
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "4,429,688",
+        "4,184,192"
+      ],
+      "numbers": [
+        4429688,
+        4184192
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "746,216",
+        "745,471"
+      ],
+      "numbers": [
+        746216,
+        745471
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue, noncurrent",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,345,066",
+        "1,332,387"
+      ],
+      "numbers": [
+        1345066,
+        1332387
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities, noncurrent",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "51,896",
+        "56,374"
+      ],
+      "numbers": [
+        51896,
+        56374
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities, noncurrent",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "312,610",
+        "295,655"
+      ],
+      "numbers": [
+        312610,
+        295655
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,885,476",
+        "6,614,079"
+      ],
+      "numbers": [
+        6885476,
+        6614079
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 11)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $0.0005 par value; 100,000 shares authorized as of July 31, 2026 and January 31, 2026; no shares issued and outstanding as of July 31, 2026 and January 31, 2026.",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Class A common stock, $0.0005 par value; 2,000,000 shares authorized as of July 31, 2026 and January 31, 2026; 1,023,845 shares and 1,013,453 shares issued and outstanding as of July 31, 2026 and January 31, 2026, respectively; Class B common stock, $0.0005 par value; 92,364 shares authorized as of July 31, 2026 and January 31, 2026; no shares issued and outstanding as of July 31, 2026 and January 31, 2026.",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "512",
+        "507"
+      ],
+      "numbers": [
+        512,
+        507
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,335,490",
+        "5,694,169"
+      ],
+      "numbers": [
+        6335490,
+        5694169
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated deficit",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,249,962)",
+        "(1,283,042)"
+      ],
+      "numbers": [
+        -1249962,
+        -1283042
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,684",
+        "16,756"
+      ],
+      "numbers": [
+        15684,
+        16756
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total CrowdStrike Holdings, Inc. stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,101,724",
+        "4,428,390"
+      ],
+      "numbers": [
+        5101724,
+        4428390
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-controlling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "37,801",
+        "44,215"
+      ],
+      "numbers": [
+        37801,
+        44215
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,139,525",
+        "4,472,605"
+      ],
+      "numbers": [
+        5139525,
+        4472605
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 12,025,001",
+        "$ 11,086,684"
+      ],
+      "numbers": [
+        12025001,
+        11086684
+      ]
+    }
+  ]
+}

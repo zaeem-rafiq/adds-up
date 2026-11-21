@@ -1,0 +1,576 @@
+{
+  "cik": "1283699",
+  "companyName": "T-Mobile US, Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-10-28",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 5,620",
+        "$ 5,598"
+      ],
+      "numbers": [
+        5620,
+        5598
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net of allowance for credit losses of $251 and $226",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,012",
+        "4,874"
+      ],
+      "numbers": [
+        5012,
+        4874
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equipment installment plan receivables, net of allowance for credit losses and unamortized discount of $723 and $733",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,530",
+        "4,997"
+      ],
+      "numbers": [
+        4530,
+        4997
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventory",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,085",
+        "2,405"
+      ],
+      "numbers": [
+        3085,
+        2405
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "909",
+        "1,215"
+      ],
+      "numbers": [
+        909,
+        1215
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,686",
+        "5,372"
+      ],
+      "numbers": [
+        2686,
+        5372
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "21,842",
+        "24,461"
+      ],
+      "numbers": [
+        21842,
+        24461
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "36,035",
+        "38,333"
+      ],
+      "numbers": [
+        36035,
+        38333
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,208",
+        "25,692"
+      ],
+      "numbers": [
+        24208,
+        25692
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Financing lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,987",
+        "2,760"
+      ],
+      "numbers": [
+        2987,
+        2760
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,665",
+        "13,678"
+      ],
+      "numbers": [
+        13665,
+        13678
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Spectrum licenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "99,980",
+        "98,032"
+      ],
+      "numbers": [
+        99980,
+        98032
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,066",
+        "3,843"
+      ],
+      "numbers": [
+        3066,
+        3843
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equipment installment plan receivables due after one year, net of allowance for credit losses and unamortized discount of $199 and $213",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,457",
+        "2,683"
+      ],
+      "numbers": [
+        2457,
+        2683
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,864",
+        "9,755"
+      ],
+      "numbers": [
+        8864,
+        9755
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "213,104",
+        "219,237"
+      ],
+      "numbers": [
+        213104,
+        219237
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,624",
+        "10,280"
+      ],
+      "numbers": [
+        8624,
+        10280
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,343",
+        "5,135"
+      ],
+      "numbers": [
+        6343,
+        5135
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,407",
+        "1,533"
+      ],
+      "numbers": [
+        1407,
+        1533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,644",
+        "3,814"
+      ],
+      "numbers": [
+        3644,
+        3814
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term financing lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,158",
+        "1,163"
+      ],
+      "numbers": [
+        1158,
+        1163
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,815",
+        "2,575"
+      ],
+      "numbers": [
+        2815,
+        2575
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "23,991",
+        "24,500"
+      ],
+      "numbers": [
+        23991,
+        24500
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Tower obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,419",
+        "3,532"
+      ],
+      "numbers": [
+        3419,
+        3532
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,715",
+        "19,583"
+      ],
+      "numbers": [
+        21715,
+        19583
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,017",
+        "26,371"
+      ],
+      "numbers": [
+        25017,
+        26371
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Financing lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,136",
+        "1,107"
+      ],
+      "numbers": [
+        1136,
+        1107
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,196",
+        "3,794"
+      ],
+      "numbers": [
+        4196,
+        3794
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total long-term liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "132,806",
+        "135,534"
+      ],
+      "numbers": [
+        132806,
+        135534
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 14)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value $0.00001 per share, 2,000,000,000 shares authorized; 1,280,056,882 and 1,275,774,235 shares issued, 1,062,845,266 and 1,106,930,661 shares outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "70,089",
+        "69,460"
+      ],
+      "numbers": [
+        70089,
+        69460
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost, 217,211,616 and 168,843,574 shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(40,102)",
+        "(30,545)"
+      ],
+      "numbers": [
+        -40102,
+        -30545
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(595)",
+        "(848)"
+      ],
+      "numbers": [
+        -595,
+        -848
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,915",
+        "21,136"
+      ],
+      "numbers": [
+        26915,
+        21136
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "56,307",
+        "59,203"
+      ],
+      "numbers": [
+        56307,
+        59203
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "213,104",
+        "219,237"
+      ],
+      "numbers": [
+        213104,
+        219237
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "77,323",
+        "79,649"
+      ],
+      "numbers": [
+        77323,
+        79649
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0",
+        "$ 1,498"
+      ],
+      "numbers": [
+        0,
+        1498
+      ]
+    }
+  ]
+}

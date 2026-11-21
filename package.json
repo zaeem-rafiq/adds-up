@@ -10,6 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "e2e": "playwright test",
+    "save-copies": "node scripts/save-copies.mjs",
     "check": "./check"
   },
   "dependencies": {

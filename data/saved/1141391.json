@@ -1,0 +1,548 @@
+{
+  "cik": "1141391",
+  "companyName": "Mastercard Inc",
+  "form": "10-Q",
+  "filingDate": "2026-10-29",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 10,147",
+        "$ 10,566"
+      ],
+      "numbers": [
+        10147,
+        10566
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Restricted cash and restricted cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "564",
+        "561"
+      ],
+      "numbers": [
+        564,
+        561
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Restricted security deposits held for customers",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,231",
+        "2,121"
+      ],
+      "numbers": [
+        2231,
+        2121
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "317",
+        "332"
+      ],
+      "numbers": [
+        317,
+        332
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,258",
+        "4,609"
+      ],
+      "numbers": [
+        5258,
+        4609
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Settlement assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,593",
+        "1,626"
+      ],
+      "numbers": [
+        1593,
+        1626
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,370",
+        "3,743"
+      ],
+      "numbers": [
+        4370,
+        3743
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "24,480",
+        "23,558"
+      ],
+      "numbers": [
+        24480,
+        23558
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, equipment and right-of-use assets, net of accumulated depreciation and amortization of $2,883 and $2,756, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,642",
+        "2,303"
+      ],
+      "numbers": [
+        2642,
+        2303
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,573",
+        "1,567"
+      ],
+      "numbers": [
+        1573,
+        1567
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,804",
+        "9,560"
+      ],
+      "numbers": [
+        10804,
+        9560
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets, net of accumulated amortization of $3,502 and $3,096, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,704",
+        "5,554"
+      ],
+      "numbers": [
+        5704,
+        5554
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,946",
+        "11,615"
+      ],
+      "numbers": [
+        12946,
+        11615
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "58,149",
+        "54,157"
+      ],
+      "numbers": [
+        58149,
+        54157
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,083",
+        "999"
+      ],
+      "numbers": [
+        1083,
+        999
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Settlement obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,151",
+        "2,409"
+      ],
+      "numbers": [
+        2151,
+        2409
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Restricted security deposits held for customers",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,231",
+        "2,121"
+      ],
+      "numbers": [
+        2231,
+        2121
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued litigation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "262",
+        "800"
+      ],
+      "numbers": [
+        262,
+        800
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,950",
+        "13,272"
+      ],
+      "numbers": [
+        13950,
+        13272
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,749",
+        "749"
+      ],
+      "numbers": [
+        1749,
+        749
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,770",
+        "2,412"
+      ],
+      "numbers": [
+        2770,
+        2412
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "24,196",
+        "22,762"
+      ],
+      "numbers": [
+        24196,
+        22762
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,189",
+        "18,251"
+      ],
+      "numbers": [
+        22189,
+        18251
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "341",
+        "307"
+      ],
+      "numbers": [
+        341,
+        307
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,683",
+        "5,091"
+      ],
+      "numbers": [
+        4683,
+        5091
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,409",
+        "46,411"
+      ],
+      "numbers": [
+        51409,
+        46411
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and Contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in-capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,308",
+        "6,907"
+      ],
+      "numbers": [
+        7308,
+        6907
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Class A treasury stock, at cost, 541 and 518 shares, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(95,201)",
+        "(83,224)"
+      ],
+      "numbers": [
+        -95201,
+        -83224
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "95,640",
+        "85,035"
+      ],
+      "numbers": [
+        95640,
+        85035
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(994)",
+        "(981)"
+      ],
+      "numbers": [
+        -994,
+        -981
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Mastercard Incorporated Stockholders' Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,753",
+        "7,737"
+      ],
+      "numbers": [
+        6753,
+        7737
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-controlling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(13)",
+        "9"
+      ],
+      "numbers": [
+        -13,
+        9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,740",
+        "7,746"
+      ],
+      "numbers": [
+        6740,
+        7746
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "58,149",
+        "54,157"
+      ],
+      "numbers": [
+        58149,
+        54157
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0",
+        "$ 0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    }
+  ]
+}

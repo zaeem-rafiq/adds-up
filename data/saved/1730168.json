@@ -1,0 +1,394 @@
+{
+  "cik": "1730168",
+  "companyName": "Broadcom Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-09-10",
+  "title": "Condensed Consolidated Balance Sheets - Unaudited - USD ($)",
+  "columns": [
+    "Aug. 02, 2026",
+    "Nov. 02, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 23,975",
+        "$ 16,178"
+      ],
+      "numbers": [
+        23975,
+        16178
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,707",
+        "7,145"
+      ],
+      "numbers": [
+        13707,
+        7145
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventory",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,523",
+        "2,270"
+      ],
+      "numbers": [
+        4523,
+        2270
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,968",
+        "5,980"
+      ],
+      "numbers": [
+        9968,
+        5980
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "52,173",
+        "31,573"
+      ],
+      "numbers": [
+        52173,
+        31573
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,144",
+        "2,530"
+      ],
+      "numbers": [
+        3144,
+        2530
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "97,801",
+        "97,801"
+      ],
+      "numbers": [
+        97801,
+        97801
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,325",
+        "32,273"
+      ],
+      "numbers": [
+        26325,
+        32273
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,705",
+        "6,915"
+      ],
+      "numbers": [
+        8705,
+        6915
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "188,148",
+        "171,092"
+      ],
+      "numbers": [
+        188148,
+        171092
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,000",
+        "1,560"
+      ],
+      "numbers": [
+        4000,
+        1560
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Employee compensation and benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,506",
+        "2,129"
+      ],
+      "numbers": [
+        1506,
+        2129
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,252",
+        "3,152"
+      ],
+      "numbers": [
+        2252,
+        3152
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,080",
+        "11,673"
+      ],
+      "numbers": [
+        13080,
+        11673
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "20,838",
+        "18,514"
+      ],
+      "numbers": [
+        20838,
+        18514
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "57,167",
+        "61,984"
+      ],
+      "numbers": [
+        57167,
+        61984
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,453",
+        "9,302"
+      ],
+      "numbers": [
+        10453,
+        9302
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "88,458",
+        "89,800"
+      ],
+      "numbers": [
+        88458,
+        89800
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 10)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $0.001 par value; 100 shares authorized; none issued and outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.001 par value; 29,000 shares authorized; 4,774 and 4,741 shares issued and outstanding as of August 2, 2026 and November 2, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5",
+        "5"
+      ],
+      "numbers": [
+        5,
+        5
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "77,330",
+        "71,308"
+      ],
+      "numbers": [
+        77330,
+        71308
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,151",
+        "9,761"
+      ],
+      "numbers": [
+        22151,
+        9761
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "204",
+        "218"
+      ],
+      "numbers": [
+        204,
+        218
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "99,690",
+        "81,292"
+      ],
+      "numbers": [
+        99690,
+        81292
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 188,148",
+        "$ 171,092"
+      ],
+      "numbers": [
+        188148,
+        171092
+      ]
+    }
+  ]
+}

@@ -1,44 +1,38 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { CompanyListError, findCompanyByCik, type Company } from "@/lib/companies";
+import { StatementView } from "@/components/StatementView";
+import {
+  CompanyListError,
+  findCompanyByCik,
+  normalizeCik,
+  type Company,
+} from "@/lib/companies";
+import {
+  loadStatement,
+  StatementError,
+  type StatementLoadResult,
+} from "@/lib/statements";
 
 async function CompanyStatementContent({
   params,
 }: Pick<PageProps<"/company/[cik]">, "params">) {
   const { cik } = await params;
+  const normalizedCik = normalizeCik(cik);
 
   let company: Company | null = null;
-  let errorMessage: string | null = null;
+  let companyListError: string | null = null;
 
   try {
-    company = await findCompanyByCik(cik);
+    company = await findCompanyByCik(normalizedCik);
   } catch (error) {
-    errorMessage =
+    companyListError =
       error instanceof CompanyListError
         ? error.message
         : "Could not load the company right now. Please try again.";
   }
 
-  if (errorMessage) {
-    return (
-      <div
-        role="alert"
-        className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-900"
-      >
-        <p className="font-semibold">{errorMessage}</p>
-        <p className="mt-2">
-          <Link
-            href="/"
-            className="font-semibold text-red-900 underline underline-offset-2"
-          >
-            Back to start
-          </Link>
-        </p>
-      </div>
-    );
-  }
-
-  if (!company) {
+  // If the company list loaded and the company is not in it, show the not-listed message.
+  if (!companyListError && !company) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs">
         <p className="text-base font-semibold text-slate-900">
@@ -56,11 +50,82 @@ async function CompanyStatementContent({
     );
   }
 
+  let statementResult: StatementLoadResult | null = null;
+  let statementError: string | null = null;
+
+  try {
+    statementResult = await loadStatement(normalizedCik, {
+      companyName: company?.name,
+    });
+  } catch (error) {
+    statementError =
+      error instanceof StatementError
+        ? error.message
+        : "Could not load this company's balance sheet right now. Please try again.";
+  }
+
+  if (statementResult) {
+    const pictureUrl = `/api/company/${encodeURIComponent(statementResult.statement.cik)}/picture`;
+    return (
+      <StatementView
+        statement={statementResult.statement}
+        source={statementResult.source}
+        pictureUrl={pictureUrl}
+      />
+    );
+  }
+
+  // No statement loaded (and no saved copy). If we have the company from the SEC list,
+  // keep showing its name heading with a plain error below.
+  if (company) {
+    return (
+      <div className="space-y-4">
+        <section className="rounded-2xl border border-slate-200 bg-white px-5 py-5 shadow-2xs sm:px-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+              {company.name}
+            </h1>
+            <Link
+              href="/"
+              className="inline-flex w-fit shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-2xs transition-colors hover:border-slate-300 hover:bg-slate-50"
+            >
+              Change company
+            </Link>
+          </div>
+        </section>
+
+        <div
+          role="alert"
+          className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-900"
+        >
+          <p className="font-semibold">{statementError}</p>
+          <p className="mt-2">
+            <Link
+              href="/"
+              className="font-semibold text-red-900 underline underline-offset-2"
+            >
+              Back to start
+            </Link>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs">
-      <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-        {company.name}
-      </h1>
+    <div
+      role="alert"
+      className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-900"
+    >
+      <p className="font-semibold">{statementError ?? companyListError}</p>
+      <p className="mt-2">
+        <Link
+          href="/"
+          className="font-semibold text-red-900 underline underline-offset-2"
+        >
+          Back to start
+        </Link>
+      </p>
     </div>
   );
 }
@@ -69,14 +134,14 @@ export default function CompanyStatementPage({
   params,
 }: PageProps<"/company/[cik]">) {
   return (
-    <main className="mx-auto w-full max-w-[1040px] px-4 py-8 sm:px-6 sm:py-10">
+    <main className="mx-auto w-full max-w-[1160px] px-4 py-6 sm:px-6 sm:py-8">
       <Suspense
         fallback={
           <div
             role="status"
             className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500 shadow-2xs"
           >
-            Loading company...
+            Loading balance sheet...
           </div>
         }
       >

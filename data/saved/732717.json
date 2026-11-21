@@ -1,0 +1,614 @@
+{
+  "cik": "732717",
+  "companyName": "AT&T INC.",
+  "form": "10-Q",
+  "filingDate": "2026-10-21",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 10,767",
+        "$ 18,234"
+      ],
+      "numbers": [
+        10767,
+        18234
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable – net of related allowances for credit loss of $272 and $429",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,992",
+        "8,843"
+      ],
+      "numbers": [
+        7992,
+        8843
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,893",
+        "2,420"
+      ],
+      "numbers": [
+        2893,
+        2420
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,477",
+        "19,235"
+      ],
+      "numbers": [
+        19477,
+        19235
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Assets held for sale",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,216",
+        "0"
+      ],
+      "numbers": [
+        11216,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "52,345",
+        "48,732"
+      ],
+      "numbers": [
+        52345,
+        48732
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "349,015",
+        "347,570"
+      ],
+      "numbers": [
+        349015,
+        347570
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less: accumulated depreciation and amortization",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(216,861)",
+        "(216,011)"
+      ],
+      "numbers": [
+        -216861,
+        -216011
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, Plant and Equipment – Net",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "132,154",
+        "131,559"
+      ],
+      "numbers": [
+        132154,
+        131559
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill – Net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "63,865",
+        "63,425"
+      ],
+      "numbers": [
+        63865,
+        63425
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Licenses – Net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "149,357",
+        "128,148"
+      ],
+      "numbers": [
+        149357,
+        128148
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Intangible Assets – Net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,987",
+        "5,254"
+      ],
+      "numbers": [
+        5987,
+        5254
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments in and Advances to Equity Affiliates",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,173",
+        "1,106"
+      ],
+      "numbers": [
+        1173,
+        1106
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating Lease Right-Of-Use Assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,352",
+        "22,642"
+      ],
+      "numbers": [
+        22352,
+        22642
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,638",
+        "19,332"
+      ],
+      "numbers": [
+        18638,
+        19332
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "445,871",
+        "420,198"
+      ],
+      "numbers": [
+        445871,
+        420198
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Debt maturing within one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,483",
+        "9,011"
+      ],
+      "numbers": [
+        9483,
+        9011
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "38,335",
+        "38,514"
+      ],
+      "numbers": [
+        38335,
+        38514
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Advanced billings and customer deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,909",
+        "4,266"
+      ],
+      "numbers": [
+        3909,
+        4266
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Dividends payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,912",
+        "1,989"
+      ],
+      "numbers": [
+        1912,
+        1989
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Liabilities held for sale",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,636",
+        "0"
+      ],
+      "numbers": [
+        6636,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "60,275",
+        "53,780"
+      ],
+      "numbers": [
+        60275,
+        53780
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-Term Debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "150,144",
+        "127,089"
+      ],
+      "numbers": [
+        150144,
+        127089
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Deferred Credits and Other Noncurrent Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "61,551",
+        "58,312"
+      ],
+      "numbers": [
+        61551,
+        58312
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Postemployment benefit obligation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,100",
+        "8,478"
+      ],
+      "numbers": [
+        8100,
+        8478
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,520",
+        "18,943"
+      ],
+      "numbers": [
+        18520,
+        18943
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other noncurrent liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,521",
+        "25,104"
+      ],
+      "numbers": [
+        22521,
+        25104
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total deferred credits and other noncurrent liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "110,692",
+        "110,837"
+      ],
+      "numbers": [
+        110692,
+        110837
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Redeemable Noncontrolling Interest, Equity, Carrying Amount [Abstract]",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable Noncontrolling Interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,006",
+        "2,001"
+      ],
+      "numbers": [
+        2006,
+        2001
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock ($1 par value, 14,000,000,000 authorized at September 30, 2026 and December 31, 2025: issued 7,620,748,598 at September 30, 2026 and December 31, 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,621",
+        "7,621"
+      ],
+      "numbers": [
+        7621,
+        7621
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "106,239",
+        "106,533"
+      ],
+      "numbers": [
+        106239,
+        106533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,265",
+        "15,768"
+      ],
+      "numbers": [
+        19265,
+        15768
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock (859,308,786 at September 30, 2026 and 583,246,242 at December 31, 2025, at cost)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(25,268)",
+        "(18,529)"
+      ],
+      "numbers": [
+        -25268,
+        -18529
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,082)",
+        "(860)"
+      ],
+      "numbers": [
+        -1082,
+        -860
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,979",
+        "15,958"
+      ],
+      "numbers": [
+        15979,
+        15958
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "122,754",
+        "126,491"
+      ],
+      "numbers": [
+        122754,
+        126491
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Stockholders’ Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "445,871",
+        "420,198"
+      ],
+      "numbers": [
+        445871,
+        420198
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock ($1 par value, 10,000,000 authorized at September 30, 2026 and December 31, 2025):",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock ($1 par value, 10,000,000 authorized at September 30, 2026 and December 31, 2025):",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock ($1 par value, 10,000,000 authorized at September 30, 2026 and December 31, 2025):",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0",
+        "$ 0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    }
+  ]
+}

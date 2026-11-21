@@ -1,0 +1,398 @@
+{
+  "cik": "100885",
+  "companyName": "UNION PACIFIC CORP",
+  "form": "10-Q",
+  "filingDate": "2026-10-22",
+  "title": "Condensed Consolidated Statements of Financial Position (Unaudited) - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 2,211",
+        "$ 1,266"
+      ],
+      "numbers": [
+        2211,
+        1266
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments (Note 13)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "875",
+        "250"
+      ],
+      "numbers": [
+        875,
+        250
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net (Note 10)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,140",
+        "1,860"
+      ],
+      "numbers": [
+        2140,
+        1860
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Materials and supplies",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "985",
+        "787"
+      ],
+      "numbers": [
+        985,
+        787
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "306",
+        "392"
+      ],
+      "numbers": [
+        306,
+        392
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,517",
+        "4,555"
+      ],
+      "numbers": [
+        6517,
+        4555
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,030",
+        "2,885"
+      ],
+      "numbers": [
+        3030,
+        2885
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Properties, net (Note 11)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "60,626",
+        "59,645"
+      ],
+      "numbers": [
+        60626,
+        59645
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "801",
+        "1,036"
+      ],
+      "numbers": [
+        801,
+        1036
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,635",
+        "1,577"
+      ],
+      "numbers": [
+        1635,
+        1577
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "72,609",
+        "69,698"
+      ],
+      "numbers": [
+        72609,
+        69698
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and other current liabilities (Note 12)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,316",
+        "3,494"
+      ],
+      "numbers": [
+        4316,
+        3494
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Debt due within one year (Note 14)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,289",
+        "1,520"
+      ],
+      "numbers": [
+        1289,
+        1520
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,605",
+        "5,014"
+      ],
+      "numbers": [
+        5605,
+        5014
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Debt due after one year (Note 14)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "29,035",
+        "30,294"
+      ],
+      "numbers": [
+        29035,
+        30294
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "563",
+        "738"
+      ],
+      "numbers": [
+        563,
+        738
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,640",
+        "13,421"
+      ],
+      "numbers": [
+        13640,
+        13421
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,748",
+        "1,764"
+      ],
+      "numbers": [
+        1748,
+        1764
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 15)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "50,591",
+        "51,231"
+      ],
+      "numbers": [
+        50591,
+        51231
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Common shareholders' equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common shares, $2.50 par value, 1,400,000,000 authorized; 1,113,353,519 and 1,113,161,191 issued; 594,223,957 and 593,245,884 outstanding, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,783",
+        "2,783"
+      ],
+      "numbers": [
+        2783,
+        2783
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Paid-in-surplus",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,743",
+        "5,589"
+      ],
+      "numbers": [
+        5743,
+        5589
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "72,816",
+        "69,529"
+      ],
+      "numbers": [
+        72816,
+        69529
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(58,785)",
+        "(58,843)"
+      ],
+      "numbers": [
+        -58785,
+        -58843
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss (Note 9)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(539)",
+        "(591)"
+      ],
+      "numbers": [
+        -539,
+        -591
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total common shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "22,018",
+        "18,467"
+      ],
+      "numbers": [
+        22018,
+        18467
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and common shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 72,609",
+        "$ 69,698"
+      ],
+      "numbers": [
+        72609,
+        69698
+      ]
+    }
+  ]
+}

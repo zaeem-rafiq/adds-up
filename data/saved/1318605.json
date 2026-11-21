@@ -1,0 +1,492 @@
+{
+  "cik": "1318605",
+  "companyName": "Tesla, Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-10-22",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 17,853",
+        "$ 16,513"
+      ],
+      "numbers": [
+        17853,
+        16513
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,594",
+        "27,546"
+      ],
+      "numbers": [
+        27594,
+        27546
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,636",
+        "4,576"
+      ],
+      "numbers": [
+        4636,
+        4576
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventory",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,092",
+        "12,392"
+      ],
+      "numbers": [
+        14092,
+        12392
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,227",
+        "7,615"
+      ],
+      "numbers": [
+        6227,
+        7615
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "70,402",
+        "68,642"
+      ],
+      "numbers": [
+        70402,
+        68642
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "50,591",
+        "40,643"
+      ],
+      "numbers": [
+        50591,
+        40643
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,555",
+        "6,027"
+      ],
+      "numbers": [
+        6555,
+        6027
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Digital assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "962",
+        "1,008"
+      ],
+      "numbers": [
+        962,
+        1008
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,908",
+        "6,925"
+      ],
+      "numbers": [
+        7908,
+        6925
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,599",
+        "5,045"
+      ],
+      "numbers": [
+        12599,
+        5045
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "157,517",
+        "137,806"
+      ],
+      "numbers": [
+        157517,
+        137806
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,239",
+        "13,371"
+      ],
+      "numbers": [
+        17239,
+        13371
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued liabilities and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,205",
+        "13,279"
+      ],
+      "numbers": [
+        17205,
+        13279
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,661",
+        "3,424"
+      ],
+      "numbers": [
+        4661,
+        3424
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of debt and finance leases",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,387",
+        "1,640"
+      ],
+      "numbers": [
+        1387,
+        1640
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "40,492",
+        "31,714"
+      ],
+      "numbers": [
+        40492,
+        31714
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Debt and finance leases, net of current portion",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,136",
+        "6,736"
+      ],
+      "numbers": [
+        8136,
+        6736
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue, net of current portion",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,126",
+        "3,631"
+      ],
+      "numbers": [
+        4126,
+        3631
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,874",
+        "12,860"
+      ],
+      "numbers": [
+        14874,
+        12860
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "67,628",
+        "54,941"
+      ],
+      "numbers": [
+        67628,
+        54941
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 11)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interests in subsidiaries",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "54",
+        "58"
+      ],
+      "numbers": [
+        54,
+        58
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock; $0.001 par value; 100 shares authorized; no shares issued and outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock; $0.001 par value; 6,000 shares authorized; 3,953 and 3,751 shares issued and outstanding as of September 30, 2026 and December 31, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4",
+        "3"
+      ],
+      "numbers": [
+        4,
+        3
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "47,415",
+        "42,770"
+      ],
+      "numbers": [
+        47415,
+        42770
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "489",
+        "361"
+      ],
+      "numbers": [
+        489,
+        361
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "41,381",
+        "39,003"
+      ],
+      "numbers": [
+        41381,
+        39003
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "89,289",
+        "82,137"
+      ],
+      "numbers": [
+        89289,
+        82137
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests in subsidiaries",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "546",
+        "670"
+      ],
+      "numbers": [
+        546,
+        670
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "157,517",
+        "137,806"
+      ],
+      "numbers": [
+        157517,
+        137806
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease vehicles, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,047",
+        "4,912"
+      ],
+      "numbers": [
+        4047,
+        4912
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Energy generation and storage systems, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 4,453",
+        "$ 4,604"
+      ],
+      "numbers": [
+        4453,
+        4604
+      ]
+    }
+  ]
+}

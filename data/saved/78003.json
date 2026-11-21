@@ -1,0 +1,533 @@
+{
+  "cik": "78003",
+  "companyName": "PFIZER INC",
+  "form": "10-Q",
+  "filingDate": "2026-11-03",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 27, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 1,824",
+        "$ 1,142"
+      ],
+      "numbers": [
+        1824,
+        1142
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,448",
+        "12,454"
+      ],
+      "numbers": [
+        12448,
+        12454
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts receivable, net of allowance for doubtful accounts: 2026—$426; 2025—$427",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,192",
+        "11,874"
+      ],
+      "numbers": [
+        14192,
+        11874
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,022",
+        "10,654"
+      ],
+      "numbers": [
+        10022,
+        10654
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,375",
+        "3,967"
+      ],
+      "numbers": [
+        3375,
+        3967
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,147",
+        "2,808"
+      ],
+      "numbers": [
+        3147,
+        2808
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "45,009",
+        "42,898"
+      ],
+      "numbers": [
+        45009,
+        42898
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,453",
+        "1,621"
+      ],
+      "numbers": [
+        1453,
+        1621
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net of accumulated depreciation: 2026—$18,344; 2025—$17,386",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,048",
+        "19,317"
+      ],
+      "numbers": [
+        19048,
+        19317
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Identifiable intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "45,956",
+        "53,731"
+      ],
+      "numbers": [
+        45956,
+        53731
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "71,464",
+        "71,264"
+      ],
+      "numbers": [
+        71464,
+        71264
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent deferred tax assets and other noncurrent tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,591",
+        "9,699"
+      ],
+      "numbers": [
+        11591,
+        9699
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other noncurrent assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,024",
+        "9,631"
+      ],
+      "numbers": [
+        10024,
+        9631
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "204,544",
+        "208,160"
+      ],
+      "numbers": [
+        204544,
+        208160
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities and Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings, including current portion of long-term debt: 2026—$2,604; 2025—$2,997",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,674",
+        "3,154"
+      ],
+      "numbers": [
+        2674,
+        3154
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,070",
+        "5,240"
+      ],
+      "numbers": [
+        4070,
+        5240
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Dividends payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "2,445"
+      ],
+      "numbers": [
+        0,
+        2445
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "438",
+        "3,103"
+      ],
+      "numbers": [
+        438,
+        3103
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued compensation and related items",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,398",
+        "3,610"
+      ],
+      "numbers": [
+        3398,
+        3610
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,146",
+        "19,432"
+      ],
+      "numbers": [
+        21146,
+        19432
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "31,726",
+        "36,984"
+      ],
+      "numbers": [
+        31726,
+        36984
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "59,997",
+        "61,641"
+      ],
+      "numbers": [
+        59997,
+        61641
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Pension and postretirement benefit obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,921",
+        "2,041"
+      ],
+      "numbers": [
+        1921,
+        2041
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,936",
+        "2,401"
+      ],
+      "numbers": [
+        1936,
+        2401
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,247",
+        "3,591"
+      ],
+      "numbers": [
+        4247,
+        3591
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other noncurrent liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,416",
+        "14,725"
+      ],
+      "numbers": [
+        15416,
+        14725
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "115,243",
+        "121,385"
+      ],
+      "numbers": [
+        115243,
+        121385
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and Contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "482",
+        "481"
+      ],
+      "numbers": [
+        482,
+        481
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "95,355",
+        "94,469"
+      ],
+      "numbers": [
+        95355,
+        94469
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(115,195)",
+        "(115,015)"
+      ],
+      "numbers": [
+        -115195,
+        -115015
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "115,328",
+        "114,610"
+      ],
+      "numbers": [
+        115328,
+        114610
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(6,969)",
+        "(8,069)"
+      ],
+      "numbers": [
+        -6969,
+        -8069
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Pfizer Inc. shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "89,001",
+        "86,476"
+      ],
+      "numbers": [
+        89001,
+        86476
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity attributable to noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "299",
+        "299"
+      ],
+      "numbers": [
+        299,
+        299
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "89,301",
+        "86,775"
+      ],
+      "numbers": [
+        89301,
+        86775
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 204,544",
+        "$ 208,160"
+      ],
+      "numbers": [
+        204544,
+        208160
+      ]
+    }
+  ]
+}

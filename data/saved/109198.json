@@ -1,0 +1,440 @@
+{
+  "cik": "109198",
+  "companyName": "TJX COMPANIES INC /DE/",
+  "form": "10-Q",
+  "filingDate": "2026-08-28",
+  "title": "CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Aug. 01, 2026",
+    "Jan. 31, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 6,004",
+        "$ 6,230"
+      ],
+      "numbers": [
+        6004,
+        6230
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "665",
+        "602"
+      ],
+      "numbers": [
+        665,
+        602
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Merchandise inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,862",
+        "7,297"
+      ],
+      "numbers": [
+        7862,
+        7297
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "730",
+        "1,065"
+      ],
+      "numbers": [
+        730,
+        1065
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal, state and foreign income taxes recoverable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "68",
+        "8"
+      ],
+      "numbers": [
+        68,
+        8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "15,329",
+        "15,202"
+      ],
+      "numbers": [
+        15329,
+        15202
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Net property at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,567",
+        "8,220"
+      ],
+      "numbers": [
+        8567,
+        8220
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-current deferred income taxes, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "146",
+        "147"
+      ],
+      "numbers": [
+        146,
+        147
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right of use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,154",
+        "10,330"
+      ],
+      "numbers": [
+        11154,
+        10330
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "97",
+        "96"
+      ],
+      "numbers": [
+        97,
+        96
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,822",
+        "1,772"
+      ],
+      "numbers": [
+        1822,
+        1772
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "37,115",
+        "35,767"
+      ],
+      "numbers": [
+        37115,
+        35767
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,024",
+        "4,575"
+      ],
+      "numbers": [
+        5024,
+        4575
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,372",
+        "5,891"
+      ],
+      "numbers": [
+        5372,
+        5891
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,714",
+        "1,726"
+      ],
+      "numbers": [
+        1714,
+        1726
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,000",
+        "999"
+      ],
+      "numbers": [
+        1000,
+        999
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal, state and foreign income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "250",
+        "170"
+      ],
+      "numbers": [
+        250,
+        170
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,360",
+        "13,361"
+      ],
+      "numbers": [
+        13360,
+        13361
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,168",
+        "1,184"
+      ],
+      "numbers": [
+        1168,
+        1184
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-current deferred income taxes, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "333",
+        "268"
+      ],
+      "numbers": [
+        333,
+        268
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,732",
+        "8,894"
+      ],
+      "numbers": [
+        9732,
+        8894
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,871",
+        "1,870"
+      ],
+      "numbers": [
+        1871,
+        1870
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (See Note K)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, authorized 5,000,000 shares, par value $1, no shares issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, authorized 1,800,000,000 shares, par value $1, issued and outstanding 1,101,167,677; 1,107,087,991 and 1,112,799,116 shares respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,101",
+        "1,107"
+      ],
+      "numbers": [
+        1101,
+        1107
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive (loss) income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(416)",
+        "(351)"
+      ],
+      "numbers": [
+        -416,
+        -351
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,966",
+        "9,434"
+      ],
+      "numbers": [
+        9966,
+        9434
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "10,651",
+        "10,190"
+      ],
+      "numbers": [
+        10651,
+        10190
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 37,115",
+        "$ 35,767"
+      ],
+      "numbers": [
+        37115,
+        35767
+      ]
+    }
+  ]
+}

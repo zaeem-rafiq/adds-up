@@ -1,0 +1,393 @@
+{
+  "cik": "1321655",
+  "companyName": "Palantir Technologies Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-11-03",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Thousands",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 3,619,414",
+        "$ 1,423,796"
+      ],
+      "numbers": [
+        3619414,
+        1423796
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,942,117",
+        "5,753,247"
+      ],
+      "numbers": [
+        6942117,
+        5753247
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,883,498",
+        "1,042,065"
+      ],
+      "numbers": [
+        1883498,
+        1042065
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "322,741",
+        "139,066"
+      ],
+      "numbers": [
+        322741,
+        139066
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,767,770",
+        "8,358,174"
+      ],
+      "numbers": [
+        12767770,
+        8358174
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "65,000",
+        "51,960"
+      ],
+      "numbers": [
+        65000,
+        51960
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "244,938",
+        "200,105"
+      ],
+      "numbers": [
+        244938,
+        200105
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "335,268",
+        "290,153"
+      ],
+      "numbers": [
+        335268,
+        290153
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,412,976",
+        "8,900,392"
+      ],
+      "numbers": [
+        13412976,
+        8900392
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable, accrued liabilities, and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "623,888",
+        "409,552"
+      ],
+      "numbers": [
+        623888,
+        409552
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "661,255",
+        "408,963"
+      ],
+      "numbers": [
+        661255,
+        408963
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "512,573",
+        "357,066"
+      ],
+      "numbers": [
+        512573,
+        357066
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,797,716",
+        "1,175,581"
+      ],
+      "numbers": [
+        1797716,
+        1175581
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue, noncurrent",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "32,660",
+        "46,216"
+      ],
+      "numbers": [
+        32660,
+        46216
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer deposits, noncurrent",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "268",
+        "18"
+      ],
+      "numbers": [
+        268,
+        18
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities, noncurrent",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "225,267",
+        "183,474"
+      ],
+      "numbers": [
+        225267,
+        183474
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other noncurrent liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,965",
+        "7,092"
+      ],
+      "numbers": [
+        11965,
+        7092
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,067,876",
+        "1,412,381"
+      ],
+      "numbers": [
+        2067876,
+        1412381
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Palantir's stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,409",
+        "2,391"
+      ],
+      "numbers": [
+        2409,
+        2391
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,739,968",
+        "10,933,325"
+      ],
+      "numbers": [
+        11739968,
+        10933325
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss), net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(12,435)",
+        "13,942"
+      ],
+      "numbers": [
+        -12435,
+        13942
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated deficit",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(501,961)",
+        "(3,562,390)"
+      ],
+      "numbers": [
+        -501961,
+        -3562390
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Palantir's stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "11,227,981",
+        "7,387,268"
+      ],
+      "numbers": [
+        11227981,
+        7387268
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "117,119",
+        "100,743"
+      ],
+      "numbers": [
+        117119,
+        100743
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "11,345,100",
+        "7,488,011"
+      ],
+      "numbers": [
+        11345100,
+        7488011
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 13,412,976",
+        "$ 8,900,392"
+      ],
+      "numbers": [
+        13412976,
+        8900392
+      ]
+    }
+  ]
+}

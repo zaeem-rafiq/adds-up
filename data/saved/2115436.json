@@ -1,0 +1,465 @@
+{
+  "cik": "2115436",
+  "companyName": "ExxonMobil Holdings Corp",
+  "form": "10-Q",
+  "filingDate": "2026-11-02",
+  "title": "Condensed Consolidated Balance Sheet - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 12,153",
+        "$ 10,681"
+      ],
+      "numbers": [
+        12153,
+        10681
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Notes and accounts receivable – net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "66,533",
+        "44,562"
+      ],
+      "numbers": [
+        66533,
+        44562
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Inventories",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Crude oil, products and merchandise",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,532",
+        "22,979"
+      ],
+      "numbers": [
+        21532,
+        22979
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Materials and supplies",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,270",
+        "3,323"
+      ],
+      "numbers": [
+        3270,
+        3323
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,137",
+        "1,837"
+      ],
+      "numbers": [
+        4137,
+        1837
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "107,625",
+        "83,382"
+      ],
+      "numbers": [
+        107625,
+        83382
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Assets, Noncurrent",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Investments, advances and long-term receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "44,293",
+        "45,317"
+      ],
+      "numbers": [
+        44293,
+        45317
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment – net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "296,955",
+        "299,373"
+      ],
+      "numbers": [
+        296955,
+        299373
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets, including intangibles – net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,044",
+        "20,908"
+      ],
+      "numbers": [
+        22044,
+        20908
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "470,917",
+        "448,980"
+      ],
+      "numbers": [
+        470917,
+        448980
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Notes and loans payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,523",
+        "9,296"
+      ],
+      "numbers": [
+        4523,
+        9296
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "78,642",
+        "60,911"
+      ],
+      "numbers": [
+        78642,
+        60911
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,044",
+        "2,123"
+      ],
+      "numbers": [
+        7044,
+        2123
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "90,209",
+        "72,330"
+      ],
+      "numbers": [
+        90209,
+        72330
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities, Noncurrent",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "29,727",
+        "34,241"
+      ],
+      "numbers": [
+        29727,
+        34241
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Postretirement benefits reserves",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,111",
+        "8,847"
+      ],
+      "numbers": [
+        9111,
+        8847
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,320",
+        "40,216"
+      ],
+      "numbers": [
+        39320,
+        40216
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "198,397",
+        "182,354"
+      ],
+      "numbers": [
+        198397,
+        182354
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4",
+        "46,150"
+      ],
+      "numbers": [
+        4,
+        46150
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "45,026",
+        "0"
+      ],
+      "numbers": [
+        45026,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Earnings reinvested",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "237,289",
+        "482,494"
+      ],
+      "numbers": [
+        237289,
+        482494
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(11,430)",
+        "(10,863)"
+      ],
+      "numbers": [
+        -11430,
+        -10863
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock held in treasury (33 million shares at September 30, 2026 3,840 million shares at December 31, 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(5,100)",
+        "(258,395)"
+      ],
+      "numbers": [
+        -5100,
+        -258395
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "ExxonMobil share of equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "265,789",
+        "259,386"
+      ],
+      "numbers": [
+        265789,
+        259386
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,731",
+        "7,240"
+      ],
+      "numbers": [
+        6731,
+        7240
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "272,520",
+        "266,626"
+      ],
+      "numbers": [
+        272520,
+        266626
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "470,917",
+        "448,980"
+      ],
+      "numbers": [
+        470917,
+        448980
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities, Noncurrent",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "567",
+        "542"
+      ],
+      "numbers": [
+        567,
+        542
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities, Noncurrent",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 29,463",
+        "$ 26,178"
+      ],
+      "numbers": [
+        29463,
+        26178
+      ]
+    }
+  ]
+}

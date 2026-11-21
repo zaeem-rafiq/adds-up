@@ -1,0 +1,468 @@
+{
+  "cik": "80424",
+  "companyName": "PROCTER & GAMBLE Co",
+  "form": "10-Q",
+  "filingDate": "2026-10-22",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Jun. 30, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "CURRENT ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 15,365",
+        "$ 9,942"
+      ],
+      "numbers": [
+        15365,
+        9942
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,620",
+        "6,056"
+      ],
+      "numbers": [
+        6620,
+        6056
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "INVENTORIES",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Materials and supplies",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,304",
+        "2,143"
+      ],
+      "numbers": [
+        2304,
+        2143
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Work in process",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,107",
+        "1,105"
+      ],
+      "numbers": [
+        1107,
+        1105
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Finished goods",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,074",
+        "4,922"
+      ],
+      "numbers": [
+        5074,
+        4922
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total inventories",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "8,485",
+        "8,170"
+      ],
+      "numbers": [
+        8485,
+        8170
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,038",
+        "2,040"
+      ],
+      "numbers": [
+        2038,
+        2040
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL CURRENT ASSETS",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "32,508",
+        "26,208"
+      ],
+      "numbers": [
+        32508,
+        26208
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "PROPERTY, PLANT AND EQUIPMENT, NET",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,519",
+        "25,360"
+      ],
+      "numbers": [
+        25519,
+        25360
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "GOODWILL",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "41,197",
+        "41,276"
+      ],
+      "numbers": [
+        41197,
+        41276
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TRADEMARKS AND OTHER INTANGIBLE ASSETS, NET",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,359",
+        "21,444"
+      ],
+      "numbers": [
+        21359,
+        21444
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "OTHER NONCURRENT ASSETS",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,549",
+        "12,231"
+      ],
+      "numbers": [
+        12549,
+        12231
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL ASSETS",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "133,132",
+        "126,521"
+      ],
+      "numbers": [
+        133132,
+        126521
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "CURRENT LIABILITIES",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,056",
+        "16,306"
+      ],
+      "numbers": [
+        17056,
+        16306
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,911",
+        "11,091"
+      ],
+      "numbers": [
+        10911,
+        11091
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Debt due within one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,028",
+        "11,296"
+      ],
+      "numbers": [
+        17028,
+        11296
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL CURRENT LIABILITIES",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "44,996",
+        "38,694"
+      ],
+      "numbers": [
+        44996,
+        38694
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "LONG-TERM DEBT",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,897",
+        "22,842"
+      ],
+      "numbers": [
+        21897,
+        22842
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "DEFERRED INCOME TAXES",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,949",
+        "5,760"
+      ],
+      "numbers": [
+        5949,
+        5760
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "OTHER NONCURRENT LIABILITIES",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,954",
+        "4,914"
+      ],
+      "numbers": [
+        4954,
+        4914
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "77,795",
+        "72,210"
+      ],
+      "numbers": [
+        77795,
+        72210
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "SHAREHOLDERS’ EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "747",
+        "756"
+      ],
+      "numbers": [
+        747,
+        756
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,009",
+        "4,009"
+      ],
+      "numbers": [
+        4009,
+        4009
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "69,700",
+        "69,533"
+      ],
+      "numbers": [
+        69700,
+        69533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Reserve for ESOP debt retirement",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(555)",
+        "(596)"
+      ],
+      "numbers": [
+        -555,
+        -596
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(12,652)",
+        "(12,465)"
+      ],
+      "numbers": [
+        -12652,
+        -12465
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(144,173)",
+        "(143,008)"
+      ],
+      "numbers": [
+        -144173,
+        -143008
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "138,021",
+        "135,852"
+      ],
+      "numbers": [
+        138021,
+        135852
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "239",
+        "230"
+      ],
+      "numbers": [
+        239,
+        230
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL SHAREHOLDERS’ EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "55,337",
+        "54,311"
+      ],
+      "numbers": [
+        55337,
+        54311
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES AND SHAREHOLDERS’ EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 133,132",
+        "$ 126,521"
+      ],
+      "numbers": [
+        133132,
+        126521
+      ]
+    }
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "cik": "21344",
+  "companyName": "COCA COLA CO",
+  "form": "10-Q",
+  "filingDate": "2026-10-28",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Oct. 02, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "CURRENT ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 13,454",
+        "$ 10,270"
+      ],
+      "numbers": [
+        13454,
+        10270
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "231",
+        "3,602"
+      ],
+      "numbers": [
+        231,
+        3602
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Cash, Cash Equivalents and Short-Term Investments",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,685",
+        "13,872"
+      ],
+      "numbers": [
+        13685,
+        13872
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,910",
+        "1,934"
+      ],
+      "numbers": [
+        2910,
+        1934
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts receivable, less allowances of $514 and $495, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,571",
+        "3,038"
+      ],
+      "numbers": [
+        3571,
+        3038
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,410",
+        "4,425"
+      ],
+      "numbers": [
+        4410,
+        4425
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,475",
+        "2,433"
+      ],
+      "numbers": [
+        2475,
+        2433
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Assets held for sale",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,275",
+        "5,342"
+      ],
+      "numbers": [
+        6275,
+        5342
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "33,326",
+        "31,044"
+      ],
+      "numbers": [
+        33326,
+        31044
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity method investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,710",
+        "20,235"
+      ],
+      "numbers": [
+        20710,
+        20235
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,086",
+        "1,206"
+      ],
+      "numbers": [
+        1086,
+        1206
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, less accumulated depreciation of $9,019 and $9,119, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,485",
+        "9,613"
+      ],
+      "numbers": [
+        9485,
+        9613
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trademarks with indefinite lives",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,459",
+        "12,531"
+      ],
+      "numbers": [
+        12459,
+        12531
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,408",
+        "15,491"
+      ],
+      "numbers": [
+        15408,
+        15491
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other noncurrent assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,476",
+        "14,696"
+      ],
+      "numbers": [
+        15476,
+        14696
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "107,950",
+        "104,816"
+      ],
+      "numbers": [
+        107950,
+        104816
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "CURRENT LIABILITIES",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,633",
+        "14,813"
+      ],
+      "numbers": [
+        15633,
+        14813
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans and notes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "73",
+        "1,551"
+      ],
+      "numbers": [
+        73,
+        1551
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current maturities of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,923",
+        "1,822"
+      ],
+      "numbers": [
+        4923,
+        1822
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "577",
+        "525"
+      ],
+      "numbers": [
+        577,
+        525
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Liabilities held for sale",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,003",
+        "2,570"
+      ],
+      "numbers": [
+        3003,
+        2570
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "24,209",
+        "21,281"
+      ],
+      "numbers": [
+        24209,
+        21281
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "36,623",
+        "42,119"
+      ],
+      "numbers": [
+        36623,
+        42119
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other noncurrent liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,678",
+        "4,735"
+      ],
+      "numbers": [
+        4678,
+        4735
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,907",
+        "2,406"
+      ],
+      "numbers": [
+        2907,
+        2406
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "THE COCA-COLA COMPANY SHAREOWNERS' EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.25 par value; authorized — 11,200 shares; issued — 7,040 shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,760",
+        "1,760"
+      ],
+      "numbers": [
+        1760,
+        1760
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital surplus",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,894",
+        "20,581"
+      ],
+      "numbers": [
+        20894,
+        20581
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Reinvested earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "85,898",
+        "80,382"
+      ],
+      "numbers": [
+        85898,
+        80382
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(14,090)",
+        "(14,131)"
+      ],
+      "numbers": [
+        -14090,
+        -14131
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost — 2,738 and 2,738 shares, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(57,090)",
+        "(56,423)"
+      ],
+      "numbers": [
+        -57090,
+        -56423
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity Attributable to Shareowners of The Coca-Cola Company",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "37,372",
+        "32,169"
+      ],
+      "numbers": [
+        37372,
+        32169
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity attributable to noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,161",
+        "2,106"
+      ],
+      "numbers": [
+        2161,
+        2106
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "39,533",
+        "34,275"
+      ],
+      "numbers": [
+        39533,
+        34275
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 107,950",
+        "$ 104,816"
+      ],
+      "numbers": [
+        107950,
+        104816
+      ]
+    }
+  ]
+}

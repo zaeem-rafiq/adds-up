@@ -1,0 +1,496 @@
+{
+  "cik": "1652044",
+  "companyName": "Alphabet Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-10-29",
+  "title": "CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 56,334",
+        "$ 30,708"
+      ],
+      "numbers": [
+        56334,
+        30708
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "208,764",
+        "96,135"
+      ],
+      "numbers": [
+        208764,
+        96135
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total cash, cash equivalents, and marketable securities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "265,098",
+        "126,843"
+      ],
+      "numbers": [
+        265098,
+        126843
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "72,784",
+        "62,886"
+      ],
+      "numbers": [
+        72784,
+        62886
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventory",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,308",
+        "2,439"
+      ],
+      "numbers": [
+        13308,
+        2439
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23,475",
+        "13,870"
+      ],
+      "numbers": [
+        23475,
+        13870
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "374,665",
+        "206,038"
+      ],
+      "numbers": [
+        374665,
+        206038
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "135,230",
+        "68,687"
+      ],
+      "numbers": [
+        135230,
+        68687
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,458",
+        "9,113"
+      ],
+      "numbers": [
+        1458,
+        9113
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "372,827",
+        "246,597"
+      ],
+      "numbers": [
+        372827,
+        246597
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,273",
+        "15,221"
+      ],
+      "numbers": [
+        20273,
+        15221
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "58,117",
+        "33,380"
+      ],
+      "numbers": [
+        58117,
+        33380
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,817",
+        "1,283"
+      ],
+      "numbers": [
+        8817,
+        1283
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "31,925",
+        "14,962"
+      ],
+      "numbers": [
+        31925,
+        14962
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,003,312",
+        "595,281"
+      ],
+      "numbers": [
+        1003312,
+        595281
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,975",
+        "12,200"
+      ],
+      "numbers": [
+        21975,
+        12200
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued compensation and benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,729",
+        "17,546"
+      ],
+      "numbers": [
+        17729,
+        17546
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "74,317",
+        "55,557"
+      ],
+      "numbers": [
+        74317,
+        55557
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued revenue share",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,051",
+        "10,864"
+      ],
+      "numbers": [
+        11051,
+        10864
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,429",
+        "6,578"
+      ],
+      "numbers": [
+        9429,
+        6578
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "134,501",
+        "102,745"
+      ],
+      "numbers": [
+        134501,
+        102745
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "125,102",
+        "46,547"
+      ],
+      "numbers": [
+        125102,
+        46547
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable, non-current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,219",
+        "9,531"
+      ],
+      "numbers": [
+        12219,
+        9531
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,833",
+        "919"
+      ],
+      "numbers": [
+        27833,
+        919
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16,815",
+        "12,744"
+      ],
+      "numbers": [
+        16815,
+        12744
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,293",
+        "7,530"
+      ],
+      "numbers": [
+        9293,
+        7530
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "325,763",
+        "180,016"
+      ],
+      "numbers": [
+        325763,
+        180016
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and Contingencies (Note 10)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Series A and Series B preferred stock and additional paid-in capital, $0.001 par value per share, 100 shares authorized; 6.25% mandatory convertible preferred stock, 0 and 19 shares issued and outstanding allocated equally between each series with a liquidation preference of $1,000 per share",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,023",
+        "0"
+      ],
+      "numbers": [
+        18023,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Class A, Class B, and Class C stock and additional paid-in capital, $0.001 par value per share: 300,000 shares authorized (Class A 180,000, Class B 60,000, Class C 60,000); 12,088 (Class A 5,822, Class B 837, Class C 5,429) and 12,294 (Class A 5,888, Class B 828, Class C 5,578) shares issued and outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "147,068",
+        "93,126"
+      ],
+      "numbers": [
+        147068,
+        93126
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(4,326)",
+        "(1,916)"
+      ],
+      "numbers": [
+        -4326,
+        -1916
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "516,784",
+        "324,055"
+      ],
+      "numbers": [
+        516784,
+        324055
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "677,549",
+        "415,265"
+      ],
+      "numbers": [
+        677549,
+        415265
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 1,003,312",
+        "$ 595,281"
+      ],
+      "numbers": [
+        1003312,
+        595281
+      ]
+    }
+  ]
+}

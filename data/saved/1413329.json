@@ -1,0 +1,646 @@
+{
+  "cik": "1413329",
+  "companyName": "Philip Morris International Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-10-23",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 6,683",
+        "$ 4,872"
+      ],
+      "numbers": [
+        6683,
+        4872
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade receivables (less allowances of $36 in 2026 and $23 in 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,156",
+        "4,572"
+      ],
+      "numbers": [
+        5156,
+        4572
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other receivables (less allowances of $24 in 2026 and $24 in 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,375",
+        "1,238"
+      ],
+      "numbers": [
+        1375,
+        1238
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Inventories:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Leaf tobacco",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,613",
+        "2,425"
+      ],
+      "numbers": [
+        2613,
+        2425
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other raw materials",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,270",
+        "2,223"
+      ],
+      "numbers": [
+        2270,
+        2223
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Finished product",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,443",
+        "6,830"
+      ],
+      "numbers": [
+        5443,
+        6830
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total inventory, net",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "10,326",
+        "11,478"
+      ],
+      "numbers": [
+        10326,
+        11478
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,248",
+        "2,203"
+      ],
+      "numbers": [
+        2248,
+        2203
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "25,788",
+        "24,363"
+      ],
+      "numbers": [
+        25788,
+        24363
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,551",
+        "19,616"
+      ],
+      "numbers": [
+        19551,
+        19616
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less: accumulated depreciation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,182",
+        "11,219"
+      ],
+      "numbers": [
+        11182,
+        11219
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total property, plant and equipment, net",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "8,369",
+        "8,397"
+      ],
+      "numbers": [
+        8369,
+        8397
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill (Note 5)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16,789",
+        "17,264"
+      ],
+      "numbers": [
+        16789,
+        17264
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets, net (Note 5)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,824",
+        "10,884"
+      ],
+      "numbers": [
+        9824,
+        10884
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity investments (Note 13)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,975",
+        "2,891"
+      ],
+      "numbers": [
+        1975,
+        2891
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,224",
+        "1,247"
+      ],
+      "numbers": [
+        1224,
+        1247
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets (less allowances of $11 in 2026 and $12 in 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,761",
+        "4,139"
+      ],
+      "numbers": [
+        2761,
+        4139
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL ASSETS",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "66,730",
+        "69,185"
+      ],
+      "numbers": [
+        66730,
+        69185
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "LIABILITIES",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings (Note 11)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,525",
+        "168"
+      ],
+      "numbers": [
+        2525,
+        168
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt (Note 11)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,328",
+        "3,533"
+      ],
+      "numbers": [
+        3328,
+        3533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,036",
+        "4,407"
+      ],
+      "numbers": [
+        4036,
+        4407
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Accrued liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Marketing and selling",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,469",
+        "1,354"
+      ],
+      "numbers": [
+        1469,
+        1354
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Taxes, except income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,521",
+        "7,555"
+      ],
+      "numbers": [
+        5521,
+        7555
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Employment costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,420",
+        "1,545"
+      ],
+      "numbers": [
+        1420,
+        1545
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Dividends payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,516",
+        "2,312"
+      ],
+      "numbers": [
+        2516,
+        2312
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,019",
+        "3,298"
+      ],
+      "numbers": [
+        3019,
+        3298
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,361",
+        "1,255"
+      ],
+      "numbers": [
+        1361,
+        1255
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "25,195",
+        "25,427"
+      ],
+      "numbers": [
+        25195,
+        25427
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt (Note 11)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "41,709",
+        "45,134"
+      ],
+      "numbers": [
+        41709,
+        45134
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,983",
+        "2,065"
+      ],
+      "numbers": [
+        1983,
+        2065
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Employment costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,140",
+        "2,406"
+      ],
+      "numbers": [
+        2140,
+        2406
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,648",
+        "2,181"
+      ],
+      "numbers": [
+        1648,
+        2181
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "72,675",
+        "77,213"
+      ],
+      "numbers": [
+        72675,
+        77213
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Contingencies (Note 9)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "STOCKHOLDERS’ (DEFICIT) EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, no par value (2,109,316,331 shares issued in 2026 and 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,526",
+        "2,453"
+      ],
+      "numbers": [
+        2526,
+        2453
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Earnings reinvested in the business",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "36,866",
+        "35,400"
+      ],
+      "numbers": [
+        36866,
+        35400
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive losses (Note 12)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(11,871)",
+        "(12,296)"
+      ],
+      "numbers": [
+        -11871,
+        -12296
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders' equity before treasury stock",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "27,521",
+        "25,557"
+      ],
+      "numbers": [
+        27521,
+        25557
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less: cost of repurchased stock (550,676,719 and 552,659,642 shares in 2026 and 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "35,458",
+        "35,551"
+      ],
+      "numbers": [
+        35458,
+        35551
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total PMI stockholders’ deficit",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "(7,937)",
+        "(9,994)"
+      ],
+      "numbers": [
+        -7937,
+        -9994
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,992",
+        "1,966"
+      ],
+      "numbers": [
+        1992,
+        1966
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ deficit",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "(5,945)",
+        "(8,028)"
+      ],
+      "numbers": [
+        -5945,
+        -8028
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES AND STOCKHOLDERS’ (DEFICIT) EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 66,730",
+        "$ 69,185"
+      ],
+      "numbers": [
+        66730,
+        69185
+      ]
+    }
+  ]
+}

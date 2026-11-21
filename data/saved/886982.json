@@ -1,0 +1,483 @@
+{
+  "cik": "886982",
+  "companyName": "GOLDMAN SACHS GROUP INC",
+  "form": "10-Q",
+  "filingDate": "2026-11-02",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 176,767",
+        "$ 164,259"
+      ],
+      "numbers": [
+        176767,
+        164259
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Collateralized agreements",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Securities purchased under agreements to resell (at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "120,752",
+        "126,007"
+      ],
+      "numbers": [
+        120752,
+        126007
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Securities borrowed (includes $60,397 and $51,581 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "238,276",
+        "208,208"
+      ],
+      "numbers": [
+        238276,
+        208208
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer and other receivables (includes $374 and $315 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "224,988",
+        "185,842"
+      ],
+      "numbers": [
+        224988,
+        185842
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading assets (at fair value and includes $204,612 and $158,641 pledged as collateral)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "831,730",
+        "656,796"
+      ],
+      "numbers": [
+        831730,
+        656796
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Investments:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Available-for-sale securities (at fair value; amortized cost of $174,712 and $99,116)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "172,406",
+        "99,244"
+      ],
+      "numbers": [
+        172406,
+        99244
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Held-to-maturity securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "76,264",
+        "69,193"
+      ],
+      "numbers": [
+        76264,
+        69193
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other investments (includes $23,434 and $24,938 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,375",
+        "25,825"
+      ],
+      "numbers": [
+        24375,
+        25825
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans (net of allowance of $2,310 and $2,148, and includes $4,586 and $4,905 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "275,645",
+        "237,734"
+      ],
+      "numbers": [
+        275645,
+        237734
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets (includes $179 and $180 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,223",
+        "36,212"
+      ],
+      "numbers": [
+        39223,
+        36212
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,180,426",
+        "1,809,320"
+      ],
+      "numbers": [
+        2180426,
+        1809320
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities and shareholders’ equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Deposits (includes $89,157 and $76,569 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "567,875",
+        "501,422"
+      ],
+      "numbers": [
+        567875,
+        501422
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Collateralized financings:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Securities sold under agreements to repurchase (at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "305,956",
+        "223,384"
+      ],
+      "numbers": [
+        305956,
+        223384
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Securities loaned (includes $13,821 and $11,995 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "56,219",
+        "53,644"
+      ],
+      "numbers": [
+        56219,
+        53644
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other secured financings (includes $33,111 and $27,833 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "33,355",
+        "28,021"
+      ],
+      "numbers": [
+        33355,
+        28021
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer and other payables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "287,307",
+        "231,865"
+      ],
+      "numbers": [
+        287307,
+        231865
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading liabilities (at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "330,243",
+        "262,552"
+      ],
+      "numbers": [
+        330243,
+        262552
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Unsecured short-term borrowings (includes $80,742 and $59,758 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "92,346",
+        "70,459"
+      ],
+      "numbers": [
+        92346,
+        70459
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Unsecured long-term borrowings (includes $143,897 and $112,683 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "352,470",
+        "285,500"
+      ],
+      "numbers": [
+        352470,
+        285500
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities (includes $267 and $111 at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "29,726",
+        "27,501"
+      ],
+      "numbers": [
+        29726,
+        27501
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,055,497",
+        "1,684,348"
+      ],
+      "numbers": [
+        2055497,
+        1684348
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments, contingencies and guarantees",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock; aggregate liquidation preference of $14,778 and $15,153",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,778",
+        "15,153"
+      ],
+      "numbers": [
+        14778,
+        15153
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock; 936,363,922 and 931,995,446 shares issued, and 288,604,588 and 296,476,742 shares outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9",
+        "9"
+      ],
+      "numbers": [
+        9,
+        9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Share-based awards",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,233",
+        "5,795"
+      ],
+      "numbers": [
+        6233,
+        5795
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Nonvoting common stock; no shares issued and outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "62,125",
+        "61,906"
+      ],
+      "numbers": [
+        62125,
+        61906
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "177,982",
+        "165,288"
+      ],
+      "numbers": [
+        177982,
+        165288
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(3,217)",
+        "(2,260)"
+      ],
+      "numbers": [
+        -3217,
+        -2260
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Stock held in treasury, at cost; 647,759,336 and 635,518,706 shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(132,981)",
+        "(120,919)"
+      ],
+      "numbers": [
+        -132981,
+        -120919
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "124,929",
+        "124,972"
+      ],
+      "numbers": [
+        124929,
+        124972
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 2,180,426",
+        "$ 1,809,320"
+      ],
+      "numbers": [
+        2180426,
+        1809320
+      ]
+    }
+  ]
+}

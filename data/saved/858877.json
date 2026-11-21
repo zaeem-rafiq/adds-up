@@ -1,0 +1,468 @@
+{
+  "cik": "858877",
+  "companyName": "CISCO SYSTEMS, INC.",
+  "form": "10-Q",
+  "filingDate": "2026-11-17",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Oct. 24, 2026",
+    "Jul. 25, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 7,778",
+        "$ 7,218"
+      ],
+      "numbers": [
+        7778,
+        7218
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,067",
+        "8,700"
+      ],
+      "numbers": [
+        8067,
+        8700
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net of allowance of $71 at October 24, 2026 and $78 at July 25, 2026",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,928",
+        "7,470"
+      ],
+      "numbers": [
+        5928,
+        7470
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,384",
+        "5,694"
+      ],
+      "numbers": [
+        6384,
+        5694
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Financing receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,623",
+        "3,392"
+      ],
+      "numbers": [
+        3623,
+        3392
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,141",
+        "6,191"
+      ],
+      "numbers": [
+        6141,
+        6191
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "37,921",
+        "38,665"
+      ],
+      "numbers": [
+        37921,
+        38665
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,091",
+        "2,760"
+      ],
+      "numbers": [
+        3091,
+        2760
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Financing receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,118",
+        "4,940"
+      ],
+      "numbers": [
+        5118,
+        4940
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "59,541",
+        "59,477"
+      ],
+      "numbers": [
+        59541,
+        59477
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Purchased intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,182",
+        "7,557"
+      ],
+      "numbers": [
+        7182,
+        7557
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,152",
+        "7,109"
+      ],
+      "numbers": [
+        7152,
+        7109
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,453",
+        "9,129"
+      ],
+      "numbers": [
+        9453,
+        9129
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL ASSETS",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "129,458",
+        "129,637"
+      ],
+      "numbers": [
+        129458,
+        129637
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,425",
+        "10,161"
+      ],
+      "numbers": [
+        10425,
+        10161
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,295",
+        "3,366"
+      ],
+      "numbers": [
+        3295,
+        3366
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued compensation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,277",
+        "4,057"
+      ],
+      "numbers": [
+        3277,
+        4057
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16,854",
+        "16,988"
+      ],
+      "numbers": [
+        16854,
+        16988
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,611",
+        "6,953"
+      ],
+      "numbers": [
+        5611,
+        6953
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "39,462",
+        "41,525"
+      ],
+      "numbers": [
+        39462,
+        41525
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,374",
+        "19,372"
+      ],
+      "numbers": [
+        19374,
+        19372
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,480",
+        "2,339"
+      ],
+      "numbers": [
+        2480,
+        2339
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,204",
+        "12,793"
+      ],
+      "numbers": [
+        13204,
+        12793
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,331",
+        "3,323"
+      ],
+      "numbers": [
+        3331,
+        3323
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "77,851",
+        "79,352"
+      ],
+      "numbers": [
+        77851,
+        79352
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 13)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Cisco stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $0.001 par value: 5 shares authorized; none issued and outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock and additional paid-in capital, $0.001 par value: 20,000 shares authorized; 3,935 and 3,946 shares issued and outstanding at October 24, 2026 and July 25, 2026, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "49,929",
+        "49,676"
+      ],
+      "numbers": [
+        49929,
+        49676
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,678",
+        "1,565"
+      ],
+      "numbers": [
+        2678,
+        1565
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,000)",
+        "(956)"
+      ],
+      "numbers": [
+        -1000,
+        -956
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,607",
+        "50,285"
+      ],
+      "numbers": [
+        51607,
+        50285
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "TOTAL LIABILITIES AND EQUITY",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 129,458",
+        "$ 129,637"
+      ],
+      "numbers": [
+        129458,
+        129637
+      ]
+    }
+  ]
+}

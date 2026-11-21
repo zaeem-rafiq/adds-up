@@ -1,0 +1,477 @@
+{
+  "cik": "97745",
+  "companyName": "THERMO FISHER SCIENTIFIC INC.",
+  "form": "10-Q",
+  "filingDate": "2026-10-30",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS (Unaudited) - USD ($)",
+  "columns": [
+    "Sep. 26, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 5,461",
+        "$ 9,852"
+      ],
+      "numbers": [
+        5461,
+        9852
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "600",
+        "253"
+      ],
+      "numbers": [
+        600,
+        253
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, less allowances of $135 and $147",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,625",
+        "8,900"
+      ],
+      "numbers": [
+        9625,
+        8900
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,643",
+        "5,425"
+      ],
+      "numbers": [
+        5643,
+        5425
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,691",
+        "1,666"
+      ],
+      "numbers": [
+        1691,
+        1666
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,595",
+        "2,612"
+      ],
+      "numbers": [
+        2595,
+        2612
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "25,615",
+        "28,707"
+      ],
+      "numbers": [
+        25615,
+        28707
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,577",
+        "10,565"
+      ],
+      "numbers": [
+        10577,
+        10565
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Acquisition-related intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,077",
+        "15,838"
+      ],
+      "numbers": [
+        18077,
+        15838
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,701",
+        "5,871"
+      ],
+      "numbers": [
+        5701,
+        5871
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "54,263",
+        "49,362"
+      ],
+      "numbers": [
+        54263,
+        49362
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "114,233",
+        "110,343"
+      ],
+      "numbers": [
+        114233,
+        110343
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term obligations and current maturities of long-term obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,262",
+        "3,533"
+      ],
+      "numbers": [
+        2262,
+        3533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,087",
+        "3,622"
+      ],
+      "numbers": [
+        3087,
+        3622
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued payroll and employee benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,069",
+        "1,995"
+      ],
+      "numbers": [
+        2069,
+        1995
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,941",
+        "2,710"
+      ],
+      "numbers": [
+        2941,
+        2710
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,811",
+        "3,329"
+      ],
+      "numbers": [
+        3811,
+        3329
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "14,170",
+        "15,189"
+      ],
+      "numbers": [
+        14170,
+        15189
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,473",
+        "1,493"
+      ],
+      "numbers": [
+        1473,
+        1493
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,586",
+        "4,273"
+      ],
+      "numbers": [
+        4586,
+        4273
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,108",
+        "35,852"
+      ],
+      "numbers": [
+        39108,
+        35852
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "128",
+        "122"
+      ],
+      "numbers": [
+        128,
+        122
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Thermo Fisher Scientific Inc. shareholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $100 par value, 50,000 shares authorized; none issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $1 par value, 1,200,000,000 shares authorized; 446,511,736 and 445,160,301 shares issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "447",
+        "445"
+      ],
+      "numbers": [
+        447,
+        445
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,247",
+        "18,563"
+      ],
+      "numbers": [
+        19247,
+        18563
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "63,740",
+        "59,156"
+      ],
+      "numbers": [
+        63740,
+        59156
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock at cost, 75,995,868 and 68,938,831 shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(26,408)",
+        "(22,309)"
+      ],
+      "numbers": [
+        -26408,
+        -22309
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income/(loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(2,264)",
+        "(2,448)"
+      ],
+      "numbers": [
+        -2264,
+        -2448
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Thermo Fisher Scientific Inc. shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "54,761",
+        "53,407"
+      ],
+      "numbers": [
+        54761,
+        53407
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6",
+        "7"
+      ],
+      "numbers": [
+        6,
+        7
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "54,767",
+        "53,415"
+      ],
+      "numbers": [
+        54767,
+        53415
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities, redeemable noncontrolling interest and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 114,233",
+        "$ 110,343"
+      ],
+      "numbers": [
+        114233,
+        110343
+      ]
+    }
+  ]
+}

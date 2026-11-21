@@ -1,0 +1,130 @@
+{
+  "cik": "320193",
+  "companyName": "Apple Inc.",
+  "form": "10-K",
+  "filingDate": "2026-11-03",
+  "title": "CONSOLIDATED BALANCE SHEETS",
+  "columns": ["Sep. 26, 2026", "Sep. 27, 2025"],
+  "unitLine": "USD ($) $ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["$ 36,305", "$ 35,934"],
+      "numbers": [36305, 35934]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["20,417", "18,763"],
+      "numbers": [20417, 18763]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["43,817", "39,777"],
+      "numbers": [43817, 39777]
+    },
+    {
+      "kind": "number",
+      "label": "Vendor non-trade receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["39,896", "33,180"],
+      "numbers": [39896, 33180]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["14,541", "5,718"],
+      "numbers": [14541, 5718]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["18,881", "14,585"],
+      "numbers": [18881, 14585]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": ["173,857", "147,957"],
+      "numbers": [173857, 147957]
+    },
+    {
+      "kind": "heading",
+      "label": "Non-current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["80,213", "77,723"],
+      "numbers": [80213, 77723]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["52,084", "49,834"],
+      "numbers": [52084, 49834]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["20,278", "11,093"],
+      "numbers": [20278, 11093]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": ["78,116", "72,634"],
+      "numbers": [78116, 72634]
+    },
+    {
+      "kind": "number",
+      "label": "Total non-current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": ["230,691", "211,284"],
+      "numbers": [230691, 211284]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": ["404,548", "359,241"],
+      "numbers": [404548, 359241]
+    }
+  ]
+}

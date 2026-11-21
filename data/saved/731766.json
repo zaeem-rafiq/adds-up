@@ -1,0 +1,580 @@
+{
+  "cik": "731766",
+  "companyName": "UNITEDHEALTH GROUP INC",
+  "form": "10-Q",
+  "filingDate": "2026-11-03",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "shares in Millions, $ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 25,845",
+        "$ 24,365"
+      ],
+      "numbers": [
+        25845,
+        24365
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,704",
+        "3,756"
+      ],
+      "numbers": [
+        2704,
+        3756
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,543",
+        "23,018"
+      ],
+      "numbers": [
+        20543,
+        23018
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,577",
+        "29,697"
+      ],
+      "numbers": [
+        27577,
+        29697
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,926",
+        "9,746"
+      ],
+      "numbers": [
+        8926,
+        9746
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "85,595",
+        "90,582"
+      ],
+      "numbers": [
+        85595,
+        90582
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "58,064",
+        "54,251"
+      ],
+      "numbers": [
+        58064,
+        54251
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, equipment and capitalized software, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,950",
+        "10,762"
+      ],
+      "numbers": [
+        10950,
+        10762
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "112,974",
+        "110,499"
+      ],
+      "numbers": [
+        112974,
+        110499
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,377",
+        "20,474"
+      ],
+      "numbers": [
+        20377,
+        20474
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,822",
+        "23,013"
+      ],
+      "numbers": [
+        24822,
+        23013
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "312,782",
+        "309,581"
+      ],
+      "numbers": [
+        312782,
+        309581
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Medical costs payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,352",
+        "39,337"
+      ],
+      "numbers": [
+        39352,
+        39337
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,560",
+        "38,032"
+      ],
+      "numbers": [
+        39560,
+        38032
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings and current maturities of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,617",
+        "6,069"
+      ],
+      "numbers": [
+        5617,
+        6069
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Unearned revenues",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,397",
+        "3,413"
+      ],
+      "numbers": [
+        3397,
+        3413
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,909",
+        "28,046"
+      ],
+      "numbers": [
+        27909,
+        28046
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "115,835",
+        "114,897"
+      ],
+      "numbers": [
+        115835,
+        114897
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt, less current maturities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "68,714",
+        "72,320"
+      ],
+      "numbers": [
+        68714,
+        72320
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,528",
+        "2,421"
+      ],
+      "numbers": [
+        2528,
+        2421
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,160",
+        "18,245"
+      ],
+      "numbers": [
+        20160,
+        18245
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "207,237",
+        "207,883"
+      ],
+      "numbers": [
+        207237,
+        207883
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 7)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,416",
+        "1,608"
+      ],
+      "numbers": [
+        1416,
+        1608
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $0.001 par value - 10 shares authorized; no shares issued or outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.01 par value - 3,000 shares authorized; 896 and 906 issued and outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9",
+        "9"
+      ],
+      "numbers": [
+        9,
+        9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "559"
+      ],
+      "numbers": [
+        0,
+        559
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "102,021",
+        "95,603"
+      ],
+      "numbers": [
+        102021,
+        95603
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(3,934)",
+        "(2,061)"
+      ],
+      "numbers": [
+        -3934,
+        -2061
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Nonredeemable noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,033",
+        "5,980"
+      ],
+      "numbers": [
+        6033,
+        5980
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "104,129",
+        "100,090"
+      ],
+      "numbers": [
+        104129,
+        100090
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities, redeemable noncontrolling interests and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 312,782",
+        "$ 309,581"
+      ],
+      "numbers": [
+        312782,
+        309581
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0.001",
+        "$ 0.001"
+      ],
+      "numbers": [
+        0.001,
+        0.001
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, shares authorized",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10",
+        "10"
+      ],
+      "numbers": [
+        10,
+        10
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, shares issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, shares outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0.01",
+        "$ 0.01"
+      ],
+      "numbers": [
+        0.01,
+        0.01
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, shares authorized",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,000",
+        "3,000"
+      ],
+      "numbers": [
+        3000,
+        3000
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, shares issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "896",
+        "906"
+      ],
+      "numbers": [
+        896,
+        906
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, shares outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "896",
+        "906"
+      ],
+      "numbers": [
+        896,
+        906
+      ]
+    }
+  ]
+}

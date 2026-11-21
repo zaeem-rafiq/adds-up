@@ -10,7 +10,7 @@ Written as planning before the event and copied here at its start. Every unit fo
 
 1. `https://www.sec.gov/files/company_tickers.json` lists companies with their SEC number.
 2. `https://data.sec.gov/submissions/CIK<ten digits>.json` lists a company's filings. Take the newest 10-K or 10-Q.
-3. `https://www.sec.gov/Archives/edgar/data/<SEC number>/<filing number without dashes>/FilingSummary.xml` lists the filing's reports. Take the first report in the "Statements" group whose short name holds "BALANCE SHEET", "FINANCIAL POSITION" or "FINANCIAL CONDITION" and does not hold "Parenthetical".
+3. `https://www.sec.gov/Archives/edgar/data/<SEC number>/<filing number without dashes>/FilingSummary.xml` lists the filing's reports. Take the first report in the "Statements" group whose short name holds "BALANCE SHEET", "FINANCIAL POSITION", "FINANCIAL CONDITION" or "STATEMENTS OF CONDITION" and does not hold "Parenthetical". Banks use the last name. It was added at the event, after Bank of Hawaii's filing showed it.
 4. That report's page, for example `R5.htm` in the same folder, holds one `table` with the class `report`. The first row holds the title and the two dates. Rows with the class `re` or `ro` are plain rows. Rows with `reu` or `rou` are totals. The label is in the cell with the class `pl`. Numbers are in cells with the class `nump` or `num`. A row whose number cells are empty is a heading.
 
 Every request to the SEC sends the `SEC_USER_AGENT` value as its User-Agent. The SEC refuses requests without a declared contact. Send at most 5 requests a second.

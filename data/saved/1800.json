@@ -1,0 +1,529 @@
+{
+  "cik": "1800",
+  "companyName": "ABBOTT LABORATORIES",
+  "form": "10-Q",
+  "filingDate": "2026-11-04",
+  "title": "Condensed Consolidated Balance Sheet - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current Assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 4,052",
+        "$ 8,522"
+      ],
+      "numbers": [
+        4052,
+        8522
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "246",
+        "417"
+      ],
+      "numbers": [
+        246,
+        417
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade receivables, less allowances of $508 in 2026 and $490 in 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,032",
+        "7,929"
+      ],
+      "numbers": [
+        9032,
+        7929
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Inventories:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Finished products",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,505",
+        "3,976"
+      ],
+      "numbers": [
+        4505,
+        3976
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Work in process",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,027",
+        "904"
+      ],
+      "numbers": [
+        1027,
+        904
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Materials",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,805",
+        "1,608"
+      ],
+      "numbers": [
+        1805,
+        1608
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total inventories",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "7,337",
+        "6,488"
+      ],
+      "numbers": [
+        7337,
+        6488
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,829",
+        "2,640"
+      ],
+      "numbers": [
+        2829,
+        2640
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "23,496",
+        "25,996"
+      ],
+      "numbers": [
+        23496,
+        25996
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,099",
+        "918"
+      ],
+      "numbers": [
+        1099,
+        918
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,714",
+        "25,222"
+      ],
+      "numbers": [
+        26714,
+        25222
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less: accumulated depreciation and amortization",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,834",
+        "13,406"
+      ],
+      "numbers": [
+        13834,
+        13406
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Net property and equipment",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,880",
+        "11,816"
+      ],
+      "numbers": [
+        12880,
+        11816
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net of amortization",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,591",
+        "5,526"
+      ],
+      "numbers": [
+        19591,
+        5526
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "32,643",
+        "24,035"
+      ],
+      "numbers": [
+        32643,
+        24035
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes and other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,538",
+        "18,422"
+      ],
+      "numbers": [
+        18538,
+        18422
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "108,247",
+        "86,713"
+      ],
+      "numbers": [
+        108247,
+        86713
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current Liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,656",
+        "4,240"
+      ],
+      "numbers": [
+        4656,
+        4240
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Salaries, wages, and commissions",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,896",
+        "1,745"
+      ],
+      "numbers": [
+        1896,
+        1745
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,583",
+        "5,812"
+      ],
+      "numbers": [
+        6583,
+        5812
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Dividends payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,094",
+        "1,097"
+      ],
+      "numbers": [
+        1094,
+        1097
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "215",
+        "569"
+      ],
+      "numbers": [
+        215,
+        569
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,708",
+        "3,033"
+      ],
+      "numbers": [
+        1708,
+        3033
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "16,152",
+        "16,496"
+      ],
+      "numbers": [
+        16152,
+        16496
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "29,451",
+        "9,896"
+      ],
+      "numbers": [
+        29451,
+        9896
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Post-employment obligations, deferred income taxes, and other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,021",
+        "7,550"
+      ],
+      "numbers": [
+        11021,
+        7550
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and Contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ Investment:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred shares, one dollar par value Authorized — 1,000,000 shares, none issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common shares, without par value Authorized — 2,400,000,000 shares Issued at stated capital amount — Shares: 2026: 1,999,047,835; 2025: 1,996,795,525",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,645",
+        "25,527"
+      ],
+      "numbers": [
+        25645,
+        25527
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common shares held in treasury, at cost — Shares: 2026: 267,106,234; 2025: 260,196,074",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(17,913)",
+        "(17,177)"
+      ],
+      "numbers": [
+        -17913,
+        -17177
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Earnings employed in the business",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "49,638",
+        "49,781"
+      ],
+      "numbers": [
+        49638,
+        49781
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(6,343)",
+        "(6,001)"
+      ],
+      "numbers": [
+        -6343,
+        -6001
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Abbott Shareholders’ Investment",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,027",
+        "52,130"
+      ],
+      "numbers": [
+        51027,
+        52130
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "596",
+        "641"
+      ],
+      "numbers": [
+        596,
+        641
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Shareholders’ Investment",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,623",
+        "52,771"
+      ],
+      "numbers": [
+        51623,
+        52771
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Shareholders' Investment",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 108,247",
+        "$ 86,713"
+      ],
+      "numbers": [
+        108247,
+        86713
+      ]
+    }
+  ]
+}

@@ -1,0 +1,412 @@
+{
+  "cik": "319201",
+  "companyName": "KLA CORP",
+  "form": "10-Q",
+  "filingDate": "2026-10-29",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Jun. 30, 2026"
+  ],
+  "unitLine": "$ in Thousands",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 1,531,950",
+        "$ 1,649,842"
+      ],
+      "numbers": [
+        1531950,
+        1649842
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,209,241",
+        "3,252,566"
+      ],
+      "numbers": [
+        3209241,
+        3252566
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,072,087",
+        "2,889,208"
+      ],
+      "numbers": [
+        3072087,
+        2889208
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,090,426",
+        "3,648,538"
+      ],
+      "numbers": [
+        4090426,
+        3648538
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "669,711",
+        "941,636"
+      ],
+      "numbers": [
+        669711,
+        941636
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,573,415",
+        "12,381,790"
+      ],
+      "numbers": [
+        12573415,
+        12381790
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Land, property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,541,331",
+        "1,380,550"
+      ],
+      "numbers": [
+        1541331,
+        1380550
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,789,683",
+        "1,788,758"
+      ],
+      "numbers": [
+        1789683,
+        1788758
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,054,617",
+        "1,037,224"
+      ],
+      "numbers": [
+        1054617,
+        1037224
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Purchased intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "212,598",
+        "255,835"
+      ],
+      "numbers": [
+        212598,
+        255835
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,233,091",
+        "1,107,378"
+      ],
+      "numbers": [
+        1233091,
+        1107378
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "18,404,735",
+        "17,951,535"
+      ],
+      "numbers": [
+        18404735,
+        17951535
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "740,743",
+        "623,668"
+      ],
+      "numbers": [
+        740743,
+        623668
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred system revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "843,008",
+        "932,901"
+      ],
+      "numbers": [
+        843008,
+        932901
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred service revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "634,232",
+        "604,127"
+      ],
+      "numbers": [
+        634232,
+        604127
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,337,103",
+        "2,144,231"
+      ],
+      "numbers": [
+        2337103,
+        2144231
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "4,555,086",
+        "4,304,927"
+      ],
+      "numbers": [
+        4555086,
+        4304927
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,723,289",
+        "5,887,415"
+      ],
+      "numbers": [
+        5723289,
+        5887415
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "452,541",
+        "473,648"
+      ],
+      "numbers": [
+        452541,
+        473648
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred service revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "230,562",
+        "238,111"
+      ],
+      "numbers": [
+        230562,
+        238111
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "919,850",
+        "697,614"
+      ],
+      "numbers": [
+        919850,
+        697614
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "11,881,328",
+        "11,601,715"
+      ],
+      "numbers": [
+        11881328,
+        11601715
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Notes 8, 13 and 14)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock and capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,585,416",
+        "2,700,409"
+      ],
+      "numbers": [
+        2585416,
+        2700409
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,997,397",
+        "3,683,864"
+      ],
+      "numbers": [
+        3997397,
+        3683864
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(59,406)",
+        "(34,453)"
+      ],
+      "numbers": [
+        -59406,
+        -34453
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,523,407",
+        "6,349,820"
+      ],
+      "numbers": [
+        6523407,
+        6349820
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 18,404,735",
+        "$ 17,951,535"
+      ],
+      "numbers": [
+        18404735,
+        17951535
+      ]
+    }
+  ]
+}

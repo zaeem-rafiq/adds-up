@@ -1,0 +1,589 @@
+{
+  "cik": "93410",
+  "companyName": "CHEVRON CORP",
+  "form": "10-Q",
+  "filingDate": "2026-11-05",
+  "title": "CONSOLIDATED BALANCE SHEET (Unaudited) - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 12,804",
+        "$ 6,293"
+      ],
+      "numbers": [
+        12804,
+        6293
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Time deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "4"
+      ],
+      "numbers": [
+        0,
+        4
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts and notes receivable (less allowance: 2026 - $184; 2025 - $176)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,104",
+        "18,075"
+      ],
+      "numbers": [
+        26104,
+        18075
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Inventories:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Crude oil and products",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,593",
+        "6,640"
+      ],
+      "numbers": [
+        7593,
+        6640
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Chemicals",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "713",
+        "571"
+      ],
+      "numbers": [
+        713,
+        571
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Materials, supplies and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,087",
+        "2,500"
+      ],
+      "numbers": [
+        3087,
+        2500
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total inventories",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "11,393",
+        "9,711"
+      ],
+      "numbers": [
+        11393,
+        9711
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,828",
+        "4,469"
+      ],
+      "numbers": [
+        5828,
+        4469
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "56,129",
+        "38,552"
+      ],
+      "numbers": [
+        56129,
+        38552
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term receivables (less allowance: 2026 - $216; 2025 - $216)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "892",
+        "1,035"
+      ],
+      "numbers": [
+        892,
+        1035
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments and advances",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "42,265",
+        "43,867"
+      ],
+      "numbers": [
+        42265,
+        43867
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Properties, plant and equipment, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "435,874",
+        "434,955"
+      ],
+      "numbers": [
+        435874,
+        434955
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less: Accumulated depreciation, depletion and amortization",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "224,177",
+        "215,226"
+      ],
+      "numbers": [
+        224177,
+        215226
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Properties, plant and equipment, net",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "211,697",
+        "219,729"
+      ],
+      "numbers": [
+        211697,
+        219729
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred charges and other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,321",
+        "16,236"
+      ],
+      "numbers": [
+        17321,
+        16236
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,568",
+        "4,568"
+      ],
+      "numbers": [
+        4568,
+        4568
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Assets held for sale",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "914",
+        "25"
+      ],
+      "numbers": [
+        914,
+        25
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "333,786",
+        "324,012"
+      ],
+      "numbers": [
+        333786,
+        324012
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities and Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "731",
+        "977"
+      ],
+      "numbers": [
+        731,
+        977
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,862",
+        "19,280"
+      ],
+      "numbers": [
+        26862,
+        19280
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,480",
+        "10,763"
+      ],
+      "numbers": [
+        10480,
+        10763
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal and other taxes on income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,237",
+        "844"
+      ],
+      "numbers": [
+        2237,
+        844
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,517",
+        "1,523"
+      ],
+      "numbers": [
+        1517,
+        1523
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "41,827",
+        "33,387"
+      ],
+      "numbers": [
+        41827,
+        33387
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "32,803",
+        "39,781"
+      ],
+      "numbers": [
+        32803,
+        39781
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred credits and other noncurrent obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,668",
+        "24,543"
+      ],
+      "numbers": [
+        24668,
+        24543
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "30,693",
+        "30,014"
+      ],
+      "numbers": [
+        30693,
+        30014
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent employee benefit plans",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,818",
+        "4,111"
+      ],
+      "numbers": [
+        3818,
+        4111
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "133,809",
+        "131,836"
+      ],
+      "numbers": [
+        133809,
+        131836
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock (authorized 100,000,000 shares; $1.00 par value; none issued)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock (authorized 6,000,000,000 shares, $0.75 par value; 2,442,676,580 shares issued at September 30, 2026 and December 31, 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,832",
+        "1,832"
+      ],
+      "numbers": [
+        1832,
+        1832
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,100",
+        "33,886"
+      ],
+      "numbers": [
+        34100,
+        33886
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "219,027",
+        "205,365"
+      ],
+      "numbers": [
+        219027,
+        205365
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive losses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,984)",
+        "(2,464)"
+      ],
+      "numbers": [
+        -1984,
+        -2464
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred compensation and benefit plan trust",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(240)",
+        "(240)"
+      ],
+      "numbers": [
+        -240,
+        -240
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost (477,254,894 and 448,260,458 shares at September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(58,408)",
+        "(51,929)"
+      ],
+      "numbers": [
+        -58408,
+        -51929
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Chevron Corporation Stockholders’ Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "194,327",
+        "186,450"
+      ],
+      "numbers": [
+        194327,
+        186450
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,650",
+        "5,726"
+      ],
+      "numbers": [
+        5650,
+        5726
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "199,977",
+        "192,176"
+      ],
+      "numbers": [
+        199977,
+        192176
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 333,786",
+        "$ 324,012"
+      ],
+      "numbers": [
+        333786,
+        324012
+      ]
+    }
+  ]
+}

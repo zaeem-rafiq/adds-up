@@ -1,0 +1,426 @@
+{
+  "cik": "1571996",
+  "companyName": "Dell Technologies Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-09-08",
+  "title": "CONDENSED CONSOLIDATED STATEMENTS OF FINANCIAL POSITION - USD ($)",
+  "columns": [
+    "Jul. 31, 2026",
+    "Jan. 30, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 11,569",
+        "$ 11,528"
+      ],
+      "numbers": [
+        11569,
+        11528
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net of allowance of $56 and $77",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,918",
+        "17,585"
+      ],
+      "numbers": [
+        22918,
+        17585
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term financing receivables, net of allowance of $186 and $121",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,805",
+        "8,458"
+      ],
+      "numbers": [
+        12805,
+        8458
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,290",
+        "10,437"
+      ],
+      "numbers": [
+        21290,
+        10437
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,965",
+        "9,594"
+      ],
+      "numbers": [
+        11965,
+        9594
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "80,547",
+        "57,602"
+      ],
+      "numbers": [
+        80547,
+        57602
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant, and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,417",
+        "6,676"
+      ],
+      "numbers": [
+        7417,
+        6676
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,679",
+        "1,730"
+      ],
+      "numbers": [
+        2679,
+        1730
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term financing receivables, net of allowance of $128 and $92",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,625",
+        "5,822"
+      ],
+      "numbers": [
+        7625,
+        5822
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,448",
+        "19,547"
+      ],
+      "numbers": [
+        19448,
+        19547
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,347",
+        "4,533"
+      ],
+      "numbers": [
+        4347,
+        4533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,330",
+        "5,376"
+      ],
+      "numbers": [
+        5330,
+        5376
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "127,393",
+        "101,286"
+      ],
+      "numbers": [
+        127393,
+        101286
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,481",
+        "7,990"
+      ],
+      "numbers": [
+        8481,
+        7990
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "49,723",
+        "33,630"
+      ],
+      "numbers": [
+        49723,
+        33630
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,738",
+        "8,315"
+      ],
+      "numbers": [
+        10738,
+        8315
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,761",
+        "13,334"
+      ],
+      "numbers": [
+        14761,
+        13334
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "83,703",
+        "63,269"
+      ],
+      "numbers": [
+        83703,
+        63269
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,985",
+        "23,513"
+      ],
+      "numbers": [
+        25985,
+        23513
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,957",
+        "13,596"
+      ],
+      "numbers": [
+        14957,
+        13596
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,175",
+        "3,378"
+      ],
+      "numbers": [
+        4175,
+        3378
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "128,820",
+        "103,756"
+      ],
+      "numbers": [
+        128820,
+        103756
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 10)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity (deficit):",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock and capital in excess of $0.01 par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,277",
+        "9,457"
+      ],
+      "numbers": [
+        9277,
+        9457
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(20,010)",
+        "(14,533)"
+      ],
+      "numbers": [
+        -20010,
+        -14533
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,065",
+        "3,325"
+      ],
+      "numbers": [
+        10065,
+        3325
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(759)",
+        "(719)"
+      ],
+      "numbers": [
+        -759,
+        -719
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders' equity (deficit)",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "(1,427)",
+        "(2,470)"
+      ],
+      "numbers": [
+        -1427,
+        -2470
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 127,393",
+        "$ 101,286"
+      ],
+      "numbers": [
+        127393,
+        101286
+      ]
+    }
+  ]
+}

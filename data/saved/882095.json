@@ -1,0 +1,468 @@
+{
+  "cik": "882095",
+  "companyName": "GILEAD SCIENCES, INC.",
+  "form": "10-Q",
+  "filingDate": "2026-10-30",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS (unaudited) - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 6,437",
+        "$ 7,564"
+      ],
+      "numbers": [
+        6437,
+        7564
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term marketable debt securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "68"
+      ],
+      "numbers": [
+        0,
+        68
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,007",
+        "4,913"
+      ],
+      "numbers": [
+        5007,
+        4913
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,896",
+        "1,774"
+      ],
+      "numbers": [
+        1896,
+        1774
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,214",
+        "4,024"
+      ],
+      "numbers": [
+        3214,
+        4024
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "16,553",
+        "18,342"
+      ],
+      "numbers": [
+        16553,
+        18342
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,945",
+        "5,606"
+      ],
+      "numbers": [
+        5945,
+        5606
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term marketable debt securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "2,974"
+      ],
+      "numbers": [
+        0,
+        2974
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,424",
+        "16,978"
+      ],
+      "numbers": [
+        13424,
+        16978
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,314",
+        "8,314"
+      ],
+      "numbers": [
+        8314,
+        8314
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,270",
+        "1,964"
+      ],
+      "numbers": [
+        2270,
+        1964
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,902",
+        "4,845"
+      ],
+      "numbers": [
+        4902,
+        4845
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,408",
+        "59,023"
+      ],
+      "numbers": [
+        51408,
+        59023
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "934",
+        "715"
+      ],
+      "numbers": [
+        934,
+        715
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued rebates",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,624",
+        "4,337"
+      ],
+      "numbers": [
+        4624,
+        4337
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,416",
+        "2,807"
+      ],
+      "numbers": [
+        2416,
+        2807
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,028",
+        "3,953"
+      ],
+      "numbers": [
+        4028,
+        3953
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,002",
+        "11,813"
+      ],
+      "numbers": [
+        12002,
+        11813
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23,815",
+        "22,129"
+      ],
+      "numbers": [
+        23815,
+        22129
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term income taxes payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "974",
+        "896"
+      ],
+      "numbers": [
+        974,
+        896
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "318",
+        "402"
+      ],
+      "numbers": [
+        318,
+        402
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,343",
+        "1,165"
+      ],
+      "numbers": [
+        1343,
+        1165
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 10)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, par value $0.001 per share; 5 shares authorized; none outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value $0.001 per share; 5,600 shares authorized; 1,241 shares issued and outstanding",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1",
+        "1"
+      ],
+      "numbers": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,841",
+        "8,932"
+      ],
+      "numbers": [
+        9841,
+        8932
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "89",
+        "39"
+      ],
+      "numbers": [
+        89,
+        39
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,107",
+        "13,730"
+      ],
+      "numbers": [
+        3107,
+        13730
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Gilead stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,040",
+        "22,703"
+      ],
+      "numbers": [
+        13040,
+        22703
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(84)",
+        "(84)"
+      ],
+      "numbers": [
+        -84,
+        -84
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,955",
+        "22,618"
+      ],
+      "numbers": [
+        12955,
+        22618
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 51,408",
+        "$ 59,023"
+      ],
+      "numbers": [
+        51408,
+        59023
+      ]
+    }
+  ]
+}

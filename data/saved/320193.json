@@ -1,0 +1,436 @@
+{
+  "cik": "320193",
+  "companyName": "Apple Inc.",
+  "form": "10-K",
+  "filingDate": "2026-11-03",
+  "title": "CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 26, 2026",
+    "Sep. 27, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 36,305",
+        "$ 35,934"
+      ],
+      "numbers": [
+        36305,
+        35934
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,417",
+        "18,763"
+      ],
+      "numbers": [
+        20417,
+        18763
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "43,817",
+        "39,777"
+      ],
+      "numbers": [
+        43817,
+        39777
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Vendor non-trade receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,896",
+        "33,180"
+      ],
+      "numbers": [
+        39896,
+        33180
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,541",
+        "5,718"
+      ],
+      "numbers": [
+        14541,
+        5718
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,881",
+        "14,585"
+      ],
+      "numbers": [
+        18881,
+        14585
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "173,857",
+        "147,957"
+      ],
+      "numbers": [
+        173857,
+        147957
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Non-current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "80,213",
+        "77,723"
+      ],
+      "numbers": [
+        80213,
+        77723
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "52,084",
+        "49,834"
+      ],
+      "numbers": [
+        52084,
+        49834
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-current portion of intangible assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,278",
+        "11,093"
+      ],
+      "numbers": [
+        20278,
+        11093
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "78,116",
+        "72,634"
+      ],
+      "numbers": [
+        78116,
+        72634
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total non-current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "230,691",
+        "211,284"
+      ],
+      "numbers": [
+        230691,
+        211284
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "404,548",
+        "359,241"
+      ],
+      "numbers": [
+        404548,
+        359241
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "82,252",
+        "69,860"
+      ],
+      "numbers": [
+        82252,
+        69860
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "66,124",
+        "66,387"
+      ],
+      "numbers": [
+        66124,
+        66387
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,636",
+        "9,055"
+      ],
+      "numbers": [
+        9636,
+        9055
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Commercial paper",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,997",
+        "7,979"
+      ],
+      "numbers": [
+        1997,
+        7979
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,906",
+        "12,350"
+      ],
+      "numbers": [
+        9906,
+        12350
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "169,915",
+        "165,631"
+      ],
+      "numbers": [
+        169915,
+        165631
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Non-current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "68,208",
+        "78,328"
+      ],
+      "numbers": [
+        68208,
+        78328
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other non-current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "54,332",
+        "41,549"
+      ],
+      "numbers": [
+        54332,
+        41549
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total non-current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "122,540",
+        "119,877"
+      ],
+      "numbers": [
+        122540,
+        119877
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "292,455",
+        "285,508"
+      ],
+      "numbers": [
+        292455,
+        285508
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock and additional paid-in capital, $0.00001 par value: 50,400,000 shares authorized; 14,532,259 and 14,773,260 shares issued and outstanding, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "104,815",
+        "93,568"
+      ],
+      "numbers": [
+        104815,
+        93568
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings/(Accumulated deficit)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,700",
+        "(14,264)"
+      ],
+      "numbers": [
+        13700,
+        -14264
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(6,422)",
+        "(5,571)"
+      ],
+      "numbers": [
+        -6422,
+        -5571
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "112,093",
+        "73,733"
+      ],
+      "numbers": [
+        112093,
+        73733
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 404,548",
+        "$ 359,241"
+      ],
+      "numbers": [
+        404548,
+        359241
+      ]
+    }
+  ]
+}

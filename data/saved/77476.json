@@ -1,0 +1,566 @@
+{
+  "cik": "77476",
+  "companyName": "PEPSICO INC",
+  "form": "10-Q",
+  "filingDate": "2026-10-08",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEET - USD ($)",
+  "columns": [
+    "Sep. 05, 2026",
+    "Dec. 27, 2025"
+  ],
+  "unitLine": "shares in Thousands, $ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 10,675",
+        "$ 9,159"
+      ],
+      "numbers": [
+        10675,
+        9159
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "488",
+        "371"
+      ],
+      "numbers": [
+        488,
+        371
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts and Financing Receivable, after Allowance for Credit Loss, Current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,623",
+        "11,506"
+      ],
+      "numbers": [
+        13623,
+        11506
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Inventories:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Raw materials and packaging",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,792",
+        "2,581"
+      ],
+      "numbers": [
+        2792,
+        2581
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Work-in-process",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "175",
+        "143"
+      ],
+      "numbers": [
+        175,
+        143
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Finished goods",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,467",
+        "3,121"
+      ],
+      "numbers": [
+        3467,
+        3121
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventory, Net, Total",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,434",
+        "5,845"
+      ],
+      "numbers": [
+        6434,
+        5845
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,339",
+        "1,068"
+      ],
+      "numbers": [
+        1339,
+        1068
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "32,559",
+        "27,949"
+      ],
+      "numbers": [
+        32559,
+        27949
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "62,383",
+        "60,909"
+      ],
+      "numbers": [
+        62383,
+        60909
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated depreciation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(32,652)",
+        "(31,004)"
+      ],
+      "numbers": [
+        -32652,
+        -31004
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, Plant and Equipment, net",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "29,731",
+        "29,905"
+      ],
+      "numbers": [
+        29731,
+        29905
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Amortizable Intangible Assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,165",
+        "1,219"
+      ],
+      "numbers": [
+        1165,
+        1219
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,884",
+        "18,916"
+      ],
+      "numbers": [
+        18884,
+        18916
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible Asset, Excluding Goodwill, Indefinite-Lived",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,977",
+        "13,847"
+      ],
+      "numbers": [
+        13977,
+        13847
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments in Noncontrolled Affiliates",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,215",
+        "2,038"
+      ],
+      "numbers": [
+        2215,
+        2038
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred Income Taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,328",
+        "4,541"
+      ],
+      "numbers": [
+        4328,
+        4541
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,117",
+        "8,984"
+      ],
+      "numbers": [
+        9117,
+        8984
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "111,976",
+        "107,399"
+      ],
+      "numbers": [
+        111976,
+        107399
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,223",
+        "6,861"
+      ],
+      "numbers": [
+        9223,
+        6861
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,306",
+        "25,903"
+      ],
+      "numbers": [
+        25306,
+        25903
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Current Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "34,529",
+        "32,764"
+      ],
+      "numbers": [
+        34529,
+        32764
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-Term Debt Obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "42,658",
+        "42,321"
+      ],
+      "numbers": [
+        42658,
+        42321
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred Income Taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,107",
+        "3,802"
+      ],
+      "numbers": [
+        4107,
+        3802
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,195",
+        "7,965"
+      ],
+      "numbers": [
+        8195,
+        7965
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 89,489",
+        "$ 86,852"
+      ],
+      "numbers": [
+        89489,
+        86852
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, issued (in shares)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,364,000",
+        "1,367,000"
+      ],
+      "numbers": [
+        1364000,
+        1367000
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "PepsiCo Common Shareholders’ Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value 12/3¢ per share (authorized 3,600 shares; issued, net of repurchased common stock at par value: 1,364 and 1,367 shares, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 23",
+        "$ 23"
+      ],
+      "numbers": [
+        23,
+        23
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,522",
+        "4,451"
+      ],
+      "numbers": [
+        4522,
+        4451
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "75,140",
+        "72,788"
+      ],
+      "numbers": [
+        75140,
+        72788
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(14,987)",
+        "(15,024)"
+      ],
+      "numbers": [
+        -14987,
+        -15024
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Repurchased common stock, in excess of par value (503 and 500 shares, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(42,406)",
+        "(41,832)"
+      ],
+      "numbers": [
+        -42406,
+        -41832
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total PepsiCo Common Shareholders’ Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "22,292",
+        "20,406"
+      ],
+      "numbers": [
+        22292,
+        20406
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "195",
+        "141"
+      ],
+      "numbers": [
+        195,
+        141
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "22,487",
+        "20,547"
+      ],
+      "numbers": [
+        22487,
+        20547
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 111,976",
+        "$ 107,399"
+      ],
+      "numbers": [
+        111976,
+        107399
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury Stock, Common, Shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "503,000",
+        "500,000"
+      ],
+      "numbers": [
+        503000,
+        500000
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, authorized (in shares)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,600,000",
+        "3,600,000"
+      ],
+      "numbers": [
+        3600000,
+        3600000
+      ]
+    }
+  ]
+}

@@ -1,0 +1,500 @@
+{
+  "cik": "1996810",
+  "companyName": "GE Vernova Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-10-28",
+  "title": "CONSOLIDATED STATEMENT OF FINANCIAL POSITION (UNAUDITED) - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Statement of Financial Position [Abstract]",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash, cash equivalents, and restricted cash",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 16,764",
+        "$ 8,848"
+      ],
+      "numbers": [
+        16764,
+        8848
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current receivables – net (Note 4)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,587",
+        "9,803"
+      ],
+      "numbers": [
+        11587,
+        9803
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories, including deferred inventory costs (Note 5)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,045",
+        "10,429"
+      ],
+      "numbers": [
+        13045,
+        10429
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current contract assets (Note 9)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,320",
+        "9,294"
+      ],
+      "numbers": [
+        9320,
+        9294
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other current assets (Note 10)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "964",
+        "1,445"
+      ],
+      "numbers": [
+        964,
+        1445
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Assets held for sale (Note 3)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "396"
+      ],
+      "numbers": [
+        0,
+        396
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "51,681",
+        "40,216"
+      ],
+      "numbers": [
+        51681,
+        40216
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant, and equipment – net (Note 6)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,820",
+        "6,006"
+      ],
+      "numbers": [
+        7820,
+        6006
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill (Note 8)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,609",
+        "4,439"
+      ],
+      "numbers": [
+        9609,
+        4439
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets – net (Note 8)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,343",
+        "727"
+      ],
+      "numbers": [
+        4343,
+        727
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract and other deferred assets (Note 9)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "471",
+        "378"
+      ],
+      "numbers": [
+        471,
+        378
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity method investments (Note 11)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,426",
+        "1,834"
+      ],
+      "numbers": [
+        1426,
+        1834
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes (Note 16)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,519",
+        "5,321"
+      ],
+      "numbers": [
+        6519,
+        5321
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other assets (Note 10)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,351",
+        "4,095"
+      ],
+      "numbers": [
+        4351,
+        4095
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "86,220",
+        "63,016"
+      ],
+      "numbers": [
+        86220,
+        63016
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and equipment project payables (Note 12)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,786",
+        "8,809"
+      ],
+      "numbers": [
+        10786,
+        8809
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract liabilities and deferred income (Note 9)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "45,669",
+        "25,774"
+      ],
+      "numbers": [
+        45669,
+        25774
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other current liabilities (Note 15)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,011",
+        "6,310"
+      ],
+      "numbers": [
+        6011,
+        6310
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Liabilities held for sale (Note 3)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "79"
+      ],
+      "numbers": [
+        0,
+        79
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "62,467",
+        "40,972"
+      ],
+      "numbers": [
+        62467,
+        40972
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term borrowings (Note 14)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,795",
+        "265"
+      ],
+      "numbers": [
+        2795,
+        265
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes (Note 16)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,469",
+        "1,162"
+      ],
+      "numbers": [
+        1469,
+        1162
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-current compensation and benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,161",
+        "3,171"
+      ],
+      "numbers": [
+        2161,
+        3171
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other liabilities (Note 15)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,790",
+        "5,151"
+      ],
+      "numbers": [
+        4790,
+        5151
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "73,682",
+        "50,720"
+      ],
+      "numbers": [
+        73682,
+        50720
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 22)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, par value $0.01 per share, 1,000,000,000 shares authorized, 264,677,066 and 269,529,464 shares outstanding as of September 30, 2026 and December 31, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3",
+        "3"
+      ],
+      "numbers": [
+        3,
+        3
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,500",
+        "9,813"
+      ],
+      "numbers": [
+        9500,
+        9813
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,455",
+        "6,154"
+      ],
+      "numbers": [
+        12455,
+        6154
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury common stock, 14,381,479 and 8,397,266 shares at cost as of September 30, 2026 and December 31, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(8,702)",
+        "(3,385)"
+      ],
+      "numbers": [
+        -8702,
+        -3385
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss) – net attributable to GE Vernova (Note 17)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,874)",
+        "(1,407)"
+      ],
+      "numbers": [
+        -1874,
+        -1407
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity attributable to GE Vernova",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "11,382",
+        "11,178"
+      ],
+      "numbers": [
+        11382,
+        11178
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,156",
+        "1,118"
+      ],
+      "numbers": [
+        1156,
+        1118
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "12,538",
+        "12,296"
+      ],
+      "numbers": [
+        12538,
+        12296
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 86,220",
+        "$ 63,016"
+      ],
+      "numbers": [
+        86220,
+        63016
+      ]
+    }
+  ]
+}

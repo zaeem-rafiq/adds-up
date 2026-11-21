@@ -1,0 +1,717 @@
+{
+  "cik": "70858",
+  "companyName": "BANK OF AMERICA CORP /DE/",
+  "form": "10-Q",
+  "filingDate": "2026-10-30",
+  "title": "Consolidated Balance Sheet - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and due from banks",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 26,907",
+        "$ 28,595"
+      ],
+      "numbers": [
+        26907,
+        28595
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Interest-bearing deposits with the Federal Reserve, non-U.S. central banks and other banks",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "222,736",
+        "203,250"
+      ],
+      "numbers": [
+        222736,
+        203250
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "249,643",
+        "231,845"
+      ],
+      "numbers": [
+        249643,
+        231845
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Time deposits placed and other short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,638",
+        "7,474"
+      ],
+      "numbers": [
+        8638,
+        7474
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal funds sold and securities borrowed or purchased under agreements to resell (includes $217,522 and $185,491 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "347,125",
+        "316,578"
+      ],
+      "numbers": [
+        347125,
+        316578
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading account assets (includes $161,758 and $185,869 pledged as collateral)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "332,475",
+        "366,954"
+      ],
+      "numbers": [
+        332475,
+        366954
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivative assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "53,148",
+        "40,881"
+      ],
+      "numbers": [
+        53148,
+        40881
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Debt securities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Carried at fair value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "345,636",
+        "402,975"
+      ],
+      "numbers": [
+        345636,
+        402975
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Held-to-maturity, at amortized cost (fair value $392,513 and $442,430)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "496,398",
+        "522,660"
+      ],
+      "numbers": [
+        496398,
+        522660
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total debt securities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "842,034",
+        "925,635"
+      ],
+      "numbers": [
+        842034,
+        925635
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans and leases (includes $3,341 and $3,498 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,251,260",
+        "1,185,700"
+      ],
+      "numbers": [
+        1251260,
+        1185700
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Allowance for loan and lease losses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(13,005)",
+        "(13,203)"
+      ],
+      "numbers": [
+        -13005,
+        -13203
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans and leases, net of allowance",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,238,255",
+        "1,172,497"
+      ],
+      "numbers": [
+        1238255,
+        1172497
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Premises and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,906",
+        "12,516"
+      ],
+      "numbers": [
+        13906,
+        12516
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "69,021",
+        "69,021"
+      ],
+      "numbers": [
+        69021,
+        69021
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans held-for-sale (includes $3,914 and $2,271 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,102",
+        "5,165"
+      ],
+      "numbers": [
+        8102,
+        5165
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer and other receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "91,685",
+        "98,186"
+      ],
+      "numbers": [
+        91685,
+        98186
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets (includes $6,469 and $9,058 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "173,672",
+        "164,986"
+      ],
+      "numbers": [
+        173672,
+        164986
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "3,427,704",
+        "3,411,738"
+      ],
+      "numbers": [
+        3427704,
+        3411738
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Deposits in U.S. offices:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Noninterest-bearing",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "534,129",
+        "517,834"
+      ],
+      "numbers": [
+        534129,
+        517834
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Interest-bearing (includes $2,144 and $1,223 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,357,525",
+        "1,361,177"
+      ],
+      "numbers": [
+        1357525,
+        1361177
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Deposits in non-U.S. offices:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Noninterest-bearing",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,545",
+        "14,216"
+      ],
+      "numbers": [
+        14545,
+        14216
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Interest-bearing",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "132,559",
+        "125,502"
+      ],
+      "numbers": [
+        132559,
+        125502
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total deposits",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,038,758",
+        "2,018,729"
+      ],
+      "numbers": [
+        2038758,
+        2018729
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal funds purchased and securities loaned or sold under agreements to repurchase (includes $196,662 and $223,067 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "315,418",
+        "344,716"
+      ],
+      "numbers": [
+        315418,
+        344716
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading account liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "109,805",
+        "105,996"
+      ],
+      "numbers": [
+        109805,
+        105996
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Derivative liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "49,246",
+        "42,076"
+      ],
+      "numbers": [
+        49246,
+        42076
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings (includes $14,044 and $8,051 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "62,230",
+        "48,088"
+      ],
+      "numbers": [
+        62230,
+        48088
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other liabilities (includes $5,581 and $8,996 measured at fair value and $1,179 and $1,177 of reserve for unfunded lending commitments)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "236,811",
+        "231,074"
+      ],
+      "numbers": [
+        236811,
+        231074
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt (includes $85,033 and $72,591 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "318,687",
+        "317,816"
+      ],
+      "numbers": [
+        318687,
+        317816
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "3,130,955",
+        "3,108,495"
+      ],
+      "numbers": [
+        3130955,
+        3108495
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 6 – Securitizations and Other Variable Interest Entities and Note 10 – Commitments and Contingencies)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock, $0.01 par value; authorized – 100,000,000 shares; issued and outstanding – 3,950,961 and 3,991,164 shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,996",
+        "25,992"
+      ],
+      "numbers": [
+        24996,
+        25992
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock and additional paid-in capital, $0.01 par value; authorized – 12,800,000,000 shares; issued and outstanding – 6,922,695,323 and 7,212,464,345 shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,210",
+        "26,084"
+      ],
+      "numbers": [
+        8210,
+        26084
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "278,813",
+        "261,693"
+      ],
+      "numbers": [
+        278813,
+        261693
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(15,270)",
+        "(10,526)"
+      ],
+      "numbers": [
+        -15270,
+        -10526
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "296,749",
+        "303,243"
+      ],
+      "numbers": [
+        296749,
+        303243
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "3,427,704",
+        "3,411,738"
+      ],
+      "numbers": [
+        3427704,
+        3411738
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Trading account assets (includes $161,758 and $185,869 pledged as collateral)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,600",
+        "7,139"
+      ],
+      "numbers": [
+        7600,
+        7139
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Debt securities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Loans and leases (includes $3,341 and $3,498 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,330",
+        "17,875"
+      ],
+      "numbers": [
+        17330,
+        17875
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Allowance for loan and lease losses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(849)",
+        "(871)"
+      ],
+      "numbers": [
+        -849,
+        -871
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans and leases, net of allowance",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "16,481",
+        "17,004"
+      ],
+      "numbers": [
+        16481,
+        17004
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets (includes $6,469 and $9,058 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,079",
+        "709"
+      ],
+      "numbers": [
+        1079,
+        709
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "25,160",
+        "24,852"
+      ],
+      "numbers": [
+        25160,
+        24852
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Deposits in non-U.S. offices:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings (includes $14,044 and $8,051 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,272",
+        "5,779"
+      ],
+      "numbers": [
+        7272,
+        5779
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt (includes $85,033 and $72,591 measured at fair value)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,343",
+        "6,847"
+      ],
+      "numbers": [
+        7343,
+        6847
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "All other liabilities (includes $19 and $18 of non-recourse liabilities)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19",
+        "18"
+      ],
+      "numbers": [
+        19,
+        18
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 14,634",
+        "$ 12,644"
+      ],
+      "numbers": [
+        14634,
+        12644
+      ]
+    }
+  ]
+}

@@ -1,0 +1,847 @@
+{
+  "cik": "1067983",
+  "companyName": "BERKSHIRE HATHAWAY INC",
+  "form": "10-Q",
+  "filingDate": "2026-11-09",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Investments in fixed maturity securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 17,082",
+        "$ 17,816"
+      ],
+      "numbers": [
+        17082,
+        17816
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments in equity securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "335,515",
+        "297,778"
+      ],
+      "numbers": [
+        335515,
+        297778
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity method investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,650",
+        "19,978"
+      ],
+      "numbers": [
+        20650,
+        19978
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans and finance receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "30,880",
+        "29,836"
+      ],
+      "numbers": [
+        30880,
+        29836
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "35,098",
+        "24,424"
+      ],
+      "numbers": [
+        35098,
+        24424
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equipment held for lease",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,063",
+        "18,535"
+      ],
+      "numbers": [
+        19063,
+        18535
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "83,419",
+        "83,074"
+      ],
+      "numbers": [
+        83419,
+        83074
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,303,907",
+        "1,222,176"
+      ],
+      "numbers": [
+        1303907,
+        1222176
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Life, annuity and health insurance benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        null,
+        "16,712"
+      ],
+      "numbers": [
+        null,
+        16712
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Payable for purchases of U.S. Treasury Bills",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,500",
+        "167"
+      ],
+      "numbers": [
+        20500,
+        167
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Income taxes, principally deferred",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "92,322",
+        "86,955"
+      ],
+      "numbers": [
+        92322,
+        86955
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "540,279",
+        "502,473"
+      ],
+      "numbers": [
+        540279,
+        502473
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock at par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8",
+        "8"
+      ],
+      "numbers": [
+        8,
+        8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "35,621",
+        "35,612"
+      ],
+      "numbers": [
+        35621,
+        35612
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,984)",
+        "(2,448)"
+      ],
+      "numbers": [
+        -1984,
+        -2448
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "821,071",
+        "763,186"
+      ],
+      "numbers": [
+        821071,
+        763186
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(93,348)",
+        "(78,939)"
+      ],
+      "numbers": [
+        -93348,
+        -78939
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Berkshire shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "761,368",
+        "717,419"
+      ],
+      "numbers": [
+        761368,
+        717419
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,260",
+        "2,284"
+      ],
+      "numbers": [
+        2260,
+        2284
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "763,628",
+        "719,703"
+      ],
+      "numbers": [
+        763628,
+        719703
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,303,907",
+        "1,222,176"
+      ],
+      "numbers": [
+        1303907,
+        1222176
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "36,034",
+        "47,719"
+      ],
+      "numbers": [
+        36034,
+        47719
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments in U.S. Treasury Bills",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "336,735",
+        "321,434"
+      ],
+      "numbers": [
+        336735,
+        321434
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments in fixed maturity securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,082",
+        "17,816"
+      ],
+      "numbers": [
+        17082,
+        17816
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments in equity securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "335,515",
+        "297,778"
+      ],
+      "numbers": [
+        335515,
+        297778
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity method investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,650",
+        "19,978"
+      ],
+      "numbers": [
+        20650,
+        19978
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Loans and finance receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "30,880",
+        "29,836"
+      ],
+      "numbers": [
+        30880,
+        29836
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "50,983",
+        "44,331"
+      ],
+      "numbers": [
+        50983,
+        44331
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "35,098",
+        "24,424"
+      ],
+      "numbers": [
+        35098,
+        24424
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,534",
+        "31,885"
+      ],
+      "numbers": [
+        39534,
+        31885
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equipment held for lease",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,063",
+        "18,535"
+      ],
+      "numbers": [
+        19063,
+        18535
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "56,441",
+        "55,945"
+      ],
+      "numbers": [
+        56441,
+        55945
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,254",
+        "33,802"
+      ],
+      "numbers": [
+        34254,
+        33802
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred charges - retroactive reinsurance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,193",
+        "8,104"
+      ],
+      "numbers": [
+        7193,
+        8104
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "29,974",
+        "24,413"
+      ],
+      "numbers": [
+        29974,
+        24413
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,049,436",
+        "976,000"
+      ],
+      "numbers": [
+        1049436,
+        976000
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Unpaid losses and loss adjustment expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "124,210",
+        "120,713"
+      ],
+      "numbers": [
+        124210,
+        120713
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Unpaid losses and loss adjustment expenses - retroactive reinsurance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "28,104",
+        "31,048"
+      ],
+      "numbers": [
+        28104,
+        31048
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Unearned insurance premiums",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "33,808",
+        "31,339"
+      ],
+      "numbers": [
+        33808,
+        31339
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Life, annuity and health insurance benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16,712",
+        "17,890"
+      ],
+      "numbers": [
+        16712,
+        17890
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other insurance policyholder liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,211",
+        "10,312"
+      ],
+      "numbers": [
+        10211,
+        10312
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable, accruals and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "44,583",
+        "38,019"
+      ],
+      "numbers": [
+        44583,
+        38019
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Payable for purchases of U.S. Treasury Bills",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,489",
+        "167"
+      ],
+      "numbers": [
+        20489,
+        167
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Aircraft repurchase liabilities and unearned lease revenues",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,253",
+        "10,686"
+      ],
+      "numbers": [
+        11253,
+        10686
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Notes payable and other borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "45,767",
+        "45,763"
+      ],
+      "numbers": [
+        45767,
+        45763
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Liabilities, excluding income taxes, principally deferred, Total",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "335,137",
+        "305,937"
+      ],
+      "numbers": [
+        335137,
+        305937
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,666",
+        "4,158"
+      ],
+      "numbers": [
+        4666,
+        4158
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,905",
+        "4,387"
+      ],
+      "numbers": [
+        4905,
+        4387
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "187,746",
+        "184,740"
+      ],
+      "numbers": [
+        187746,
+        184740
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "26,978",
+        "27,129"
+      ],
+      "numbers": [
+        26978,
+        27129
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,271",
+        "4,821"
+      ],
+      "numbers": [
+        4271,
+        4821
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,905",
+        "20,941"
+      ],
+      "numbers": [
+        25905,
+        20941
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "254,471",
+        "246,176"
+      ],
+      "numbers": [
+        254471,
+        246176
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable, accruals and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,973",
+        "19,250"
+      ],
+      "numbers": [
+        20973,
+        19250
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Regulatory liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,831",
+        "7,013"
+      ],
+      "numbers": [
+        6831,
+        7013
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Notes payable and other borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "85,016",
+        "83,318"
+      ],
+      "numbers": [
+        85016,
+        83318
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Liabilities, excluding income taxes, principally deferred, Total",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 112,820",
+        "$ 109,581"
+      ],
+      "numbers": [
+        112820,
+        109581
+      ]
+    }
+  ]
+}

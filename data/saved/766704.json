@@ -1,0 +1,510 @@
+{
+  "cik": "766704",
+  "companyName": "WELLTOWER INC.",
+  "form": "10-Q",
+  "filingDate": "2026-10-27",
+  "title": "CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Thousands",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Real property owned:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Land and land improvements",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 7,535,251",
+        "$ 6,681,131"
+      ],
+      "numbers": [
+        7535251,
+        6681131
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Buildings and improvements",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "60,990,495",
+        "52,058,099"
+      ],
+      "numbers": [
+        60990495,
+        52058099
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Acquired lease intangibles",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,298,487",
+        "2,845,686"
+      ],
+      "numbers": [
+        3298487,
+        2845686
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Real property held for sale, net of accumulated depreciation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "306,776",
+        "1,450,137"
+      ],
+      "numbers": [
+        306776,
+        1450137
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Construction in progress",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,239,412",
+        "738,859"
+      ],
+      "numbers": [
+        1239412,
+        738859
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Less accumulated depreciation and amortization",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(12,125,154)",
+        "(10,350,621)"
+      ],
+      "numbers": [
+        -12125154,
+        -10350621
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Net real property owned",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "61,245,267",
+        "53,423,291"
+      ],
+      "numbers": [
+        61245267,
+        53423291
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Right of use assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,922,667",
+        "2,158,045"
+      ],
+      "numbers": [
+        1922667,
+        2158045
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments in sales-type leases, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "497,963"
+      ],
+      "numbers": [
+        0,
+        497963
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Real estate loans receivable, net of credit allowance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,047,269",
+        "1,831,210"
+      ],
+      "numbers": [
+        3047269,
+        1831210
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Net real estate investments",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "66,215,203",
+        "57,910,509"
+      ],
+      "numbers": [
+        66215203,
+        57910509
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Other assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Investments in unconsolidated entities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,049,911",
+        "1,809,590"
+      ],
+      "numbers": [
+        2049911,
+        1809590
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,274,910",
+        "5,033,678"
+      ],
+      "numbers": [
+        2274910,
+        5033678
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Restricted cash",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "141,097",
+        "175,861"
+      ],
+      "numbers": [
+        141097,
+        175861
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables and other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,030,212",
+        "2,373,409"
+      ],
+      "numbers": [
+        3030212,
+        2373409
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total other assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "7,496,130",
+        "9,392,538"
+      ],
+      "numbers": [
+        7496130,
+        9392538
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "73,711,333",
+        "67,303,047"
+      ],
+      "numbers": [
+        73711333,
+        67303047
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Unsecured credit facility and commercial paper",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,041,054",
+        "0"
+      ],
+      "numbers": [
+        1041054,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Senior unsecured notes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,686,972",
+        "16,383,522"
+      ],
+      "numbers": [
+        14686972,
+        16383522
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Secured debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,467,126",
+        "2,813,780"
+      ],
+      "numbers": [
+        3467126,
+        2813780
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,968,069",
+        "2,182,993"
+      ],
+      "numbers": [
+        1968069,
+        2182993
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,684,098",
+        "2,719,813"
+      ],
+      "numbers": [
+        2684098,
+        2719813
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "23,847,319",
+        "24,100,108"
+      ],
+      "numbers": [
+        23847319,
+        24100108
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "237,081",
+        "263,223"
+      ],
+      "numbers": [
+        237081,
+        263223
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "732,160",
+        "696,621"
+      ],
+      "numbers": [
+        732160,
+        696621
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "57,547,521",
+        "50,898,707"
+      ],
+      "numbers": [
+        57547521,
+        50898707
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(26,641)",
+        "(14,405)"
+      ],
+      "numbers": [
+        -26641,
+        -14405
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Cumulative net income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,603,830",
+        "11,033,569"
+      ],
+      "numbers": [
+        12603830,
+        11033569
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Cumulative dividends",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(21,859,441)",
+        "(20,197,353)"
+      ],
+      "numbers": [
+        -21859441,
+        -20197353
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(415,436)",
+        "(287,641)"
+      ],
+      "numbers": [
+        -415436,
+        -287641
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Welltower Inc. stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "48,581,993",
+        "42,129,498"
+      ],
+      "numbers": [
+        48581993,
+        42129498
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,044,940",
+        "810,218"
+      ],
+      "numbers": [
+        1044940,
+        810218
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "49,626,933",
+        "42,939,716"
+      ],
+      "numbers": [
+        49626933,
+        42939716
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 73,711,333",
+        "$ 67,303,047"
+      ],
+      "numbers": [
+        73711333,
+        67303047
+      ]
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "cik": "1108524",
+  "companyName": "Salesforce, Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-08-27",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Jul. 31, 2026",
+    "Jan. 31, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 8,310",
+        "$ 7,327"
+      ],
+      "numbers": [
+        8310,
+        7327
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,093",
+        "2,238"
+      ],
+      "numbers": [
+        3093,
+        2238
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,320",
+        "14,339"
+      ],
+      "numbers": [
+        6320,
+        14339
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Costs capitalized to obtain revenue contracts, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,074",
+        "2,075"
+      ],
+      "numbers": [
+        2074,
+        2075
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,286",
+        "2,243"
+      ],
+      "numbers": [
+        2286,
+        2243
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "22,083",
+        "28,222"
+      ],
+      "numbers": [
+        22083,
+        28222
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,042",
+        "3,120"
+      ],
+      "numbers": [
+        3042,
+        3120
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,787",
+        "2,003"
+      ],
+      "numbers": [
+        1787,
+        2003
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent costs capitalized to obtain revenue contracts, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,870",
+        "2,985"
+      ],
+      "numbers": [
+        2870,
+        2985
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Strategic investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,324",
+        "7,591"
+      ],
+      "numbers": [
+        11324,
+        7591
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "59,250",
+        "57,941"
+      ],
+      "numbers": [
+        59250,
+        57941
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets acquired through business combinations, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,142",
+        "6,815"
+      ],
+      "numbers": [
+        6142,
+        6815
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets and other assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,122",
+        "3,628"
+      ],
+      "numbers": [
+        3122,
+        3628
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "109,620",
+        "112,305"
+      ],
+      "numbers": [
+        109620,
+        112305
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable, accrued expenses and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,018",
+        "8,253"
+      ],
+      "numbers": [
+        7018,
+        8253
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities, current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "531",
+        "548"
+      ],
+      "numbers": [
+        531,
+        548
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Unearned revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,787",
+        "24,317"
+      ],
+      "numbers": [
+        18787,
+        24317
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Debt, current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "4,000"
+      ],
+      "numbers": [
+        0,
+        4000
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "26,336",
+        "37,118"
+      ],
+      "numbers": [
+        26336,
+        37118
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "39,288",
+        "10,439"
+      ],
+      "numbers": [
+        39288,
+        10439
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,924",
+        "2,189"
+      ],
+      "numbers": [
+        1924,
+        2189
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other noncurrent liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,694",
+        "3,417"
+      ],
+      "numbers": [
+        3694,
+        3417
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "71,242",
+        "53,163"
+      ],
+      "numbers": [
+        71242,
+        53163
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1",
+        "1"
+      ],
+      "numbers": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(55,022)",
+        "(32,228)"
+      ],
+      "numbers": [
+        -55022,
+        -32228
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "66,029",
+        "68,835"
+      ],
+      "numbers": [
+        66029,
+        68835
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "263",
+        "313"
+      ],
+      "numbers": [
+        263,
+        313
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,107",
+        "22,221"
+      ],
+      "numbers": [
+        27107,
+        22221
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "38,378",
+        "59,142"
+      ],
+      "numbers": [
+        38378,
+        59142
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 109,620",
+        "$ 112,305"
+      ],
+      "numbers": [
+        109620,
+        112305
+      ]
+    }
+  ]
+}

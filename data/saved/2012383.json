@@ -1,0 +1,601 @@
+{
+  "cik": "2012383",
+  "companyName": "BlackRock, Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-11-04",
+  "title": "Condensed Consolidated Statements of Financial Condition - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 12,877",
+        "$ 11,468"
+      ],
+      "numbers": [
+        12877,
+        11468
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,762",
+        "5,158"
+      ],
+      "numbers": [
+        5762,
+        5158
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,384",
+        "13,271"
+      ],
+      "numbers": [
+        15384,
+        13271
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Separate account assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "65,056",
+        "60,098"
+      ],
+      "numbers": [
+        65056,
+        60098
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Separate account collateral held under securities lending agreements",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,465",
+        "7,922"
+      ],
+      "numbers": [
+        5465,
+        7922
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment (net of accumulated depreciation and amortization of $1,929 and $1,692 at September 30, 2026 and December 31,2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,306",
+        "1,256"
+      ],
+      "numbers": [
+        1306,
+        1256
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets (net of accumulated amortization of $2,235 and $1,482 at September 30,2026 and December 31,2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "27,139",
+        "27,968"
+      ],
+      "numbers": [
+        27139,
+        27968
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "35,204",
+        "35,283"
+      ],
+      "numbers": [
+        35204,
+        35283
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,844",
+        "1,874"
+      ],
+      "numbers": [
+        1844,
+        1874
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,861",
+        "5,700"
+      ],
+      "numbers": [
+        7861,
+        5700
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "177,898",
+        "169,998"
+      ],
+      "numbers": [
+        177898,
+        169998
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accrued compensation and benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,431",
+        "3,830"
+      ],
+      "numbers": [
+        3431,
+        3830
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,982",
+        "1,740"
+      ],
+      "numbers": [
+        1982,
+        1740
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,740",
+        "12,768"
+      ],
+      "numbers": [
+        12740,
+        12768
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Separate account liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "65,056",
+        "60,098"
+      ],
+      "numbers": [
+        65056,
+        60098
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Separate account collateral liabilities under securities lending agreements",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,465",
+        "7,922"
+      ],
+      "numbers": [
+        5465,
+        7922
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contingent consideration liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,858",
+        "8,429"
+      ],
+      "numbers": [
+        5858,
+        8429
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,271",
+        "4,618"
+      ],
+      "numbers": [
+        4271,
+        4618
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,245",
+        "2,228"
+      ],
+      "numbers": [
+        2245,
+        2228
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,075",
+        "6,823"
+      ],
+      "numbers": [
+        9075,
+        6823
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "110,123",
+        "108,456"
+      ],
+      "numbers": [
+        110123,
+        108456
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 15)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Permanent equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.01 par value;Shares authorized: 500,000,000 at September 30, 2026 and December 31, 2025; Shares issued: 156,276,289 at both September 30, 2026 and December 31, 2025, Shares outstanding:154,606,029 and 155,069,171 at September 30, 2026 and December 31, 2025, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2",
+        "2"
+      ],
+      "numbers": [
+        2,
+        2
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "19,637",
+        "19,748"
+      ],
+      "numbers": [
+        19637,
+        19748
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "40,976",
+        "37,899"
+      ],
+      "numbers": [
+        40976,
+        37899
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(680)",
+        "(545)"
+      ],
+      "numbers": [
+        -680,
+        -545
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, common, at cost (1,670,260 and 1,207,118 shares held at September 30, 2026 and December 31, 2025, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,804)",
+        "(1,216)"
+      ],
+      "numbers": [
+        -1804,
+        -1216
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total BlackRock, Inc. stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "58,131",
+        "55,888"
+      ],
+      "numbers": [
+        58131,
+        55888
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total permanent equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "63,925",
+        "56,115"
+      ],
+      "numbers": [
+        63925,
+        56115
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities, temporary equity and permanent equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "177,898",
+        "169,998"
+      ],
+      "numbers": [
+        177898,
+        169998
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "787",
+        "461"
+      ],
+      "numbers": [
+        787,
+        461
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,432",
+        "9,131"
+      ],
+      "numbers": [
+        10432,
+        9131
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "83",
+        "187"
+      ],
+      "numbers": [
+        83,
+        187
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,698",
+        "4,112"
+      ],
+      "numbers": [
+        4698,
+        4112
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Temporary equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,850",
+        "2,636"
+      ],
+      "numbers": [
+        3850,
+        2636
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Permanent equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Nonredeemable NCI - CIPs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,107",
+        "2,757"
+      ],
+      "numbers": [
+        4107,
+        2757
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Temporary equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "2,791"
+      ],
+      "numbers": [
+        0,
+        2791
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Permanent equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Nonredeemable NCI - CIPs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "354",
+        "227"
+      ],
+      "numbers": [
+        354,
+        227
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Permanent equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Nonredeemable NCI - CIPs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 5,440",
+        "$ 0"
+      ],
+      "numbers": [
+        5440,
+        0
+      ]
+    }
+  ]
+}

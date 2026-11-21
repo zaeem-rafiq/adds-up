@@ -1,0 +1,412 @@
+{
+  "cik": "1551152",
+  "companyName": "AbbVie Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-11-03",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 10,774",
+        "$ 5,229"
+      ],
+      "numbers": [
+        10774,
+        5229
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,509",
+        "12,589"
+      ],
+      "numbers": [
+        13509,
+        12589
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,305",
+        "4,951"
+      ],
+      "numbers": [
+        5305,
+        4951
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,892",
+        "6,293"
+      ],
+      "numbers": [
+        7892,
+        6293
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "37,480",
+        "29,062"
+      ],
+      "numbers": [
+        37480,
+        29062
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "387",
+        "268"
+      ],
+      "numbers": [
+        387,
+        268
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,941",
+        "5,628"
+      ],
+      "numbers": [
+        5941,
+        5628
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "56,652",
+        "52,641"
+      ],
+      "numbers": [
+        56652,
+        52641
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "37,800",
+        "35,640"
+      ],
+      "numbers": [
+        37800,
+        35640
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,420",
+        "10,721"
+      ],
+      "numbers": [
+        9420,
+        10721
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "147,680",
+        "133,960"
+      ],
+      "numbers": [
+        147680,
+        133960
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "2,499"
+      ],
+      "numbers": [
+        0,
+        2499
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,673",
+        "6,056"
+      ],
+      "numbers": [
+        8673,
+        6056
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,429",
+        "34,734"
+      ],
+      "numbers": [
+        34429,
+        34734
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "43,102",
+        "43,289"
+      ],
+      "numbers": [
+        43102,
+        43289
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "72,230",
+        "58,941"
+      ],
+      "numbers": [
+        72230,
+        58941
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,223",
+        "2,389"
+      ],
+      "numbers": [
+        2223,
+        2389
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "34,663",
+        "32,569"
+      ],
+      "numbers": [
+        34663,
+        32569
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' equity (deficit)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.01 par value, 4,000,000,000 shares authorized, 1,844,582,836 shares issued as of September 30, 2026 and 1,838,678,628 as of December 31, 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18",
+        "18"
+      ],
+      "numbers": [
+        18,
+        18
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock held in treasury, at cost, 77,073,558 shares as of September 30, 2026 and 70,802,593 as of December 31, 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(10,616)",
+        "(9,146)"
+      ],
+      "numbers": [
+        -10616,
+        -9146
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23,371",
+        "22,495"
+      ],
+      "numbers": [
+        23371,
+        22495
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated deficit",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(16,190)",
+        "(15,493)"
+      ],
+      "numbers": [
+        -16190,
+        -15493
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,166)",
+        "(1,144)"
+      ],
+      "numbers": [
+        -1166,
+        -1144
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders' deficit",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "(4,583)",
+        "(3,270)"
+      ],
+      "numbers": [
+        -4583,
+        -3270
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "45",
+        "42"
+      ],
+      "numbers": [
+        45,
+        42
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total deficit",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "(4,538)",
+        "(3,228)"
+      ],
+      "numbers": [
+        -4538,
+        -3228
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity (deficit)",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 147,680",
+        "$ 133,960"
+      ],
+      "numbers": [
+        147680,
+        133960
+      ]
+    }
+  ]
+}

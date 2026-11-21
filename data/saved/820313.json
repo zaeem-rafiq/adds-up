@@ -1,0 +1,505 @@
+{
+  "cik": "820313",
+  "companyName": "AMPHENOL CORP /DE/",
+  "form": "10-Q",
+  "filingDate": "2026-10-30",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current Assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 4,173.1",
+        "$ 11,130.6"
+      ],
+      "numbers": [
+        4173.1,
+        11130.6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,128.3",
+        "303.6"
+      ],
+      "numbers": [
+        1128.3,
+        303.6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total cash, cash equivalents and short-term investments",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,301.4",
+        "11,434.2"
+      ],
+      "numbers": [
+        5301.4,
+        11434.2
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, less allowance for doubtful accounts of $99.8 and $99.3, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,782.0",
+        "4,717.1"
+      ],
+      "numbers": [
+        7782,
+        4717.1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "5,264.5",
+        "3,424.9"
+      ],
+      "numbers": [
+        5264.5,
+        3424.9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,133.5",
+        "691.0"
+      ],
+      "numbers": [
+        1133.5,
+        691
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "19,481.4",
+        "20,267.2"
+      ],
+      "numbers": [
+        19481.4,
+        20267.2
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, less accumulated depreciation of $3,675.3 and $3,096.0, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,241.0",
+        "2,305.6"
+      ],
+      "numbers": [
+        3241,
+        2305.6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,695.6",
+        "10,575.4"
+      ],
+      "numbers": [
+        17695.6,
+        10575.4
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,344.0",
+        "2,241.4"
+      ],
+      "numbers": [
+        5344,
+        2241.4
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,259.8",
+        "847.3"
+      ],
+      "numbers": [
+        1259.8,
+        847.3
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "47,021.8",
+        "36,236.9"
+      ],
+      "numbers": [
+        47021.8,
+        36236.9
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current Liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,871.4",
+        "2,661.9"
+      ],
+      "numbers": [
+        4871.4,
+        2661.9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued salaries, wages and employee benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,013.9",
+        "767.7"
+      ],
+      "numbers": [
+        1013.9,
+        767.7
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "513.6",
+        "482.9"
+      ],
+      "numbers": [
+        513.6,
+        482.9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued dividends",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "308.5",
+        "306.7"
+      ],
+      "numbers": [
+        308.5,
+        306.7
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,630.2",
+        "1,646.4"
+      ],
+      "numbers": [
+        2630.2,
+        1646.4
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "700.7",
+        "937.2"
+      ],
+      "numbers": [
+        700.7,
+        937.2
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "10,038.3",
+        "6,802.8"
+      ],
+      "numbers": [
+        10038.3,
+        6802.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt, less current portion",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,170.1",
+        "14,564.8"
+      ],
+      "numbers": [
+        17170.1,
+        14564.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued pension and postretirement benefit obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "166.3",
+        "138.2"
+      ],
+      "numbers": [
+        166.3,
+        138.2
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,371.7",
+        "432.9"
+      ],
+      "numbers": [
+        1371.7,
+        432.9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,003.9",
+        "788.5"
+      ],
+      "numbers": [
+        1003.9,
+        788.5
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "29,750.3",
+        "22,727.2"
+      ],
+      "numbers": [
+        29750.3,
+        22727.2
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9.0",
+        "9.3"
+      ],
+      "numbers": [
+        9,
+        9.3
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2.5",
+        "2.5"
+      ],
+      "numbers": [
+        2.5,
+        2.5
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,618.1",
+        "4,231.6"
+      ],
+      "numbers": [
+        4618.1,
+        4231.6
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,089.4",
+        "9,854.3"
+      ],
+      "numbers": [
+        13089.4,
+        9854.3
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(210.7)",
+        "(195.8)"
+      ],
+      "numbers": [
+        -210.7,
+        -195.8
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(375.7)",
+        "(479.5)"
+      ],
+      "numbers": [
+        -375.7,
+        -479.5
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders' equity attributable to Amphenol Corporation",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "17,123.6",
+        "13,413.1"
+      ],
+      "numbers": [
+        17123.6,
+        13413.1
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "138.9",
+        "87.3"
+      ],
+      "numbers": [
+        138.9,
+        87.3
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "17,262.5",
+        "13,500.4"
+      ],
+      "numbers": [
+        17262.5,
+        13500.4
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities, Redeemable Noncontrolling Interests and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 47,021.8",
+        "$ 36,236.9"
+      ],
+      "numbers": [
+        47021.8,
+        36236.9
+      ]
+    }
+  ]
+}

@@ -1,0 +1,496 @@
+{
+  "cik": "104169",
+  "companyName": "Walmart Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-08-28",
+  "title": "Condensed Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Jul. 31, 2026",
+    "Jan. 31, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 11,529",
+        "$ 10,727"
+      ],
+      "numbers": [
+        11529,
+        10727
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,075",
+        "11,172"
+      ],
+      "numbers": [
+        11075,
+        11172
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "61,600",
+        "58,851"
+      ],
+      "numbers": [
+        61600,
+        58851
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,499",
+        "4,124"
+      ],
+      "numbers": [
+        4499,
+        4124
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "88,703",
+        "84,874"
+      ],
+      "numbers": [
+        88703,
+        84874
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "142,482",
+        "136,083"
+      ],
+      "numbers": [
+        142482,
+        136083
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "15,650",
+        "14,750"
+      ],
+      "numbers": [
+        15650,
+        14750
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Finance lease right-of-use assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,178",
+        "6,123"
+      ],
+      "numbers": [
+        6178,
+        6123
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "28,260",
+        "28,735"
+      ],
+      "numbers": [
+        28260,
+        28735
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,641",
+        "14,103"
+      ],
+      "numbers": [
+        12641,
+        14103
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "293,914",
+        "284,668"
+      ],
+      "numbers": [
+        293914,
+        284668
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,479",
+        "6,596"
+      ],
+      "numbers": [
+        10479,
+        6596
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "64,318",
+        "63,061"
+      ],
+      "numbers": [
+        64318,
+        63061
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Dividends payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,949",
+        "0"
+      ],
+      "numbers": [
+        3949,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "30,074",
+        "31,187"
+      ],
+      "numbers": [
+        30074,
+        31187
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "746",
+        "596"
+      ],
+      "numbers": [
+        746,
+        596
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt due within one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,470",
+        "3,542"
+      ],
+      "numbers": [
+        3470,
+        3542
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease obligations due within one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,714",
+        "1,631"
+      ],
+      "numbers": [
+        1714,
+        1631
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Finance lease obligations due within one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "880",
+        "856"
+      ],
+      "numbers": [
+        880,
+        856
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "115,630",
+        "107,469"
+      ],
+      "numbers": [
+        115630,
+        107469
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "36,462",
+        "34,624"
+      ],
+      "numbers": [
+        36462,
+        34624
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term operating lease obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,798",
+        "13,941"
+      ],
+      "numbers": [
+        14798,
+        13941
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term finance lease obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,952",
+        "5,905"
+      ],
+      "numbers": [
+        5952,
+        5905
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16,273",
+        "16,549"
+      ],
+      "numbers": [
+        16273,
+        16549
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "293",
+        "293"
+      ],
+      "numbers": [
+        293,
+        293
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders' equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "794",
+        "797"
+      ],
+      "numbers": [
+        794,
+        797
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,046",
+        "6,816"
+      ],
+      "numbers": [
+        7046,
+        6816
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "103,601",
+        "104,774"
+      ],
+      "numbers": [
+        103601,
+        104774
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(13,203)",
+        "(12,770)"
+      ],
+      "numbers": [
+        -13203,
+        -12770
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Walmart shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "98,238",
+        "99,617"
+      ],
+      "numbers": [
+        98238,
+        99617
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Nonredeemable noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,268",
+        "6,270"
+      ],
+      "numbers": [
+        6268,
+        6270
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "104,506",
+        "105,887"
+      ],
+      "numbers": [
+        104506,
+        105887
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities, redeemable noncontrolling interest, and shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 293,914",
+        "$ 284,668"
+      ],
+      "numbers": [
+        293914,
+        284668
+      ]
+    }
+  ]
+}

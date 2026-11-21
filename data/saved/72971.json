@@ -1,0 +1,491 @@
+{
+  "cik": "72971",
+  "companyName": "WELLS FARGO & COMPANY/MN",
+  "form": "10-Q",
+  "filingDate": "2026-10-28",
+  "title": "Consolidated Balance Sheet - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and due from banks",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 40,556",
+        "$ 39,182"
+      ],
+      "numbers": [
+        40556,
+        39182
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Interest-earning deposits with banks",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "140,503",
+        "135,028"
+      ],
+      "numbers": [
+        140503,
+        135028
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal funds sold and securities borrowed or purchased under resale agreements",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "193,106",
+        "193,929"
+      ],
+      "numbers": [
+        193106,
+        193929
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "227,000",
+        "227,935"
+      ],
+      "numbers": [
+        227000,
+        227935
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Available-for-sale debt securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "255,772",
+        "213,573"
+      ],
+      "numbers": [
+        255772,
+        213573
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Held-to-maturity debt securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "192,584",
+        "208,023"
+      ],
+      "numbers": [
+        192584,
+        208023
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total loans",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,048,113",
+        "986,167"
+      ],
+      "numbers": [
+        1048113,
+        986167
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Allowance for loan losses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(13,819)",
+        "(13,797)"
+      ],
+      "numbers": [
+        -13819,
+        -13797
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Net loans",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,034,294",
+        "972,370"
+      ],
+      "numbers": [
+        1034294,
+        972370
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Premises and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,685",
+        "11,395"
+      ],
+      "numbers": [
+        11685,
+        11395
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,963",
+        "24,967"
+      ],
+      "numbers": [
+        24963,
+        24967
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Equity securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "42,245",
+        "40,932"
+      ],
+      "numbers": [
+        42245,
+        40932
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "90,583",
+        "81,297"
+      ],
+      "numbers": [
+        90583,
+        81297
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,253,291",
+        "2,148,631"
+      ],
+      "numbers": [
+        2253291,
+        2148631
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Noninterest-bearing deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "365,666",
+        "365,368"
+      ],
+      "numbers": [
+        365666,
+        365368
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Interest-bearing deposits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,136,986",
+        "1,060,839"
+      ],
+      "numbers": [
+        1136986,
+        1060839
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total deposits",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,502,652",
+        "1,426,207"
+      ],
+      "numbers": [
+        1502652,
+        1426207
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Federal funds purchased and securities loaned or sold under repurchase agreements",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "220,519",
+        "232,687"
+      ],
+      "numbers": [
+        220519,
+        232687
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "38,192",
+        "18,323"
+      ],
+      "numbers": [
+        38192,
+        18323
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trading liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "56,133",
+        "45,468"
+      ],
+      "numbers": [
+        56133,
+        45468
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "75,067",
+        "68,196"
+      ],
+      "numbers": [
+        75067,
+        68196
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "182,851",
+        "174,712"
+      ],
+      "numbers": [
+        182851,
+        174712
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "2,075,414",
+        "1,965,593"
+      ],
+      "numbers": [
+        2075414,
+        1965593
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Wells Fargo stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,098",
+        "16,608"
+      ],
+      "numbers": [
+        17098,
+        16608
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,136",
+        "9,136"
+      ],
+      "numbers": [
+        9136,
+        9136
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "61,515",
+        "61,288"
+      ],
+      "numbers": [
+        61515,
+        61288
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "241,397",
+        "228,873"
+      ],
+      "numbers": [
+        241397,
+        228873
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(16,512)",
+        "(6,673)"
+      ],
+      "numbers": [
+        -16512,
+        -6673
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(136,874)",
+        "(128,115)"
+      ],
+      "numbers": [
+        -136874,
+        -128115
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Wells Fargo stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "175,760",
+        "181,117"
+      ],
+      "numbers": [
+        175760,
+        181117
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,117",
+        "1,921"
+      ],
+      "numbers": [
+        2117,
+        1921
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "177,877",
+        "183,038"
+      ],
+      "numbers": [
+        177877,
+        183038
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 2,253,291",
+        "$ 2,148,631"
+      ],
+      "numbers": [
+        2253291,
+        2148631
+      ]
+    }
+  ]
+}

@@ -1,0 +1,384 @@
+{
+  "cik": "1018724",
+  "companyName": "AMAZON COM INC",
+  "form": "10-Q",
+  "filingDate": "2026-10-30",
+  "title": "Consolidated Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 55,783",
+        "$ 86,810"
+      ],
+      "numbers": [
+        55783,
+        86810
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Marketable securities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "58,443",
+        "36,219"
+      ],
+      "numbers": [
+        58443,
+        36219
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "42,632",
+        "38,325"
+      ],
+      "numbers": [
+        42632,
+        38325
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "98,242",
+        "67,729"
+      ],
+      "numbers": [
+        98242,
+        67729
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "255,100",
+        "229,083"
+      ],
+      "numbers": [
+        255100,
+        229083
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "508,862",
+        "357,025"
+      ],
+      "numbers": [
+        508862,
+        357025
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating leases",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "96,910",
+        "86,054"
+      ],
+      "numbers": [
+        96910,
+        86054
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23,743",
+        "23,273"
+      ],
+      "numbers": [
+        23743,
+        23273
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "358,775",
+        "122,607"
+      ],
+      "numbers": [
+        358775,
+        122607
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "1,243,390",
+        "818,042"
+      ],
+      "numbers": [
+        1243390,
+        818042
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "158,715",
+        "121,909"
+      ],
+      "numbers": [
+        158715,
+        121909
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "77,559",
+        "75,520"
+      ],
+      "numbers": [
+        77559,
+        75520
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Unearned revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,708",
+        "20,576"
+      ],
+      "numbers": [
+        21708,
+        20576
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "257,982",
+        "218,005"
+      ],
+      "numbers": [
+        257982,
+        218005
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "98,824",
+        "87,339"
+      ],
+      "numbers": [
+        98824,
+        87339
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "173,125",
+        "65,648"
+      ],
+      "numbers": [
+        173125,
+        65648
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "99,858",
+        "35,985"
+      ],
+      "numbers": [
+        99858,
+        35985
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 4)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock ($0.01 par value; 500 shares authorized; no shares issued or outstanding)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock ($0.01 par value; 100,000 shares authorized; 11,246 and 11,326 shares issued; 10,731 and 10,811 shares outstanding)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "113",
+        "112"
+      ],
+      "numbers": [
+        113,
+        112
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(7,837)",
+        "(7,837)"
+      ],
+      "numbers": [
+        -7837,
+        -7837
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "154,924",
+        "140,024"
+      ],
+      "numbers": [
+        154924,
+        140024
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "102,278",
+        "28,230"
+      ],
+      "numbers": [
+        102278,
+        28230
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "364,123",
+        "250,536"
+      ],
+      "numbers": [
+        364123,
+        250536
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "613,601",
+        "411,065"
+      ],
+      "numbers": [
+        613601,
+        411065
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 1,243,390",
+        "$ 818,042"
+      ],
+      "numbers": [
+        1243390,
+        818042
+      ]
+    }
+  ]
+}

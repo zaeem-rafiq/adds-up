@@ -1,0 +1,524 @@
+{
+  "cik": "1327567",
+  "companyName": "Palo Alto Networks Inc",
+  "form": "10-Q",
+  "filingDate": "2026-11-19",
+  "title": "CONDENSED CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Oct. 31, 2026",
+    "Jul. 31, 2026"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 2,594",
+        "$ 2,514"
+      ],
+      "numbers": [
+        2594,
+        2514
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "461",
+        "557"
+      ],
+      "numbers": [
+        461,
+        557
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net of allowance for credit losses of $6 and $4 as of October 31, 2026 and July 31, 2026, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,045",
+        "3,629"
+      ],
+      "numbers": [
+        2045,
+        3629
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term financing receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "606",
+        "592"
+      ],
+      "numbers": [
+        606,
+        592
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term deferred contract costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "544",
+        "544"
+      ],
+      "numbers": [
+        544,
+        544
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,200",
+        "807"
+      ],
+      "numbers": [
+        1200,
+        807
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "7,450",
+        "8,643"
+      ],
+      "numbers": [
+        7450,
+        8643
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "602",
+        "523"
+      ],
+      "numbers": [
+        602,
+        523
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "688",
+        "700"
+      ],
+      "numbers": [
+        688,
+        700
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,080",
+        "4,835"
+      ],
+      "numbers": [
+        6080,
+        4835
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term financing receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "791",
+        "944"
+      ],
+      "numbers": [
+        791,
+        944
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term deferred contract costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "617",
+        "667"
+      ],
+      "numbers": [
+        617,
+        667
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill allocation due to change in reporting units",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,559",
+        "22,010"
+      ],
+      "numbers": [
+        22559,
+        22010
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,869",
+        "7,017"
+      ],
+      "numbers": [
+        6869,
+        7017
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,728",
+        "2,443"
+      ],
+      "numbers": [
+        2728,
+        2443
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "726",
+        "678"
+      ],
+      "numbers": [
+        726,
+        678
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "49,110",
+        "48,460"
+      ],
+      "numbers": [
+        49110,
+        48460
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "306",
+        "290"
+      ],
+      "numbers": [
+        306,
+        290
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued compensation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "590",
+        "1,048"
+      ],
+      "numbers": [
+        590,
+        1048
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "800",
+        "838"
+      ],
+      "numbers": [
+        800,
+        838
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,730",
+        "7,747"
+      ],
+      "numbers": [
+        7730,
+        7747
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term convertible senior notes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,930",
+        "0"
+      ],
+      "numbers": [
+        1930,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "11,356",
+        "9,923"
+      ],
+      "numbers": [
+        11356,
+        9923
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term convertible senior notes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "1,774"
+      ],
+      "numbers": [
+        0,
+        1774
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term deferred revenue",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,859",
+        "7,009"
+      ],
+      "numbers": [
+        6859,
+        7009
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred tax liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "219",
+        "251"
+      ],
+      "numbers": [
+        219,
+        251
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term operating lease liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "711",
+        "726"
+      ],
+      "numbers": [
+        711,
+        726
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,300",
+        "1,285"
+      ],
+      "numbers": [
+        1300,
+        1285
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "20,445",
+        "20,968"
+      ],
+      "numbers": [
+        20445,
+        20968
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 10)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock; $0.0001 par value; 100 shares authorized; none issued and outstanding as of October 31, 2026 and July 31, 2026",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock and additional paid-in capital; $0.0001 par value; 2,000 shares authorized; 819 and 815 shares issued and outstanding as of October 31, 2026 and July 31, 2026, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "25,505",
+        "24,772"
+      ],
+      "numbers": [
+        25505,
+        24772
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(113)",
+        "(71)"
+      ],
+      "numbers": [
+        -113,
+        -71
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,273",
+        "2,791"
+      ],
+      "numbers": [
+        3273,
+        2791
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "28,665",
+        "27,492"
+      ],
+      "numbers": [
+        28665,
+        27492
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 49,110",
+        "$ 48,460"
+      ],
+      "numbers": [
+        49110,
+        48460
+      ]
+    }
+  ]
+}

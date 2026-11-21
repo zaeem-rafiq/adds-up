@@ -1,0 +1,538 @@
+{
+  "cik": "101829",
+  "companyName": "RTX Corp",
+  "form": "10-Q",
+  "filingDate": "2026-10-20",
+  "title": "Condensed Consolidated Balance Sheet - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 9,173",
+        "$ 7,435"
+      ],
+      "numbers": [
+        9173,
+        7435
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,681",
+        "14,701"
+      ],
+      "numbers": [
+        14681,
+        14701
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "18,701",
+        "17,092"
+      ],
+      "numbers": [
+        18701,
+        17092
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventory, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,953",
+        "13,364"
+      ],
+      "numbers": [
+        14953,
+        13364
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets, current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,561",
+        "7,740"
+      ],
+      "numbers": [
+        8561,
+        7740
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "66,069",
+        "60,332"
+      ],
+      "numbers": [
+        66069,
+        60332
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer financing assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,880",
+        "2,132"
+      ],
+      "numbers": [
+        1880,
+        2132
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Fixed assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "36,725",
+        "35,335"
+      ],
+      "numbers": [
+        36725,
+        35335
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated depreciation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(19,490)",
+        "(18,467)"
+      ],
+      "numbers": [
+        -19490,
+        -18467
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Fixed assets, net",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "17,235",
+        "16,868"
+      ],
+      "numbers": [
+        17235,
+        16868
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease right-of-use assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,770",
+        "1,887"
+      ],
+      "numbers": [
+        1770,
+        1887
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "52,969",
+        "53,343"
+      ],
+      "numbers": [
+        52969,
+        53343
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "30,652",
+        "31,845"
+      ],
+      "numbers": [
+        30652,
+        31845
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,021",
+        "4,672"
+      ],
+      "numbers": [
+        6021,
+        4672
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "176,596",
+        "171,079"
+      ],
+      "numbers": [
+        176596,
+        171079
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "210",
+        "204"
+      ],
+      "numbers": [
+        210,
+        204
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,803",
+        "15,895"
+      ],
+      "numbers": [
+        17803,
+        15895
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued employee compensation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,155",
+        "3,308"
+      ],
+      "numbers": [
+        3155,
+        3308
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,801",
+        "14,350"
+      ],
+      "numbers": [
+        14801,
+        14350
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Contract liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,550",
+        "21,615"
+      ],
+      "numbers": [
+        21550,
+        21615
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt currently due",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,679",
+        "3,412"
+      ],
+      "numbers": [
+        5679,
+        3412
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "63,198",
+        "58,784"
+      ],
+      "numbers": [
+        63198,
+        58784
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "31,490",
+        "34,288"
+      ],
+      "numbers": [
+        31490,
+        34288
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating lease liabilities, non-current",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,495",
+        "1,602"
+      ],
+      "numbers": [
+        1495,
+        1602
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Future pension and postretirement benefit obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,913",
+        "2,067"
+      ],
+      "numbers": [
+        1913,
+        2067
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,508",
+        "7,200"
+      ],
+      "numbers": [
+        7508,
+        7200
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "105,604",
+        "103,941"
+      ],
+      "numbers": [
+        105604,
+        103941
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Note 16)",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "28",
+        "36"
+      ],
+      "numbers": [
+        28,
+        36
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Shareowners’ Equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "38,673",
+        "38,126"
+      ],
+      "numbers": [
+        38673,
+        38126
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(26,712)",
+        "(26,881)"
+      ],
+      "numbers": [
+        -26712,
+        -26881
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "60,597",
+        "56,718"
+      ],
+      "numbers": [
+        60597,
+        56718
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(3,308)",
+        "(2,718)"
+      ],
+      "numbers": [
+        -3308,
+        -2718
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareowners’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "69,250",
+        "65,245"
+      ],
+      "numbers": [
+        69250,
+        65245
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interest",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,714",
+        "1,857"
+      ],
+      "numbers": [
+        1714,
+        1857
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "70,964",
+        "67,102"
+      ],
+      "numbers": [
+        70964,
+        67102
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities, redeemable noncontrolling interest, and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 176,596",
+        "$ 171,079"
+      ],
+      "numbers": [
+        176596,
+        171079
+      ]
+    }
+  ]
+}

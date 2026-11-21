@@ -1,0 +1,435 @@
+{
+  "cik": "1163165",
+  "companyName": "CONOCOPHILLIPS",
+  "form": "10-Q",
+  "filingDate": "2026-11-05",
+  "title": "Consolidated Balance Sheet - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 7,765",
+        "$ 6,497"
+      ],
+      "numbers": [
+        7765,
+        6497
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,164",
+        "484"
+      ],
+      "numbers": [
+        2164,
+        484
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts and notes receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,916",
+        "5,813"
+      ],
+      "numbers": [
+        7916,
+        5813
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,977",
+        "1,873"
+      ],
+      "numbers": [
+        1977,
+        1873
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,046",
+        "865"
+      ],
+      "numbers": [
+        1046,
+        865
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "20,868",
+        "15,532"
+      ],
+      "numbers": [
+        20868,
+        15532
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments and long-term receivables",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,598",
+        "10,185"
+      ],
+      "numbers": [
+        10598,
+        10185
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Net properties, plants and equipment (net of accumulated DD&A of $99,304 and $90,396, respectively)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "91,148",
+        "93,239"
+      ],
+      "numbers": [
+        91148,
+        93239
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,459",
+        "2,983"
+      ],
+      "numbers": [
+        3459,
+        2983
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "126,073",
+        "121,939"
+      ],
+      "numbers": [
+        126073,
+        121939
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,472",
+        "6,218"
+      ],
+      "numbers": [
+        7472,
+        6218
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Short-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "878",
+        "1,020"
+      ],
+      "numbers": [
+        878,
+        1020
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued income and other taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,830",
+        "1,835"
+      ],
+      "numbers": [
+        2830,
+        1835
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Employee benefit obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "695",
+        "1,136"
+      ],
+      "numbers": [
+        695,
+        1136
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other accruals",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,870",
+        "1,763"
+      ],
+      "numbers": [
+        1870,
+        1763
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "13,745",
+        "11,972"
+      ],
+      "numbers": [
+        13745,
+        11972
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,384",
+        "22,424"
+      ],
+      "numbers": [
+        22384,
+        22424
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Asset retirement obligations and accrued environmental costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,507",
+        "8,214"
+      ],
+      "numbers": [
+        8507,
+        8214
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12,551",
+        "12,237"
+      ],
+      "numbers": [
+        12551,
+        12237
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Employee benefit obligations",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "969",
+        "969"
+      ],
+      "numbers": [
+        969,
+        969
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities and deferred credits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,926",
+        "1,636"
+      ],
+      "numbers": [
+        1926,
+        1636
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "60,082",
+        "57,452"
+      ],
+      "numbers": [
+        60082,
+        57452
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Par value",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "23",
+        "23"
+      ],
+      "numbers": [
+        23,
+        23
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Capital in excess of par",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "77,881",
+        "77,728"
+      ],
+      "numbers": [
+        77881,
+        77728
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock (at cost: 2026—1,073,920,370 shares; 2025—1,028,350,186 shares)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(81,675)",
+        "(76,217)"
+      ],
+      "numbers": [
+        -81675,
+        -76217
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(6,154)",
+        "(5,911)"
+      ],
+      "numbers": [
+        -6154,
+        -5911
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "75,916",
+        "68,864"
+      ],
+      "numbers": [
+        75916,
+        68864
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "65,991",
+        "64,487"
+      ],
+      "numbers": [
+        65991,
+        64487
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 126,073",
+        "$ 121,939"
+      ],
+      "numbers": [
+        126073,
+        121939
+      ]
+    }
+  ]
+}

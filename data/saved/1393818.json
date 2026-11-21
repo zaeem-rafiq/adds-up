@@ -1,0 +1,450 @@
+{
+  "cik": "1393818",
+  "companyName": "Blackstone Inc.",
+  "form": "10-Q",
+  "filingDate": "2026-11-06",
+  "title": "Condensed Consolidated Statements of Financial Condition - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Thousands",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and Cash Equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 3,037,534",
+        "$ 2,631,241"
+      ],
+      "numbers": [
+        3037534,
+        2631241
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Cash Held by Blackstone Funds and Other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "228,704",
+        "223,441"
+      ],
+      "numbers": [
+        228704,
+        223441
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "33,853,661",
+        "32,212,111"
+      ],
+      "numbers": [
+        33853661,
+        32212111
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts Receivable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "451,491",
+        "291,758"
+      ],
+      "numbers": [
+        451491,
+        291758
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Due from Affiliates",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,504,395",
+        "6,357,462"
+      ],
+      "numbers": [
+        6504395,
+        6357462
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible Assets, Net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "104,250",
+        "131,359"
+      ],
+      "numbers": [
+        104250,
+        131359
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,890,202",
+        "1,890,202"
+      ],
+      "numbers": [
+        1890202,
+        1890202
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other Assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,017,579",
+        "1,157,719"
+      ],
+      "numbers": [
+        1017579,
+        1157719
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Right-of-Use Assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "723,119",
+        "757,459"
+      ],
+      "numbers": [
+        723119,
+        757459
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred Tax Assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,825,032",
+        "2,056,223"
+      ],
+      "numbers": [
+        1825032,
+        2056223
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "49,635,967",
+        "47,708,975"
+      ],
+      "numbers": [
+        49635967,
+        47708975
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Liabilities and Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Loans Payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,401,446",
+        "12,445,144"
+      ],
+      "numbers": [
+        13401446,
+        12445144
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Due to Affiliates",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,895,907",
+        "3,224,432"
+      ],
+      "numbers": [
+        3895907,
+        3224432
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued Compensation and Benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,103,730",
+        "6,411,389"
+      ],
+      "numbers": [
+        7103730,
+        6411389
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Operating Lease Liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "792,395",
+        "861,021"
+      ],
+      "numbers": [
+        792395,
+        861021
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts Payable, Accrued Expenses and Other Liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,425,889",
+        "2,885,817"
+      ],
+      "numbers": [
+        3425889,
+        2885817
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "28,619,367",
+        "25,827,803"
+      ],
+      "numbers": [
+        28619367,
+        25827803
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and Contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Redeemable Non-Controlling Interests in Consolidated Entities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,428,451",
+        "1,380,503"
+      ],
+      "numbers": [
+        1428451,
+        1380503
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' Equity of Blackstone Inc.",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common Stock, $0.00001 par value, 90 billion shares authorized, (760,147,136 shares issued and outstanding as of September 30, 2026; 748,688,068 shares issued and outstanding as of December 31, 2025)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7",
+        "7"
+      ],
+      "numbers": [
+        7,
+        7
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional Paid-in-Capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,240,118",
+        "8,479,886"
+      ],
+      "numbers": [
+        9240118,
+        8479886
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained Earnings (Deficit)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(383,194)",
+        "191,641"
+      ],
+      "numbers": [
+        -383194,
+        191641
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated Other Comprehensive Loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(18,794)",
+        "(6,008)"
+      ],
+      "numbers": [
+        -18794,
+        -6008
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Stockholders' Equity of Blackstone Inc.",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "8,838,137",
+        "8,665,526"
+      ],
+      "numbers": [
+        8838137,
+        8665526
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-Controlling Interests in Consolidated Entities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,916,813",
+        "7,224,211"
+      ],
+      "numbers": [
+        5916813,
+        7224211
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Non-Controlling Interests in Blackstone Holdings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,833,199",
+        "4,610,932"
+      ],
+      "numbers": [
+        4833199,
+        4610932
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "19,588,149",
+        "20,500,669"
+      ],
+      "numbers": [
+        19588149,
+        20500669
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Liabilities and Equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "49,635,967",
+        "47,708,975"
+      ],
+      "numbers": [
+        49635967,
+        47708975
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' Equity of Blackstone Inc.",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred Stock, Value, Issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders' Equity of Blackstone Inc.",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred Stock, Value, Issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 0",
+        "$ 0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    }
+  ]
+}

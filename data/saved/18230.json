@@ -1,0 +1,573 @@
+{
+  "cik": "18230",
+  "companyName": "CATERPILLAR INC",
+  "form": "10-Q",
+  "filingDate": "2026-11-04",
+  "title": "Consolidated Statement of Financial Position - USD ($)",
+  "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 7,929",
+        "$ 9,980"
+      ],
+      "numbers": [
+        7929,
+        9980
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables – trade and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,440",
+        "10,920"
+      ],
+      "numbers": [
+        13440,
+        10920
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables – finance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "11,051",
+        "10,649"
+      ],
+      "numbers": [
+        11051,
+        10649
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,200",
+        "2,801"
+      ],
+      "numbers": [
+        3200,
+        2801
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "22,214",
+        "18,135"
+      ],
+      "numbers": [
+        22214,
+        18135
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "57,834",
+        "52,485"
+      ],
+      "numbers": [
+        57834,
+        52485
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment – net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "16,011",
+        "15,140"
+      ],
+      "numbers": [
+        16011,
+        15140
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term receivables – trade and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,348",
+        "2,142"
+      ],
+      "numbers": [
+        3348,
+        2142
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term receivables – finance",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "14,402",
+        "14,272"
+      ],
+      "numbers": [
+        14402,
+        14272
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncurrent deferred and refundable income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,235",
+        "2,882"
+      ],
+      "numbers": [
+        2235,
+        2882
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "409",
+        "241"
+      ],
+      "numbers": [
+        409,
+        241
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,905",
+        "5,321"
+      ],
+      "numbers": [
+        5905,
+        5321
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,699",
+        "6,102"
+      ],
+      "numbers": [
+        6699,
+        6102
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "106,843",
+        "98,585"
+      ],
+      "numbers": [
+        106843,
+        98585
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Short-term borrowings:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,573",
+        "8,968"
+      ],
+      "numbers": [
+        10573,
+        8968
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,038",
+        "5,587"
+      ],
+      "numbers": [
+        6038,
+        5587
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued wages, salaries and employee benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,663",
+        "2,554"
+      ],
+      "numbers": [
+        2663,
+        2554
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Customer advances",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,329",
+        "3,314"
+      ],
+      "numbers": [
+        5329,
+        3314
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Dividends payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "703"
+      ],
+      "numbers": [
+        0,
+        703
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,028",
+        "2,798"
+      ],
+      "numbers": [
+        3028,
+        2798
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term debt due within one year:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "40,666",
+        "36,558"
+      ],
+      "numbers": [
+        40666,
+        36558
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term debt due after one year:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Liability for postemployment benefits",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,610",
+        "3,838"
+      ],
+      "numbers": [
+        3610,
+        3838
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,919",
+        "6,175"
+      ],
+      "numbers": [
+        8919,
+        6175
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "85,361",
+        "77,267"
+      ],
+      "numbers": [
+        85361,
+        77267
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies (Notes 11 and 14)",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders’ equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, authorized and issued",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,658",
+        "7,181"
+      ],
+      "numbers": [
+        6658,
+        7181
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock: (9/30/26 – 357,300,450 shares; 12/31/25 – 349,607,292 shares) at cost",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(56,702)",
+        "(49,539)"
+      ],
+      "numbers": [
+        -56702,
+        -49539
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Profit employed in the business",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "73,428",
+        "65,448"
+      ],
+      "numbers": [
+        73428,
+        65448
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1,901)",
+        "(1,772)"
+      ],
+      "numbers": [
+        -1901,
+        -1772
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(1)",
+        "0"
+      ],
+      "numbers": [
+        -1,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "21,482",
+        "21,318"
+      ],
+      "numbers": [
+        21482,
+        21318
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "106,843",
+        "98,585"
+      ],
+      "numbers": [
+        106843,
+        98585
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Short-term borrowings:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Short-term borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,855",
+        "5,514"
+      ],
+      "numbers": [
+        4855,
+        5514
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term debt due within one year:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt due within one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "8,144",
+        "7,085"
+      ],
+      "numbers": [
+        8144,
+        7085
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term debt due after one year:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt due after one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,552",
+        "20,018"
+      ],
+      "numbers": [
+        21552,
+        20018
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term debt due within one year:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt due within one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "36",
+        "35"
+      ],
+      "numbers": [
+        36,
+        35
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Long-term debt due after one year:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt due after one year",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 10,614",
+        "$ 10,678"
+      ],
+      "numbers": [
+        10614,
+        10678
+      ]
+    }
+  ]
+}

@@ -1,0 +1,426 @@
+{
+  "cik": "313616",
+  "companyName": "DANAHER CORP /DE/",
+  "form": "10-Q",
+  "filingDate": "2026-10-21",
+  "title": "Consolidated Condensed Balance Sheets - USD ($)",
+  "columns": [
+    "Sep. 25, 2026",
+    "Dec. 31, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 5,682",
+        "$ 4,615"
+      ],
+      "numbers": [
+        5682,
+        4615
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts receivable, less allowance for doubtful accounts of $122 and $114, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,126",
+        "3,913"
+      ],
+      "numbers": [
+        4126,
+        3913
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Inventories:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Finished goods",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,676",
+        "1,287"
+      ],
+      "numbers": [
+        1676,
+        1287
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Work in process",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "542",
+        "469"
+      ],
+      "numbers": [
+        542,
+        469
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Raw materials",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "916",
+        "733"
+      ],
+      "numbers": [
+        916,
+        733
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total inventories",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "3,134",
+        "2,489"
+      ],
+      "numbers": [
+        3134,
+        2489
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Prepaid expenses and other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,845",
+        "1,739"
+      ],
+      "numbers": [
+        1845,
+        1739
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "14,787",
+        "12,756"
+      ],
+      "numbers": [
+        14787,
+        12756
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property, plant and equipment, net of accumulated depreciation of $5,042 and $4,767, respectively",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,773",
+        "5,531"
+      ],
+      "numbers": [
+        5773,
+        5531
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,354",
+        "4,209"
+      ],
+      "numbers": [
+        4354,
+        4209
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "47,315",
+        "43,151"
+      ],
+      "numbers": [
+        47315,
+        43151
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "21,052",
+        "17,817"
+      ],
+      "numbers": [
+        21052,
+        17817
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "93,281",
+        "83,464"
+      ],
+      "numbers": [
+        93281,
+        83464
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Notes payable and current portion of long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,094",
+        "2"
+      ],
+      "numbers": [
+        2094,
+        2
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Trade accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,742",
+        "1,844"
+      ],
+      "numbers": [
+        1742,
+        1844
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued expenses and other liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,214",
+        "4,961"
+      ],
+      "numbers": [
+        5214,
+        4961
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "9,050",
+        "6,807"
+      ],
+      "numbers": [
+        9050,
+        6807
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,210",
+        "5,700"
+      ],
+      "numbers": [
+        6210,
+        5700
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "24,388",
+        "18,416"
+      ],
+      "numbers": [
+        24388,
+        18416
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Stockholders’ equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock - $0.01 par value, 2.0 billion shares authorized; 888.8 million issued and 703.4 million outstanding as of September 25, 2026; 886.9 million issued and 706.9 million outstanding as of December 31, 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9",
+        "9"
+      ],
+      "numbers": [
+        9,
+        9
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Additional paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "17,628",
+        "17,194"
+      ],
+      "numbers": [
+        17628,
+        17194
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(12,330)",
+        "(11,353)"
+      ],
+      "numbers": [
+        -12330,
+        -11353
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "49,179",
+        "46,891"
+      ],
+      "numbers": [
+        49179,
+        46891
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive income (loss)",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(865)",
+        "(207)"
+      ],
+      "numbers": [
+        -865,
+        -207
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Danaher stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "53,621",
+        "52,534"
+      ],
+      "numbers": [
+        53621,
+        52534
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "12",
+        "7"
+      ],
+      "numbers": [
+        12,
+        7
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "53,633",
+        "52,541"
+      ],
+      "numbers": [
+        53633,
+        52541
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and stockholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 93,281",
+        "$ 83,464"
+      ],
+      "numbers": [
+        93281,
+        83464
+      ]
+    }
+  ]
+}

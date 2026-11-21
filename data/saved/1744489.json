@@ -1,0 +1,510 @@
+{
+  "cik": "1744489",
+  "companyName": "Walt Disney Co",
+  "form": "10-K",
+  "filingDate": "2026-11-17",
+  "title": "CONSOLIDATED BALANCE SHEETS - USD ($)",
+  "columns": [
+    "Oct. 03, 2026",
+    "Sep. 27, 2025"
+  ],
+  "unitLine": "$ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "Current assets",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 6,679",
+        "$ 5,695"
+      ],
+      "numbers": [
+        6679,
+        5695
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Receivables, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,389",
+        "13,217"
+      ],
+      "numbers": [
+        13389,
+        13217
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,190",
+        "2,134"
+      ],
+      "numbers": [
+        2190,
+        2134
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Content advances",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,199",
+        "2,063"
+      ],
+      "numbers": [
+        2199,
+        2063
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other current assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,402",
+        "1,158"
+      ],
+      "numbers": [
+        1402,
+        1158
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "25,859",
+        "24,267"
+      ],
+      "numbers": [
+        25859,
+        24267
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Produced and licensed content costs",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "30,537",
+        "31,327"
+      ],
+      "numbers": [
+        30537,
+        31327
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Investments",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,266",
+        "8,097"
+      ],
+      "numbers": [
+        6266,
+        8097
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Attractions, buildings and equipment",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "86,151",
+        "82,041"
+      ],
+      "numbers": [
+        86151,
+        82041
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated depreciation",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(47,921)",
+        "(48,889)"
+      ],
+      "numbers": [
+        -47921,
+        -48889
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Parks, resorts and other property, before projects in progress and land, Total",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "38,230",
+        "33,152"
+      ],
+      "numbers": [
+        38230,
+        33152
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Projects in progress",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "6,266",
+        "6,911"
+      ],
+      "numbers": [
+        6266,
+        6911
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Land",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,214",
+        "1,192"
+      ],
+      "numbers": [
+        1214,
+        1192
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Parks, resorts and other property",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "45,710",
+        "41,255"
+      ],
+      "numbers": [
+        45710,
+        41255
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Intangible assets, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "9,473",
+        "9,272"
+      ],
+      "numbers": [
+        9473,
+        9272
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Goodwill",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "74,700",
+        "73,294"
+      ],
+      "numbers": [
+        74700,
+        73294
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other assets",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "13,593",
+        "10,002"
+      ],
+      "numbers": [
+        13593,
+        10002
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "206,138",
+        "197,514"
+      ],
+      "numbers": [
+        206138,
+        197514
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable and other accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "20,347",
+        "21,203"
+      ],
+      "numbers": [
+        20347,
+        21203
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Current portion of borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,331",
+        "6,711"
+      ],
+      "numbers": [
+        7331,
+        6711
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred revenue and other",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,229",
+        "6,248"
+      ],
+      "numbers": [
+        7229,
+        6248
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "34,907",
+        "34,162"
+      ],
+      "numbers": [
+        34907,
+        34162
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Borrowings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "37,142",
+        "35,315"
+      ],
+      "numbers": [
+        37142,
+        35315
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Deferred income taxes",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "5,146",
+        "3,524"
+      ],
+      "numbers": [
+        5146,
+        3524
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Other long-term liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "10,238",
+        "9,901"
+      ],
+      "numbers": [
+        10238,
+        9901
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Commitments and contingencies",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Equity",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Preferred stock",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "0",
+        "0"
+      ],
+      "numbers": [
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Common stock, $0.01 par value, Authorized – 4.6 billion shares, Issued – 1.9 billion shares",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "63,049",
+        "59,814"
+      ],
+      "numbers": [
+        63049,
+        59814
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "67,651",
+        "60,410"
+      ],
+      "numbers": [
+        67651,
+        60410
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accumulated other comprehensive loss",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(2,581)",
+        "(2,914)"
+      ],
+      "numbers": [
+        -2581,
+        -2914
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Treasury stock, at cost, 165 million shares at October 3, 2026 and 79 million shares at September 27, 2025",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "(16,519)",
+        "(7,441)"
+      ],
+      "numbers": [
+        -16519,
+        -7441
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total Disney Shareholders’ equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "111,600",
+        "109,869"
+      ],
+      "numbers": [
+        111600,
+        109869
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Noncontrolling interests",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "7,105",
+        "4,743"
+      ],
+      "numbers": [
+        7105,
+        4743
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "118,705",
+        "114,612"
+      ],
+      "numbers": [
+        118705,
+        114612
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 206,138",
+        "$ 197,514"
+      ],
+      "numbers": [
+        206138,
+        197514
+      ]
+    }
+  ]
+}
