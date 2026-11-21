@@ -70,7 +70,7 @@ describe("CompanySearch component", () => {
     render(<CompanySearch />);
     fireEvent.click(screen.getByRole("button", { name: "Check it" }));
     expect(
-      screen.getByText("Type a company name or ticker first, such as Apple or AAPL."),
+      screen.getByText("Type a company name or stock symbol first, such as Apple or AAPL."),
     ).toBeInTheDocument();
     expect(fetchSpy).not.toHaveBeenCalled();
   });

@@ -1247,7 +1247,10 @@ export function StatementView({
     if (!band) return;
     const top = band.getBoundingClientRect().top;
     if (top < 0 || top > window.innerHeight * 0.5) {
-      band.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollTo({
+        top: Math.max(0, top + window.scrollY - 16),
+        behavior: "smooth",
+      });
     }
   }, [phase, modState.kind]);
 

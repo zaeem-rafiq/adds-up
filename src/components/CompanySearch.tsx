@@ -371,7 +371,7 @@ export function CompanySearch() {
           data-empty-hint="true"
           className="mx-auto mt-3 max-w-[560px] text-center text-sm text-slate-700"
         >
-          Type a company name or ticker first, such as Apple or AAPL.
+          Type a company name or stock symbol first, such as Apple or AAPL.
         </p>
       )}
 
@@ -534,9 +534,10 @@ export function CompanySearch() {
         data-upload-note="true"
         className="mx-auto mt-3 max-w-[560px] text-center text-xs leading-relaxed text-slate-600"
       >
-        Upload one page as a PNG or JPEG, up to 8 MB. Google&apos;s Gemini
-        models read it. It stays in server memory for one hour and is never
-        saved to disk. Anyone with its link can open it during that hour.
+        Upload one page as a PNG or JPEG picture, up to 8 MB. Google&apos;s
+        Gemini models read it. Adds Up keeps it for one hour and never saves
+        it to disk. For that hour, anyone with the link to your result can
+        open it.
       </p>
     </div>
   );
