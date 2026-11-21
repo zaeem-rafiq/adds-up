@@ -246,8 +246,8 @@ describe("POST /api/upload picture size", () => {
 });
 
 describe("POST /api/upload rate limit", () => {
-  test("allows 20 uploads per address in one hour and refuses the 21st before reading it", async () => {
-    for (let i = 0; i < 20; i += 1) {
+  test("allows 60 uploads per address in one hour and refuses the 61st before reading it", async () => {
+    for (let i = 0; i < 60; i += 1) {
       const response = await postUpload(
         uploadRequest(pngWithSize(100, 100), { ip: "203.0.113.130" }),
       );
@@ -288,8 +288,8 @@ describe("POST /api/upload rate limit", () => {
     expect(other.status).toBe(201);
   });
 
-  test("refused and invalid attempts count against the 20 too", async () => {
-    for (let i = 0; i < 20; i += 1) {
+  test("refused and invalid attempts count against the 60 too", async () => {
+    for (let i = 0; i < 60; i += 1) {
       const response = await postUpload(
         uploadRequest(Buffer.from("not a picture"), { ip: "203.0.113.132" }),
       );

@@ -139,7 +139,9 @@ export function countNumberRowsInReading(rows: readonly ReadRow[]): number {
       row.cells[0].number !== null ||
       row.cells[1].number !== null ||
       row.cells[0].hidden ||
-      row.cells[1].hidden
+      row.cells[1].hidden ||
+      row.cells[0].disputed !== undefined ||
+      row.cells[1].disputed !== undefined
     ) {
       count += 1;
     }

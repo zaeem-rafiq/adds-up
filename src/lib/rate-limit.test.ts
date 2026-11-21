@@ -289,18 +289,18 @@ describe("Network address counting (hardening point 1)", () => {
     expect(limiter.getCounts({ browserId: "x", ip: "y" }).dailyModelCalls).toBe(2);
   });
 
-  test("allows 20 uploads per address per hour, then refuses, and frees the slot after an hour", () => {
+  test("allows 60 uploads per address per hour, then refuses, and frees the slot after an hour", () => {
     let now = 1_700_000_000_000;
     const limiter = new RateLimiter({ now: () => now });
-    expect(limiter.getLimits().uploadsPerHour).toBe(20);
-    for (let i = 0; i < 20; i += 1) {
+    expect(limiter.getLimits().uploadsPerHour).toBe(60);
+    for (let i = 0; i < 60; i += 1) {
       expect(limiter.checkAndConsumeUpload("203.0.113.90").allowed).toBe(true);
     }
     const refused = limiter.checkAndConsumeUpload("203.0.113.90");
     expect(refused.allowed).toBe(false);
     if (!refused.allowed) {
       expect(refused.reason).toBe("upload");
-      expect(refused.message).toContain("20 uploads");
+      expect(refused.message).toContain("60 uploads");
       expect(refused.retryAfterSeconds).toBeGreaterThan(0);
     }
     expect(limiter.checkAndConsumeUpload("203.0.113.91").allowed).toBe(true);
