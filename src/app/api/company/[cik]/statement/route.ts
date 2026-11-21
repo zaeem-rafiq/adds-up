@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findCompanyByCik, isValidCik } from "@/lib/companies";
-import { loadStatement, StatementError } from "@/lib/statements";
+import { publicStatementError, SAVED_COPY_MESSAGE } from "@/lib/public-errors";
+import { loadStatement } from "@/lib/statements";
 
 export async function GET(
   _request: NextRequest,
@@ -27,8 +28,9 @@ export async function GET(
       {
         statement: result.statement,
         source: result.source,
+        // The SEC's own error text stays in the server log.
         ...(result.fallbackReason
-          ? { fallbackReason: result.fallbackReason }
+          ? { fallbackReason: SAVED_COPY_MESSAGE }
           : {}),
       },
       {
@@ -39,16 +41,7 @@ export async function GET(
       },
     );
   } catch (error) {
-    if (error instanceof StatementError) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status },
-      );
-    }
-
-    return NextResponse.json(
-      { error: "Could not load this company's balance sheet." },
-      { status: 500 },
-    );
+    const { status, message } = publicStatementError(error);
+    return NextResponse.json({ error: message }, { status });
   }
 }

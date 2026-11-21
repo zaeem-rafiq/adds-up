@@ -5,6 +5,7 @@ import {
   type DrawStatementOptions,
 } from "@/lib/draw-statement";
 import { findStatementRowIndexForNumberRow } from "@/lib/reading";
+import { logServerError, publicStatementError } from "@/lib/public-errors";
 import { loadStatement, StatementError } from "@/lib/statements";
 
 function parseNonNegInt(raw: string | null): number | null {
@@ -81,12 +82,11 @@ export async function GET(
     });
   } catch (error) {
     if (error instanceof StatementError) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status },
-      );
+      const { status, message } = publicStatementError(error);
+      return NextResponse.json({ error: message }, { status });
     }
 
+    logServerError("drawing a balance sheet picture", error);
     return NextResponse.json(
       { error: "Could not draw the balance sheet picture." },
       { status: 500 },

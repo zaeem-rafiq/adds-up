@@ -11,6 +11,12 @@ import {
   hasGeminiApiKey,
 } from "@/lib/gemini";
 import {
+  logServerError,
+  MODIFY_FAILED_MESSAGE,
+  publicStatementError,
+  READING_UNAVAILABLE_MESSAGE,
+} from "@/lib/public-errors";
+import {
   BROWSER_COOKIE_NAME,
   extractClientIp,
   getGlobalRateLimiter,
@@ -25,10 +31,14 @@ import {
   ReadingTimeoutError,
   readStatementWithModification,
   type ReadingProgressEvent,
-  type ReadRow,
   type StatementModification,
 } from "@/lib/reading";
-import { loadStatement, StatementError } from "@/lib/statements";
+import {
+  MAX_NUMBER_TEXT_CHARS,
+  parsePreviousRows,
+  readJsonBody,
+} from "@/lib/request-limits";
+import { loadStatement } from "@/lib/statements";
 
 function applyBrowserCookie(
   request: NextRequest,
@@ -51,19 +61,6 @@ function applyBrowserCookie(
   return response;
 }
 
-function isReadRowArray(value: unknown): value is ReadRow[] {
-  if (!Array.isArray(value)) return false;
-  return value.every((item) => {
-    if (!item || typeof item !== "object") return false;
-    const row = item as Record<string, unknown>;
-    return (
-      typeof row.label === "string" &&
-      Array.isArray(row.cells) &&
-      row.cells.length === 2
-    );
-  });
-}
-
 export async function POST(
   request: NextRequest,
   context: RouteContext<"/api/company/[cik]/modify">,
@@ -80,22 +77,19 @@ export async function POST(
   );
   const ip = extractClientIp(request.headers);
 
-  let body: Record<string, unknown>;
-  try {
-    const parsed: unknown = await request.json();
-    if (!parsed || typeof parsed !== "object") {
-      return applyBrowserCookie(
-        request,
-        NextResponse.json(
-          { code: "failed", error: "Invalid request body." },
-          { status: 400 },
-        ),
-        browserId,
-        isNew,
-      );
-    }
-    body = parsed as Record<string, unknown>;
-  } catch {
+  const parsedBody = await readJsonBody(request);
+  if (!parsedBody.ok) {
+    return applyBrowserCookie(
+      request,
+      NextResponse.json(
+        { code: parsedBody.code, error: parsedBody.message },
+        { status: parsedBody.status },
+      ),
+      browserId,
+      isNew,
+    );
+  }
+  if (!parsedBody.value || typeof parsedBody.value !== "object") {
     return applyBrowserCookie(
       request,
       NextResponse.json(
@@ -106,6 +100,7 @@ export async function POST(
       isNew,
     );
   }
+  const body = parsedBody.value as Record<string, unknown>;
 
   const action = body.action;
   const numberRowIndex = body.numberRowIndex;
@@ -138,7 +133,13 @@ export async function POST(
     };
   } else {
     const rawValue = typeof body.newValue === "string" ? body.newValue : "";
-    const parsedValue = parseChangedNumberInput(rawValue);
+    const parsedValue =
+      rawValue.length > MAX_NUMBER_TEXT_CHARS
+        ? ({
+            ok: false,
+            error: "Enter a valid number, such as 15,541.",
+          } as const)
+        : parseChangedNumberInput(rawValue);
     if (!parsedValue.ok) {
       return applyBrowserCookie(
         request,
@@ -158,9 +159,20 @@ export async function POST(
     };
   }
 
-  const previousRows = isReadRowArray(body.previousRows)
-    ? body.previousRows
-    : undefined;
+  // The rows come from the visitor: checked, clipped and never written to a shared cache.
+  const previousRowsResult = parsePreviousRows(body.previousRows);
+  if (!previousRowsResult.ok) {
+    return applyBrowserCookie(
+      request,
+      NextResponse.json(
+        { code: "too_large", error: previousRowsResult.message },
+        { status: 400 },
+      ),
+      browserId,
+      isNew,
+    );
+  }
+  const previousRows = previousRowsResult.rows;
 
   let companyName = "";
   try {
@@ -176,11 +188,7 @@ export async function POST(
   try {
     statementResult = await loadStatement(cik, { companyName });
   } catch (error) {
-    const status = error instanceof StatementError ? error.status : 500;
-    const message =
-      error instanceof StatementError
-        ? error.message
-        : "Could not load this company's balance sheet.";
+    const { status, message } = publicStatementError(error);
     return applyBrowserCookie(
       request,
       NextResponse.json({ code: "failed", error: message }, { status }),
@@ -246,8 +254,7 @@ export async function POST(
       NextResponse.json(
         {
           code: "missing_key",
-          error:
-            "Reading is unavailable because GEMINI_API_KEY is not set on the server.",
+          error: READING_UNAVAILABLE_MESSAGE,
         },
         { status: 503 },
       ),
@@ -294,10 +301,11 @@ export async function POST(
             message: error.message,
           });
         } else if (error instanceof GeminiConfigError) {
+          logServerError("changing a number on a statement", error);
           send({
             type: "error",
             code: "missing_key",
-            message: error.message,
+            message: READING_UNAVAILABLE_MESSAGE,
           });
         } else if (error instanceof ReadingTimeoutError) {
           send({
@@ -316,10 +324,11 @@ export async function POST(
             totalStrips: error.totalStrips,
           });
         } else {
+          logServerError("changing a number on a statement", error);
           send({
             type: "error",
             code: "failed",
-            message: "Could not read the updated balance sheet picture right now.",
+            message: MODIFY_FAILED_MESSAGE,
           });
         }
       } finally {

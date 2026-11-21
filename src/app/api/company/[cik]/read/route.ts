@@ -6,6 +6,12 @@ import {
   hasGeminiApiKey,
 } from "@/lib/gemini";
 import {
+  logServerError,
+  publicStatementError,
+  READ_FAILED_MESSAGE,
+  READING_UNAVAILABLE_MESSAGE,
+} from "@/lib/public-errors";
+import {
   BROWSER_COOKIE_NAME,
   extractClientIp,
   getGlobalRateLimiter,
@@ -24,7 +30,7 @@ import {
   getGlobalDecisionCache,
   recheckStatementNumbers,
 } from "@/lib/second-reader";
-import { loadStatement, StatementError } from "@/lib/statements";
+import { loadStatement } from "@/lib/statements";
 
 function applyBrowserCookie(
   request: NextRequest,
@@ -95,11 +101,7 @@ export async function POST(
   try {
     statementResult = await loadStatement(cik, { companyName });
   } catch (error) {
-    const status = error instanceof StatementError ? error.status : 500;
-    const message =
-      error instanceof StatementError
-        ? error.message
-        : "Could not load this company's balance sheet.";
+    const { status, message } = publicStatementError(error);
     return applyBrowserCookie(
       request,
       NextResponse.json({ code: "failed", error: message }, { status }),
@@ -119,8 +121,7 @@ export async function POST(
       NextResponse.json(
         {
           code: "missing_key",
-          error:
-            "Reading is unavailable because GEMINI_API_KEY is not set on the server.",
+          error: READING_UNAVAILABLE_MESSAGE,
         },
         { status: 503 },
       ),
@@ -194,10 +195,11 @@ export async function POST(
             message: error.message,
           });
         } else if (error instanceof GeminiConfigError) {
+          logServerError("reading a statement", error);
           send({
             type: "error",
             code: "missing_key",
-            message: error.message,
+            message: READING_UNAVAILABLE_MESSAGE,
           });
         } else if (error instanceof ReadingTimeoutError) {
           send({
@@ -216,10 +218,11 @@ export async function POST(
             totalStrips: error.totalStrips,
           });
         } else {
+          logServerError("reading a statement", error);
           send({
             type: "error",
             code: "failed",
-            message: "Could not read the balance sheet picture right now.",
+            message: READ_FAILED_MESSAGE,
           });
         }
       } finally {

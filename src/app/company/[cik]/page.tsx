@@ -3,17 +3,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StatementView } from "@/components/StatementView";
 import {
-  CompanyListError,
   findCompanyByCik,
   isValidCik,
   normalizeCik,
   type Company,
 } from "@/lib/companies";
 import {
-  loadStatement,
-  StatementError,
-  type StatementLoadResult,
-} from "@/lib/statements";
+  COMPANY_LOAD_FAILED_MESSAGE,
+  logServerError,
+  publicStatementError,
+} from "@/lib/public-errors";
+import { loadStatement, type StatementLoadResult } from "@/lib/statements";
 
 function extractQueryValues(
   raw: string | string[] | undefined,
@@ -51,10 +51,8 @@ async function CompanyStatementContent({
   try {
     company = await findCompanyByCik(normalizedCik);
   } catch (error) {
-    companyListError =
-      error instanceof CompanyListError
-        ? error.message
-        : "Could not load the company right now. Please try again.";
+    logServerError("looking up a company", error);
+    companyListError = COMPANY_LOAD_FAILED_MESSAGE;
   }
 
   // If the company list loaded and the company is not in it, show the not-listed message.
@@ -84,10 +82,7 @@ async function CompanyStatementContent({
       companyName: company?.name,
     });
   } catch (error) {
-    statementError =
-      error instanceof StatementError
-        ? error.message
-        : "Could not load this company's balance sheet right now. Please try again.";
+    statementError = publicStatementError(error).message;
   }
 
   if (statementResult) {

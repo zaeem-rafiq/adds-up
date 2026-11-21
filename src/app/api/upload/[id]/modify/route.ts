@@ -17,12 +17,22 @@ import {
   RateLimitError,
 } from "@/lib/rate-limit";
 import {
+  logServerError,
+  MODIFY_FAILED_MESSAGE,
+  READING_UNAVAILABLE_MESSAGE,
+} from "@/lib/public-errors";
+import {
   getGlobalReadingCache,
   getReadTimeoutMs,
   ReadingFailedError,
   ReadingTimeoutError,
   type ReadingProgressEvent,
 } from "@/lib/reading";
+import {
+  clipText,
+  MAX_NUMBER_TEXT_CHARS,
+  readJsonBody,
+} from "@/lib/request-limits";
 import {
   getGlobalUploadStore,
   modifyUploadedPicture,
@@ -78,22 +88,19 @@ export async function POST(
     );
   }
 
-  let body: Record<string, unknown>;
-  try {
-    const parsed: unknown = await request.json();
-    if (!parsed || typeof parsed !== "object") {
-      return applyBrowserCookie(
-        request,
-        NextResponse.json(
-          { code: "failed", error: "Invalid request body." },
-          { status: 400 },
-        ),
-        browserId,
-        isNew,
-      );
-    }
-    body = parsed as Record<string, unknown>;
-  } catch {
+  const parsedBody = await readJsonBody(request);
+  if (!parsedBody.ok) {
+    return applyBrowserCookie(
+      request,
+      NextResponse.json(
+        { code: parsedBody.code, error: parsedBody.message },
+        { status: parsedBody.status },
+      ),
+      browserId,
+      isNew,
+    );
+  }
+  if (!parsedBody.value || typeof parsedBody.value !== "object") {
     return applyBrowserCookie(
       request,
       NextResponse.json(
@@ -104,14 +111,18 @@ export async function POST(
       isNew,
     );
   }
+  const body = parsedBody.value as Record<string, unknown>;
 
   const action = body.action;
   const numberRowIndex = body.numberRowIndex;
   const colIndex = body.colIndex;
+  // Both go into the paid locate prompt, so each is cut to 200 characters.
   const rowLabel =
-    typeof body.rowLabel === "string" ? body.rowLabel.trim() : "";
+    typeof body.rowLabel === "string" ? clipText(body.rowLabel.trim()) : "";
   const printedValue =
-    typeof body.printedValue === "string" ? body.printedValue.trim() : "";
+    typeof body.printedValue === "string"
+      ? clipText(body.printedValue.trim())
+      : "";
 
   if (
     (action !== "hide" && action !== "change") ||
@@ -140,7 +151,13 @@ export async function POST(
     };
   } else {
     const rawValue = typeof body.newValue === "string" ? body.newValue : "";
-    const parsedValue = parseChangedNumberInput(rawValue);
+    const parsedValue =
+      rawValue.length > MAX_NUMBER_TEXT_CHARS
+        ? ({
+            ok: false,
+            error: "Enter a valid number, such as 15,541.",
+          } as const)
+        : parseChangedNumberInput(rawValue);
     if (!parsedValue.ok) {
       return applyBrowserCookie(
         request,
@@ -197,8 +214,7 @@ export async function POST(
       NextResponse.json(
         {
           code: "missing_key",
-          error:
-            "Reading is unavailable because GEMINI_API_KEY is not set on the server.",
+          error: READING_UNAVAILABLE_MESSAGE,
         },
         { status: 503 },
       ),
@@ -246,10 +262,11 @@ export async function POST(
             message: error.message,
           });
         } else if (error instanceof GeminiConfigError) {
+          logServerError("changing a number on an uploaded picture", error);
           send({
             type: "error",
             code: "missing_key",
-            message: error.message,
+            message: READING_UNAVAILABLE_MESSAGE,
           });
         } else if (error instanceof ReadingTimeoutError) {
           send({
@@ -268,10 +285,11 @@ export async function POST(
             totalStrips: 1,
           });
         } else {
+          logServerError("changing a number on an uploaded picture", error);
           send({
             type: "error",
             code: "failed",
-            message: "Could not read the updated balance sheet picture right now.",
+            message: MODIFY_FAILED_MESSAGE,
           });
         }
       } finally {

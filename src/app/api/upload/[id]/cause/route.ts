@@ -16,6 +16,7 @@ import {
   getGlobalCauseCache,
   getReadTimeoutMs,
 } from "@/lib/reading";
+import { clipText, readJsonBody } from "@/lib/request-limits";
 
 function applyBrowserCookie(
   request: NextRequest,
@@ -55,8 +56,8 @@ function parseGroupRows(raw: unknown): CauseGroupRow[] | null {
       return null;
     }
     rows.push({
-      label: record.label,
-      value: record.value,
+      label: clipText(record.label),
+      value: clipText(record.value),
       number: record.number,
     });
   }
@@ -70,19 +71,19 @@ export async function POST(request: NextRequest) {
   const ip = extractClientIp(request.headers);
   const model = getCauseModelName();
 
-  let body: Record<string, unknown>;
-  try {
-    const parsed: unknown = await request.json();
-    if (!parsed || typeof parsed !== "object") {
-      return applyBrowserCookie(
-        request,
-        NextResponse.json({ sentence: null, model }, { status: 400 }),
-        browserId,
-        isNew,
-      );
-    }
-    body = parsed as Record<string, unknown>;
-  } catch {
+  const parsedBody = await readJsonBody(request);
+  if (!parsedBody.ok) {
+    return applyBrowserCookie(
+      request,
+      NextResponse.json(
+        { sentence: null, model, error: parsedBody.message },
+        { status: parsedBody.status },
+      ),
+      browserId,
+      isNew,
+    );
+  }
+  if (!parsedBody.value || typeof parsedBody.value !== "object") {
     return applyBrowserCookie(
       request,
       NextResponse.json({ sentence: null, model }, { status: 400 }),
@@ -90,9 +91,10 @@ export async function POST(request: NextRequest) {
       isNew,
     );
   }
+  const body = parsedBody.value as Record<string, unknown>;
 
   const groupLabel =
-    typeof body.groupLabel === "string" ? body.groupLabel.trim() : "";
+    typeof body.groupLabel === "string" ? clipText(body.groupLabel.trim()) : "";
   const rows = parseGroupRows(body.rows);
   const statedTotal = body.statedTotal;
   const computedSum = body.computedSum;

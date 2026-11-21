@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CompanyListError, loadCompanyList, searchCompanies } from "@/lib/companies";
+import { logServerError, publicCompanyListError } from "@/lib/public-errors";
 
 export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get("q") ?? "";
@@ -13,12 +14,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ companies: matches });
   } catch (error) {
     if (error instanceof CompanyListError) {
-      return NextResponse.json(
-        { error: error.message, companies: [] },
-        { status: error.status },
-      );
+      const { status, message } = publicCompanyListError(error);
+      return NextResponse.json({ error: message, companies: [] }, { status });
     }
 
+    logServerError("searching companies", error);
     return NextResponse.json(
       { error: "Company search failed. Please try again.", companies: [] },
       { status: 500 },
