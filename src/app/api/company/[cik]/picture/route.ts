@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findCompanyByCik } from "@/lib/companies";
+import { findCompanyByCik, isValidCik } from "@/lib/companies";
 import {
   drawStatementPng,
   type DrawStatementOptions,
@@ -18,6 +18,9 @@ export async function GET(
   context: RouteContext<"/api/company/[cik]/picture">,
 ) {
   const { cik } = await context.params;
+  if (!isValidCik(cik)) {
+    return NextResponse.json({ error: "Company not found." }, { status: 404 });
+  }
   const params = request.nextUrl.searchParams;
 
   let companyName = "";

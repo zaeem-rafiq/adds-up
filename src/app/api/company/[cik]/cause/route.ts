@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isValidCik } from "@/lib/companies";
 import {
   getCauseModelName,
   getGeminiClient,
@@ -63,7 +64,14 @@ function parseGroupRows(raw: unknown): CauseGroupRow[] | null {
   return rows;
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest,
+  context: RouteContext<"/api/company/[cik]/cause">,
+) {
+  const { cik } = await context.params;
+  if (!isValidCik(cik)) {
+    return NextResponse.json({ error: "Company not found." }, { status: 404 });
+  }
   const { browserId, isNew } = getOrCreateBrowserId(
     request.cookies.get(BROWSER_COOKIE_NAME)?.value,
   );

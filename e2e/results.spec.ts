@@ -63,7 +63,10 @@ test("shows the full test results with headline figure, comparison table, pass m
     passMarksSection.getByText("Missed", { exact: true }),
   ).toHaveCount(1);
 
-  // Approved second-reader labels
+  // Approved second-reader heading and labels
+  await expect(
+    page.getByRole("heading", { name: "What the second reader decides" }),
+  ).toBeVisible();
   await expect(page.getByText("The second reader agrees")).toBeVisible();
   await expect(page.getByText("at or above 95%")).toBeVisible();
   await expect(page.getByText("The second reader is unsure")).toBeVisible();
@@ -162,6 +165,26 @@ test("shows the empty state when scores are empty at 375, 768 and 1440 pixels", 
   await expect(
     page.getByRole("heading", { name: "Does it work on pages we did not pick?" }),
   ).toBeVisible();
+  await expect(
+    page.getByText(
+      "One plain model call also read every number right. The difference is proof: Adds Up shows the sum behind every tick.",
+    ),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "What the second reader decides" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(
+      /The test did not run on blurred or tilted copies, scans or photos\./,
+    ),
+  ).toBeVisible();
+  // At 1440 the filings show as a table. At 375 they show as cards.
+  await expect(
+    page.getByRole("cell", { name: "from memory" }).first(),
+  ).toBeVisible();
+  await page.setViewportSize({ width: 375, height: 900 });
+  await expect(page.getByText("from memory").first()).toBeVisible();
+  await page.setViewportSize({ width: 1440, height: 900 });
 
   await page.goto("/results?scores=empty");
   await expect(

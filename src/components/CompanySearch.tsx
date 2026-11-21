@@ -489,7 +489,7 @@ export function CompanySearch() {
           aria-hidden="true"
           tabIndex={-1}
           data-upload-input="true"
-          accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf"
+          accept=".png,.jpg,.jpeg,image/png,image/jpeg"
           className="sr-only"
           onChange={(event) => {
             const file = event.target.files?.[0];

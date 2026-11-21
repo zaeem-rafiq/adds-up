@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { parseChangedNumberInput } from "@/lib/adding";
-import { findCompanyByCik } from "@/lib/companies";
+import { findCompanyByCik, isValidCik } from "@/lib/companies";
 import {
   GeminiConfigError,
   getGeminiClient,
@@ -64,6 +64,12 @@ export async function POST(
   context: RouteContext<"/api/company/[cik]/modify">,
 ) {
   const { cik } = await context.params;
+  if (!isValidCik(cik)) {
+    return NextResponse.json(
+      { code: "not_found", error: "Company not found." },
+      { status: 404 },
+    );
+  }
   const { browserId, isNew } = getOrCreateBrowserId(
     request.cookies.get(BROWSER_COOKIE_NAME)?.value,
   );

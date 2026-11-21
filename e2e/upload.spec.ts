@@ -134,11 +134,11 @@ test("uploads holiday-photo.png and shows the no-statement screen from design/de
   ).toBeVisible();
   await expect(
     page.getByText(
-      "Use one PDF page or one picture that shows a single financial statement.",
+      "Use one picture, PNG or JPEG, that shows a single balance sheet.",
     ),
   ).toBeVisible();
   await expect(
-    page.getByText("Drop a PDF page or a picture here"),
+    page.getByText("Drop a picture of one page here"),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Choose a file" }),

@@ -156,11 +156,11 @@ describe("UploadView", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Use one PDF page or one picture that shows a single financial statement.",
+        "Use one picture, PNG or JPEG, that shows a single balance sheet.",
       ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Drop a PDF page or a picture here"),
+      screen.getByText("Drop a picture of one page here"),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Choose a file" }),

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findCompanyByCik } from "@/lib/companies";
+import { findCompanyByCik, isValidCik } from "@/lib/companies";
 import {
   GeminiConfigError,
   getGeminiClient,
@@ -52,6 +52,12 @@ export async function POST(
   context: RouteContext<"/api/company/[cik]/read">,
 ) {
   const { cik } = await context.params;
+  if (!isValidCik(cik)) {
+    return NextResponse.json(
+      { code: "not_found", error: "Company not found." },
+      { status: 404 },
+    );
+  }
   const testMode = process.env.ADDS_UP_TEST === "1";
   // Outside test mode, ?slow=1, ?doubt= and ?unsure= do nothing.
   const slow = testMode && request.nextUrl.searchParams.get("slow") === "1";

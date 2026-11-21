@@ -72,6 +72,31 @@ test("navigates search matches with arrow keys and Enter", async ({ page }) => {
   ).toBeVisible();
 });
 
+test("finds everyday company names like google and rejects invalid CIK paths with 404", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/");
+
+  const searchBox = page.getByRole("combobox", {
+    name: "Type a US public company",
+  });
+  await searchBox.fill("google");
+
+  const options = page.getByRole("option");
+  await expect(options.first()).toContainText("GOOGL");
+  await expect(options.first()).toContainText("Alphabet Inc.");
+
+  const badPage = await request.get("/company/not-a-cik");
+  expect(badPage.status()).toBe(404);
+
+  const tooLongPage = await request.get("/company/12345678901");
+  expect(tooLongPage.status()).toBe(404);
+
+  const badApi = await request.get("/api/company/not-a-cik/statement");
+  expect(badApi.status()).toBe(404);
+});
+
 test("renders the start screen at 375, 768 and 1440 pixels wide with no sideways scroll", async ({
   page,
 }) => {
