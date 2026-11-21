@@ -15,8 +15,14 @@ import {
 
 async function CompanyStatementContent({
   params,
-}: Pick<PageProps<"/company/[cik]">, "params">) {
+  searchParams,
+}: Pick<PageProps<"/company/[cik]">, "params" | "searchParams">) {
   const { cik } = await params;
+  const resolvedSearchParams = await searchParams;
+  const slowParam = resolvedSearchParams.slow;
+  const slowMode =
+    process.env.ADDS_UP_TEST === "1" &&
+    (slowParam === "1" || (Array.isArray(slowParam) && slowParam.includes("1")));
   const normalizedCik = normalizeCik(cik);
 
   let company: Company | null = null;
@@ -71,6 +77,7 @@ async function CompanyStatementContent({
         statement={statementResult.statement}
         source={statementResult.source}
         pictureUrl={pictureUrl}
+        slowMode={slowMode}
       />
     );
   }
@@ -132,6 +139,7 @@ async function CompanyStatementContent({
 
 export default function CompanyStatementPage({
   params,
+  searchParams,
 }: PageProps<"/company/[cik]">) {
   return (
     <main className="mx-auto w-full max-w-[1160px] px-4 py-6 sm:px-6 sm:py-8">
@@ -145,7 +153,7 @@ export default function CompanyStatementPage({
           </div>
         }
       >
-        <CompanyStatementContent params={params} />
+        <CompanyStatementContent params={params} searchParams={searchParams} />
       </Suspense>
     </main>
   );

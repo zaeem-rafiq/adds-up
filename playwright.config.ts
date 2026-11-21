@@ -18,6 +18,10 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
     timeout: 120_000,
-    env: { ADDS_UP_TEST: "1", NEXT_TELEMETRY_DISABLED: "1" },
+    env: {
+      ADDS_UP_TEST: "1",
+      ADDS_UP_READ_TIMEOUT_MS: "1200",
+      NEXT_TELEMETRY_DISABLED: "1",
+    },
   },
 });
