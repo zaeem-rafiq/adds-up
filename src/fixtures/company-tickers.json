@@ -1,0 +1,52 @@
+{
+  "0": {
+    "cik_str": 320193,
+    "ticker": "AAPL",
+    "title": "Apple Inc."
+  },
+  "1": {
+    "cik_str": 1418121,
+    "ticker": "APLE",
+    "title": "Apple Hospitality REIT, Inc."
+  },
+  "2": {
+    "cik_str": 6951,
+    "ticker": "AMAT",
+    "title": "Applied Materials, Inc."
+  },
+  "3": {
+    "cik_str": 789019,
+    "ticker": "MSFT",
+    "title": "Microsoft Corp"
+  },
+  "4": {
+    "cik_str": 909832,
+    "ticker": "COST",
+    "title": "Costco Wholesale Corp"
+  },
+  "5": {
+    "cik_str": 46195,
+    "ticker": "BOH",
+    "title": "Bank of Hawaii Corp"
+  },
+  "6": {
+    "cik_str": 1652044,
+    "ticker": "GOOGL",
+    "title": "Alphabet Inc."
+  },
+  "7": {
+    "cik_str": 1018724,
+    "ticker": "AMZN",
+    "title": "Amazon.com, Inc."
+  },
+  "8": {
+    "cik_str": 1045810,
+    "ticker": "NVDA",
+    "title": "NVIDIA Corp"
+  },
+  "9": {
+    "cik_str": 1318605,
+    "ticker": "TSLA",
+    "title": "Tesla, Inc."
+  }
+}
