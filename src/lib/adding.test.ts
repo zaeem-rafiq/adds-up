@@ -204,7 +204,9 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
     );
   });
 
-  test("Leef Brands: empty cell in right column does not mark left column as not adding up, and every number is proven", () => {
+  // The numbers come from Leef Brands' equity lines, with one invented line above them that has a
+  // value on the left only. The real filing has no such line: its left column does not add up.
+  test("a line with a value in the left column only does not mark the left column as not adding up, and every number is proven", () => {
     const left: Array<number | null> = [
       7989928, 138010289, -336879, -141451648, 4211690,
     ];
