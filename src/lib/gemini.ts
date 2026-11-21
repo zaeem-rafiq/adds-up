@@ -148,7 +148,7 @@ export function createFakeGeminiClient(
             // screen, while finishing comfortably before the repeat timeout.
             const delayMs =
               options?.slowRepeatDelayMs ??
-              Math.min(Math.max(Math.floor(timeoutMs * 0.6), 250), 900);
+              Math.min(Math.max(Math.floor(timeoutMs * 0.55), 400), 1100);
             await waitAbortable(delayMs, request.signal);
           }
         } else {

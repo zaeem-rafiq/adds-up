@@ -11,6 +11,7 @@ function NavLinks({ isResults }: { isResults: boolean }) {
     <nav aria-label="Main navigation" className="flex items-center gap-1 sm:gap-2">
       <Link
         href="/"
+        prefetch={false}
         aria-current={isStatementFlow ? "page" : undefined}
         className={`whitespace-nowrap rounded-md px-2.5 py-1.5 text-[13px] transition-colors sm:px-3 sm:text-sm ${
           isStatementFlow
@@ -49,6 +50,7 @@ export function TopBar() {
         <div className="flex min-w-0 items-center gap-2 sm:gap-4">
           <Link
             href="/"
+            prefetch={false}
             className="flex shrink-0 items-center gap-2 text-slate-900 no-underline"
           >
             <span

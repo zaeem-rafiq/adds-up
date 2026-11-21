@@ -20,7 +20,7 @@ export default defineConfig({
     timeout: 120_000,
     env: {
       ADDS_UP_TEST: "1",
-      ADDS_UP_READ_TIMEOUT_MS: "1200",
+      ADDS_UP_READ_TIMEOUT_MS: "2000",
       NEXT_TELEMETRY_DISABLED: "1",
     },
   },

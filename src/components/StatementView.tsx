@@ -1,7 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import {
+  buildResultDisplayRows,
+  formatProofNumber,
+  ResultTable,
+} from "@/components/ResultTable";
+import { proveColumns } from "@/lib/adding";
 import type {
   ReadingProgressEvent,
   StatementReadingResult,
@@ -29,6 +35,8 @@ type StatementViewProps = {
   source: StatementSource;
   pictureUrl: string;
   slowMode?: boolean;
+  /** Set to false when showing a statement that has no SEC comparison data. */
+  hasSecData?: boolean;
 };
 
 type ReadingPhase =
@@ -138,6 +146,7 @@ export function StatementView({
   source,
   pictureUrl,
   slowMode = false,
+  hasSecData = true,
 }: StatementViewProps) {
   const formattedDate = formatFilingDate(statement.filingDate);
   const reportLabel =
@@ -321,6 +330,36 @@ export function StatementView({
     setRunState((prev) => ({ runId: prev.runId + 1, useSlowQuery: false }));
   };
 
+  const provenModel = useMemo(() => {
+    if (!result) return null;
+    const displayRows = buildResultDisplayRows(statement, result);
+    const numberRows = displayRows.filter((row) => row.kind === "number");
+    const leftColumn = numberRows.map((row) => row.numbers[0]);
+    const rightColumn = numberRows.map((row) => row.numbers[1]);
+    const unreadMask = numberRows.map((row) => row.unread);
+
+    const proof = proveColumns(leftColumn, rightColumn, { unreadMask });
+    const allMismatches = [...proof.left.mismatches, ...proof.right.mismatches];
+    let mismatchCellCount = 0;
+    let unreadCellCount = 0;
+    for (const status of [
+      ...proof.left.cellStatuses,
+      ...proof.right.cellStatuses,
+    ]) {
+      if (status === "mismatch") mismatchCellCount += 1;
+      else if (status === "unread") unreadCellCount += 1;
+    }
+
+    return {
+      displayRows,
+      numberRows,
+      proof,
+      allMismatches,
+      mismatchCellCount,
+      unreadCellCount,
+    };
+  }, [result, statement]);
+
   const progressPercent =
     totalNumbers > 0
       ? Math.min(100, Math.round((numbersRead / totalNumbers) * 100))
@@ -329,7 +368,59 @@ export function StatementView({
     phase === "loading" && numbersRead === 0 ? 12 : Math.max(progressPercent, 12);
   const activeStrip = Math.min(totalStrips, completedStrips + 1);
   const showSidebar =
-    phase === "loading" || phase === "slow" || phase === "timeout";
+    phase === "loading" ||
+    phase === "slow" ||
+    phase === "timeout" ||
+    (phase === "done" && provenModel !== null);
+
+  const showSecMatch =
+    hasSecData &&
+    result !== null &&
+    result.comparison.totalStatementNumbers > 0;
+
+  const verdictHeadline = (() => {
+    if (!provenModel) return null;
+    const { proof, allMismatches } = provenModel;
+    const { proven, needYourEye, total } = proof.counts;
+
+    if (allMismatches.length === 1) {
+      return {
+        text: "One group does not add up",
+        colorClass: "text-[#b53800]",
+      };
+    }
+    if (allMismatches.length > 1) {
+      return {
+        text: `${allMismatches.length} groups do not add up`,
+        colorClass: "text-[#b53800]",
+      };
+    }
+    if (needYourEye > 0) {
+      return {
+        text: `${needYourEye} ${
+          needYourEye === 1 ? "number needs" : "numbers need"
+        } your eye`,
+        colorClass: "text-[#9a5b00]",
+      };
+    }
+    return {
+      text: `${proven} of ${total} numbers proven`,
+      colorClass: proven > 0 ? "text-[#146c43]" : "text-slate-900",
+    };
+  })();
+
+  const provenPct =
+    provenModel && provenModel.proof.counts.total > 0
+      ? (provenModel.proof.counts.proven / provenModel.proof.counts.total) * 100
+      : 0;
+  const mismatchPct =
+    provenModel && provenModel.proof.counts.total > 0
+      ? (provenModel.mismatchCellCount / provenModel.proof.counts.total) * 100
+      : 0;
+  const unreadPct =
+    provenModel && provenModel.proof.counts.total > 0
+      ? (provenModel.unreadCellCount / provenModel.proof.counts.total) * 100
+      : 0;
 
   return (
     <div className="space-y-4">
@@ -360,7 +451,10 @@ export function StatementView({
         </div>
       )}
 
-      <section className="rounded-2xl border border-slate-200 bg-white px-5 py-5 shadow-2xs sm:px-6">
+      <section
+        aria-label="Statement verdict"
+        className="rounded-2xl border border-slate-200 bg-white px-5 py-5 shadow-2xs sm:px-6"
+      >
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
           <div className="min-w-0 lg:max-w-[260px]">
             <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
@@ -431,6 +525,81 @@ export function StatementView({
             </div>
           )}
 
+          {phase === "done" && result && provenModel && verdictHeadline && (
+            <div
+              className="min-w-0 flex-1"
+              role="status"
+              aria-live="polite"
+              data-verdict-band="true"
+            >
+              <p
+                className={`text-2xl font-bold tracking-tight sm:text-[28px] ${verdictHeadline.colorClass}`}
+              >
+                {verdictHeadline.text}
+              </p>
+
+              <div
+                className="mt-2.5 flex h-2 w-full overflow-hidden rounded-full bg-slate-200"
+                aria-hidden="true"
+              >
+                {provenPct > 0 && (
+                  <div
+                    className="h-full bg-[#146c43]"
+                    style={{ width: `${provenPct}%` }}
+                  />
+                )}
+                {mismatchPct > 0 && (
+                  <div
+                    className="h-full bg-[#b53800]"
+                    style={{ width: `${mismatchPct}%` }}
+                  />
+                )}
+                {unreadPct > 0 && (
+                  <div
+                    className="h-full bg-[#c27803]"
+                    style={{ width: `${unreadPct}%` }}
+                  />
+                )}
+              </div>
+
+              <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600 sm:text-[13px]">
+                <span data-count="proven">
+                  <strong className="font-bold text-slate-900">
+                    {provenModel.proof.counts.proven}
+                  </strong>{" "}
+                  proven
+                </span>
+                <span data-count="need-your-eye">
+                  <strong className="font-bold text-slate-900">
+                    {provenModel.proof.counts.needYourEye}
+                  </strong>{" "}
+                  need your eye
+                </span>
+                <span data-count="not-proven">
+                  <strong className="font-bold text-slate-900">
+                    {provenModel.proof.counts.notProven}
+                  </strong>{" "}
+                  not proven
+                </span>
+                {provenModel.allMismatches.length === 1 && (
+                  <span data-verdict-gap="true">
+                    Gap:{" "}
+                    {formatProofNumber(provenModel.allMismatches[0].gap)}
+                  </span>
+                )}
+                {showSecMatch && (
+                  <span
+                    data-sec-match="true"
+                    className="w-full sm:w-auto"
+                  >
+                    Matches SEC data: {result.comparison.matchCount} of{" "}
+                    {result.comparison.totalStatementNumbers}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="flex flex-wrap items-center gap-2.5 lg:shrink-0">
             {phase === "loading" && (
               <button
@@ -465,6 +634,7 @@ export function StatementView({
             {phase !== "loading" && (
               <Link
                 href="/"
+                prefetch={false}
                 className="inline-flex w-fit shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-2xs transition-colors hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1d4ea8]"
               >
                 Change company
@@ -481,7 +651,16 @@ export function StatementView({
             : "space-y-4"
         }
       >
-        <div className="space-y-4">
+        <div className="min-w-0 space-y-4">
+          {phase === "done" && provenModel && (
+            <ResultTable
+              statement={statement}
+              source={source}
+              displayRows={provenModel.displayRows}
+              proof={provenModel.proof}
+            />
+          )}
+
           <section
             aria-label="Balance sheet picture"
             className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs"
@@ -500,16 +679,6 @@ export function StatementView({
               />
             </div>
           </section>
-
-          {phase === "done" && result && (
-            <p
-              role="status"
-              className="rounded-xl border border-slate-200 bg-white px-5 py-3.5 text-sm font-medium text-slate-800 shadow-2xs"
-            >
-              {result.comparison.readCount} numbers read.{" "}
-              {result.comparison.matchCount} match the SEC&apos;s values.
-            </p>
-          )}
 
           {phase === "error" && errorMessage && (
             <div
@@ -593,6 +762,41 @@ export function StatementView({
                 </li>
               )}
             </ul>
+          </aside>
+        )}
+
+        {phase === "done" && result && provenModel && (
+          <aside
+            aria-label="What happened"
+            className="rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs"
+          >
+            <h2 className="text-base font-bold text-slate-900">
+              What happened
+            </h2>
+            <ol className="mt-3.5 space-y-2.5 text-sm text-slate-800">
+              <li className="flex items-baseline gap-3">
+                <span className="font-mono text-xs text-slate-400">1</span>
+                <span className="font-semibold text-slate-900">
+                  Read the page:{" "}
+                  {result.comparison.readCount || provenModel.proof.counts.total}{" "}
+                  numbers.
+                </span>
+              </li>
+              {provenModel.allMismatches.length > 0 && (
+                <li className="flex items-baseline gap-3 border-t border-slate-100 pt-2.5">
+                  <span className="font-mono text-xs text-slate-400">2</span>
+                  <span className="font-semibold text-[#b53800]">
+                    {provenModel.allMismatches.length === 1
+                      ? `${
+                          provenModel.numberRows[
+                            provenModel.allMismatches[0].totalIndex
+                          ]?.label ?? "One group"
+                        } did not add up.`
+                      : `${provenModel.allMismatches.length} groups did not add up.`}
+                  </span>
+                </li>
+              )}
+            </ol>
           </aside>
         )}
       </div>
