@@ -1,0 +1,186 @@
+{
+  "status": "done",
+  "startedAt": "2026-11-21T19:24:00Z",
+  "finishedAt": "2026-11-21T20:11:42Z",
+  "filingsPlanned": 50,
+  "filingsScored": 50,
+  "stepsRun": {
+    "A": true,
+    "B": true,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": true
+  },
+  "totals": {
+    "addsUp": {
+      "numbers": 3200,
+      "readRight": 3164,
+      "wrongShownAsRight": 1,
+      "cleanPagesFlagged": 3,
+      "hiddenTried": 50,
+      "hiddenRebuilt": 49,
+      "changedTried": 50,
+      "changedCaught": 50,
+      "hard": {
+        "numbers": 3200,
+        "readRight": 3104,
+        "wrongShownAsRight": 2
+      }
+    },
+    "oneCall": {
+      "numbers": 3200,
+      "readRight": 2912,
+      "wrongShownAsRight": 288,
+      "hiddenTried": 50,
+      "hiddenRebuilt": 29,
+      "changedTried": 50,
+      "changedCaught": 31,
+      "hard": {
+        "numbers": 3200,
+        "readRight": 2752,
+        "wrongShownAsRight": 448
+      }
+    }
+  },
+  "outsideTotals": 128,
+  "passMarks": [
+    {
+      "measure": "Adds Up, wrong numbers shown as right",
+      "mark": "Zero, or at most one tenth of the one-call figure.",
+      "value": "0.03%",
+      "met": true
+    },
+    {
+      "measure": "Clean pages flagged by mistake",
+      "mark": "At most 2 of 50.",
+      "value": "3 of 50",
+      "met": false
+    },
+    {
+      "measure": "Hidden numbers rebuilt",
+      "mark": "At least 45 of 50.",
+      "value": "49 of 50",
+      "met": true
+    },
+    {
+      "measure": "Changed numbers caught",
+      "mark": "At least 48 of 50.",
+      "value": "50 of 50",
+      "met": true
+    }
+  ],
+  "cutoffs": {
+    "upper": 0.95,
+    "lower": 0.2,
+    "setOnFilings": 20
+  },
+  "recheck": [
+    {
+      "said": "90% or more",
+      "answers": 284,
+      "trulyThere": 281
+    },
+    {
+      "said": "70% to 90%",
+      "answers": 26,
+      "trulyThere": 18
+    },
+    {
+      "said": "30% to 70%",
+      "answers": 18,
+      "trulyThere": 1
+    },
+    {
+      "said": "Under 30%",
+      "answers": 272,
+      "trulyThere": 0
+    }
+  ],
+  "causes": [
+    "Small footnote markers next to a figure can be misread as a digit when two rounding lines offset each other.",
+    "Bank balance sheets with a single-row subtotal sometimes leave a hidden number with no second column group."
+  ],
+  "failures": [
+    {
+      "company": "Meridian Industrial Corp.",
+      "step": "A. Adds Up",
+      "number": "Accrued liabilities (left column)",
+      "shown": "4,820",
+      "truth": "4,280"
+    },
+    {
+      "company": "Harborview Bancorp",
+      "step": "C. Hide one",
+      "number": "Total deposits (left column)",
+      "shown": "Not rebuilt",
+      "truth": "18,940"
+    }
+  ],
+  "filings": [
+    { "company": "Alder Ridge Energy Corp.", "cik": "1011001", "form": "10-K", "filed": "2026-02-19", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.2 },
+    { "company": "Beacon Health Systems Inc.", "cik": "1011002", "form": "10-Q", "filed": "2026-08-05", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.8 },
+    { "company": "Cedar Valley Manufacturing Co.", "cik": "1011003", "form": "10-K", "filed": "2026-02-26", "numbers": 60, "readRight": 58, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 5.1 },
+    { "company": "Delta Freight Logistics Inc.", "cik": "1011004", "form": "10-Q", "filed": "2026-08-07", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.0 },
+    { "company": "Elmwood Financial Group Inc.", "cik": "1011005", "form": "10-K", "filed": "2026-02-24", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.5 },
+    { "company": "Fairway Retail Holdings Inc.", "cik": "1011006", "form": "10-Q", "filed": "2026-09-02", "numbers": 60, "readRight": 58, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.9 },
+    { "company": "Meridian Industrial Corp.", "cik": "1011007", "form": "10-K", "filed": "2026-02-20", "numbers": 60, "readRight": 56, "wrongTicked": 1, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 5.2 },
+    { "company": "Highland Photonics Inc.", "cik": "1011008", "form": "10-Q", "filed": "2026-08-06", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.3 },
+    { "company": "Ironwood Aerospace Corp.", "cik": "1011009", "form": "10-K", "filed": "2026-02-18", "numbers": 60, "readRight": 58, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 5.4 },
+    { "company": "Juniper Cloud Software Inc.", "cik": "1011010", "form": "10-Q", "filed": "2026-08-10", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.7 },
+    { "company": "Keystone Packaging Co.", "cik": "1011011", "form": "10-K", "filed": "2026-02-25", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.1 },
+    { "company": "Lakeshore Utility Partners Inc.", "cik": "1011012", "form": "10-Q", "filed": "2026-08-04", "numbers": 60, "readRight": 56, "wrongTicked": 0, "flagged": true, "hiddenRebuilt": true, "changedCaught": true, "seconds": 5.8 },
+    { "company": "Meadowbrook Foods Corp.", "cik": "1011013", "form": "10-K", "filed": "2026-02-27", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.4 },
+    { "company": "Northbridge Insurance Group", "cik": "1011014", "form": "10-K", "filed": "2026-02-23", "numbers": 60, "readRight": 58, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.7 },
+    { "company": "Oakmont Medical Devices Inc.", "cik": "1011015", "form": "10-Q", "filed": "2026-08-08", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.6 },
+    { "company": "Pinecrest Semiconductors Inc.", "cik": "1011016", "form": "10-K", "filed": "2026-02-21", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.0 },
+    { "company": "Quarry Hill Metals Corp.", "cik": "1011017", "form": "10-Q", "filed": "2026-08-11", "numbers": 60, "readRight": 58, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.6 },
+    { "company": "Redwood Communications Inc.", "cik": "1011018", "form": "10-K", "filed": "2026-02-28", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.2 },
+    { "company": "Silverline Rail Corp.", "cik": "1011019", "form": "10-Q", "filed": "2026-08-03", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.9 },
+    { "company": "Timberline Timber Products Co.", "cik": "1011020", "form": "10-K", "filed": "2026-02-19", "numbers": 60, "readRight": 58, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.8 },
+    { "company": "Upland Agricultural Holdings", "cik": "1011021", "form": "10-Q", "filed": "2026-08-12", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.1 },
+    { "company": "Vanguard Instruments Corp.", "cik": "1011022", "form": "10-K", "filed": "2026-02-22", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.3 },
+    { "company": "Harborview Bancorp", "cik": "1011023", "form": "10-K", "filed": "2026-02-26", "numbers": 60, "readRight": 58, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": false, "changedCaught": true, "seconds": 5.3 },
+    { "company": "Westgate Hospitality Corp.", "cik": "1011024", "form": "10-Q", "filed": "2026-08-09", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.8 },
+    { "company": "Yorktown Biotech Inc.", "cik": "1011025", "form": "10-K", "filed": "2026-02-25", "numbers": 60, "readRight": 60, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.0 },
+    { "company": "Zephyr Marine Services Inc.", "cik": "1011026", "form": "10-Q", "filed": "2026-08-14", "numbers": 68, "readRight": 66, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.5 },
+    { "company": "Ashford Chemical Industries", "cik": "1011027", "form": "10-K", "filed": "2026-02-20", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.2 },
+    { "company": "Bayview Consumer Brands Inc.", "cik": "1011028", "form": "10-Q", "filed": "2026-08-06", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.9 },
+    { "company": "Crestview Automotive Group", "cik": "1011029", "form": "10-K", "filed": "2026-02-24", "numbers": 68, "readRight": 64, "wrongTicked": 0, "flagged": true, "hiddenRebuilt": true, "changedCaught": true, "seconds": 5.5 },
+    { "company": "Driftwood Media Networks Inc.", "cik": "1011030", "form": "10-Q", "filed": "2026-08-13", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.1 },
+    { "company": "Eastport Construction Corp.", "cik": "1011031", "form": "10-K", "filed": "2026-02-21", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.4 },
+    { "company": "Foxboro Electronics Inc.", "cik": "1011032", "form": "10-Q", "filed": "2026-08-05", "numbers": 68, "readRight": 66, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.6 },
+    { "company": "Greenbriar Specialty Steel", "cik": "1011033", "form": "10-K", "filed": "2026-02-18", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.0 },
+    { "company": "Hilltop Diagnostics Corp.", "cik": "1011034", "form": "10-Q", "filed": "2026-08-07", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.8 },
+    { "company": "Inland Waterworks Inc.", "cik": "1011035", "form": "10-K", "filed": "2026-02-27", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.3 },
+    { "company": "Kestrel Aviation Leasing Co.", "cik": "1011036", "form": "10-Q", "filed": "2026-08-10", "numbers": 68, "readRight": 66, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.9 },
+    { "company": "Longview Data Centers Inc.", "cik": "1011037", "form": "10-K", "filed": "2026-02-25", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.1 },
+    { "company": "Millstone Apparel Group", "cik": "1011038", "form": "10-Q", "filed": "2026-09-01", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.7 },
+    { "company": "Newhaven Therapeutics Inc.", "cik": "1011039", "form": "10-K", "filed": "2026-02-23", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.2 },
+    { "company": "Overland Trucking Corp.", "cik": "1011040", "form": "10-Q", "filed": "2026-08-06", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.0 },
+    { "company": "Palisade Real Estate Trust", "cik": "1011041", "form": "10-K", "filed": "2026-02-26", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.5 },
+    { "company": "Quincy Paper Mills Inc.", "cik": "1011042", "form": "10-Q", "filed": "2026-08-08", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.9 },
+    { "company": "Riverbend Solar Power Corp.", "cik": "1011043", "form": "10-K", "filed": "2026-02-20", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.4 },
+    { "company": "Summit Regional Bancshares", "cik": "1011044", "form": "10-Q", "filed": "2026-08-11", "numbers": 68, "readRight": 64, "wrongTicked": 0, "flagged": true, "hiddenRebuilt": true, "changedCaught": true, "seconds": 5.7 },
+    { "company": "Tidewater Industrial Supply", "cik": "1011045", "form": "10-K", "filed": "2026-02-19", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.2 },
+    { "company": "Union Ridge Mining Corp.", "cik": "1011046", "form": "10-Q", "filed": "2026-08-04", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.0 },
+    { "company": "Veridian Robotics Inc.", "cik": "1011047", "form": "10-K", "filed": "2026-02-24", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.3 },
+    { "company": "Windham Building Products", "cik": "1011048", "form": "10-Q", "filed": "2026-08-12", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 3.8 },
+    { "company": "Xenia Precision Optics Inc.", "cik": "1011049", "form": "10-K", "filed": "2026-02-22", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.1 },
+    { "company": "Yellowstone Pipeline Co.", "cik": "1011050", "form": "10-Q", "filed": "2026-08-14", "numbers": 68, "readRight": 68, "wrongTicked": 0, "flagged": false, "hiddenRebuilt": true, "changedCaught": true, "seconds": 4.0 }
+  ],
+  "skipped": [
+    {
+      "company": "Northstar Holdings Ltd.",
+      "reason": "Newest 10-K or 10-Q is older than 2025-11-21."
+    },
+    {
+      "company": "Canyon Creek Trust",
+      "reason": "Balance sheet table has fewer than 15 number rows."
+    },
+    {
+      "company": "Apple Inc.",
+      "reason": "Excluded as the page's example company."
+    }
+  ]
+}
