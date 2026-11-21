@@ -22,6 +22,8 @@ const arg = (name) => {
   return i > -1 ? process.argv[i + 1] : undefined;
 };
 const LIMIT = Number(arg("--limit") ?? 50);
+// --skip N passes over the first N eligible filings, to score filings outside an earlier run.
+const SKIP = Number(arg("--skip") ?? 0);
 const OUT = arg("--out") ?? "data/scores.json";
 const STEPS = new Set((arg("--steps") ?? "A,B,C,D").split(","));
 // Every step of every filing is also written to a log beside the scores file, one line each.
@@ -366,6 +368,7 @@ async function main() {
   await save();
   await writeFile(LOG, "");
 
+  let eligibleSeen = 0;
   for (const company of ordered) {
     if (scores.filingsScored >= LIMIT) break;
     const filing = await checkEligible(company);
@@ -373,6 +376,7 @@ async function main() {
       scores.skipped.push({ company: company.name, reason: filing.reason });
       continue;
     }
+    if (eligibleSeen++ < SKIP) continue;
     try {
       const a = await stepA(company.cik);
       const b = STEPS.has("B") ? await stepB(company.cik, a.rows) : null;
