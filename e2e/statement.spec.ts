@@ -479,3 +479,120 @@ test("shows all three second-reader classes for numbers outside every total on t
   expect(consoleErrors).toEqual([]);
   expect(failedRequests).toEqual([]);
 });
+
+test("shows a total that adds up within rounding with the third mark, the note, the fourth count and no red at 375, 768 and 1440 pixels", async ({
+  page,
+}) => {
+  const consoleErrors: string[] = [];
+  const failedRequests: string[] = [];
+  let modifyCalls = 0;
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(msg.text());
+  });
+  page.on("requestfailed", (req) => {
+    failedRequests.push(`${req.url()} (${req.failure()?.errorText})`);
+  });
+  page.on("request", (req) => {
+    if (req.url().includes("/modify")) modifyCalls += 1;
+  });
+
+  // Harbor Mill Sample Corp is in millions. Its current assets add to 7,100 and print 7,101.
+  const note =
+    "3 lines add to 7,100. Printed 7,101. Adds up within rounding, off by 1.";
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/company/990002");
+
+  const band = page.locator('[data-verdict-band="true"]');
+  await expect(band).toBeVisible();
+
+  // The headline counts exact proofs only. The fourth count shows because it is not zero.
+  await expect(band.getByText("26 of 30 numbers proven")).toBeVisible();
+  await expect(band.locator('[data-count="proven"]')).toHaveText("26 proven");
+  await expect(band.locator('[data-count="need-your-eye"]')).toHaveText(
+    "0 need your eye",
+  );
+  await expect(band.locator('[data-count="not-proven"]')).toHaveText(
+    "0 not proven",
+  );
+  await expect(band.locator('[data-count="within-rounding"]')).toHaveText(
+    "4 within rounding",
+  );
+
+  // Nothing is red: no red mark, no red segment in the bar, no red headline, no "does not add up".
+  await expect(page.locator('[data-proof-mark="mismatch-total"]')).toHaveCount(0);
+  await expect(page.locator('[data-proof-mark="mismatch-member"]')).toHaveCount(0);
+  await expect(band.locator('[class*="b53800"]')).toHaveCount(0);
+  await expect(band.locator('[data-bar-segment="within-rounding"]')).toBeVisible();
+  await expect(band.locator("p").first()).toHaveCSS("color", "rgb(20, 108, 67)");
+  await expect(page.getByText(/not add up/i)).toHaveCount(0);
+
+  // The third mark sits on the four numbers of the rounding group. The other 11 rows keep their ticks.
+  const roundingMarks = page.locator('[data-proof-mark="within-rounding"]');
+  await expect(roundingMarks).toHaveCount(4);
+  await expect(roundingMarks.first()).toBeVisible();
+  await expect(roundingMarks.first()).toHaveAttribute(
+    "aria-label",
+    "Adds up within rounding",
+  );
+  await expect(page.locator('[data-proof-mark="proven"]')).toHaveCount(11);
+  const totalRow = page.locator('tr[data-row-kind="number"][data-row-index="3"]');
+  await expect(totalRow.locator('[data-proof-mark="within-rounding"]')).toBeVisible();
+  await expect(totalRow.locator('td[data-col="0"]')).toHaveAttribute(
+    "data-proof-status",
+    "within_rounding",
+  );
+  await expect(totalRow.locator('td[data-col="1"]')).toHaveAttribute(
+    "data-proof-status",
+    "proven",
+  );
+
+  // The note beside the total.
+  await expect(totalRow.locator('[data-proof-note="rounding"]')).toContainText(note);
+
+  // The side panel of a line in the group, and of the total.
+  await page.locator('[data-cell-button="0-0"]').click();
+  const panel = page.locator('[data-selected-panel="true"]');
+  await expect(panel.locator('[data-selected-badge="within-rounding"]')).toHaveText(
+    "Within rounding",
+  );
+  await expect(panel.locator('[data-rounding-note="true"]')).toContainText(
+    "Sits inside Total current assets, which adds up within rounding, off by 1. The filing rounds each line.",
+  );
+  await page.locator('[data-cell-button="3-0"]').click();
+  await expect(panel.locator('[data-rounding-note="true"]')).toContainText(
+    "Total current assets adds up within rounding, off by 1. The filing rounds each line.",
+  );
+
+  // A number in the group cannot be hidden or changed, and no model call is made.
+  await panel.getByRole("button", { name: "Hide it" }).click();
+  await expect(page.locator('[data-hide-refusal="true"]')).toHaveText(
+    "This number's group adds up only within rounding.",
+  );
+  await panel.getByRole("button", { name: "Change it" }).click();
+  await expect(page.locator('[data-hide-refusal="true"]')).toHaveText(
+    "This number's group adds up only within rounding.",
+  );
+  await expect(page.locator('[data-change-form="true"]')).toHaveCount(0);
+  expect(modifyCalls).toBe(0);
+
+  // Every width: no sideways scroll, the band and the note stay visible.
+  for (const width of [375, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect(band.locator('[data-count="within-rounding"]')).toBeVisible();
+    const noteLocator =
+      width < 768
+        ? page.locator('tr[data-mobile-proof-for="3"] [data-proof-note="rounding"]')
+        : totalRow.locator('[data-proof-note="rounding"]');
+    await expect(noteLocator).toBeVisible();
+    await expect(noteLocator).toContainText(note);
+    await expect(roundingMarks.first()).toBeVisible();
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    );
+    expect(hasHorizontalOverflow).toBe(false);
+  }
+
+  expect(consoleErrors).toEqual([]);
+  expect(failedRequests).toEqual([]);
+});

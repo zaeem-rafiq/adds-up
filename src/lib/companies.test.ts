@@ -31,8 +31,8 @@ describe("Company search — section A of docs/test-cases.md", () => {
     vi.restoreAllMocks();
   });
 
-  test("fixture holds ten companies with the required entries and order", () => {
-    expect(fixtureCompanies).toHaveLength(10);
+  test("fixture holds eleven companies with the required entries and order", () => {
+    expect(fixtureCompanies).toHaveLength(11);
     const names = fixtureCompanies.map((c) => c.name);
     expect(names).toContain("Apple Inc.");
     expect(names).toContain("Apple Hospitality REIT, Inc.");

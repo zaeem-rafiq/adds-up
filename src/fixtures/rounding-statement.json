@@ -1,0 +1,249 @@
+{
+  "cik": "990002",
+  "companyName": "Harbor Mill Sample Corp",
+  "form": "10-K",
+  "filingDate": "2026-11-06",
+  "title": "CONSOLIDATED BALANCE SHEETS",
+  "columns": [
+    "Sep. 30, 2026",
+    "Sep. 30, 2025"
+  ],
+  "unitLine": "USD ($) $ in Millions",
+  "rows": [
+    {
+      "kind": "heading",
+      "label": "ASSETS",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Current assets:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Cash and cash equivalents",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "$ 1,200",
+        "$ 1,100"
+      ],
+      "numbers": [
+        1200,
+        1100
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accounts receivable, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,400",
+        "3,100"
+      ],
+      "numbers": [
+        3400,
+        3100
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Inventories",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,500",
+        "2,300"
+      ],
+      "numbers": [
+        2500,
+        2300
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "7,101",
+        "6,500"
+      ],
+      "numbers": [
+        7101,
+        6500
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Property and equipment, net",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "4,000",
+        "3,800"
+      ],
+      "numbers": [
+        4000,
+        3800
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total assets",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 11,101",
+        "$ 10,300"
+      ],
+      "numbers": [
+        11101,
+        10300
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "LIABILITIES AND SHAREHOLDERS' EQUITY",
+      "indent": 0
+    },
+    {
+      "kind": "heading",
+      "label": "Current liabilities:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Accounts payable",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,000",
+        "1,900"
+      ],
+      "numbers": [
+        2000,
+        1900
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Accrued liabilities",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "1,500",
+        "1,400"
+      ],
+      "numbers": [
+        1500,
+        1400
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total current liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "3,500",
+        "3,300"
+      ],
+      "numbers": [
+        3500,
+        3300
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Long-term debt",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "3,000",
+        "3,000"
+      ],
+      "numbers": [
+        3000,
+        3000
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "6,500",
+        "6,300"
+      ],
+      "numbers": [
+        6500,
+        6300
+      ]
+    },
+    {
+      "kind": "heading",
+      "label": "Shareholders' equity:",
+      "indent": 0
+    },
+    {
+      "kind": "number",
+      "label": "Common stock and paid-in capital",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,100",
+        "1,800"
+      ],
+      "numbers": [
+        2100,
+        1800
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Retained earnings",
+      "indent": 1,
+      "isTotal": false,
+      "values": [
+        "2,501",
+        "2,200"
+      ],
+      "numbers": [
+        2501,
+        2200
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "4,601",
+        "4,000"
+      ],
+      "numbers": [
+        4601,
+        4000
+      ]
+    },
+    {
+      "kind": "number",
+      "label": "Total liabilities and shareholders' equity",
+      "indent": 0,
+      "isTotal": true,
+      "values": [
+        "$ 11,101",
+        "$ 10,300"
+      ],
+      "numbers": [
+        11101,
+        10300
+      ]
+    }
+  ]
+}

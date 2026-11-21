@@ -12,6 +12,7 @@ import {
   buildResultDisplayRows,
   formatProofNumber,
   ResultTable,
+  RoundingCheckIcon,
   type ResultNumberRow,
   type SelectedCellRef,
   type TableMode,
@@ -25,6 +26,7 @@ import {
   proveColumnsWithHidden,
   type ChangedProofOutcome,
   type MismatchedGroup,
+  type ProveColumnsOptions,
   type RebuildResult,
   type TwoColumnProof,
 } from "@/lib/adding";
@@ -102,6 +104,21 @@ function formatCauseModelLabel(model: string | null): string {
   if (lower.includes("neon")) return "Neon's note";
   if (lower.includes("carbon")) return "Carbon's note";
   return "Model's note";
+}
+
+/**
+ * What the adding rule needs besides the numbers: which cells are unread, and, for
+ * the rounding rule, the statement's unit line and its total flags.
+ */
+function proveOptionsFor(
+  statement: Statement,
+  numberRows: ReadonlyArray<ResultNumberRow>,
+): ProveColumnsOptions {
+  return {
+    unreadMask: numberRows.map((row) => row.unread),
+    unitLine: statement.unitLine,
+    totalFlags: numberRows.map((row) => row.isTotal),
+  };
 }
 
 function pickInitialSelectedCell(
@@ -480,7 +497,7 @@ export function StatementView({
         const initialProof = proveColumns(
           numberRows.map((r) => r.numbers[0]),
           numberRows.map((r) => r.numbers[1]),
-          { unreadMask: numberRows.map((r) => r.unread) },
+          proveOptionsFor(statement, numberRows),
         );
         doneProof = initialProof;
         setSelectedCell(pickInitialSelectedCell(initialProof));
@@ -693,7 +710,7 @@ export function StatementView({
     return proveColumns(
       numberRows.map((row) => row.numbers[0]),
       numberRows.map((row) => row.numbers[1]),
-      { unreadMask: numberRows.map((row) => row.unread) },
+      proveOptionsFor(statement, numberRows),
     );
   }, [baseResult, statement]);
 
@@ -705,7 +722,7 @@ export function StatementView({
     );
     const leftColumn = numberRows.map((row) => row.numbers[0]);
     const rightColumn = numberRows.map((row) => row.numbers[1]);
-    const unreadMask = numberRows.map((row) => row.unread);
+    const proveOptions = proveOptionsFor(statement, numberRows);
 
     let proof: TwoColumnProof;
     let rebuild: RebuildResult | null = null;
@@ -724,12 +741,12 @@ export function StatementView({
           leftColumn,
           rightColumn,
           targetCell,
-          { unreadMask },
+          proveOptions,
         );
         proof = hiddenOutcome.proof;
         rebuild = hiddenOutcome.rebuild;
       } else {
-        proof = proveColumns(leftColumn, rightColumn, { unreadMask });
+        proof = proveColumns(leftColumn, rightColumn, proveOptions);
         rebuild = {
           status: "cannot_rebuild",
           rowIndex: targetCell.rowIndex,
@@ -746,11 +763,11 @@ export function StatementView({
         leftColumn,
         rightColumn,
         modState.cell,
-        { unreadMask },
+        proveOptions,
       );
       proof = changeOutcome.proof;
     } else {
-      proof = proveColumns(leftColumn, rightColumn, { unreadMask });
+      proof = proveColumns(leftColumn, rightColumn, proveOptions);
     }
 
     const allMismatches = [...proof.left.mismatches, ...proof.right.mismatches];
@@ -949,7 +966,7 @@ export function StatementView({
           nextNumberRows.map((r) => r.numbers[0]),
           nextNumberRows.map((r) => r.numbers[1]),
           cell,
-          { unreadMask: nextNumberRows.map((r) => r.unread) },
+          proveOptionsFor(statement, nextNumberRows),
         );
         if (rebuild.status === "rebuilt") {
           const primaryWay = rebuild.ways[0];
@@ -1129,7 +1146,7 @@ export function StatementView({
         nextNumberRows.map((r) => r.numbers[0]),
         nextNumberRows.map((r) => r.numbers[1]),
         cell,
-        { unreadMask: nextNumberRows.map((r) => r.unread) },
+        proveOptionsFor(statement, nextNumberRows),
       );
 
       const targetMismatch = changeOutcome.caughtMismatches[0] ?? null;
@@ -1271,6 +1288,7 @@ export function StatementView({
     const addedNeedsEye = recheckUnsureCount + recheckDisagreesCount;
     return {
       proven: proof.counts.proven,
+      withinRounding: proof.counts.withinRounding,
       needYourEye: proof.counts.needYourEye + addedNeedsEye,
       notProven: Math.max(0, proof.counts.notProven - addedNeedsEye),
       total: proof.counts.total,
@@ -1350,6 +1368,10 @@ export function StatementView({
     verdictCounts && verdictCounts.total > 0
       ? (verdictCounts.proven / verdictCounts.total) * 100
       : 0;
+  const roundingPct =
+    verdictCounts && verdictCounts.total > 0
+      ? (verdictCounts.withinRounding / verdictCounts.total) * 100
+      : 0;
   const mismatchPct =
     verdictCounts && verdictCounts.total > 0
       ? (verdictCounts.redCount / verdictCounts.total) * 100
@@ -1392,6 +1414,23 @@ export function StatementView({
       ? provenModel.numberRows[containingGroup.totalIndex]?.label
       : null;
 
+    // A number inside a rounding group, as one of its lines or as its total.
+    const colRounding =
+      col === 0
+        ? provenModel.proof.left.roundingGroups
+        : provenModel.proof.right.roundingGroups;
+    const roundingAsMember = colRounding.find((g) =>
+      g.memberIndices.includes(selectedCell.rowIndex),
+    );
+    const roundingGroup =
+      roundingAsMember ??
+      colRounding.find((g) => g.totalIndex === selectedCell.rowIndex) ??
+      null;
+    const roundingTotalLabel = roundingAsMember
+      ? (provenModel.numberRows[roundingAsMember.totalIndex]?.label ??
+        "this total")
+      : null;
+
     const compRow = activeResult?.comparison.rows[selectedCell.rowIndex];
     const matchesSec = Boolean(compRow?.cells[col]?.matches);
 
@@ -1413,6 +1452,8 @@ export function StatementView({
       recheckResult,
       containingTotalLabel,
       totalGroup,
+      roundingGroup,
+      roundingTotalLabel,
       matchesSec,
       formattedValue,
     };
@@ -1616,6 +1657,17 @@ export function StatementView({
                       style={{ width: `${provenPct}%` }}
                     />
                   )}
+                  {roundingPct > 0 && (
+                    <div
+                      data-bar-segment="within-rounding"
+                      className="h-full"
+                      style={{
+                        width: `${roundingPct}%`,
+                        backgroundImage:
+                          "repeating-linear-gradient(135deg, #c27803 0 3px, #f6dfaa 3px 6px)",
+                      }}
+                    />
+                  )}
                   {mismatchPct > 0 && (
                     <div
                       className="h-full bg-[#b53800]"
@@ -1651,6 +1703,14 @@ export function StatementView({
                     </strong>{" "}
                     not proven
                   </span>
+                  {(verdictCounts?.withinRounding ?? 0) > 0 && (
+                    <span data-count="within-rounding">
+                      <strong className="font-bold text-slate-900">
+                        {verdictCounts?.withinRounding}
+                      </strong>{" "}
+                      within rounding
+                    </span>
+                  )}
                   {hiddenCountNote && (
                     <span data-hidden-summary="true">{hiddenCountNote}</span>
                   )}
@@ -1953,6 +2013,15 @@ export function StatementView({
                     <span>Proven</span>
                   </span>
                 )}
+                {selectedCellInfo.status === "within_rounding" && (
+                  <span
+                    data-selected-badge="within-rounding"
+                    className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-[#9a5b00]"
+                  >
+                    <RoundingCheckIcon size="xs" />
+                    <span>Within rounding</span>
+                  </span>
+                )}
                 {selectedCellInfo.status === "not_proven" &&
                   selectedCellInfo.recheckResult?.verdict === "disagrees" && (
                     <span
@@ -1995,6 +2064,23 @@ export function StatementView({
               </p>
 
               <ul className="mt-4 space-y-2.5 text-sm text-slate-800">
+                {selectedCellInfo.status === "within_rounding" &&
+                  selectedCellInfo.roundingGroup && (
+                    <li
+                      data-rounding-note="true"
+                      className="flex items-start gap-2.5 text-[#9a5b00]"
+                    >
+                      <span className="mt-0.5">
+                        <RoundingCheckIcon />
+                      </span>
+                      <span>
+                        {selectedCellInfo.roundingTotalLabel
+                          ? `Sits inside ${selectedCellInfo.roundingTotalLabel}, which adds up within rounding, off by ${formatProofNumber(selectedCellInfo.roundingGroup.gap)}.`
+                          : `${selectedCellInfo.row.label} adds up within rounding, off by ${formatProofNumber(selectedCellInfo.roundingGroup.gap)}.`}{" "}
+                        The filing rounds each line.
+                      </span>
+                    </li>
+                  )}
                 {selectedCellInfo.status === "proven" &&
                   selectedCellInfo.containingTotalLabel && (
                     <li className="flex items-start gap-2.5">

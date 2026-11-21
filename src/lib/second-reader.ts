@@ -498,6 +498,7 @@ type AlignedNumberRow = {
   rawValues: [string, string];
   numbers: [number | null, number | null];
   unread: [boolean, boolean];
+  isTotal: boolean;
 };
 
 function alignNumberRows(
@@ -542,6 +543,7 @@ function alignNumberRows(
         rawValues: [leftRaw, rightRaw],
         numbers: [leftNum, rightNum],
         unread: [leftUnread, rightUnread],
+        isTotal: stmtRow.isTotal,
       });
       numberRowIndex += 1;
     }
@@ -555,6 +557,7 @@ function alignNumberRows(
     rawValues: [readRow.cells[0].raw, readRow.cells[1].raw],
     numbers: [readRow.cells[0].number, readRow.cells[1].number],
     unread: [readRow.cells[0].hidden, readRow.cells[1].hidden],
+    isTotal: false,
   }));
 }
 
@@ -604,7 +607,12 @@ export async function recheckStatementNumbers(
     proveColumns(
       alignedRows.map((row) => row.numbers[0]),
       alignedRows.map((row) => row.numbers[1]),
-      { unreadMask: alignedRows.map((row) => row.unread) },
+      {
+        unreadMask: alignedRows.map((row) => row.unread),
+        // A number inside a total that adds up within rounding is not outside every total.
+        unitLine: statement.unitLine,
+        totalFlags: alignedRows.map((row) => row.isTotal),
+      },
     );
 
   // Collect ONLY cells outside every total ("not_proven"). Never send proven numbers (F9).
