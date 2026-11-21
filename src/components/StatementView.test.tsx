@@ -794,7 +794,7 @@ describe("StatementView", () => {
     // Approved change #1: verdict band line below counts (including saved-copy & upload forms).
     const verdict = container.querySelector('[data-verdict-band="true"]');
     expect(verdict).toHaveTextContent(
-      "Hide any number on this balance sheet. Adds Up works out what it was.",
+      "Hide any ticked number on this balance sheet. Adds Up works out what it was.",
     );
 
     // Approved change #2: first proven left-column number selected automatically with side panel buttons.

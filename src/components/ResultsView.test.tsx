@@ -39,7 +39,13 @@ describe("ResultsView component", () => {
       "0.03%",
     );
 
-    // Owner-approved change #1: second reader labels
+    // Owner-approved change #1: second reader labels and accurate heading
+    expect(
+      screen.getByRole("heading", { name: "What the second reader decides" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "When it ticks, asks or stops" }),
+    ).not.toBeInTheDocument();
     expect(screen.getByText("The second reader agrees")).toBeInTheDocument();
     expect(screen.getByText("at or above 95%")).toBeInTheDocument();
     expect(screen.getByText("The second reader is unsure")).toBeInTheDocument();
@@ -105,6 +111,33 @@ describe("ResultsView component", () => {
 
     // Unrun steps show "not run"
     expect(screen.getAllByText("not run").length).toBeGreaterThanOrEqual(4);
+    expect(
+      screen.getByText(
+        /The test did not run on blurred or tilted copies, scans or photos\./,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  test("shows truthful limits, proof line, and 'from memory' for sub-second readings on real scores", async () => {
+    const state = await loadScores({ isTestMode: false });
+    expect(state.kind).toBe("ready");
+    render(<ResultsView state={state} />);
+
+    expect(
+      screen.getByText(
+        "One plain model call also read every number right. The difference is proof: Adds Up shows the sum behind every tick.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "What the second reader decides" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /The test did not run on blurred or tilted copies, scans or photos\./,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/only a first look/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText("from memory").length).toBeGreaterThanOrEqual(1);
   });
 
   test("renders an error alert when the score file cannot be parsed", () => {

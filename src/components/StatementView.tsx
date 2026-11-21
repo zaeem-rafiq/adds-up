@@ -1682,7 +1682,7 @@ export function StatementView({
 
                 {modState.kind === "none" && (
                   <p className="mt-2 text-xs text-slate-600 sm:text-[13px]">
-                    Hide any number on this balance sheet. Adds Up works out
+                    Hide any ticked number on this balance sheet. Adds Up works out
                     what it was.
                   </p>
                 )}

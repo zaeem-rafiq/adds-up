@@ -403,14 +403,14 @@ export function UploadExpiredView() {
       <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs">
         <div className="rounded-xl border border-dashed border-slate-300 px-5 py-7">
           <p className="text-sm text-slate-600">
-            Drop a PDF page or a picture here
+            Drop a picture of one page here
           </p>
           <input
             ref={fileInputRef}
             type="file"
             aria-hidden="true"
             tabIndex={-1}
-            accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf"
+            accept=".png,.jpg,.jpeg,image/png,image/jpeg"
             className="sr-only"
             onChange={(event) => {
               const file = event.target.files?.[0];
@@ -1255,7 +1255,7 @@ export function UploadView({
       aria-hidden="true"
       tabIndex={-1}
       data-upload-input="true"
-      accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf"
+      accept=".png,.jpg,.jpeg,image/png,image/jpeg"
       className="sr-only"
       onChange={(event) => {
         const file = event.target.files?.[0];
@@ -1286,8 +1286,7 @@ export function UploadView({
         >
           <OutlineWarningTriangleIcon />
           <span>
-            Use one PDF page or one picture that shows a single financial
-            statement.
+            Use one picture, PNG or JPEG, that shows a single balance sheet.
           </span>
         </div>
 
@@ -1316,7 +1315,7 @@ export function UploadView({
             }`}
           >
             <p className="text-sm text-slate-600">
-              Drop a PDF page or a picture here
+              Drop a picture of one page here
             </p>
             <div className="mt-4 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
               <button
@@ -1713,7 +1712,7 @@ export function UploadView({
 
                 {modState.kind === "none" && (
                   <p className="mt-2 text-xs text-slate-600 sm:text-[13px]">
-                    Hide any number on this balance sheet. Adds Up works out
+                    Hide any ticked number on this balance sheet. Adds Up works out
                     what it was.
                   </p>
                 )}
@@ -2426,7 +2425,7 @@ export function UploadView({
                   : "border-slate-300 hover:border-slate-400 hover:bg-slate-50"
               }`}
             >
-              Drop a PDF page or a picture here
+              Drop a picture of one page here
             </div>
           </aside>
         )}

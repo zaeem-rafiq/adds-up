@@ -120,6 +120,11 @@ function formatBooleanStep(value: boolean | null, stepRan: boolean): string {
   return value ? "Yes" : "No";
 }
 
+function formatFilingSeconds(seconds: number): string {
+  if (seconds < 1) return "from memory";
+  return `${seconds.toFixed(1)}s`;
+}
+
 function isFilingProblem(filing: FilingScore): boolean {
   return (
     filing.wrongTicked > 0 ||
@@ -285,6 +290,15 @@ function ReadyResultsView({ scores }: { scores: ScoresFile }) {
           <p className="mt-3 text-sm leading-relaxed text-slate-600">
             {headlineSubtitle}
           </p>
+          {scores.stepsRun.B &&
+            scores.totals.oneCall.numbers > 0 &&
+            scores.totals.oneCall.readRight ===
+              scores.totals.oneCall.numbers && (
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                One plain model call also read every number right. The
+                difference is proof: Adds Up shows the sum behind every tick.
+              </p>
+            )}
         </div>
       </section>
 
@@ -405,7 +419,7 @@ function ReadyResultsView({ scores }: { scores: ScoresFile }) {
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs sm:p-6">
           <h2 className="text-base font-bold text-slate-900">
-            When it ticks, asks or stops
+            What the second reader decides
           </h2>
           <p className="mt-1 text-sm text-slate-600">
             The re-check gives each number a probability. The test sets the two
@@ -571,9 +585,9 @@ function ReadyResultsView({ scores }: { scores: ScoresFile }) {
         </h2>
         <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
           <li>
-            The pictures are drawn from each filing&apos;s own table. Scans,
-            photos and original layouts are harder. Step F is only a first look
-            at that.
+            {scores.stepsRun.F
+              ? "The pictures are drawn from each filing's own table. Scans, photos and original layouts are harder. Step F is only a first look at that."
+              : "The pictures are drawn from each filing's own table. Scans, photos and original layouts are harder. The test did not run on blurred or tilted copies, scans or photos."}
           </li>
           <li>
             Fifty filings find big problems. They do not measure a small failure
@@ -653,7 +667,7 @@ function ReadyResultsView({ scores }: { scores: ScoresFile }) {
                     <div>
                       <dt className="inline">Seconds: </dt>
                       <dd className="inline font-mono text-slate-900">
-                        {filing.seconds.toFixed(1)}s
+                        {formatFilingSeconds(filing.seconds)}
                       </dd>
                     </div>
                     <div>
@@ -769,7 +783,7 @@ function ReadyResultsView({ scores }: { scores: ScoresFile }) {
                         )}
                       </td>
                       <td className="py-2.5 pl-2 text-right font-mono tabular-nums text-slate-700">
-                        {filing.seconds.toFixed(1)}s
+                        {formatFilingSeconds(filing.seconds)}
                       </td>
                     </tr>
                   );

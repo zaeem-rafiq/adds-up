@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findCompanyByCik } from "@/lib/companies";
+import { findCompanyByCik, isValidCik } from "@/lib/companies";
 import { loadStatement, StatementError } from "@/lib/statements";
 
 export async function GET(
@@ -7,6 +7,9 @@ export async function GET(
   context: RouteContext<"/api/company/[cik]/statement">,
 ) {
   const { cik } = await context.params;
+  if (!isValidCik(cik)) {
+    return NextResponse.json({ error: "Company not found." }, { status: 404 });
+  }
 
   let companyName = "";
   try {

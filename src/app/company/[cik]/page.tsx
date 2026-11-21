@@ -1,9 +1,11 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { StatementView } from "@/components/StatementView";
 import {
   CompanyListError,
   findCompanyByCik,
+  isValidCik,
   normalizeCik,
   type Company,
 } from "@/lib/companies";
@@ -26,6 +28,9 @@ async function CompanyStatementContent({
   searchParams,
 }: Pick<PageProps<"/company/[cik]">, "params" | "searchParams">) {
   const { cik } = await params;
+  if (!isValidCik(cik)) {
+    notFound();
+  }
   const resolvedSearchParams = await searchParams;
   const isTestMode = process.env.ADDS_UP_TEST === "1";
   const slowParam = resolvedSearchParams.slow;

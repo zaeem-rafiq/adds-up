@@ -194,7 +194,7 @@ test("hides Inventories on Apple Inc., rebuilds 14,541, and restores the unchang
   await expect(page.getByText("26 of 26 numbers proven")).toBeVisible();
   await expect(
     page.getByText(
-      "Hide any number on this balance sheet. Adds Up works out what it was.",
+      "Hide any ticked number on this balance sheet. Adds Up works out what it was.",
     ),
   ).toBeVisible();
 
