@@ -1,0 +1,424 @@
+{
+  "status": "done",
+  "startedAt": "2026-11-21T19:04:39.420Z",
+  "finishedAt": "2026-11-21T19:07:25.958Z",
+  "filingsPlanned": 15,
+  "filingsScored": 15,
+  "stepsRun": {
+    "A": true,
+    "B": false,
+    "C": false,
+    "D": false,
+    "E": false,
+    "F": false
+  },
+  "totals": {
+    "addsUp": {
+      "numbers": 936,
+      "readRight": 936,
+      "wrongShownAsRight": 0,
+      "hiddenTried": 0,
+      "hiddenRebuilt": 0,
+      "changedTried": 0,
+      "changedCaught": 0,
+      "hard": null,
+      "cleanPagesFlagged": 1
+    },
+    "oneCall": {
+      "numbers": 0,
+      "readRight": 0,
+      "wrongShownAsRight": 0,
+      "hiddenTried": 0,
+      "hiddenRebuilt": 0,
+      "changedTried": 0,
+      "changedCaught": 0,
+      "hard": null
+    }
+  },
+  "outsideTotals": 125,
+  "passMarks": [
+    {
+      "measure": "Adds Up, wrong numbers shown as right",
+      "mark": "Zero, or at most one tenth of the one-call figure",
+      "value": "0 of 936",
+      "met": null
+    },
+    {
+      "measure": "Clean pages flagged by mistake",
+      "mark": "At most 2 of 50",
+      "value": "1",
+      "met": null
+    },
+    {
+      "measure": "Hidden numbers rebuilt",
+      "mark": "At least 45 of 50",
+      "value": "0 of 0",
+      "met": null
+    },
+    {
+      "measure": "Changed numbers caught",
+      "mark": "At least 48 of 50",
+      "value": "0 of 0",
+      "met": null
+    }
+  ],
+  "cutoffs": null,
+  "recheck": null,
+  "causes": [],
+  "failures": [
+    {
+      "company": "Octave Intelligence plc",
+      "step": "A",
+      "number": "a whole group",
+      "shown": "marked as not adding up on a clean page",
+      "truth": "the page was not changed"
+    }
+  ],
+  "filings": [
+    {
+      "company": "AURA SYSTEMS INC",
+      "cik": "826253",
+      "form": "10-Q",
+      "filed": "2026-10-20",
+      "numbers": 53,
+      "readRight": 53,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7.6
+    },
+    {
+      "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+      "cik": "42582",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 74,
+      "readRight": 74,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7.9
+    },
+    {
+      "company": "First Carolina Financial Services, Inc.",
+      "cik": "1531193",
+      "form": "10-Q",
+      "filed": "2026-11-16",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7.5
+    },
+    {
+      "company": "Definitive Healthcare Corp.",
+      "cik": "1861795",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 68,
+      "readRight": 68,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 6.9
+    },
+    {
+      "company": "Public Policy Holding Company, Inc.",
+      "cik": "1903508",
+      "form": "10-Q",
+      "filed": "2026-11-10",
+      "numbers": 74,
+      "readRight": 74,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 8.1
+    },
+    {
+      "company": "TRAVELZOO",
+      "cik": "1133311",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 64,
+      "readRight": 64,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7.1
+    },
+    {
+      "company": "Blue Water Acquisition Corp. IV",
+      "cik": "2082847",
+      "form": "10-Q",
+      "filed": "2026-11-16",
+      "numbers": 35,
+      "readRight": 35,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 8.7
+    },
+    {
+      "company": "UNITED BANKSHARES INC/WV",
+      "cik": "729986",
+      "form": "10-Q",
+      "filed": "2026-11-06",
+      "numbers": 78,
+      "readRight": 78,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 8.2
+    },
+    {
+      "company": "NETWORK-1 TECHNOLOGIES, INC.",
+      "cik": "1065078",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 38,
+      "readRight": 38,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7.4
+    },
+    {
+      "company": "Ranpak Holdings Corp.",
+      "cik": "1712463",
+      "form": "10-Q",
+      "filed": "2026-10-29",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 5.7
+    },
+    {
+      "company": "EZCORP INC",
+      "cik": "876523",
+      "form": "10-K",
+      "filed": "2026-11-12",
+      "numbers": 70,
+      "readRight": 70,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 6.7
+    },
+    {
+      "company": "Oscar Health, Inc.",
+      "cik": "1568651",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 62,
+      "readRight": 62,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7.3
+    },
+    {
+      "company": "ASTEC INDUSTRIES INC",
+      "cik": "792987",
+      "form": "10-Q",
+      "filed": "2026-11-05",
+      "numbers": 72,
+      "readRight": 72,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 5.8
+    },
+    {
+      "company": "Octave Intelligence plc",
+      "cik": "2083632",
+      "form": "10-Q",
+      "filed": "2026-11-12",
+      "numbers": 66,
+      "readRight": 66,
+      "wrongTicked": 0,
+      "flagged": true,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7
+    },
+    {
+      "company": "Viridian Therapeutics, Inc.DE",
+      "cik": "1590750",
+      "form": "10-Q",
+      "filed": "2026-11-04",
+      "numbers": 58,
+      "readRight": 58,
+      "wrongTicked": 0,
+      "flagged": false,
+      "hiddenRebuilt": null,
+      "changedCaught": null,
+      "seconds": 7.3
+    }
+  ],
+  "skipped": [
+    {
+      "company": "Bon Natural Life Ltd",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Start Today Co., Ltd./ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "WEBUY GLOBAL LTD",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Appia Rare Earths & Uranium Corp.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "TH International Ltd",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Prologium Holding Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "New Mountain Finance Corp",
+      "reason": "The filing has no balance sheet report."
+    },
+    {
+      "company": "Invesco Galaxy Solana ETF",
+      "reason": "The table has 14 number rows, outside 15 to 80."
+    },
+    {
+      "company": "Hall Chadwick Acquisition Corp II",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "BGM Group Ltd.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Sprott Physical Gold Trust",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Fort Technology Inc",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "ASR Nederland N.V./ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "PGIM Private Credit Fund",
+      "reason": "The filing has no balance sheet report."
+    },
+    {
+      "company": "Fidelity Wise Origin Bitcoin Fund",
+      "reason": "The filing has no balance sheet report."
+    },
+    {
+      "company": "Western Union CO",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "TXNM ENERGY INC",
+      "reason": "The table has 6 number columns, not two."
+    },
+    {
+      "company": "Century Lithium Corp.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Beijer Ref AB/ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "CID Holdco, Inc.",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "Mirasol Resources Ltd",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "AAON, INC.",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "JOST Werke SE/ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "B2GOLD CORP",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Rent the Runway, Inc.",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "Kongsberg Gruppen ASA/ADR",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Frontier Nuclear & Minerals Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "DIVERSIFIED HEALTHCARE TRUST",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "BlackRock Science & Technology Trust",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Ostin Technology Group Co., Ltd.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Wolfden Resources Corp",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "ARBOR REALTY TRUST INC",
+      "reason": "The table has 3 number columns, not two."
+    },
+    {
+      "company": "Rua Gold Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "HengHong Technology Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Software Effective Solutions, Corp.",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "CREATIVE TECHNOLOGY LTD",
+      "reason": "It has no 10-K or 10-Q."
+    },
+    {
+      "company": "Quarterhill Inc.",
+      "reason": "It has no 10-K or 10-Q."
+    }
+  ]
+}
