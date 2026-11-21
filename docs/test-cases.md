@@ -8,7 +8,7 @@ Rows are numbered from 1. "No value" means a dash or an empty cell.
 
 ## A. Company search (unit 1)
 
-The fixture list holds ten companies. It must include Apple Inc. (AAPL), Apple Hospitality REIT, Inc. (APLE), Applied Materials, Inc. (AMAT) and Microsoft Corp (MSFT). It lists Apple Inc. before Apple Hospitality REIT, Inc. The owner approved the second Apple company and case A8 on 2026-11-21, before 10:30 AM ET, with the reply "Apply all".
+The fixture list holds eleven companies. It must include Apple Inc. (AAPL), Apple Hospitality REIT, Inc. (APLE), Applied Materials, Inc. (AMAT) and Microsoft Corp (MSFT). It lists Apple Inc. before Apple Hospitality REIT, Inc. The owner approved the second Apple company and case A8 on 2026-11-21, before 10:30 AM ET, with the reply "Apply all".
 
 | Case | The judge types | Expected |
 |---|---|---|
@@ -73,6 +73,16 @@ Each case is one column of values, top to bottom. "None" is an unreadable cell.
 | C15 | Two columns (Luxfer Holdings, current liabilities). Left: no value, 22, 34.6, 5.8, 0, 14.9, 77.3. Right: 25, 24.6, 27.2, 2.6, 2.8, 16, 98.2. | No group is marked as not adding up. The left column's 6 numbers and the right column's 7 numbers are all "proven". |
 
 Case C15 was added at the event on 2026-11-21 after the 50-filing test found it.
+
+Cases C16 to C18 were added at the event on 2026-11-21 with fix unit H3, the third mark "within rounding". They use two columns. The statement's unit line is `USD ($) $ in Millions` unless the case says otherwise, and "flagged" means the statement flags the row as a total. The allowed gap of a group is half its rows, rounded up, at most 3, in steps of the smallest unit printed in the column.
+
+| Case | Values | Expected |
+|---|---|---|
+| C16 | Left: 100, 200, 301, 600, with row 4 flagged. Right: 1, 5, 9, 99. | Row 4 on the left is a rounding group of rows 1 to 3: the rows add to 601, the total says 600, off by 1, and 2 is allowed. The 4 left numbers are "within rounding": no tick, nothing marked as not adding up. The note says "3 lines add to 601. Printed 600. Adds up within rounding, off by 1." With the right column 10, 25, 40, 75 instead, the same group is found without the flag. |
+| C17 | The values of C16, with the unit line `USD ($)`, or with no unit line. | No rounding group. With row 4 flagged and the right column 1, 5, 9, 99, the 4 left numbers are "not proven". With the right column 10, 25, 40, 75, rows 1 to 4 on the left are marked as not adding up, off by 1, as before. |
+| C18 | Left: 100, 200, 304, 600. Then left: 3000, 9000, 14518. Right: 10, 25, 40, 75 for the first and 10, 20, 30 for the second. | No rounding group in either. The first misses by 4 on three rows, and 2 is allowed. The second misses by 2,518 on two rows, the kind of gap Qualcomm's balance sheet has, and 1 is allowed. Both are marked as not adding up with their gap, as before. |
+
+The replay: take the 79 statements saved in `data/saved` and use the SEC's values as a perfect reading, with each statement's unit line and total flags. Only Qualcomm's total stockholders' equity (off by 2,518) is still marked as not adding up. GE Vernova, General Electric, IBM, McDonald's, Pfizer, Procter & Gamble, Gilead and Thermo Fisher show no group marked as not adding up. Carvana and NextEra also get rounding groups. No number in a rounding group can be hidden or changed.
 
 States for the page, from C12: all 11 numbers are "proven". From C6: all 4 numbers are "not proven".
 

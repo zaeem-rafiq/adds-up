@@ -13,6 +13,10 @@ import {
   proveColumnsWithChange,
   proveColumnsWithHidden,
   rebuildHiddenCell,
+  roundingAllowedSteps,
+  ROUNDING_GROUP_REASON,
+  unitLineAllowsRounding,
+  type ProveColumnsOptions,
 } from "./adding";
 import type { Statement } from "./statements";
 
@@ -57,8 +61,11 @@ function addOneToSecondDigit(value: number): number | null {
  * Replays every saved statement with the SEC's own values as a perfect reading.
  * For each number that canHideCell allows, it hides the number and rebuilds it,
  * then changes it and checks that the change is caught.
+ *
+ * With `withRounding`, the proof also gets each statement's unit line and total flags,
+ * as the page and the server give them, so the rounding rule is part of the replay.
  */
-function replaySavedStatements() {
+function replaySavedStatements(withRounding = false) {
   const statements = loadSavedStatements();
   const result = {
     files: statements.length,
@@ -69,6 +76,9 @@ function replaySavedStatements() {
     wrongOrNotRebuilt: [] as string[],
     refusedAfterProvenByAdding: 0,
     wrongIfNotRefused: 0,
+    withinRoundingCells: 0,
+    withinRoundingRefusedWithReason: 0,
+    withinRoundingAllowed: [] as string[],
     changed: 0,
     noSecondDigit: 0,
     changeCaught: 0,
@@ -76,6 +86,7 @@ function replaySavedStatements() {
     changeNamedForeignGroup: [] as string[],
     changeMarkedNewForeignGroup: [] as string[],
     changeMovedOtherColumn: [] as string[],
+    changeMovedRoundingGroups: [] as string[],
   };
 
   for (const statement of statements) {
@@ -85,7 +96,16 @@ function replaySavedStatements() {
       rows.map((row) => (row.kind === "number" ? row.numbers[1] : null)),
     ];
     const unreadMask = rows.map(() => [false, false] as const);
-    const proof = proveColumns(columns[0], columns[1], { unreadMask });
+    const proveOptions: ProveColumnsOptions = {
+      unreadMask,
+      ...(withRounding
+        ? {
+            unitLine: statement.unitLine,
+            totalFlags: rows.map((row) => row.kind === "number" && row.isTotal),
+          }
+        : {}),
+    };
+    const proof = proveColumns(columns[0], columns[1], proveOptions);
 
     for (const colIndex of [0, 1] as const) {
       const proofColumn = colIndex === 0 ? proof.left : proof.right;
@@ -105,6 +125,15 @@ function replaySavedStatements() {
           colIndex,
         });
         const decision = canHideCell(proof, rowIndex, colIndex);
+
+        if (proofColumn.cellStatuses[rowIndex] === "within_rounding") {
+          result.withinRoundingCells += 1;
+          if (decision.allowed) {
+            result.withinRoundingAllowed.push(where);
+          } else if (decision.reason === ROUNDING_GROUP_REASON) {
+            result.withinRoundingRefusedWithReason += 1;
+          }
+        }
 
         if (!decision.allowed) {
           result.refused += 1;
@@ -142,7 +171,7 @@ function replaySavedStatements() {
           changedColumns[0],
           changedColumns[1],
           { rowIndex, colIndex },
-          { unreadMask },
+          proveOptions,
         );
         if (outcome.caught) {
           result.changeCaught += 1;
@@ -180,9 +209,20 @@ function replaySavedStatements() {
         const baseOtherColumn = colIndex === 0 ? proof.right : proof.left;
         if (
           JSON.stringify(otherProofColumn.mismatches) !==
-          JSON.stringify(baseOtherColumn.mismatches)
+            JSON.stringify(baseOtherColumn.mismatches) ||
+          JSON.stringify(otherProofColumn.roundingGroups) !==
+            JSON.stringify(baseOtherColumn.roundingGroups)
         ) {
           result.changeMovedOtherColumn.push(where);
+        }
+
+        // A change to an allowed number leaves the changed column's rounding groups as they were:
+        // none of them holds the changed number, and none becomes a mark.
+        if (
+          JSON.stringify(changedProofColumn.roundingGroups) !==
+          JSON.stringify(baseProofColumn.roundingGroups)
+        ) {
+          result.changeMovedRoundingGroups.push(where);
         }
       }
     }
@@ -326,6 +366,7 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
     expect(proof.right.cellStatuses).toEqual(new Array(7).fill("mismatch"));
     expect(proof.counts).toEqual({
       proven: 7,
+      withinRounding: 0,
       needYourEye: 7,
       notProven: 0,
       total: 14,
@@ -360,6 +401,7 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
     expect(proof.right.cellStatuses).toEqual(new Array(7).fill("proven"));
     expect(proof.counts).toEqual({
       proven: 13,
+      withinRounding: 0,
       needYourEye: 0,
       notProven: 0,
       total: 13,
@@ -412,6 +454,7 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
     ]);
     expect(proof.counts).toEqual({
       proven: 9,
+      withinRounding: 0,
       needYourEye: 0,
       notProven: 0,
       total: 9,
@@ -455,6 +498,7 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
     // rows 8..13 on the left (6) + all 13 on the right = 19 proven.
     expect(proof.counts).toEqual({
       proven: 19,
+      withinRounding: 0,
       needYourEye: 7,
       notProven: 0,
       total: 26,
@@ -476,6 +520,7 @@ describe("The adding rule (Section C of docs/test-cases.md)", () => {
     expect(proof.left.cellStatuses[1]).toBe("empty");
     expect(proof.counts).toEqual({
       proven: 3, // right column [90, 10] -> 100
+      withinRounding: 0,
       needYourEye: 0,
       notProven: 2, // left 100 and 50
       total: 5,
@@ -586,6 +631,7 @@ describe("Hide and change (Section D of docs/test-cases.md)", () => {
     }
     expect(proof.counts).toEqual({
       proven: 14,
+      withinRounding: 0,
       needYourEye: 0,
       notProven: 0,
       total: 14,
@@ -784,34 +830,51 @@ describe("Hide and change (Section D of docs/test-cases.md)", () => {
   });
 
   test("D7 replay: with the SEC's own values as a perfect reading, every number canHideCell allows is rebuilt to its true value", () => {
-    const replay = replaySavedStatements();
+    // Once without the rounding rule, as H1 built it, and once with it, as the page runs.
+    for (const withRounding of [false, true]) {
+      const replay = replaySavedStatements(withRounding);
 
-    expect(replay.files).toBeGreaterThan(0);
-    expect(replay.allowed).toBeGreaterThan(0);
-    // Every allowed number is rebuilt, and rebuilt to the SEC's value.
-    expect(replay.wrongOrNotRebuilt).toEqual([]);
-    expect(replay.rebuiltRight).toBe(replay.allowed);
-    expect(replay.allowed + replay.refused).toBe(replay.cells);
-    // The guard is not idle: some numbers that proved by adding alone are now refused,
-    // and without the refusal at least one of them would be rebuilt to a wrong value.
-    expect(replay.refusedAfterProvenByAdding).toBeGreaterThan(0);
-    expect(replay.wrongIfNotRefused).toBeGreaterThan(0);
+      expect(replay.files).toBeGreaterThan(0);
+      expect(replay.allowed).toBeGreaterThan(0);
+      // Every allowed number is rebuilt, and rebuilt to the SEC's value.
+      expect(replay.wrongOrNotRebuilt).toEqual([]);
+      expect(replay.rebuiltRight).toBe(replay.allowed);
+      expect(replay.allowed + replay.refused).toBe(replay.cells);
+      // The guard is not idle: some numbers that proved by adding alone are now refused,
+      // and without the refusal at least one of them would be rebuilt to a wrong value.
+      expect(replay.refusedAfterProvenByAdding).toBeGreaterThan(0);
+      expect(replay.wrongIfNotRefused).toBeGreaterThan(0);
+    }
+  });
+
+  test("H3 replay: no number in a rounding group can be hidden or changed, and each is refused with the rounding reason", () => {
+    const withoutRounding = replaySavedStatements(false);
+    expect(withoutRounding.withinRoundingCells).toBe(0);
+
+    const replay = replaySavedStatements(true);
+    expect(replay.withinRoundingCells).toBeGreaterThan(0);
+    expect(replay.withinRoundingAllowed).toEqual([]);
+    expect(replay.withinRoundingRefusedWithReason).toBe(replay.withinRoundingCells);
   });
 
   test("D7 replay: adding 1 to the second digit of every allowed number is caught by an earlier group that holds that number", () => {
-    const replay = replaySavedStatements();
+    for (const withRounding of [false, true]) {
+      const replay = replaySavedStatements(withRounding);
 
-    expect(replay.changed).toBeGreaterThan(0);
-    expect(replay.changeNotCaught).toEqual([]);
-    expect(replay.changeCaught).toBe(replay.changed);
-    // A change never names a group that does not hold the changed number.
-    expect(replay.changeNamedForeignGroup).toEqual([]);
-    // Every mark in the changed column holds the changed number or was there before,
-    // and the other column keeps the marks it had.
-    expect(replay.changeMarkedNewForeignGroup).toEqual([]);
-    expect(replay.changeMovedOtherColumn).toEqual([]);
-    // Numbers with a single digit have no second digit, so they are counted apart.
-    expect(replay.changed + replay.noSecondDigit).toBe(replay.allowed);
+      expect(replay.changed).toBeGreaterThan(0);
+      expect(replay.changeNotCaught).toEqual([]);
+      expect(replay.changeCaught).toBe(replay.changed);
+      // A change never names a group that does not hold the changed number.
+      expect(replay.changeNamedForeignGroup).toEqual([]);
+      // Every mark in the changed column holds the changed number or was there before,
+      // and the other column keeps the marks it had.
+      expect(replay.changeMarkedNewForeignGroup).toEqual([]);
+      expect(replay.changeMovedOtherColumn).toEqual([]);
+      // The rounding groups of the changed column stay as they were.
+      expect(replay.changeMovedRoundingGroups).toEqual([]);
+      // Numbers with a single digit have no second digit, so they are counted apart.
+      expect(replay.changed + replay.noSecondDigit).toBe(replay.allowed);
+    }
   });
 
   test("a change is judged with the groups that held before it: only an earlier group that holds the changed number and now fails is named, with its gap", () => {
@@ -989,5 +1052,425 @@ describe("Hide and change (Section D of docs/test-cases.md)", () => {
       const res = parseChangedNumberInput(bad);
       expect(res.ok).toBe(false);
     }
+  });
+});
+
+describe("Within rounding (cases C16 to C18 of docs/test-cases.md)", () => {
+  const MILLIONS: ProveColumnsOptions = { unitLine: "USD ($) $ in Millions" };
+  /** A right column with no group, so only the left column's flagged total can be judged. */
+  const NO_GROUP = [1, 5, 9, 99];
+  const FLAGGED_LAST = [false, false, false, true];
+  /** C11's column, and C14's right column, in which row 2 was misread. */
+  const LEFT_C11_VALUES = [36305, 20417, 43817, 39896, 14541, 18881, 173857];
+  const RIGHT_C14_VALUES = [35934, 18768, 39777, 33180, 5718, 14585, 147957];
+
+  test("unitLineAllowsRounding needs the word thousand, million or billion, in any case", () => {
+    for (const unitLine of [
+      "USD ($) $ in Millions",
+      "In Thousands, unless otherwise specified",
+      "$ in billions",
+      "shares in Millions, $ in Millions",
+      "MILLION",
+    ]) {
+      expect(unitLineAllowsRounding(unitLine)).toBe(true);
+    }
+    for (const unitLine of ["USD ($)", "", "   ", "statement-apple.png", null, undefined]) {
+      expect(unitLineAllowsRounding(unitLine)).toBe(false);
+    }
+  });
+
+  test("the allowed gap is half the rows, rounded up, at most 3", () => {
+    expect([2, 3, 4, 5, 6, 7, 8, 20].map(roundingAllowedSteps)).toEqual([
+      1, 2, 2, 3, 3, 3, 3, 3,
+    ]);
+  });
+
+  test("C16: 100, 200, 301 and a flagged total of 600 in millions give a rounding group, off by 1", () => {
+    const proof = proveColumns([100, 200, 301, 600], NO_GROUP, {
+      ...MILLIONS,
+      totalFlags: FLAGGED_LAST,
+    });
+
+    // The exact rule found nothing, and nothing is marked as not adding up.
+    expect(proof.left.groups).toEqual([]);
+    expect(proof.left.mismatches).toEqual([]);
+    expect(proof.left.roundingGroups).toEqual([
+      {
+        memberIndices: [0, 1, 2],
+        totalIndex: 3,
+        computedSum: 601,
+        printedTotal: 600,
+        gap: 1,
+        diff: 1,
+        allowedGap: 2,
+      },
+    ]);
+    // All four numbers are "within rounding": no tick, nothing red.
+    expect(proof.left.cellStatuses).toEqual(new Array(4).fill("within_rounding"));
+    expect(proof.right.cellStatuses).toEqual(new Array(4).fill("not_proven"));
+    expect(proof.counts).toEqual({
+      proven: 0,
+      withinRounding: 4,
+      needYourEye: 0,
+      notProven: 4,
+      total: 8,
+    });
+  });
+
+  test("C16: the same lines under a total that adds up exactly in the other column are within rounding too, with no flag needed", () => {
+    const proof = proveColumns([100, 200, 301, 600], [10, 25, 40, 75], MILLIONS);
+
+    expect(proof.right.groups).toHaveLength(1);
+    expect(proof.left.mismatches).toEqual([]);
+    expect(proof.left.roundingGroups).toHaveLength(1);
+    expect(proof.left.roundingGroups[0]).toMatchObject({
+      memberIndices: [0, 1, 2],
+      totalIndex: 3,
+      computedSum: 601,
+      printedTotal: 600,
+      gap: 1,
+    });
+    expect(proof.left.cellStatuses).toEqual(new Array(4).fill("within_rounding"));
+    expect(proof.right.cellStatuses).toEqual(new Array(4).fill("proven"));
+    expect(proof.counts.proven).toBe(4);
+    expect(proof.counts.withinRounding).toBe(4);
+  });
+
+  test("C17: the same values in single dollars, or with no unit line, give no rounding group", () => {
+    for (const unitLine of ["USD ($)", "", null, undefined]) {
+      const flagged = proveColumns([100, 200, 301, 600], NO_GROUP, {
+        unitLine,
+        totalFlags: FLAGGED_LAST,
+      });
+      expect(flagged.left.roundingGroups).toEqual([]);
+      expect(flagged.left.cellStatuses).toEqual(new Array(4).fill("not_proven"));
+      expect(flagged.counts.withinRounding).toBe(0);
+
+      // Where the other column adds up exactly, the gap is marked as before.
+      const marked = proveColumns([100, 200, 301, 600], [10, 25, 40, 75], { unitLine });
+      expect(marked.left.roundingGroups).toEqual([]);
+      expect(marked.left.mismatches).toHaveLength(1);
+      expect(marked.left.mismatches[0]).toMatchObject({ gap: 1, totalIndex: 3 });
+      expect(marked.left.cellStatuses).toEqual(new Array(4).fill("mismatch"));
+    }
+  });
+
+  test("C18: a gap of 4 on three rows, or of 2,518 on two rows, gives no rounding group and is marked as today", () => {
+    // A gap of 4 on three rows: more than the allowed 2.
+    const four = proveColumns([100, 200, 304, 600], [10, 25, 40, 75], MILLIONS);
+    expect(four.left.roundingGroups).toEqual([]);
+    expect(four.left.mismatches).toHaveLength(1);
+    expect(four.left.mismatches[0]).toMatchObject({ gap: 4, memberIndices: [0, 1, 2] });
+    expect(four.left.cellStatuses).toEqual(new Array(4).fill("mismatch"));
+
+    // Flagged, but with no group in the other column: no rounding group and no mark.
+    const flaggedFour = proveColumns([100, 200, 304, 600], NO_GROUP, {
+      ...MILLIONS,
+      totalFlags: FLAGGED_LAST,
+    });
+    expect(flaggedFour.left.roundingGroups).toEqual([]);
+    expect(flaggedFour.left.mismatches).toEqual([]);
+    expect(flaggedFour.left.cellStatuses).toEqual(new Array(4).fill("not_proven"));
+
+    // Qualcomm's kind of gap: 2,518 on two rows.
+    const qualcomm = proveColumns([3000, 9000, 14518], [10, 20, 30], MILLIONS);
+    expect(qualcomm.left.roundingGroups).toEqual([]);
+    expect(qualcomm.left.mismatches).toHaveLength(1);
+    expect(qualcomm.left.mismatches[0]).toMatchObject({ gap: 2518, totalIndex: 2 });
+
+    // Seven rows allow at most 3: a gap of 3 is within rounding, a gap of 4 is not.
+    const seven = (miss: number) =>
+      proveColumns([1, 1, 1, 1, 1, 1, 1, 7 + miss], [2, 2, 2, 2, 2, 2, 2, 14], MILLIONS);
+    expect(seven(3).left.roundingGroups).toHaveLength(1);
+    expect(seven(3).left.roundingGroups[0]).toMatchObject({ gap: 3, allowedGap: 3 });
+    expect(seven(4).left.roundingGroups).toEqual([]);
+    expect(seven(4).left.mismatches[0]).toMatchObject({ gap: 4 });
+  });
+
+  test("the gap counts in steps of the smallest unit printed in the column", () => {
+    // One decimal place: a step is 0.1, so 0.1 is one step and the three rows allow two.
+    const oneStep = proveColumns([22, 34.6, 5.8, 62.5], NO_GROUP, {
+      ...MILLIONS,
+      totalFlags: FLAGGED_LAST,
+    });
+    expect(oneStep.left.roundingGroups).toHaveLength(1);
+    expect(oneStep.left.roundingGroups[0]).toMatchObject({
+      gap: 0.1,
+      allowedGap: 0.2,
+      computedSum: 62.4,
+      printedTotal: 62.5,
+    });
+
+    // The same miss of 1 is ten steps in a column with a decimal place.
+    const tenSteps = proveColumns([22, 34.6, 5.8, 63.4], NO_GROUP, {
+      ...MILLIONS,
+      totalFlags: FLAGGED_LAST,
+    });
+    expect(tenSteps.left.roundingGroups).toEqual([]);
+
+    // Whole numbers: a step is 1.
+    const whole = proveColumns([22, 35, 6, 64], NO_GROUP, {
+      ...MILLIONS,
+      totalFlags: FLAGGED_LAST,
+    });
+    expect(whole.left.roundingGroups[0]).toMatchObject({ gap: 1, allowedGap: 2 });
+  });
+
+  test("the exact rule runs first and is not changed: an exact group is never a rounding group", () => {
+    const withUnit = proveColumns(LEFT_C11_VALUES, RIGHT_C14_VALUES, {
+      ...MILLIONS,
+      totalFlags: [false, false, false, false, false, false, true],
+    });
+    const without = proveColumns(LEFT_C11_VALUES, RIGHT_C14_VALUES);
+
+    expect(withUnit.left.groups).toEqual(without.left.groups);
+    expect(withUnit.right.groups).toEqual(without.right.groups);
+    expect(withUnit.left.roundingGroups).toEqual([]);
+    expect(withUnit.left.cellStatuses).toEqual(without.left.cellStatuses);
+    // C14's right column misses by 5 on six rows, which is more than the allowed 3, so it stays marked.
+    expect(withUnit.right.mismatches).toEqual(without.right.mismatches);
+    expect(withUnit.right.roundingGroups).toEqual([]);
+  });
+
+  test("a number in a rounding group cannot be hidden or changed, even an exact subtotal that sits inside one", () => {
+    // Left: rows 1 and 2 add exactly to row 3. Row 3 and row 4 add to 130, and row 5 says 131.
+    // Right: only rows 1 to 3 add up.
+    const left = [10, 20, 30, 100, 131];
+    const right = [1, 2, 3, 4, 50];
+    const proof = proveColumns(left, right, {
+      ...MILLIONS,
+      totalFlags: [false, false, false, false, true],
+    });
+
+    expect(toOneBased(proof.left.groups)).toEqual([{ members: [1, 2], total: 3, sum: 30 }]);
+    expect(proof.left.roundingGroups).toHaveLength(1);
+    expect(proof.left.roundingGroups[0]).toMatchObject({
+      memberIndices: [2, 3],
+      totalIndex: 4,
+      gap: 1,
+    });
+    // Row 3 re-adds exactly, but it sits inside the rounding group: no tick.
+    expect(proof.left.cellStatuses).toEqual([
+      "proven",
+      "proven",
+      "within_rounding",
+      "within_rounding",
+      "within_rounding",
+    ]);
+
+    for (const row of [2, 3, 4]) {
+      expect(canHideCell(proof, row, 0)).toEqual({
+        allowed: false,
+        reason: ROUNDING_GROUP_REASON,
+      });
+    }
+    // The lines of the exact group that sit in no rounding group are still allowed,
+    // and a hidden one is rebuilt to its true value.
+    expect(canHideCell(proof, 0, 0)).toEqual({ allowed: true });
+    const rebuilt = rebuildHiddenCell(
+      left.map((value, row) => (row === 0 ? null : value)),
+      right,
+      { rowIndex: 0, colIndex: 0 },
+    );
+    expect(rebuilt.status).toBe("rebuilt");
+    if (rebuilt.status === "rebuilt") expect(rebuilt.value).toBe(10);
+  });
+
+  test("a change is still judged exactly: a miss of 1 stays a mark, and the rounding groups stay within rounding", () => {
+    // Rows 1 and 2 add to row 3, rows 3 and 4 add to 130 against a printed 131 (within rounding),
+    // and rows 6 and 7 add to row 8.
+    const left = [10, 20, 30, 100, 131, 5, 6, 11];
+    const right = [10, 20, 30, 100, 130, 5, 6, 11];
+    const options: ProveColumnsOptions = {
+      ...MILLIONS,
+      totalFlags: [false, false, false, false, true, false, false, true],
+    };
+    const before = proveColumns(left, right, options);
+    expect(before.left.mismatches).toEqual([]);
+    expect(before.left.roundingGroups).toHaveLength(1);
+    expect(before.counts.withinRounding).toBe(3);
+
+    // Row 6 goes from 5 to 6: the group of rows 6 to 8 misses by 1, and that is a mark, not rounding.
+    expect(canHideCell(before, 5, 0)).toEqual({ allowed: true });
+    const changedLines = [...left];
+    changedLines[5] = 6;
+    const outcome = proveColumnsWithChange(
+      before,
+      changedLines,
+      right,
+      { rowIndex: 5, colIndex: 0 },
+      options,
+    );
+    expect(outcome.caught).toBe(true);
+    expect(outcome.caughtMismatches).toHaveLength(1);
+    expect(outcome.caughtMismatches[0]).toMatchObject({
+      memberIndices: [5, 6],
+      totalIndex: 7,
+      gap: 1,
+    });
+    expect(outcome.proof.left.mismatches).toHaveLength(1);
+    expect(outcome.proof.left.roundingGroups).toEqual(before.left.roundingGroups);
+    expect(outcome.proof.left.cellStatuses.slice(5)).toEqual(["mismatch", "mismatch", "mismatch"]);
+    expect(outcome.proof.left.cellStatuses.slice(2, 5)).toEqual(new Array(3).fill("within_rounding"));
+    expect(outcome.proof.right).toEqual(before.right);
+
+    // Row 1 goes from 10 to 11 in the first exact group, which misses by 1 as well: still a mark.
+    const changedFirst = [...left];
+    changedFirst[0] = 11;
+    const firstOutcome = proveColumnsWithChange(
+      before,
+      changedFirst,
+      right,
+      { rowIndex: 0, colIndex: 0 },
+      options,
+    );
+    expect(firstOutcome.caught).toBe(true);
+    expect(firstOutcome.caughtMismatches[0]).toMatchObject({ memberIndices: [0, 1], totalIndex: 2, gap: 1 });
+    expect(firstOutcome.proof.left.roundingGroups).toHaveLength(1);
+    expect(firstOutcome.proof.left.roundingGroups[0]).toMatchObject({ totalIndex: 4 });
+
+    // A change in the other column leaves this column's rounding group untouched.
+    const changedRight = [...right];
+    changedRight[5] = 6;
+    const rightOutcome = proveColumnsWithChange(
+      before,
+      left,
+      changedRight,
+      { rowIndex: 5, colIndex: 1 },
+      options,
+    );
+    expect(rightOutcome.proof.left.roundingGroups).toEqual(before.left.roundingGroups);
+    expect(rightOutcome.proof.left.mismatches).toEqual([]);
+  });
+
+  test("a hidden number that is rebuilt leaves the rounding groups within rounding", () => {
+    const left = [10, 20, 30, 100, 131, 5, 6, 11];
+    const right = [10, 20, 30, 100, 130, 5, 6, 11];
+    const options: ProveColumnsOptions = {
+      ...MILLIONS,
+      totalFlags: [false, false, false, false, true, false, false, true],
+    };
+    const hidden = left.map((value, row): number | null => (row === 5 ? null : value));
+    const outcome = proveColumnsWithHidden(hidden, right, { rowIndex: 5, colIndex: 0 }, options);
+
+    expect(outcome.rebuild.status).toBe("rebuilt");
+    expect(outcome.proof.left.mismatches).toEqual([]);
+    expect(outcome.proof.left.roundingGroups).toHaveLength(1);
+    expect(outcome.proof.left.cellStatuses.slice(2, 5)).toEqual(new Array(3).fill("within_rounding"));
+  });
+
+  test("H3 replay: with the SEC's values as a perfect reading, only a statement whose gap is larger than its allowed gap still shows a group that does not add up", () => {
+    const statements = loadSavedStatements();
+    const stepOf = (column: ReadonlyArray<number | null>): number => {
+      let places = 0;
+      for (const value of column) {
+        if (value === null) continue;
+        while (places < 6 && Math.abs(value * 10 ** places - Math.round(value * 10 ** places)) > 1e-6) {
+          places += 1;
+        }
+      }
+      return 10 ** -places;
+    };
+
+    const stillMarked: string[] = [];
+    const markedWithoutRounding = new Set<string>();
+    const withinRoundingByCompany = new Map<string, number>();
+    let withinRoundingTotal = 0;
+
+    for (const statement of statements) {
+      const rows = statement.rows.filter((row) => row.kind === "number");
+      const columns: [Array<number | null>, Array<number | null>] = [
+        rows.map((row) => (row.kind === "number" ? row.numbers[0] : null)),
+        rows.map((row) => (row.kind === "number" ? row.numbers[1] : null)),
+      ];
+      const unreadMask = rows.map(() => [false, false] as const);
+      const plain = proveColumns(columns[0], columns[1], { unreadMask });
+      const proof = proveColumns(columns[0], columns[1], {
+        unreadMask,
+        unitLine: statement.unitLine,
+        totalFlags: rows.map((row) => row.kind === "number" && row.isTotal),
+      });
+
+      if (plain.left.mismatches.length + plain.right.mismatches.length > 0) {
+        markedWithoutRounding.add(statement.companyName);
+      }
+
+      // The exact rule is not changed by the rounding rule.
+      expect(proof.left.groups).toEqual(plain.left.groups);
+      expect(proof.right.groups).toEqual(plain.right.groups);
+
+      for (const [column, columnProof] of [
+        [columns[0], proof.left],
+        [columns[1], proof.right],
+      ] as const) {
+        const step = stepOf(column);
+        const exactTotals = new Set(columnProof.groups.map((group) => group.totalIndex));
+        const markedTotals = new Set(columnProof.mismatches.map((mark) => mark.totalIndex));
+
+        for (const mark of columnProof.mismatches) {
+          // What is still marked misses by more than its allowed gap.
+          expect(mark.gap).toBeGreaterThan(
+            roundingAllowedSteps(mark.memberIndices.length) * step + 1e-6,
+          );
+          stillMarked.push(`${statement.companyName}: ${rows[mark.totalIndex].label}, off by ${mark.gap}`);
+        }
+        for (const group of columnProof.roundingGroups) {
+          const steps = Math.round(group.gap / step);
+          expect(steps).toBeGreaterThanOrEqual(1);
+          expect(steps).toBeLessThanOrEqual(roundingAllowedSteps(group.memberIndices.length));
+          // A rounding group is never an exact group and never a mark.
+          expect(exactTotals.has(group.totalIndex)).toBe(false);
+          expect(markedTotals.has(group.totalIndex)).toBe(false);
+        }
+      }
+
+      if (proof.counts.withinRounding > 0) {
+        withinRoundingByCompany.set(statement.companyName, proof.counts.withinRounding);
+        withinRoundingTotal += proof.counts.withinRounding;
+      }
+    }
+
+    const companiesWithinRounding = [...withinRoundingByCompany.keys()].sort();
+    console.info(
+      [
+        `H3 replay over ${statements.length} saved statements:`,
+        `statements that still show a group marked "does not add up": ${new Set(stillMarked.map((line) => line.split(":")[0])).size} (${stillMarked.join("; ")})`,
+        `numbers within rounding: ${withinRoundingTotal} in ${companiesWithinRounding.length} companies`,
+        ...companiesWithinRounding.map(
+          (name) => `  ${name}: ${withinRoundingByCompany.get(name)}`,
+        ),
+      ].join("\n"),
+    );
+
+    // Qualcomm's total stockholders' equity misses by 2,518 on two rows: not rounding.
+    expect(stillMarked).toHaveLength(1);
+    expect(stillMarked[0]).toMatch(/^QUALCOMM INC\/DE: .*off by 2518$/);
+
+    // The eight companies that showed a red mark for a rounded total now show none of it as red.
+    const clearedByRounding = [
+      "GE Vernova Inc.",
+      "GENERAL ELECTRIC CO",
+      "INTERNATIONAL BUSINESS MACHINES CORP",
+      "MCDONALDS CORP",
+      "PFIZER INC",
+      "PROCTER & GAMBLE Co",
+      "GILEAD SCIENCES, INC.",
+      "THERMO FISHER SCIENTIFIC INC.",
+    ];
+    for (const name of clearedByRounding) {
+      expect(markedWithoutRounding.has(name)).toBe(true);
+      expect(withinRoundingByCompany.has(name)).toBe(true);
+    }
+    expect(markedWithoutRounding.has("QUALCOMM INC/DE")).toBe(true);
+
+    // Every company with a rounding group, as observed on this data.
+    expect(companiesWithinRounding).toEqual(
+      [
+        ...clearedByRounding,
+        "CARVANA CO.",
+        "NEXTERA ENERGY INC",
+      ].sort(),
+    );
+    expect(withinRoundingTotal).toBeGreaterThan(0);
   });
 });

@@ -215,6 +215,12 @@ export async function POST(
                 r.cells[1].unread || r.cells[1].hidden,
               ] as const,
           ),
+          // The same rounding rule as the page, so a number in a rounding group is refused here too.
+          unitLine: statementResult.statement.unitLine,
+          totalFlags: comparison.rows.map((r) => {
+            const statementRow = statementResult.statement.rows[r.statementRowIndex];
+            return statementRow?.kind === "number" && statementRow.isTotal;
+          }),
         },
       );
     }
@@ -226,6 +232,8 @@ export async function POST(
       numberRows.map((r) => r.numbers[1]),
       {
         unreadMask: numberRows.map(() => [false, false] as const),
+        unitLine: statementResult.statement.unitLine,
+        totalFlags: numberRows.map((r) => r.kind === "number" && r.isTotal),
       },
     );
   })();

@@ -131,12 +131,14 @@ describe("ResultsView component", () => {
     expect(
       screen.getByRole("heading", { name: "What the second reader decides" }),
     ).toBeInTheDocument();
+    // The blurred-copies step has run on the real scores since the harder-pictures test,
+    // so the page no longer says it did not run. The running fixture above still covers that sentence.
     expect(
-      screen.getByText(
+      screen.queryByText(
         /The test did not run on blurred or tilted copies, scans or photos\./,
       ),
-    ).toBeInTheDocument();
-    expect(screen.queryByText(/only a first look/i)).not.toBeInTheDocument();
+    ).not.toBeInTheDocument();
+    expect(screen.getByText(/only a first look/i)).toBeInTheDocument();
     expect(screen.getAllByText("from memory").length).toBeGreaterThanOrEqual(1);
   });
 

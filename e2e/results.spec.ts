@@ -173,11 +173,8 @@ test("shows the empty state when scores are empty at 375, 768 and 1440 pixels", 
   await expect(
     page.getByRole("heading", { name: "What the second reader decides" }),
   ).toBeVisible();
-  await expect(
-    page.getByText(
-      /The test did not run on blurred or tilted copies, scans or photos\./,
-    ),
-  ).toBeVisible();
+  // The blurred-copies step has run on the real scores, so the page shows its "first look" sentence.
+  await expect(page.getByText(/only a first look/i)).toBeVisible();
   // At 1440 the filings show as a table. At 375 they show as cards.
   await expect(
     page.getByRole("cell", { name: "from memory" }).first(),

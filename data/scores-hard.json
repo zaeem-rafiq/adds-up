@@ -1,0 +1,935 @@
+{
+ "startedAt": "2026-11-21T13:07:32-0600",
+ "filings": 15,
+ "levels": [
+  {
+   "level": "1",
+   "what": "turned 2 degrees, slight blur",
+   "numbers": 936,
+   "oneCall": {
+    "right": 936,
+    "wrongShownAsRight": 0,
+    "notRead": 0
+   },
+   "addsUp": {
+    "right": 936,
+    "wrongWithATick": 0,
+    "wrongNoTick": 0,
+    "notRead": 0,
+    "ticks": 800,
+    "pagesNotRead": 0
+   }
+  },
+  {
+   "level": "2",
+   "what": "like a phone photo: smaller, turned 3 degrees, blurred, compressed",
+   "numbers": 936,
+   "oneCall": {
+    "right": 881,
+    "wrongShownAsRight": 47,
+    "notRead": 8
+   },
+   "addsUp": {
+    "right": 864,
+    "wrongWithATick": 18,
+    "wrongNoTick": 44,
+    "notRead": 10,
+    "ticks": 639,
+    "pagesNotRead": 0
+   }
+  },
+  {
+   "level": "3",
+   "what": "like a bad phone photo: much smaller, turned 5 degrees, more blur and compression",
+   "numbers": 936,
+   "oneCall": {
+    "right": 0,
+    "wrongShownAsRight": 0,
+    "notRead": 936
+   },
+   "addsUp": {
+    "right": 0,
+    "wrongWithATick": 0,
+    "wrongNoTick": 0,
+    "notRead": 936,
+    "ticks": 0,
+    "pagesNotRead": 15
+   }
+  }
+ ],
+ "cases": [
+  {
+   "company": "AURA SYSTEMS INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Property and equipment, net",
+   "truth": 690.0,
+   "read": 890.0
+  },
+  {
+   "company": "AURA SYSTEMS INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Operating lease right-of-use asset",
+   "truth": 612.0,
+   "read": 412.0
+  },
+  {
+   "company": "AURA SYSTEMS INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Operating lease liabilities, current portion",
+   "truth": 283.0,
+   "read": 281.0
+  },
+  {
+   "company": "AURA SYSTEMS INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Operating lease liabilities, current portion",
+   "truth": 283.0,
+   "read": 281
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "one call",
+   "row": "Accounts Payable \u2014 Trade",
+   "truth": 3810.0,
+   "read": 3818.0
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Accounts Payable \u2014 Trade",
+   "truth": 3810.0,
+   "read": 3816
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "one call",
+   "row": "Other Current Liabilities",
+   "truth": 1133.0,
+   "read": 1121.0
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Other Current Liabilities",
+   "truth": 1133.0,
+   "read": 1121
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "one call",
+   "row": "Notes Payable and Overdrafts (Note 8)",
+   "truth": 506.0,
+   "read": 508.0
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "one call",
+   "row": "Long Term Debt and Finance Leases due Within One Year (Note 8)",
+   "truth": 990.0,
+   "read": 994.0
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Long Term Debt and Finance Leases due Within One Year (Note 8)",
+   "truth": 990.0,
+   "read": 996
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Long Term Debt and Finance Leases (Note 8)",
+   "truth": 5328.0,
+   "read": 5326
+  },
+  {
+   "company": "GOODYEAR TIRE & RUBBER CO /OH/",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Other Long Term Liabilities",
+   "truth": 941.0,
+   "read": 943
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Premises and equipment, net",
+   "truth": 41059.0,
+   "read": 43059.0
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Premises and equipment, net",
+   "truth": 44707.0,
+   "read": 44767.0
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Premises and equipment, net",
+   "truth": 44707.0,
+   "read": 44767
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Other intangible assets, net",
+   "truth": 24129.0,
+   "read": 24529
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Bank-owned life insurance",
+   "truth": 58356.0,
+   "read": 58358.0
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Bank-owned life insurance",
+   "truth": 58356.0,
+   "read": 58358
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Prepaid expenses and other assets",
+   "truth": 32038.0,
+   "read": 30038.0
+  },
+  {
+   "company": "First Carolina Financial Services, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Total assets",
+   "truth": 3317508.0,
+   "read": 3317568.0
+  },
+  {
+   "company": "Definitive Healthcare Corp.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Operating lease right-of-use assets, net",
+   "truth": 3749.0,
+   "read": 3769
+  },
+  {
+   "company": "Definitive Healthcare Corp.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Other assets",
+   "truth": 3734.0,
+   "read": 3724
+  },
+  {
+   "company": "Definitive Healthcare Corp.",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Accrued expenses and other liabilities",
+   "truth": 26433.0,
+   "read": 28433
+  },
+  {
+   "company": "Definitive Healthcare Corp.",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Deferred revenue",
+   "truth": 96989.0,
+   "read": 98989
+  },
+  {
+   "company": "Definitive Healthcare Corp.",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Term loan",
+   "truth": 8750.0,
+   "read": 6750
+  },
+  {
+   "company": "Definitive Healthcare Corp.",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Term loan",
+   "truth": 8750.0,
+   "read": 6750
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Income taxes receivable",
+   "truth": 2068.0,
+   "read": 2098.0
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Income taxes receivable",
+   "truth": 2068.0,
+   "read": 2098
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Amounts due from related parties",
+   "truth": 266.0,
+   "read": 256
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Property and equipment at cost, less accumulated depreciation",
+   "truth": 1281.0,
+   "read": 1291.0
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Property and equipment at cost, less accumulated depreciation",
+   "truth": 1281.0,
+   "read": 1291
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Other intangible assets, net of accumulated amortization",
+   "truth": 37113.0,
+   "read": 37115.0
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Other intangible assets, net of accumulated amortization",
+   "truth": 37113.0,
+   "read": 37115
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Deferred income tax asset",
+   "truth": 24600.0,
+   "read": 24800.0
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Deferred income tax asset",
+   "truth": 24600.0,
+   "read": 24800
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Prepaid post-combination compensation, long term",
+   "truth": 4692.0,
+   "read": 4492.0
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Prepaid post-combination compensation, long term",
+   "truth": 4692.0,
+   "read": 4892
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Income taxes payable",
+   "truth": 2653.0,
+   "read": 2853.0
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Income taxes payable",
+   "truth": 2653.0,
+   "read": 2853
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Notes payable, current portion, net",
+   "truth": 9342.0,
+   "read": 9542.0
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Notes payable, current portion, net",
+   "truth": 9342.0,
+   "read": 9542
+  },
+  {
+   "company": "Public Policy Holding Company, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Common stock, $0.001 par value, 1,000,000,000 shares authorized, 30,396,239 and 25,174,492 shares issued and outstanding as of September 30, 2026 and December 31, 2025, respectively",
+   "truth": 28.0,
+   "read": 29
+  },
+  {
+   "company": "TRAVELZOO",
+   "level": "2",
+   "who": "one call",
+   "row": "Deposits and other",
+   "truth": 397.0,
+   "read": 387.0
+  },
+  {
+   "company": "TRAVELZOO",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Deposits and other",
+   "truth": 397.0,
+   "read": 387
+  },
+  {
+   "company": "TRAVELZOO",
+   "level": "2",
+   "who": "one call",
+   "row": "Merchant payables",
+   "truth": 10419.0,
+   "read": 16419.0
+  },
+  {
+   "company": "TRAVELZOO",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Merchant payables",
+   "truth": 10419.0,
+   "read": 16419
+  },
+  {
+   "company": "TRAVELZOO",
+   "level": "2",
+   "who": "one call",
+   "row": "Accrued expenses and other",
+   "truth": 5003.0,
+   "read": 5005.0
+  },
+  {
+   "company": "TRAVELZOO",
+   "level": "2",
+   "who": "one call",
+   "row": "Retained earnings (losses)",
+   "truth": 7243.0,
+   "read": 7245.0
+  },
+  {
+   "company": "TRAVELZOO",
+   "level": "2",
+   "who": "one call",
+   "row": "Accumulated other comprehensive loss",
+   "truth": -5331.0,
+   "read": -5333.0
+  },
+  {
+   "company": "Blue Water Acquisition Corp. IV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Accounts payable",
+   "truth": 24035.0,
+   "read": 24025
+  },
+  {
+   "company": "Blue Water Acquisition Corp. IV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Accumulated deficit",
+   "truth": -4279664.0,
+   "read": -4279884
+  },
+  {
+   "company": "Blue Water Acquisition Corp. IV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Common stock value",
+   "truth": 43.0,
+   "read": 63
+  },
+  {
+   "company": "Blue Water Acquisition Corp. IV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Common stock value",
+   "truth": 433.0,
+   "read": 633
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "one call",
+   "row": "Equity securities at estimated fair value",
+   "truth": 34760.0,
+   "read": 24760.0
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Equity securities at estimated fair value",
+   "truth": 34760.0,
+   "read": 24760
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "one call",
+   "row": "Other investment securities",
+   "truth": 305184.0,
+   "read": 305104.0
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Loans and leases",
+   "truth": 25473482.0,
+   "read": 25473462
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Loans and leases, net of unearned income",
+   "truth": 25460258.0,
+   "read": 25460238
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "one call",
+   "row": "Bank premises and equipment",
+   "truth": 208831.0,
+   "read": 208031.0
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Bank premises and equipment",
+   "truth": 208831.0,
+   "read": 208031
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "one call",
+   "row": "Operating lease right-of-use assets",
+   "truth": 89312.0,
+   "read": 88312.0
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Other long-term borrowings",
+   "truth": 281817.0,
+   "read": 283817
+  },
+  {
+   "company": "UNITED BANKSHARES INC/WV",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Surplus",
+   "truth": 3468869.0,
+   "read": 3468005
+  },
+  {
+   "company": "Ranpak Holdings Corp.",
+   "level": "2",
+   "who": "one call",
+   "row": "Derivative instruments",
+   "truth": 33.4,
+   "read": 23.4
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Cash and cash equivalents",
+   "truth": 469524.0,
+   "read": 489524.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Cash and cash equivalents",
+   "truth": 469524.0,
+   "read": 489524
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Prepaid expenses and other current assets",
+   "truth": 51221.0,
+   "read": 31221.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Other investments",
+   "truth": 6883.0,
+   "read": 6993.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Other investments",
+   "truth": 6883.0,
+   "read": 6993
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Other investments",
+   "truth": 51903.0,
+   "read": 31903.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Other investments",
+   "truth": 51903.0,
+   "read": 31903
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Property and equipment, net",
+   "truth": 96574.0,
+   "read": 90574.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Property and equipment, net",
+   "truth": 96574.0,
+   "read": 90574
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Right-of-use assets",
+   "truth": 236462.0,
+   "read": 238462.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Right-of-use assets",
+   "truth": 236462.0,
+   "read": 238462
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Long-term restricted cash",
+   "truth": 13876.0,
+   "read": 15876.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Long-term restricted cash",
+   "truth": 14664.0,
+   "read": 14694
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Intangible assets, net",
+   "truth": 58832.0,
+   "read": 58872.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Long-term debt, net",
+   "truth": 520008.0,
+   "read": 520000.0
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Long-term debt, net",
+   "truth": 520008.0,
+   "read": 520009
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Additional paid-in capital",
+   "truth": 457618.0,
+   "read": 457818
+  },
+  {
+   "company": "EZCORP INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Accumulated other comprehensive loss",
+   "truth": -37623.0,
+   "read": -37823
+  },
+  {
+   "company": "Oscar Health, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Cash and cash equivalents",
+   "truth": 4466858.0,
+   "read": 4466658
+  },
+  {
+   "company": "Oscar Health, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Accounts receivable (net of allowance for credit losses of $19,131 and $7,226)",
+   "truth": 303302.0,
+   "read": 303382.0
+  },
+  {
+   "company": "Oscar Health, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Accounts receivable (net of allowance for credit losses of $19,131 and $7,226)",
+   "truth": 303302.0,
+   "read": 303382
+  },
+  {
+   "company": "Oscar Health, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Accounts payable and other liabilities",
+   "truth": 589220.0,
+   "read": 589229
+  },
+  {
+   "company": "Oscar Health, Inc.",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Unearned premiums",
+   "truth": 160392.0,
+   "read": 160382
+  },
+  {
+   "company": "Oscar Health, Inc.",
+   "level": "2",
+   "who": "one call",
+   "row": "Total Oscar Health, Inc. stockholders' equity",
+   "truth": 977648.0,
+   "read": 977645.0
+  },
+  {
+   "company": "ASTEC INDUSTRIES INC",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Prepaid expenses and other assets",
+   "truth": 42.8,
+   "read": 42.6
+  },
+  {
+   "company": "ASTEC INDUSTRIES INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Total current assets",
+   "truth": 816.6,
+   "read": 816.4
+  },
+  {
+   "company": "ASTEC INDUSTRIES INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Investments",
+   "truth": 21.1,
+   "read": 25.1
+  },
+  {
+   "company": "ASTEC INDUSTRIES INC",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Goodwill",
+   "truth": 111.8,
+   "read": 111.6
+  },
+  {
+   "company": "ASTEC INDUSTRIES INC",
+   "level": "2",
+   "who": "one call",
+   "row": "Short-term debt",
+   "truth": 12.1,
+   "read": 11.1
+  },
+  {
+   "company": "Octave Intelligence plc",
+   "level": "2",
+   "who": "one call",
+   "row": "Operating lease right-of-use assets",
+   "truth": 54237.0,
+   "read": 56237.0
+  },
+  {
+   "company": "Octave Intelligence plc",
+   "level": "2",
+   "who": "one call",
+   "row": "Long-term debt",
+   "truth": 518477.0,
+   "read": 519477.0
+  },
+  {
+   "company": "Octave Intelligence plc",
+   "level": "2",
+   "who": "one call",
+   "row": "Additional paid-in-capital",
+   "truth": 6791452.0,
+   "read": 6795452.0
+  },
+  {
+   "company": "Octave Intelligence plc",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Ordinary Shares, $0.01 par value; 4,500,000 shares authorized",
+   "truth": 110.0,
+   "read": 118
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Property and equipment, net",
+   "truth": 2972.0,
+   "read": 2872
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Other assets",
+   "truth": 131.0,
+   "read": 231
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Accounts payable",
+   "truth": 8683.0,
+   "read": 8883
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Total current liabilities",
+   "truth": 70696.0,
+   "read": 70896
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Other liabilities",
+   "truth": 2341.0,
+   "read": 2141
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "one call",
+   "row": "Accumulated deficit",
+   "truth": -1671687.0,
+   "read": -1573663.0
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Accumulated deficit",
+   "truth": -1671687.0,
+   "read": -1573663
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "one call",
+   "row": "Accumulated deficit",
+   "truth": -1338458.0,
+   "read": -1206402.0
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, with a tick",
+   "row": "Accumulated deficit",
+   "truth": -1338458.0,
+   "read": -1206402
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "one call",
+   "row": "Preferred stock",
+   "truth": 70868.0,
+   "read": 70066.0
+  },
+  {
+   "company": "Viridian Therapeutics, Inc.DE",
+   "level": "2",
+   "who": "Adds Up, no tick",
+   "row": "Preferred stock",
+   "truth": 70868.0,
+   "read": 70088
+  }
+ ],
+ "finishedAt": "2026-11-21T13:19:20-0600"
+}

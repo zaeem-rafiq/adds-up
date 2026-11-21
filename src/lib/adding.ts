@@ -22,8 +22,31 @@ export type MismatchedGroup = {
   diff: number;
 };
 
+/**
+ * A total that adds up within rounding: the filing prints each line rounded to
+ * thousands, millions or billions, so the lines miss the printed total by a step
+ * or two. It is not an exact proof and it is not a mismatch.
+ */
+export type RoundingGroup = {
+  /** 0-based indices of the component rows. */
+  memberIndices: number[];
+  /** 0-based index of the total row. */
+  totalIndex: number;
+  /** Actual sum of the member rows in this column. */
+  computedSum: number;
+  /** Printed/read value of the total row in this column. */
+  printedTotal: number;
+  /** Absolute difference between computedSum and printedTotal (never zero). */
+  gap: number;
+  /** Signed difference (computedSum - printedTotal). */
+  diff: number;
+  /** The largest gap this group may have and still count as within rounding. */
+  allowedGap: number;
+};
+
 export type CellProofStatus =
   | "proven"
+  | "within_rounding"
   | "mismatch"
   | "unread"
   | "not_proven"
@@ -32,18 +55,24 @@ export type CellProofStatus =
 export type ColumnProof = {
   groups: AddingGroup[];
   mismatches: MismatchedGroup[];
+  /** Groups that add up only within rounding. Never part of `mismatches`. */
+  roundingGroups: RoundingGroup[];
   cellStatuses: CellProofStatus[];
+};
+
+export type ProofCounts = {
+  /** Numbers proven by an exact group. Numbers within rounding are not counted here. */
+  proven: number;
+  withinRounding: number;
+  needYourEye: number;
+  notProven: number;
+  total: number;
 };
 
 export type TwoColumnProof = {
   left: ColumnProof;
   right: ColumnProof;
-  counts: {
-    proven: number;
-    needYourEye: number;
-    notProven: number;
-    total: number;
-  };
+  counts: ProofCounts;
 };
 
 export type ProveColumnsOptions = {
@@ -54,6 +83,17 @@ export type ProveColumnsOptions = {
    * cell (no number on the statement) rather than an unread number.
    */
   unreadMask?: ReadonlyArray<readonly [boolean, boolean]>;
+  /**
+   * The statement's unit line. The rounding rule applies only when it holds the word
+   * "thousand", "million" or "billion", in any case. Leave it out for a statement
+   * in single dollars and for an upload, which has no unit line.
+   */
+  unitLine?: string | null;
+  /**
+   * Optional per-row flag: the statement flags this number row as a total row.
+   * Only the rounding rule reads it.
+   */
+  totalFlags?: ReadonlyArray<boolean>;
 };
 
 export type HideCellTarget = {
@@ -71,6 +111,9 @@ export type CanHideResult =
 
 export const GROUP_NOT_IN_BOTH_COLUMNS_REASON =
   "This number's group does not exist in both columns, so the page cannot rebuild it.";
+
+export const ROUNDING_GROUP_REASON =
+  "This number's group adds up only within rounding.";
 
 export const CHANGE_NOT_CAUGHT_MESSAGE =
   "The page could not catch this change.";
@@ -146,11 +189,32 @@ function numbersEqual(a: number, b: number): boolean {
  * An unreadable cell (`null`) stops the search across it.
  */
 export function findGroups(column: ReadonlyArray<number | null>): AddingGroup[] {
+  return walkColumn(column, false).groups;
+}
+
+type ColumnWalk = {
+  groups: AddingGroup[];
+  /**
+   * For each row, the indices of the open rows as they stood just before the walk
+   * reached that row (oldest first). Filled only when asked for.
+   */
+  openBefore: number[][];
+};
+
+/** The adding walk behind findGroups, which can also keep the open rows at each step. */
+function walkColumn(
+  column: ReadonlyArray<number | null>,
+  keepOpenRows: boolean,
+): ColumnWalk {
   const open: Array<{ index: number; value: number }> = [];
   const groups: AddingGroup[] = [];
+  const openBefore: number[][] = [];
 
   for (let i = 0; i < column.length; i += 1) {
     const val = column[i];
+    if (keepOpenRows) {
+      openBefore.push(open.map((entry) => entry.index));
+    }
 
     if (val === null || !Number.isFinite(val)) {
       // An unreadable cell stops any backward search from crossing it (C5).
@@ -187,7 +251,7 @@ export function findGroups(column: ReadonlyArray<number | null>): AddingGroup[] 
     open.push({ index: i, value: val });
   }
 
-  return groups;
+  return { groups, openBefore };
 }
 
 /**
@@ -265,10 +329,226 @@ function findCrossColumnMismatches(
   return mismatches;
 }
 
+/** The rounding rule applies only to a statement printed in thousands, millions or billions. */
+export function unitLineAllowsRounding(
+  unitLine: string | null | undefined,
+): boolean {
+  return typeof unitLine === "string" && /thousand|million|billion/i.test(unitLine);
+}
+
+/** The most steps a group of `memberCount` rows may miss its total by: half the rows, rounded up, at most 3. */
+export function roundingAllowedSteps(memberCount: number): number {
+  return Math.min(Math.ceil(memberCount / 2), 3);
+}
+
+function decimalPlaces(value: number): number {
+  for (let places = 0; places < 6; places += 1) {
+    const scaled = value * 10 ** places;
+    if (Math.abs(scaled - Math.round(scaled)) < EPSILON) return places;
+  }
+  return 6;
+}
+
+/** The smallest unit printed in a column: 1 for whole numbers, 0.1 for one decimal place, and so on. */
+function columnStep(column: ReadonlyArray<number | null>): number {
+  let places = 0;
+  for (const value of column) {
+    if (value !== null && Number.isFinite(value)) {
+      places = Math.max(places, decimalPlaces(value));
+    }
+  }
+  return 10 ** -places;
+}
+
+function groupKey(group: { totalIndex: number; memberIndices: number[] }): string {
+  return `${group.totalIndex}:${group.memberIndices.join(",")}`;
+}
+
+/**
+ * Turns a group whose rows miss the printed total into a rounding group when the
+ * gap is one or more steps and no more than the allowed steps. Returns null otherwise.
+ */
+function toRoundingGroup(
+  group: Pick<
+    MismatchedGroup,
+    "memberIndices" | "totalIndex" | "computedSum" | "printedTotal"
+  >,
+  step: number,
+): RoundingGroup | null {
+  const diff = roundClean(group.computedSum - group.printedTotal);
+  // Compare in whole steps, so a column of one-decimal numbers carries no float error.
+  const gapSteps = Math.round(Math.abs(diff) / step);
+  const allowedSteps = roundingAllowedSteps(group.memberIndices.length);
+  if (numbersEqual(diff, 0) || gapSteps < 1 || gapSteps > allowedSteps) {
+    return null;
+  }
+  return {
+    memberIndices: [...group.memberIndices],
+    totalIndex: group.totalIndex,
+    computedSum: roundClean(group.computedSum),
+    printedTotal: roundClean(group.printedTotal),
+    gap: roundClean(Math.abs(diff)),
+    diff,
+    allowedGap: roundClean(allowedSteps * step),
+  };
+}
+
+/** Re-adds a rounding group against a column's current values. Null when it no longer adds up within rounding. */
+function readdRoundingGroup(
+  column: ReadonlyArray<number | null>,
+  group: RoundingGroup,
+  step: number,
+): RoundingGroup | null {
+  const printedTotal = column[group.totalIndex];
+  if (printedTotal === null || printedTotal === undefined || !Number.isFinite(printedTotal)) {
+    return null;
+  }
+  let computedSum = 0;
+  for (const memberIndex of group.memberIndices) {
+    const value = column[memberIndex];
+    if (value === null || value === undefined || !Number.isFinite(value)) {
+      return null;
+    }
+    computedSum += value;
+  }
+  return toRoundingGroup(
+    {
+      memberIndices: group.memberIndices,
+      totalIndex: group.totalIndex,
+      computedSum,
+      printedTotal,
+    },
+    step,
+  );
+}
+
+/**
+ * Case (a) of the rounding rule: a row the statement flags as a total, that is not the
+ * total of an exact group in its column and not the total of an exact group in the other
+ * column. Its members are the nearest run of two or more open rows above it whose sum
+ * is within the allowed gap of the row's value, shortest run first.
+ */
+function findFlaggedRoundingGroups(
+  column: ReadonlyArray<number | null>,
+  ownGroups: ReadonlyArray<AddingGroup>,
+  otherGroups: ReadonlyArray<AddingGroup>,
+  totalFlags: ReadonlyArray<boolean>,
+  openBefore: ReadonlyArray<ReadonlyArray<number>>,
+  step: number,
+): RoundingGroup[] {
+  const ownTotals = new Set(ownGroups.map((group) => group.totalIndex));
+  const otherTotals = new Set(otherGroups.map((group) => group.totalIndex));
+  const found: RoundingGroup[] = [];
+
+  for (let i = 0; i < column.length; i += 1) {
+    if (!totalFlags[i] || ownTotals.has(i) || otherTotals.has(i)) continue;
+    const printedTotal = column[i];
+    // A zero is never a total, as in the exact rule.
+    if (
+      printedTotal === null ||
+      !Number.isFinite(printedTotal) ||
+      numbersEqual(printedTotal, 0)
+    ) {
+      continue;
+    }
+    const open = openBefore[i] ?? [];
+
+    let runSum = 0;
+    for (let k = open.length - 1; k >= 0; k -= 1) {
+      runSum += column[open[k]] as number;
+      const count = open.length - k;
+      if (count < 2) continue;
+      const group = toRoundingGroup(
+        {
+          memberIndices: open.slice(k),
+          totalIndex: i,
+          computedSum: runSum,
+          printedTotal,
+        },
+        step,
+      );
+      if (group) {
+        found.push(group);
+        break;
+      }
+    }
+  }
+
+  return found;
+}
+
+/**
+ * Splits what one column does not add up to into marks and rounding groups.
+ * Without the rounding rule every gap is a mark, as before.
+ */
+function judgeColumn(
+  column: ReadonlyArray<number | null>,
+  walk: ColumnWalk,
+  otherGroups: ReadonlyArray<AddingGroup>,
+  roundingOn: boolean,
+  totalFlags: ReadonlyArray<boolean> | undefined,
+): { mismatches: MismatchedGroup[]; roundingGroups: RoundingGroup[] } {
+  const crossMismatches = findCrossColumnMismatches(column, walk.groups, otherGroups);
+  if (!roundingOn) {
+    return { mismatches: crossMismatches, roundingGroups: [] };
+  }
+
+  const step = columnStep(column);
+  const mismatches: MismatchedGroup[] = [];
+  const roundingGroups: RoundingGroup[] = [];
+  for (const mismatch of crossMismatches) {
+    const rounding = toRoundingGroup(mismatch, step);
+    if (rounding) roundingGroups.push(rounding);
+    else mismatches.push(mismatch);
+  }
+  if (totalFlags) {
+    roundingGroups.push(
+      ...findFlaggedRoundingGroups(
+        column,
+        walk.groups,
+        otherGroups,
+        totalFlags,
+        walk.openBefore,
+        step,
+      ),
+    );
+  }
+  roundingGroups.sort((a, b) => a.totalIndex - b.totalIndex);
+  return { mismatches, roundingGroups };
+}
+
+function countStatuses(statuses: ReadonlyArray<CellProofStatus>): ProofCounts {
+  let proven = 0;
+  let withinRounding = 0;
+  let needYourEye = 0;
+  let notProven = 0;
+
+  for (const status of statuses) {
+    if (status === "proven") {
+      proven += 1;
+    } else if (status === "within_rounding") {
+      withinRounding += 1;
+    } else if (status === "mismatch" || status === "unread") {
+      needYourEye += 1;
+    } else if (status === "not_proven") {
+      notProven += 1;
+    }
+  }
+
+  return {
+    proven,
+    withinRounding,
+    needYourEye,
+    notProven,
+    total: proven + withinRounding + needYourEye + notProven,
+  };
+}
+
 function buildColumnProof(
   column: ReadonlyArray<number | null>,
   groups: AddingGroup[],
   mismatches: MismatchedGroup[],
+  roundingGroups: RoundingGroup[],
   unreadFlags?: ReadonlyArray<boolean>,
 ): ColumnProof {
   const provenIndices = new Set<number>();
@@ -287,6 +567,14 @@ function buildColumnProof(
     mismatchIndices.add(mismatch.totalIndex);
   }
 
+  const roundingIndices = new Set<number>();
+  for (const roundingGroup of roundingGroups) {
+    for (const idx of roundingGroup.memberIndices) {
+      roundingIndices.add(idx);
+    }
+    roundingIndices.add(roundingGroup.totalIndex);
+  }
+
   const cellStatuses: CellProofStatus[] = column.map((val, index) => {
     if (val === null || !Number.isFinite(val)) {
       if (unreadFlags && !unreadFlags[index]) {
@@ -297,6 +585,12 @@ function buildColumnProof(
     if (mismatchIndices.has(index)) {
       return "mismatch";
     }
+    // A number inside a rounding group gets no tick, even when another group
+    // of its own re-adds exactly. The tick promises that the number can be hidden
+    // and rebuilt, and a number inside a rounding group cannot.
+    if (roundingIndices.has(index)) {
+      return "within_rounding";
+    }
     if (provenIndices.has(index)) {
       return "proven";
     }
@@ -306,6 +600,7 @@ function buildColumnProof(
   return {
     groups,
     mismatches,
+    roundingGroups,
     cellStatuses,
   };
 }
@@ -313,57 +608,63 @@ function buildColumnProof(
 /**
  * Applies the adding rule to both columns and cross-checks groups that re-add
  * in one column against the same rows in the other column.
+ *
+ * With `options.unitLine` in thousands, millions or billions, a total that misses
+ * its lines by no more than the allowed gap is a rounding group instead of a mark
+ * (see findFlaggedRoundingGroups and toRoundingGroup). The exact rule runs first and
+ * is not changed by it.
  */
 export function proveColumns(
   left: ReadonlyArray<number | null>,
   right: ReadonlyArray<number | null>,
   options?: ProveColumnsOptions,
 ): TwoColumnProof {
-  const leftGroups = findGroups(left);
-  const rightGroups = findGroups(right);
+  const roundingOn = unitLineAllowsRounding(options?.unitLine);
+  const totalFlags = options?.totalFlags;
+  const keepOpenRows = roundingOn && totalFlags !== undefined;
+  const leftWalk = walkColumn(left, keepOpenRows);
+  const rightWalk = walkColumn(right, keepOpenRows);
 
-  const leftMismatches = findCrossColumnMismatches(left, leftGroups, rightGroups);
-  const rightMismatches = findCrossColumnMismatches(right, rightGroups, leftGroups);
+  const leftJudged = judgeColumn(
+    left,
+    leftWalk,
+    rightWalk.groups,
+    roundingOn,
+    totalFlags,
+  );
+  const rightJudged = judgeColumn(
+    right,
+    rightWalk,
+    leftWalk.groups,
+    roundingOn,
+    totalFlags,
+  );
 
   const leftUnreadFlags = options?.unreadMask?.map((pair) => pair[0]);
   const rightUnreadFlags = options?.unreadMask?.map((pair) => pair[1]);
 
   const leftProof = buildColumnProof(
     left,
-    leftGroups,
-    leftMismatches,
+    leftWalk.groups,
+    leftJudged.mismatches,
+    leftJudged.roundingGroups,
     leftUnreadFlags,
   );
   const rightProof = buildColumnProof(
     right,
-    rightGroups,
-    rightMismatches,
+    rightWalk.groups,
+    rightJudged.mismatches,
+    rightJudged.roundingGroups,
     rightUnreadFlags,
   );
-
-  let proven = 0;
-  let needYourEye = 0;
-  let notProven = 0;
-
-  for (const status of [...leftProof.cellStatuses, ...rightProof.cellStatuses]) {
-    if (status === "proven") {
-      proven += 1;
-    } else if (status === "mismatch" || status === "unread") {
-      needYourEye += 1;
-    } else if (status === "not_proven") {
-      notProven += 1;
-    }
-  }
 
   return {
     left: leftProof,
     right: rightProof,
-    counts: {
-      proven,
-      needYourEye,
-      notProven,
-      total: proven + needYourEye + notProven,
-    },
+    counts: countStatuses([
+      ...leftProof.cellStatuses,
+      ...rightProof.cellStatuses,
+    ]),
   };
 }
 
@@ -397,6 +698,16 @@ export function canHideCell(
   const columnProof = colIndex === 0 ? proof.left : proof.right;
   const otherColumnProof = colIndex === 0 ? proof.right : proof.left;
   const status = columnProof.cellStatuses[rowIndex];
+
+  // A number in a rounding group can be neither hidden nor changed. This also
+  // covers an exact subtotal that sits inside one: a rebuild would carry the
+  // rounding gap into the number.
+  if (status === "within_rounding") {
+    return {
+      allowed: false,
+      reason: ROUNDING_GROUP_REASON,
+    };
+  }
 
   if (status === "proven") {
     const ownGroupsForRow = columnProof.groups.filter((group) =>
@@ -591,6 +902,7 @@ export function proveColumnsWithHidden(
     });
 
     const proof = proveColumns(leftCopy, rightCopy, {
+      ...options,
       unreadMask: updatedMask,
     });
     return { proof, rebuild };
@@ -675,30 +987,51 @@ export function proveColumnsWithChange(
     }
   }
 
-  const otherGroups = findGroups(afterOtherColumn);
-  const otherMismatches = findCrossColumnMismatches(
+  // The column that did not change is judged as a whole, as proveColumns judges it.
+  const roundingOn = unitLineAllowsRounding(options?.unitLine);
+  const totalFlags = options?.totalFlags;
+  const otherWalk = walkColumn(
     afterOtherColumn,
-    otherGroups,
-    beforeOwnGroups,
+    roundingOn && totalFlags !== undefined,
   );
+  const otherGroups = otherWalk.groups;
+  const otherJudged = judgeColumn(
+    afterOtherColumn,
+    otherWalk,
+    beforeOwnGroups,
+    roundingOn,
+    totalFlags,
+  );
+
+  // A rounding group of the changed column that still adds up within rounding stays
+  // within rounding. Nothing new becomes a rounding group here: a change is judged
+  // exactly, so a group that failed because of the change stays a mark, however small
+  // its gap. A number inside a rounding group cannot be changed (canHideCell refuses it),
+  // so these groups do not hold the changed number.
+  const beforeChangedRounding =
+    colIndex === 0
+      ? beforeProof.left.roundingGroups
+      : beforeProof.right.roundingGroups;
+  const changedStep = columnStep(afterChangedColumn);
+  const keptRounding: RoundingGroup[] = [];
+  for (const earlier of beforeChangedRounding) {
+    const kept = readdRoundingGroup(afterChangedColumn, earlier, changedStep);
+    if (kept) keptRounding.push(kept);
+  }
+  const keptRoundingKeys = new Set(keptRounding.map(groupKey));
 
   // Marks that were already on the changed column before the change stay on it.
   // They come from groups of the other column that this column did not add up to,
   // and they are not part of the answer to the change.
+  const caughtKeys = new Set(caughtMismatches.map(groupKey));
   const alreadyMarkedMismatches = findCrossColumnMismatches(
     afterChangedColumn,
     stillProvenOwnGroups,
     otherGroups,
   ).filter(
     (mismatch) =>
-      !caughtMismatches.some(
-        (caughtMismatch) =>
-          caughtMismatch.totalIndex === mismatch.totalIndex &&
-          caughtMismatch.memberIndices.length === mismatch.memberIndices.length &&
-          caughtMismatch.memberIndices.every(
-            (memberIndex, i) => memberIndex === mismatch.memberIndices[i],
-          ),
-      ),
+      !caughtKeys.has(groupKey(mismatch)) &&
+      !keptRoundingKeys.has(groupKey(mismatch)),
   );
   const changedColumnMismatches = [
     ...caughtMismatches,
@@ -714,12 +1047,14 @@ export function proveColumnsWithChange(
           afterLeft,
           stillProvenOwnGroups,
           changedColumnMismatches,
+          keptRounding,
           leftUnreadFlags,
         )
       : buildColumnProof(
           afterLeft,
           otherGroups,
-          otherMismatches,
+          otherJudged.mismatches,
+          otherJudged.roundingGroups,
           leftUnreadFlags,
         );
 
@@ -729,43 +1064,26 @@ export function proveColumnsWithChange(
           afterRight,
           stillProvenOwnGroups,
           changedColumnMismatches,
+          keptRounding,
           rightUnreadFlags,
         )
       : buildColumnProof(
           afterRight,
           otherGroups,
-          otherMismatches,
+          otherJudged.mismatches,
+          otherJudged.roundingGroups,
           rightUnreadFlags,
         );
-
-  let proven = 0;
-  let needYourEye = 0;
-  let notProven = 0;
-
-  for (const status of [
-    ...leftProof.cellStatuses,
-    ...rightProof.cellStatuses,
-  ]) {
-    if (status === "proven") {
-      proven += 1;
-    } else if (status === "mismatch" || status === "unread") {
-      needYourEye += 1;
-    } else if (status === "not_proven") {
-      notProven += 1;
-    }
-  }
 
   const caught = caughtMismatches.length > 0;
   return {
     proof: {
       left: leftProof,
       right: rightProof,
-      counts: {
-        proven,
-        needYourEye,
-        notProven,
-        total: proven + needYourEye + notProven,
-      },
+      counts: countStatuses([
+        ...leftProof.cellStatuses,
+        ...rightProof.cellStatuses,
+      ]),
     },
     caughtMismatches,
     caught,

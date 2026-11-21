@@ -5,6 +5,7 @@ import type {
   CellProofStatus,
   MismatchedGroup,
   RebuildResult,
+  RoundingGroup,
   TwoColumnProof,
 } from "@/lib/adding";
 import type { RowComparison, StatementReadingResult } from "@/lib/reading";
@@ -149,10 +150,20 @@ type GroupAnnotation =
       gap: number;
       unitWord: "lines" | "totals";
       brokenCols: [boolean, boolean];
+    }
+  | {
+      kind: "rounding";
+      totalIndex: number;
+      memberIndices: number[];
+      computedSum: number;
+      printedTotal: number;
+      gap: number;
+      unitWord: "lines" | "totals";
+      roundingCols: [boolean, boolean];
     };
 
 type BracketSegment = {
-  kind: "proven" | "mismatch";
+  kind: "proven" | "mismatch" | "rounding";
   position: "start" | "middle" | "end";
   sideNote?: string;
 };
@@ -170,6 +181,8 @@ function buildAnnotations(
   for (const g of proof.right.groups) allTotalIndices.add(g.totalIndex);
   for (const m of proof.left.mismatches) allTotalIndices.add(m.totalIndex);
   for (const m of proof.right.mismatches) allTotalIndices.add(m.totalIndex);
+  for (const r of proof.left.roundingGroups) allTotalIndices.add(r.totalIndex);
+  for (const r of proof.right.roundingGroups) allTotalIndices.add(r.totalIndex);
 
   const leftGroupByTotal = new Map<number, AddingGroup>();
   for (const g of proof.left.groups) leftGroupByTotal.set(g.totalIndex, g);
@@ -183,6 +196,15 @@ function buildAnnotations(
   const rightMismatchByTotal = new Map<number, MismatchedGroup>();
   for (const m of proof.right.mismatches) {
     rightMismatchByTotal.set(m.totalIndex, m);
+  }
+
+  const leftRoundingByTotal = new Map<number, RoundingGroup>();
+  for (const r of proof.left.roundingGroups) {
+    leftRoundingByTotal.set(r.totalIndex, r);
+  }
+  const rightRoundingByTotal = new Map<number, RoundingGroup>();
+  for (const r of proof.right.roundingGroups) {
+    rightRoundingByTotal.set(r.totalIndex, r);
   }
 
   const totalAnnotations = new Map<number, GroupAnnotation>();
@@ -205,6 +227,28 @@ function buildAnnotations(
         gap: primary.gap,
         unitWord: allMembersAreTotals ? "totals" : "lines",
         brokenCols: [Boolean(leftM), Boolean(rightM)],
+      });
+      continue;
+    }
+
+    // A total that adds up only within rounding is not red and is not a full proof.
+    // It wins over an exact group of the other column so the page says so.
+    const leftR = leftRoundingByTotal.get(totalIndex);
+    const rightR = rightRoundingByTotal.get(totalIndex);
+    if (leftR || rightR) {
+      const primary = leftR ?? rightR!;
+      const allMembersAreTotals = primary.memberIndices.every((idx) =>
+        allTotalIndices.has(idx),
+      );
+      totalAnnotations.set(totalIndex, {
+        kind: "rounding",
+        totalIndex,
+        memberIndices: primary.memberIndices,
+        computedSum: primary.computedSum,
+        printedTotal: primary.printedTotal,
+        gap: primary.gap,
+        unitWord: allMembersAreTotals ? "totals" : "lines",
+        roundingCols: [Boolean(leftR), Boolean(rightR)],
       });
       continue;
     }
@@ -314,6 +358,39 @@ function ProvenCheckIcon({ size = "sm" }: { size?: "sm" | "xs" }) {
         fill="none"
         stroke="#ffffff"
         strokeWidth="2.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/**
+ * The mark for a total that adds up within rounding: an amber check on a dashed
+ * ring. It is neither the solid green tick nor the red warning.
+ */
+export function RoundingCheckIcon({ size = "sm" }: { size?: "sm" | "xs" }) {
+  const dims = size === "xs" ? "h-4 w-4" : "h-[18px] w-[18px]";
+  return (
+    <svg
+      className={`${dims} shrink-0 text-[#b45309]`}
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="8.2" fill="#fff4d6" />
+      <circle
+        cx="10"
+        cy="10"
+        r="8.2"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeDasharray="2.6 2.1"
+      />
+      <path
+        d="M6.2 10.4L8.6 12.4L10.5 8.9L13.9 7.3"
+        stroke="currentColor"
+        strokeWidth="1.9"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -438,6 +515,7 @@ function getRowVisualStatus(
   | "unread"
   | "recheck-unsure"
   | "not-proven"
+  | "within-rounding"
   | "none" {
   if (leftStatus === "mismatch" || rightStatus === "mismatch") {
     return isMismatchTotal ? "mismatch-total" : "mismatch-member";
@@ -459,6 +537,9 @@ function getRowVisualStatus(
   }
   if (leftStatus === "not_proven" || rightStatus === "not_proven") {
     return "not-proven";
+  }
+  if (leftStatus === "within_rounding" || rightStatus === "within_rounding") {
+    return "within-rounding";
   }
   if (leftStatus === "proven" || rightStatus === "proven") {
     return "proven";
@@ -654,6 +735,15 @@ export function ResultTable({
                 annotation?.kind === "mismatch" &&
                 annotation.brokenCols[1];
 
+              const leftRoundingTotal =
+                !isCheckingAgain &&
+                annotation?.kind === "rounding" &&
+                annotation.roundingCols[0];
+              const rightRoundingTotal =
+                !isCheckingAgain &&
+                annotation?.kind === "rounding" &&
+                annotation.roundingCols[1];
+
               const numberBorderClass = isTotal
                 ? isGrandTotal
                   ? "border-t border-slate-800 border-b-[3px] border-b-slate-800 border-double"
@@ -737,6 +827,8 @@ export function ResultTable({
                   }
                   leftBrokenTotal={leftBrokenTotal}
                   rightBrokenTotal={rightBrokenTotal}
+                  leftRoundingTotal={leftRoundingTotal}
+                  rightRoundingTotal={rightRoundingTotal}
                   isLeftHidden={isLeftHidden}
                   isRightHidden={isRightHidden}
                   isLeftChanged={isLeftChanged}
@@ -776,6 +868,8 @@ type ResultRowGroupProps = {
   rightText: string;
   leftBrokenTotal: boolean;
   rightBrokenTotal: boolean;
+  leftRoundingTotal: boolean;
+  rightRoundingTotal: boolean;
   isLeftHidden: boolean;
   isRightHidden: boolean;
   isLeftChanged: boolean;
@@ -904,6 +998,39 @@ function NumberCellContent({
   return <>{text}</>;
 }
 
+/** The note beside a total that adds up within rounding, e.g. "6 lines add to 77,301. Printed 77,302. Adds up within rounding, off by 1." */
+function RoundingNote({
+  annotation,
+}: {
+  annotation: Extract<GroupAnnotation, { kind: "rounding" }>;
+}) {
+  return (
+    <span
+      data-proof-note="rounding"
+      className="inline-flex items-start gap-1.5 font-medium text-[#9a5b00]"
+    >
+      <span className="mt-px">
+        <RoundingCheckIcon size="xs" />
+      </span>
+      <span>
+        {annotation.memberIndices.length} {annotation.unitWord} add to{" "}
+        <span className="font-mono tabular-nums">
+          {formatProofNumber(annotation.computedSum)}
+        </span>
+        . Printed{" "}
+        <span className="font-mono tabular-nums">
+          {formatProofNumber(annotation.printedTotal)}
+        </span>
+        . Adds up within rounding, off by{" "}
+        <span className="font-mono tabular-nums">
+          {formatProofNumber(annotation.gap)}
+        </span>
+        .
+      </span>
+    </span>
+  );
+}
+
 function ResultRowGroup({
   row,
   columns,
@@ -919,6 +1046,8 @@ function ResultRowGroup({
   rightText,
   leftBrokenTotal,
   rightBrokenTotal,
+  leftRoundingTotal,
+  rightRoundingTotal,
   isLeftHidden,
   isRightHidden,
   isLeftChanged,
@@ -977,13 +1106,15 @@ function ResultRowGroup({
           className={`whitespace-nowrap py-1.5 pl-1.5 text-right align-bottom font-mono text-[12px] tabular-nums sm:pl-3 sm:text-[13.5px] ${numberBorderClass} ${
             leftBrokenTotal
               ? "font-bold text-[#b53800]"
-              : leftRecheck?.verdict === "disagrees"
-                ? "font-semibold text-[#b91c1c]"
-                : leftStatus === "unread" && !isLeftHidden
-                  ? "font-sans text-xs font-medium text-[#9a5b00]"
-                  : leftStatus === "empty"
-                    ? "text-slate-400"
-                    : ""
+              : leftRoundingTotal
+                ? "font-semibold text-[#9a5b00]"
+                : leftRecheck?.verdict === "disagrees"
+                  ? "font-semibold text-[#b91c1c]"
+                  : leftStatus === "unread" && !isLeftHidden
+                    ? "font-sans text-xs font-medium text-[#9a5b00]"
+                    : leftStatus === "empty"
+                      ? "text-slate-400"
+                      : ""
           }`}
         >
           <NumberCellContent
@@ -1011,13 +1142,15 @@ function ResultRowGroup({
           className={`whitespace-nowrap py-1.5 pl-1.5 text-right align-bottom font-mono text-[12px] tabular-nums sm:pl-3 sm:text-[13.5px] ${numberBorderClass} ${
             rightBrokenTotal
               ? "font-bold text-[#b53800]"
-              : rightRecheck?.verdict === "disagrees"
-                ? "font-semibold text-[#b91c1c]"
-                : rightStatus === "unread" && !isRightHidden
-                  ? "font-sans text-xs font-medium text-[#9a5b00]"
-                  : rightStatus === "empty"
-                    ? "text-slate-400"
-                    : ""
+              : rightRoundingTotal
+                ? "font-semibold text-[#9a5b00]"
+                : rightRecheck?.verdict === "disagrees"
+                  ? "font-semibold text-[#b91c1c]"
+                  : rightStatus === "unread" && !isRightHidden
+                    ? "font-sans text-xs font-medium text-[#9a5b00]"
+                    : rightStatus === "empty"
+                      ? "text-slate-400"
+                      : ""
           }`}
         >
           <NumberCellContent
@@ -1058,6 +1191,16 @@ function ResultRowGroup({
                     className="inline-flex"
                   >
                     <ProvenCheckIcon />
+                  </span>
+                )}
+                {rowVisual === "within-rounding" && (
+                  <span
+                    data-proof-mark="within-rounding"
+                    aria-label="Adds up within rounding"
+                    title="Adds up within rounding"
+                    className="inline-flex"
+                  >
+                    <RoundingCheckIcon />
                   </span>
                 )}
                 {rowVisual === "mismatch-total" && (
@@ -1135,7 +1278,9 @@ function ResultRowGroup({
                   ? "bg-slate-300"
                   : bracket.kind === "mismatch"
                     ? "bg-[#b53800]"
-                    : "bg-[#146c43]"
+                    : bracket.kind === "rounding"
+                      ? "bg-[repeating-linear-gradient(to_bottom,#c27803_0_5px,transparent_5px_8px)]"
+                      : "bg-[#146c43]"
               } ${
                 bracket.position === "start"
                   ? "top-2 bottom-0"
@@ -1188,6 +1333,10 @@ function ResultRowGroup({
                         </span>
                       </span>
                     </span>
+                  )}
+
+                  {!isRebuiltHiddenRow && annotation?.kind === "rounding" && (
+                    <RoundingNote annotation={annotation} />
                   )}
 
                   {!isRebuiltHiddenRow && annotation?.kind === "mismatch" && (
@@ -1308,6 +1457,10 @@ function ResultRowGroup({
                       </span>
                     </span>
                   </span>
+                )}
+
+                {annotation?.kind === "rounding" && !isRebuiltHiddenRow && (
+                  <RoundingNote annotation={annotation} />
                 )}
 
                 {annotation?.kind === "mismatch" && (

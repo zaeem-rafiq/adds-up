@@ -80,6 +80,10 @@ const NORTHSTAR_FIXTURE_PATH = path.join(
   process.cwd(),
   "src/fixtures/northstar-statement.json",
 );
+const ROUNDING_FIXTURE_PATH = path.join(
+  process.cwd(),
+  "src/fixtures/rounding-statement.json",
+);
 
 export function getSecSavedFallbackTimeoutMs(): number {
   const raw = process.env.ADDS_UP_SEC_SAVED_TIMEOUT_MS?.trim();
@@ -931,7 +935,9 @@ export async function loadStatement(
         ? APPLE_FIXTURE_PATH
         : cik === "990001"
           ? NORTHSTAR_FIXTURE_PATH
-          : null;
+          : cik === "990002"
+            ? ROUNDING_FIXTURE_PATH
+            : null;
     if (fixturePath) {
       const raw = await readFile(fixturePath, "utf-8");
       const parsed: unknown = JSON.parse(raw);
