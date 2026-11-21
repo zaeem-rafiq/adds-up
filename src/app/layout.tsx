@@ -29,7 +29,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <TopBar />
         <div className="flex-1">{children}</div>
         <footer className="border-t border-slate-200 px-4 py-5 text-center text-xs leading-relaxed text-slate-600">
-          Made for the Gemini 4 NYC Hackathon, November 2026. Free, and you do
+          Made by Zaeem Khan for the Gemini 4 NYC Hackathon, November 2026.
+          Free, and you do
           not need an account. Company numbers come from public filings at the
           US Securities and Exchange Commission (SEC). Google&apos;s Gemini 4
           models read the balance sheet pictures.
