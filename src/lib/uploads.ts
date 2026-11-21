@@ -6,6 +6,7 @@ import {
   type GeminiClient,
   type LocateCellBoxRequest,
 } from "@/lib/gemini";
+import { logServerError, MODEL_FAILED_MESSAGE } from "@/lib/public-errors";
 import { RateLimitError, type RateLimiter } from "@/lib/rate-limit";
 import {
   computePictureCacheKey,
@@ -35,6 +36,15 @@ import {
 
 export const UPLOAD_TTL_MS = 60 * 60 * 1000; // 1 hour
 export const MAX_UPLOAD_ENTRIES = 100;
+/** Total memory the store may hold: every picture plus every redrawn picture. */
+export const MAX_UPLOAD_STORE_BYTES = 150 * 1024 * 1024; // 150 MB
+
+export class UploadStoreFullError extends Error {
+  constructor() {
+    super("The upload store cannot hold this picture.");
+    this.name = "UploadStoreFullError";
+  }
+}
 
 const FONT_FAMILY = "AddsUpDejaVu";
 
@@ -69,6 +79,11 @@ export type UploadRecord = {
   reading?: UploadReadingOutcome;
   cellBoxes: Map<string, NormalizedCellBox>;
   modifiedPictures: Map<string, Buffer>;
+  /**
+   * Keeps a redrawn picture under the store's byte cap, dropping older pictures when
+   * needed. Returns false when the picture cannot be kept.
+   */
+  addModifiedPicture: (key: string, png: Buffer) => boolean;
 };
 
 const PNG_SIGNATURE = Buffer.from([
@@ -156,23 +171,36 @@ export function validateUploadBuffer(
   };
 }
 
+function recordBytes(record: UploadRecord): number {
+  let total = record.buffer.length;
+  for (const picture of record.modifiedPictures.values()) {
+    total += picture.length;
+  }
+  return total;
+}
+
 /**
  * Keeps uploaded pictures and their readings in server memory only,
  * under a random UUID, for one hour. Never writes to disk.
+ * It holds at most `maxEntries` uploads and `maxBytes` in total, counting every redrawn
+ * picture. When either limit is reached the oldest upload goes first.
  */
 export class UploadStore {
   private readonly ttlMs: number;
   private readonly maxEntries: number;
+  private readonly maxBytes: number;
   private readonly now: () => number;
   private readonly entries = new Map<string, UploadRecord>();
 
   constructor(options?: {
     ttlMs?: number;
     maxEntries?: number;
+    maxBytes?: number;
     now?: () => number;
   }) {
     this.ttlMs = options?.ttlMs ?? UPLOAD_TTL_MS;
     this.maxEntries = options?.maxEntries ?? MAX_UPLOAD_ENTRIES;
+    this.maxBytes = options?.maxBytes ?? MAX_UPLOAD_STORE_BYTES;
     this.now = options?.now ?? (() => Date.now());
   }
 
@@ -185,14 +213,30 @@ export class UploadStore {
     }
   }
 
+  /** Bytes held now: every stored picture and every redrawn picture. */
+  get totalBytes(): number {
+    let total = 0;
+    for (const record of this.entries.values()) {
+      total += recordBytes(record);
+    }
+    return total;
+  }
+
   create(params: {
     fileName: string;
     mimeType: UploadMimeType;
     buffer: Buffer;
   }): UploadRecord {
+    if (params.buffer.length > this.maxBytes) {
+      throw new UploadStoreFullError();
+    }
     this.pruneExpired();
 
-    while (this.entries.size >= this.maxEntries) {
+    while (
+      this.entries.size > 0 &&
+      (this.entries.size >= this.maxEntries ||
+        this.totalBytes + params.buffer.length > this.maxBytes)
+    ) {
       const oldestKey = this.entries.keys().next().value;
       if (oldestKey === undefined) break;
       this.entries.delete(oldestKey);
@@ -208,9 +252,39 @@ export class UploadStore {
       expiresAt: createdAt + this.ttlMs,
       cellBoxes: new Map(),
       modifiedPictures: new Map(),
+      addModifiedPicture: (key, png) =>
+        this.addModifiedPicture(record, key, png),
     };
     this.entries.set(record.id, record);
     return record;
+  }
+
+  private addModifiedPicture(
+    record: UploadRecord,
+    key: string,
+    png: Buffer,
+  ): boolean {
+    this.pruneExpired();
+    // A record that was evicted or expired is gone: nothing may be added to it.
+    if (this.entries.get(record.id) !== record) return false;
+    if (record.modifiedPictures.has(key)) return true;
+    if (record.buffer.length + png.length > this.maxBytes) return false;
+
+    const fits = () => this.totalBytes + png.length <= this.maxBytes;
+    // First drop this upload's own older redraws, so one upload cannot push out other
+    // visitors' pictures with a stream of redraws. Then drop the oldest other uploads.
+    for (const oldKey of [...record.modifiedPictures.keys()]) {
+      if (fits()) break;
+      record.modifiedPictures.delete(oldKey);
+    }
+    for (const [id] of [...this.entries]) {
+      if (fits()) break;
+      if (id !== record.id) this.entries.delete(id);
+    }
+    if (!fits()) return false;
+
+    record.modifiedPictures.set(key, png);
+    return true;
   }
 
   get(id: string): UploadRecord | undefined {
@@ -371,11 +445,24 @@ function readUploadPictureWithSpeedRule(options: {
     };
 
     const startAttempt = (attempt: 1 | 2) => {
+      // The hook counts this call against the daily cap and throws when the cap is
+      // reached. A refused attempt makes no model call.
+      try {
+        onModelCall?.();
+      } catch (error) {
+        if (activeAttempts === 0) {
+          finishFailure(
+            error instanceof Error
+              ? error
+              : new ReadingFailedError(MODEL_FAILED_MESSAGE, 1, 1),
+          );
+        }
+        return;
+      }
       const controller = new AbortController();
       controllers.push(controller);
       activeAttempts += 1;
       modelCalls += 1;
-      onModelCall?.();
 
       void call(attempt, controller.signal)
         .then((rawReply) => {
@@ -412,11 +499,8 @@ function readUploadPictureWithSpeedRule(options: {
               finishSuccess([]);
               return;
             }
-            const message =
-              error instanceof Error
-                ? error.message
-                : "Could not read this uploaded picture.";
-            finishFailure(new ReadingFailedError(message, 1, 1));
+            logServerError("reading an uploaded picture", error);
+            finishFailure(new ReadingFailedError(MODEL_FAILED_MESSAGE, 1, 1));
           }
         });
     };
@@ -546,7 +630,7 @@ export async function readUploadedPicture(
     timeoutMs,
     signal,
     onModelCall: () => {
-      rateLimiter?.recordModelCalls(1);
+      rateLimiter?.reserveModelCall();
     },
     onSlow: () => {
       if (!slowEmitted) {
@@ -696,11 +780,21 @@ function locateBoxWithSpeedRule(options: {
     };
 
     const startAttempt = (attempt: 1 | 2) => {
+      try {
+        onModelCall?.();
+      } catch (error) {
+        // The daily cap is reached: make no call.
+        if (activeAttempts === 0 && !settled) {
+          settled = true;
+          cleanup();
+          reject(error);
+        }
+        return;
+      }
       const controller = new AbortController();
       controllers.push(controller);
       activeAttempts += 1;
       modelCalls += 1;
-      onModelCall?.();
 
       void call(attempt, controller.signal)
         .then((raw) => {
@@ -885,7 +979,7 @@ export async function modifyUploadedPicture(
       timeoutMs,
       signal,
       onModelCall: () => {
-        rateLimiter?.recordModelCalls(1);
+        rateLimiter?.reserveModelCall();
       },
       call: (_attempt, attemptSignal) =>
         locateFn({
@@ -911,7 +1005,24 @@ export async function modifyUploadedPicture(
       : `change-${modification.numberRowIndex}-${modification.colIndex}-${encodeURIComponent(modification.newValue)}`;
 
   let modifiedPng = record.modifiedPictures.get(modPictureKey);
+  const keptBefore = modifiedPng !== undefined;
   if (!modifiedPng) {
+    // Redrawing a large picture costs memory and time, so the limits are checked before
+    // it is drawn. The redrawn picture is stored only after the limits have passed.
+    if (rateLimiter) {
+      const peek = rateLimiter.check({
+        browserId,
+        ip,
+        plannedModelCalls: 1,
+      });
+      if (!peek.allowed) {
+        throw new RateLimitError(
+          peek.message,
+          peek.reason,
+          peek.retryAfterSeconds,
+        );
+      }
+    }
     modifiedPng = await drawModifiedUploadPicture(
       record.buffer,
       box,
@@ -919,12 +1030,20 @@ export async function modifyUploadedPicture(
         ? { kind: "hide" }
         : { kind: "change", newValue: modification.newValue },
     );
-    record.modifiedPictures.set(modPictureKey, modifiedPng);
   }
+  const redrawnPicture = modifiedPng;
+  const storeRedrawnPicture = () => {
+    if (!record.addModifiedPicture(modPictureKey, redrawnPicture)) {
+      throw new ReadingFailedError(
+        "Could not keep the updated picture. Please upload the statement again.",
+      );
+    }
+  };
 
-  const readCacheKey = computePictureCacheKey([modifiedPng]);
+  const readCacheKey = computePictureCacheKey([redrawnPicture]);
   const cachedRows = cache?.get(readCacheKey);
   if (cachedRows && cachedRows.length > 0) {
+    storeRedrawnPicture();
     const result = buildUploadReadingResult(cachedRows, {
       fromCache: true,
       usedRepeat: false,
@@ -948,6 +1067,11 @@ export async function modifyUploadedPicture(
       );
     }
   }
+  storeRedrawnPicture();
+  // A redraw that was never read back is not kept.
+  const dropRedraw = () => {
+    if (!keptBefore) record.modifiedPictures.delete(modPictureKey);
+  };
 
   onProgress?.({ type: "started", totalNumbers: 0, totalStrips: 1 });
 
@@ -956,7 +1080,7 @@ export async function modifyUploadedPicture(
     timeoutMs,
     signal,
     onModelCall: () => {
-      rateLimiter?.recordModelCalls(1);
+      rateLimiter?.reserveModelCall();
     },
     onSlow: () => {
       if (!slowEmitted) {
@@ -971,7 +1095,7 @@ export async function modifyUploadedPicture(
     },
     call: (attempt, attemptSignal) =>
       client.readPicture({
-        png: modifiedPng,
+        png: redrawnPicture,
         mimeType: "image/png",
         prompt: READING_PROMPT,
         signal: attemptSignal,
@@ -998,11 +1122,15 @@ export async function modifyUploadedPicture(
               : undefined,
         },
       }),
+  }).catch((error: unknown) => {
+    dropRedraw();
+    throw error;
   });
 
   totalModelCalls += readOutcome.modelCalls;
 
   if (readOutcome.rows.length === 0) {
+    dropRedraw();
     throw new ReadingFailedError(
       "Could not read the updated balance sheet picture.",
     );

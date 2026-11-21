@@ -5,6 +5,11 @@ import {
   hasGeminiApiKey,
 } from "@/lib/gemini";
 import {
+  logServerError,
+  READING_UNAVAILABLE_MESSAGE,
+  UPLOAD_READ_FAILED_MESSAGE,
+} from "@/lib/public-errors";
+import {
   BROWSER_COOKIE_NAME,
   extractClientIp,
   getGlobalRateLimiter,
@@ -83,8 +88,7 @@ export async function POST(
       NextResponse.json(
         {
           code: "missing_key",
-          error:
-            "Reading is unavailable because GEMINI_API_KEY is not set on the server.",
+          error: READING_UNAVAILABLE_MESSAGE,
         },
         { status: 503 },
       ),
@@ -131,10 +135,11 @@ export async function POST(
             message: error.message,
           });
         } else if (error instanceof GeminiConfigError) {
+          logServerError("reading an uploaded picture", error);
           send({
             type: "error",
             code: "missing_key",
-            message: error.message,
+            message: READING_UNAVAILABLE_MESSAGE,
           });
         } else if (error instanceof ReadingTimeoutError) {
           send({
@@ -153,10 +158,11 @@ export async function POST(
             totalStrips: 1,
           });
         } else {
+          logServerError("reading an uploaded picture", error);
           send({
             type: "error",
             code: "failed",
-            message: "Could not read this uploaded picture right now.",
+            message: UPLOAD_READ_FAILED_MESSAGE,
           });
         }
       } finally {

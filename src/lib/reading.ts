@@ -7,6 +7,7 @@ import {
   type ExplainCauseRequest,
   type GeminiClient,
 } from "@/lib/gemini";
+import { logServerError, MODEL_FAILED_MESSAGE } from "@/lib/public-errors";
 import { RateLimitError, type RateLimiter } from "@/lib/rate-limit";
 import type { SecondReaderResult } from "@/lib/second-reader-types";
 import {
@@ -565,11 +566,28 @@ export function readPictureWithSpeedRule(
     outerSignal?.addEventListener("abort", onOuterAbort, { once: true });
 
     const startAttempt = (attempt: 1 | 2) => {
+      // The hook counts this call against the daily cap and throws when the cap is
+      // reached. A refused attempt makes no model call.
+      try {
+        onModelCall?.();
+      } catch (error) {
+        if (activeAttempts === 0) {
+          finishFailure(
+            error instanceof Error
+              ? error
+              : new ReadingFailedError(
+                  "Could not read the balance sheet picture.",
+                  strip,
+                  totalStrips,
+                ),
+          );
+        }
+        return;
+      }
       const controller = new AbortController();
       controllers.push(controller);
       activeAttempts += 1;
       modelCalls += 1;
-      onModelCall?.();
 
       void call(attempt, controller.signal)
         .then((rawReply) => {
@@ -618,11 +636,16 @@ export function readPictureWithSpeedRule(
             }
             startRepeat(false);
           } else if (activeAttempts === 0) {
-            const message =
-              error instanceof Error
-                ? error.message
-                : "Could not read the balance sheet picture.";
-            finishFailure(new ReadingFailedError(message, strip, totalStrips));
+            // The model's own error text can name keys or settings. Log it here and
+            // give the visitor a plain sentence.
+            logServerError("reading a balance sheet picture", error);
+            finishFailure(
+              new ReadingFailedError(
+                MODEL_FAILED_MESSAGE,
+                strip,
+                totalStrips,
+              ),
+            );
           }
         });
     };
@@ -744,7 +767,7 @@ export async function readStatementPictures(
       strip: stripNumber,
       totalStrips,
       onModelCall: () => {
-        rateLimiter?.recordModelCalls(1);
+        rateLimiter?.reserveModelCall();
       },
       onSlow: () => {
         if (!slowEmitted) {
@@ -1009,6 +1032,9 @@ export async function readStatementWithModification(
   // any strip actually needs a model call.
   const reusedByStrip = new Map<number, ReadRow[]>();
   const stripsToRead: typeof stripParts = [];
+  // Rows that came from the visitor's `previousRows` are never trusted as a reading:
+  // a joined result that holds any of them is not written to the shared cache.
+  let usedVisitorRows = false;
 
   for (let i = 0; i < stripParts.length; i += 1) {
     const part = stripParts[i];
@@ -1028,6 +1054,7 @@ export async function readStatementWithModification(
       );
       if (fromPrevious) {
         reusedByStrip.set(i, fromPrevious);
+        usedVisitorRows = true;
         continue;
       }
     }
@@ -1039,7 +1066,7 @@ export async function readStatementWithModification(
     const joinedRows = joinStripReadings(
       stripParts.map((_, idx) => reusedByStrip.get(idx) ?? []),
     );
-    if (cache) {
+    if (cache && !usedVisitorRows) {
       cache.set(combinedCacheKey, joinedRows);
     }
     const comparison = compareReadingWithStatement(statement, joinedRows);
@@ -1087,7 +1114,7 @@ export async function readStatementWithModification(
         strip: part.strip,
         totalStrips,
         onModelCall: () => {
-          rateLimiter?.recordModelCalls(1);
+          rateLimiter?.reserveModelCall();
         },
         onSlow: () => {
           if (!slowEmitted) {
@@ -1188,7 +1215,7 @@ export async function readStatementWithModification(
         strip: 1,
         totalStrips: 1,
         onModelCall: () => {
-          rateLimiter?.recordModelCalls(1);
+          rateLimiter?.reserveModelCall();
         },
         onSlow: () => {
           if (!slowEmitted) {
@@ -1229,7 +1256,9 @@ export async function readStatementWithModification(
     }
   }
 
-  if (cache) {
+  // A whole-picture fallback replaces every strip with the server's own reading, so its
+  // rows no longer hold anything the visitor supplied.
+  if (cache && (!usedVisitorRows || usedWholePictureFallback)) {
     cache.set(combinedCacheKey, joinedRows);
   }
 
@@ -1388,11 +1417,17 @@ function callCauseWithSpeedRule(options: {
     };
 
     const startAttempt = (attempt: 1 | 2) => {
+      try {
+        onModelCall?.();
+      } catch {
+        // The daily cap is reached: make no call.
+        if (activeAttempts === 0) finish(null);
+        return;
+      }
       const controller = new AbortController();
       controllers.push(controller);
       activeAttempts += 1;
       modelCalls += 1;
-      onModelCall?.();
 
       void call(attempt, controller.signal)
         .then((raw) => {
@@ -1541,7 +1576,7 @@ export async function explainMismatchCause(
     timeoutMs,
     signal,
     onModelCall: () => {
-      rateLimiter?.recordModelCalls(1);
+      rateLimiter?.reserveModelCall();
     },
     call: (_attempt, attemptSignal) =>
       explainFn({

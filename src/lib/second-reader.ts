@@ -447,10 +447,10 @@ export async function recheckNumbers(
         return mapBatchAnswers(entry, entry.cachedAnswers);
       }
 
-      modelCalls += 1;
-      rateLimiter?.recordModelCalls(1);
-
       try {
+        // Count this call against the daily cap. A refused batch makes no call.
+        rateLimiter?.reserveModelCall();
+        modelCalls += 1;
         const answers = await withTimeout(
           (attemptSignal) =>
             decideFn({

@@ -172,6 +172,71 @@ export function buildCausePrompt(request: ExplainCauseRequest): string {
   ].join("\n");
 }
 
+/**
+ * Ceilings on the tokens a model may write back in one call, so a runaway answer cannot
+ * run up the bill. They are set well above a real answer: a reading of a full balance
+ * sheet page is a few thousand tokens, a cell box is four numbers, a cause is one sentence.
+ * The decisions call has no such field in the SDK (its answer is one number per question).
+ */
+export const MAX_OUTPUT_TOKENS = {
+  read: 16_384,
+  locate: 2_048,
+  cause: 2_048,
+} as const;
+
+const REAL_GENERATION_CONFIG = {
+  thinking_level: "low" as const,
+};
+
+export function buildReadPictureParams(request: ReadPictureRequest) {
+  return {
+    model: GEMINI_HYDROGEN_MODEL,
+    input: [
+      {
+        type: "image" as const,
+        data: request.png.toString("base64"),
+        mime_type: request.mimeType ?? ("image/png" as const),
+        resolution: "high" as const,
+      },
+      { type: "text" as const, text: request.prompt },
+    ],
+    generation_config: {
+      ...REAL_GENERATION_CONFIG,
+      max_output_tokens: MAX_OUTPUT_TOKENS.read,
+    },
+  };
+}
+
+export function buildLocateCellBoxParams(request: LocateCellBoxRequest) {
+  return {
+    model: GEMINI_HYDROGEN_MODEL,
+    input: [
+      {
+        type: "image" as const,
+        data: request.image.toString("base64"),
+        mime_type: request.mimeType,
+        resolution: "high" as const,
+      },
+      { type: "text" as const, text: buildLocateCellBoxPrompt(request) },
+    ],
+    generation_config: {
+      ...REAL_GENERATION_CONFIG,
+      max_output_tokens: MAX_OUTPUT_TOKENS.locate,
+    },
+  };
+}
+
+export function buildExplainCauseParams(request: ExplainCauseRequest) {
+  return {
+    model: request.model?.trim() || getCauseModelName(),
+    input: [{ type: "text" as const, text: buildCausePrompt(request) }],
+    generation_config: {
+      ...REAL_GENERATION_CONFIG,
+      max_output_tokens: MAX_OUTPUT_TOKENS.cause,
+    },
+  };
+}
+
 export function formatStatementRowsAsReply(
   rows: StatementRow[],
   options?: {
@@ -237,21 +302,8 @@ export function createRealGeminiClient(): GeminiClient {
         cachedAi = new GoogleGenAI({ apiVersion: "v1beta" });
       }
 
-      const pngBase64 = request.png.toString("base64");
       const response = await cachedAi.interactions.create(
-        {
-          model: GEMINI_HYDROGEN_MODEL,
-          input: [
-            {
-              type: "image",
-              data: pngBase64,
-              mime_type: request.mimeType ?? "image/png",
-              resolution: "high",
-            },
-            { type: "text", text: request.prompt },
-          ],
-          generation_config: { thinking_level: "low" },
-        },
+        buildReadPictureParams(request),
         request.signal ? { signal: request.signal } : undefined,
       );
 
@@ -268,22 +320,8 @@ export function createRealGeminiClient(): GeminiClient {
         cachedAi = new GoogleGenAI({ apiVersion: "v1beta" });
       }
 
-      const imageBase64 = request.image.toString("base64");
-      const prompt = buildLocateCellBoxPrompt(request);
       const response = await cachedAi.interactions.create(
-        {
-          model: GEMINI_HYDROGEN_MODEL,
-          input: [
-            {
-              type: "image",
-              data: imageBase64,
-              mime_type: request.mimeType,
-              resolution: "high",
-            },
-            { type: "text", text: prompt },
-          ],
-          generation_config: { thinking_level: "low" },
-        },
+        buildLocateCellBoxParams(request),
         request.signal ? { signal: request.signal } : undefined,
       );
 
@@ -300,14 +338,8 @@ export function createRealGeminiClient(): GeminiClient {
         cachedAi = new GoogleGenAI({ apiVersion: "v1beta" });
       }
 
-      const model = request.model?.trim() || getCauseModelName();
-      const prompt = buildCausePrompt(request);
       const response = await cachedAi.interactions.create(
-        {
-          model,
-          input: [{ type: "text", text: prompt }],
-          generation_config: { thinking_level: "low" },
-        },
+        buildExplainCauseParams(request),
         request.signal ? { signal: request.signal } : undefined,
       );
 
