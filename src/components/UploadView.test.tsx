@@ -200,6 +200,137 @@ describe("UploadView", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
+  test("a disputed cell shows the two readers' texts, says Needs your eye, and has no tick", async () => {
+    // The first left-hand number: the two readers wrote 36,305 and 36,306.
+    const rows: ReadRow[] = APPLE_READ_ROWS.map((row, index) =>
+      index === 0
+        ? {
+            ...row,
+            cells: [
+              {
+                raw: "",
+                number: null,
+                hidden: false,
+                disputed: { first: "$ 36,305", second: "$ 36,306" },
+              },
+              row.cells[1],
+            ],
+          }
+        : row,
+    );
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 0, totalStrips: 1 },
+        {
+          type: "done",
+          result: {
+            rows,
+            comparison: {
+              totalStatementNumbers: 0,
+              readCount: 25,
+              matchCount: 0,
+              unreadCount: 0,
+              rows: [],
+            },
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 2,
+            crossCheck: { answered: true, disputedCount: 1 },
+          },
+        },
+      ]),
+    );
+
+    const { container } = render(
+      <UploadView
+        uploadId="test-id-5"
+        fileName="dispute-apple.png"
+        pictureUrl="/api/upload/test-id-5/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(
+        container.querySelector('[data-verdict-band="true"]'),
+      ).not.toBeNull();
+    });
+
+    expect(
+      screen.getByText(
+        "1 number was read differently by the two readers and got no tick.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/The second reader did not answer/),
+    ).not.toBeInTheDocument();
+
+    const disputedCell = container.querySelector(
+      'tr[data-row-index="0"] td[data-col="0"]',
+    );
+    expect(disputedCell).toHaveAttribute("data-proof-status", "unread");
+    expect(disputedCell).toHaveTextContent("Not read");
+    expect(
+      container.querySelector(
+        'tr[data-row-index="0"] [data-proof-mark="proven"]',
+      ),
+    ).toBeNull();
+
+    fireEvent.click(
+      container.querySelector('[data-cell-button="0-0"]') as HTMLElement,
+    );
+    const panel = container.querySelector('[data-selected-panel="true"]');
+    expect(panel).toHaveTextContent(
+      "Two readers disagree: $ 36,305 and $ 36,306.",
+    );
+    expect(panel).toHaveTextContent("Needs your eye");
+    expect(panel).not.toHaveTextContent("Proven");
+  });
+
+  test("shows one line when the second reader did not answer", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      makeNdjsonResponse([
+        { type: "started", totalNumbers: 0, totalStrips: 1 },
+        {
+          type: "done",
+          result: {
+            rows: APPLE_READ_ROWS,
+            comparison: {
+              totalStatementNumbers: 0,
+              readCount: 26,
+              matchCount: 0,
+              unreadCount: 0,
+              rows: [],
+            },
+            fromCache: false,
+            usedRepeat: false,
+            modelCalls: 3,
+            crossCheck: { answered: false, disputedCount: 0 },
+          },
+        },
+      ]),
+    );
+
+    render(
+      <UploadView
+        uploadId="test-id-6"
+        fileName="statement-apple.png"
+        pictureUrl="/api/upload/test-id-6/picture"
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("26 of 26 numbers proven")).toBeInTheDocument();
+    });
+    expect(
+      screen.getByText(
+        "The second reader did not answer. Ticks rest on one reading.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/read differently by the two readers/),
+    ).not.toBeInTheDocument();
+  });
+
   test("shows the desktop-badupload.png screen when reading returns fewer than three number rows", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
       makeNdjsonResponse([

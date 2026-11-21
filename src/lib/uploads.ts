@@ -2,10 +2,13 @@ import { randomUUID } from "node:crypto";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { ensureStatementFonts } from "@/lib/draw-statement";
 import {
+  GEMINI_HYDROGEN_MODEL,
+  getSecondReaderModelName,
   READING_PROMPT,
   type GeminiClient,
   type LocateCellBoxRequest,
 } from "@/lib/gemini";
+import { countDisputedCells, mergeReadings } from "@/lib/merge-readings";
 import { logServerError, MODEL_FAILED_MESSAGE } from "@/lib/public-errors";
 import { RateLimitError, type RateLimiter } from "@/lib/rate-limit";
 import {
@@ -19,6 +22,7 @@ import {
   type ReadingProgressEvent,
   type ReadRow,
   type StatementReadingResult,
+  type UploadCrossCheck,
 } from "@/lib/reading";
 import {
   countNumberRowsInReading,
@@ -335,7 +339,12 @@ export function resetGlobalUploadStore(): void {
 
 function buildUploadReadingResult(
   rows: ReadRow[],
-  meta: { fromCache: boolean; usedRepeat: boolean; modelCalls: number },
+  meta: {
+    fromCache: boolean;
+    usedRepeat: boolean;
+    modelCalls: number;
+    crossCheck?: UploadCrossCheck;
+  },
 ): StatementReadingResult {
   return {
     rows,
@@ -349,6 +358,7 @@ function buildUploadReadingResult(
     fromCache: meta.fromCache,
     usedRepeat: meta.usedRepeat,
     modelCalls: meta.modelCalls,
+    ...(meta.crossCheck ? { crossCheck: meta.crossCheck } : {}),
   };
 }
 
@@ -528,8 +538,12 @@ export type ReadUploadedPictureOptions = {
 };
 
 /**
- * Reads an uploaded PNG/JPEG picture whole with Gemini 4 Hydrogen,
- * applying the 12-second limit, one repeat, memory cache and Unit 3 rate limits.
+ * Reads an uploaded PNG/JPEG picture whole, the first time, with two models at the same time:
+ * Gemini 4 Hydrogen and the model named in SECOND_READER_MODEL. Each call gets the same
+ * picture, the same question, the 12-second limit and one repeat, and counts as a model call
+ * against the daily cap. A number is kept only when both read the same value. Where they
+ * differ, the cell comes back as NOT READ with both raw texts in `disputed`. When the second
+ * reader fails twice or returns no rows, the first reading stands alone and the result says so.
  */
 export async function readUploadedPicture(
   options: ReadUploadedPictureOptions,
@@ -548,7 +562,13 @@ export async function readUploadedPicture(
     onProgress,
   } = options;
 
-  const cacheKey = computePictureCacheKey([record.buffer]);
+  const secondModel = getSecondReaderModelName();
+  // Rows kept for a two-reader reading differ from a single reading of the same bytes, so
+  // they live under their own key.
+  // The fake client answers by file name, so in test mode the name is part of the key.
+  const cacheKey = `${computePictureCacheKey([record.buffer])}:${secondModel}${
+    client.isFake ? `:${record.fileName}` : ""
+  }`;
 
   if (!bypassCache && record.reading) {
     if (record.reading.status === "ok") {
@@ -600,6 +620,10 @@ export async function readUploadedPicture(
         fromCache: true,
         usedRepeat: false,
         modelCalls: 0,
+        crossCheck: {
+          answered: true,
+          disputedCount: countDisputedCells(cachedRows),
+        },
       });
       const outcome: UploadReadingOutcome = { status: "ok", result };
       record.reading = outcome;
@@ -608,6 +632,9 @@ export async function readUploadedPicture(
     }
   }
 
+  // The request-level check needs room for the one call the first reader must make. The
+  // second reader is best effort: each of its attempts is counted against the daily cap
+  // when it starts, and a refused attempt only costs the second reading.
   if (rateLimiter) {
     const decision = rateLimiter.checkAndConsumeRequest({
       browserId,
@@ -626,28 +653,24 @@ export async function readUploadedPicture(
   onProgress?.({ type: "started", totalNumbers: 0, totalStrips: 1 });
 
   let slowEmitted = false;
-  const rawOutcome = await readUploadPictureWithSpeedRule({
-    timeoutMs,
-    signal,
-    onModelCall: () => {
-      rateLimiter?.reserveModelCall();
-    },
-    onSlow: () => {
-      if (!slowEmitted) {
-        slowEmitted = true;
-        onProgress?.({
-          type: "slow",
-          strip: 1,
-          totalStrips: 1,
-          timeoutMs,
-        });
-      }
-    },
-    call: (attempt, attemptSignal) =>
+  const onSlow = () => {
+    if (!slowEmitted) {
+      slowEmitted = true;
+      onProgress?.({
+        type: "slow",
+        strip: 1,
+        totalStrips: 1,
+        timeoutMs,
+      });
+    }
+  };
+  const readWith = (model: string, isSecondReader: boolean) =>
+    (attempt: 1 | 2, attemptSignal: AbortSignal) =>
       client.readPicture({
         png: record.buffer,
         mimeType: record.mimeType,
         prompt: READING_PROMPT,
+        model,
         signal: attemptSignal,
         testContext: {
           strip: 1,
@@ -656,37 +679,95 @@ export async function readUploadedPicture(
           attempt,
           timeoutMs,
           uploadFileName: record.fileName,
+          uploadSecondReader: isSecondReader,
         },
-      }),
+      });
+
+  // The first reader starts first, so that when only one call fits under the daily cap, it
+  // is the first reader that gets it.
+  const firstReading = readUploadPictureWithSpeedRule({
+    timeoutMs,
+    signal,
+    onModelCall: () => {
+      rateLimiter?.reserveModelCall();
+    },
+    onSlow,
+    call: readWith(GEMINI_HYDROGEN_MODEL, false),
   });
 
-  if (cache) {
-    cache.set(cacheKey, rawOutcome.rows);
+  const stopSecondReader = new AbortController();
+  let secondReaderCalls = 0;
+  const secondReading = readUploadPictureWithSpeedRule({
+    timeoutMs,
+    signal: signal
+      ? AbortSignal.any([signal, stopSecondReader.signal])
+      : stopSecondReader.signal,
+    onModelCall: () => {
+      rateLimiter?.reserveModelCall();
+      secondReaderCalls += 1;
+    },
+    onSlow,
+    call: readWith(secondModel, true),
+  }).then(
+    (reading) => ({ ok: true as const, ...reading }),
+    (error: unknown) => {
+      if (!stopSecondReader.signal.aborted && !signal?.aborted) {
+        logServerError("the second reading of an uploaded picture", error);
+      }
+      return { ok: false as const };
+    },
+  );
+
+  let rawOutcome: Awaited<typeof firstReading>;
+  try {
+    rawOutcome = await firstReading;
+  } catch (error) {
+    stopSecondReader.abort();
+    throw error;
   }
 
-  const rowCount = countNumberRowsInReading(rawOutcome.rows);
+  // A picture that holds no statement needs no second opinion.
   if (!hasEnoughStatementRows(rawOutcome.rows)) {
+    stopSecondReader.abort();
+    if (cache) {
+      cache.set(cacheKey, rawOutcome.rows);
+    }
     const outcome: UploadReadingOutcome = {
       status: "no_statement",
       rows: rawOutcome.rows,
-      rowCount,
+      rowCount: countNumberRowsInReading(rawOutcome.rows),
       fromCache: false,
       usedRepeat: rawOutcome.usedRepeat,
-      modelCalls: rawOutcome.modelCalls,
+      modelCalls: rawOutcome.modelCalls + secondReaderCalls,
     };
     record.reading = outcome;
     onProgress?.({
       type: "bad_upload",
       fileName: record.fileName,
-      rowCount,
+      rowCount: outcome.rowCount,
     });
     return outcome;
   }
 
-  const result = buildUploadReadingResult(rawOutcome.rows, {
+  const second = await secondReading;
+  const secondAnswered = second.ok && second.rows.length > 0;
+  const merged = secondAnswered
+    ? mergeReadings(rawOutcome.rows, second.rows)
+    : { rows: rawOutcome.rows, disputedCount: 0 };
+
+  // Only a reading with both readers is kept for other uploads of the same picture.
+  if (cache && secondAnswered) {
+    cache.set(cacheKey, merged.rows);
+  }
+
+  const result = buildUploadReadingResult(merged.rows, {
     fromCache: false,
-    usedRepeat: rawOutcome.usedRepeat,
-    modelCalls: rawOutcome.modelCalls,
+    usedRepeat: rawOutcome.usedRepeat || (second.ok && second.usedRepeat),
+    modelCalls: rawOutcome.modelCalls + secondReaderCalls,
+    crossCheck: {
+      answered: secondAnswered,
+      disputedCount: merged.disputedCount,
+    },
   });
   const outcome: UploadReadingOutcome = { status: "ok", result };
   record.reading = outcome;

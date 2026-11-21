@@ -41,10 +41,21 @@ export function getReadTimeoutMs(): number {
   return DEFAULT_READ_TIMEOUT_MS;
 }
 
+/** What two readers wrote for one cell when they did not agree. */
+export type ReadDispute = {
+  first: string;
+  second: string;
+};
+
 export type ReadCell = {
   raw: string;
   number: number | null;
   hidden: boolean;
+  /**
+   * Set only on an upload, when the two readers differ on this cell. Such a cell is NOT READ:
+   * its number is null and it never gets a tick.
+   */
+  disputed?: ReadDispute;
 };
 
 export type ReadRow = {
@@ -76,12 +87,22 @@ export type ReadingComparison = {
   rows: RowComparison[];
 };
 
+/** The outcome of the second reader on an upload (an SEC statement and a redrawn picture have none). */
+export type UploadCrossCheck = {
+  /** False when the second reader failed twice or returned no rows: ticks rest on one reading. */
+  answered: boolean;
+  /** How many number cells the two readers read differently. */
+  disputedCount: number;
+};
+
 export type StatementReadingResult = {
   rows: ReadRow[];
   comparison: ReadingComparison;
   fromCache: boolean;
   usedRepeat: boolean;
   modelCalls: number;
+  /** Present only on a first reading of an uploaded picture. */
+  crossCheck?: UploadCrossCheck;
 };
 
 export type ReadingProgressEvent =

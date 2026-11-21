@@ -7,6 +7,9 @@ of the statement picture, each worse than the last, and reads each copy two ways
   - Adds Up's upload path, where a number gets a tick only inside a total that re-adds.
 Level 1 is step F of docs/eval-spec.md (turned 2 degrees, blur 1.2). Levels 2 and 3 are new.
 
+Since the second-reader rule, the upload path reads each picture with two models, and the
+result counts how many pages the second reader answered and how many cells the two disagreed on.
+
 Run from the repository root with the app running:
   uv run --with pillow --with google-genai python scripts/run-eval-hard.py <log.jsonl> <out.json>
 """
@@ -15,7 +18,7 @@ from PIL import Image, ImageFilter
 from google import genai
 
 APP = os.environ.get("EVAL_APP", "http://localhost:3230")
-LEVELS = [
+ALL_LEVELS = [
     ("1", "turned 2 degrees, slight blur", dict(scale=1.0, turn=2, blur=1.2, jpeg=None, noise=0)),
     ("2", "like a phone photo: smaller, turned 3 degrees, blurred, compressed", dict(scale=0.55, turn=3, blur=1.6, jpeg=30, noise=6)),
     ("3", "like a bad phone photo: much smaller, turned 5 degrees, more blur and compression", dict(scale=0.40, turn=5, blur=2.2, jpeg=18, noise=10)),
@@ -32,6 +35,8 @@ PROMPT = "\n".join([
     "- Do not include section headings that have no numbers or dashes.",
     "- Output only the row lines, with no extra text.",
 ])
+# EVAL_LEVELS=1,2 runs only those levels.
+LEVELS = [lv for lv in ALL_LEVELS if lv[0] in os.environ.get("EVAL_LEVELS", "1,2,3").split(",")]
 client = genai.Client(http_options={"api_version": "v1beta"})
 
 
@@ -108,8 +113,8 @@ def adds_up(data, mime, ext):
     events = [json.loads(l) for l in get(APP + f"/api/upload/{up['id']}/read", b"", {"Cookie": cookie}).decode().splitlines() if l.strip().startswith("{")]
     done = next((e for e in events if e.get("type") == "done"), None)
     if not done:
-        return None, (events[-1].get("type") if events else "no answer")
-    return [(r["label"], r["cells"][0].get("number"), r["cells"][1].get("number")) for r in done["result"]["rows"]], "read"
+        return None, (events[-1].get("type") if events else "no answer"), None
+    return [(r["label"], r["cells"][0].get("number"), r["cells"][1].get("number")) for r in done["result"]["rows"]], "read", done["result"].get("crossCheck")
 
 
 def ticks(rows):
@@ -126,7 +131,8 @@ def main():
     result = {"startedAt": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "filings": len(filings), "levels": [], "cases": []}
     totals = {lv[0]: {"level": lv[0], "what": lv[1], "numbers": 0,
                       "oneCall": {"right": 0, "wrongShownAsRight": 0, "notRead": 0},
-                      "addsUp": {"right": 0, "wrongWithATick": 0, "wrongNoTick": 0, "notRead": 0, "ticks": 0, "pagesNotRead": 0}} for lv in LEVELS}
+                      "addsUp": {"right": 0, "wrongWithATick": 0, "wrongNoTick": 0, "notRead": 0, "ticks": 0, "pagesNotRead": 0,
+                                 "pages": 0, "secondReaderAnswered": 0, "cellsTheTwoReadersDisagreedOn": 0}} for lv in LEVELS}
     for n, f in enumerate(filings, 1):
         st = json.loads(get(APP + f"/api/company/{f['cik']}/statement"))["statement"]
         truth = [r for r in st["rows"] if "values" in r]
@@ -138,7 +144,11 @@ def main():
                 base = one_call(data, mime)
             except Exception as e:
                 base = []
-            read, state = adds_up(data, mime, ext)
+            read, state, cross = adds_up(data, mime, ext)
+            t["addsUp"]["pages"] += 1
+            if cross and cross.get("answered"):
+                t["addsUp"]["secondReaderAnswered"] += 1
+                t["addsUp"]["cellsTheTwoReadersDisagreedOn"] += cross.get("disputedCount", 0)
             status = ticks(read) if read else None
             if not read:
                 t["addsUp"]["pagesNotRead"] += 1

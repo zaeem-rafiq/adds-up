@@ -21,7 +21,8 @@ export const DEFAULT_RATE_LIMITS: RateLimitConfig = {
   browserPerHour: 120,
   ipPerHour: 600,
   globalModelCallsPerDay: 3_000,
-  uploadsPerHour: 20,
+  // A venue or an office shares one address, so this is well above one person's use.
+  uploadsPerHour: 60,
   hourWindowMs: 60 * 60 * 1000,
   dayWindowMs: 24 * 60 * 60 * 1000,
 };
@@ -57,6 +58,10 @@ export function getRateLimitConfig(
     globalModelCallsPerDay: parsePositiveIntSetting(
       env.ADDS_UP_LIMIT_CALLS_PER_DAY,
       DEFAULT_RATE_LIMITS.globalModelCallsPerDay,
+    ),
+    uploadsPerHour: parsePositiveIntSetting(
+      env.ADDS_UP_LIMIT_UPLOADS_PER_HOUR,
+      DEFAULT_RATE_LIMITS.uploadsPerHour,
     ),
   };
 }
@@ -324,7 +329,7 @@ export class RateLimiter {
     return decision;
   }
 
-  /** Counts one upload attempt for this network address (default 20 an hour). */
+  /** Counts one upload attempt for this network address (default 60 an hour). */
   checkAndConsumeUpload(ip: string): RateLimitDecision {
     const now = this.now();
     const hourCutoff = now - this.limits.hourWindowMs;

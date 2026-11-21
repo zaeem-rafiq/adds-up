@@ -6,11 +6,19 @@ import type { Statement, StatementRow } from "@/lib/statements";
 export const GEMINI_HYDROGEN_MODEL = "gemini-4-hydrogen";
 export const GEMINI_DECISION_MODEL = "gemini-decision-1";
 export const DEFAULT_CAUSE_MODEL = "gemini-4-carbon";
+export const DEFAULT_SECOND_READER_MODEL = "gemini-4-carbon";
 export const FAKE_CAUSE_SENTENCE =
   "The printed total still fits the rest of the statement, so one line in this group is off.";
 
 export function getCauseModelName(): string {
   return process.env.CAUSE_MODEL?.trim() || DEFAULT_CAUSE_MODEL;
+}
+
+/** The model that reads an uploaded picture a second time, from the server setting SECOND_READER_MODEL. */
+export function getSecondReaderModelName(): string {
+  return (
+    process.env.SECOND_READER_MODEL?.trim() || DEFAULT_SECOND_READER_MODEL
+  );
 }
 
 export const READING_PROMPT = [
@@ -47,6 +55,8 @@ export type FakeReadContext = {
   overrideCell?: { rowIndex: number; colIndex: 0 | 1; value: string };
   /** Uploaded file name used only in test mode */
   uploadFileName?: string;
+  /** True for the second reader of a first reading of an upload, in test mode only */
+  uploadSecondReader?: boolean;
   /** 0-based index among number rows for upload hide in test mode */
   uploadCoverNumberRow?: { numberRowIndex: number; colIndex: 0 | 1 };
   /** 0-based index among number rows for upload change in test mode */
@@ -61,6 +71,8 @@ export type ReadPictureRequest = {
   png: Buffer;
   mimeType?: "image/png" | "image/jpeg";
   prompt: string;
+  /** The model to ask. The default is Gemini 4 Hydrogen. */
+  model?: string;
   signal?: AbortSignal;
   /** Context used only by the fake test-mode client; ignored by the real client. */
   testContext?: FakeReadContext;
@@ -190,7 +202,7 @@ const REAL_GENERATION_CONFIG = {
 
 export function buildReadPictureParams(request: ReadPictureRequest) {
   return {
-    model: GEMINI_HYDROGEN_MODEL,
+    model: request.model?.trim() || GEMINI_HYDROGEN_MODEL,
     input: [
       {
         type: "image" as const,
@@ -261,6 +273,25 @@ export function formatStatementRowsAsReply(
     lines.push(`${row.label} | ${left} | ${right}`);
   }
   return lines.join("\n");
+}
+
+/** Test mode only: changes the last digit of the first left-hand number, so two readers differ. */
+function changeOneNumberInReply(reply: string): string {
+  const lines = reply.split("\n");
+  for (let i = 0; i < lines.length; i += 1) {
+    const parts = lines[i].split(" | ");
+    const left = parts[parts.length - 2] ?? "";
+    const digit = /(\d)(?!.*\d)/.exec(left);
+    if (!digit || digit.index === undefined) continue;
+    const changed =
+      left.slice(0, digit.index) +
+      String((Number(digit[1]) + 1) % 10) +
+      left.slice(digit.index + 1);
+    parts[parts.length - 2] = changed;
+    lines[i] = parts.join(" | ");
+    return lines.join("\n");
+  }
+  return reply;
 }
 
 function waitAbortable(ms: number, signal?: AbortSignal): Promise<void> {
@@ -439,7 +470,9 @@ export function createFakeGeminiClient(
 
       if (ctx?.uploadFileName !== undefined) {
         const lowerName = ctx.uploadFileName.trim().toLowerCase();
-        if (lowerName.startsWith("statement")) {
+        // A file named "dispute..." reads like a statement. Its second reader changes one number.
+        const isDisputeFile = lowerName.startsWith("dispute");
+        if (lowerName.startsWith("statement") || isDisputeFile) {
           const apple = appleFixture as unknown as Statement;
           const appleRows = apple.rows;
           const mapNumberRow = (numberRowIndex: number): number => {
@@ -458,7 +491,7 @@ export function createFakeGeminiClient(
           const overrideRowIdx = ctx.uploadOverrideNumberRow
             ? mapNumberRow(ctx.uploadOverrideNumberRow.numberRowIndex)
             : -1;
-          return formatStatementRowsAsReply(appleRows, {
+          const reply = formatStatementRowsAsReply(appleRows, {
             coverCell:
               coverRowIdx !== -1 && ctx.uploadCoverNumberRow
                 ? {
@@ -475,6 +508,9 @@ export function createFakeGeminiClient(
                   }
                 : undefined,
           });
+          return isDisputeFile && ctx.uploadSecondReader
+            ? changeOneNumberInReply(reply)
+            : reply;
         }
         // Files starting with "holiday" (or any non-statement upload fixture) return no rows.
         return "";

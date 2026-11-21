@@ -8,7 +8,11 @@ import type {
   RoundingGroup,
   TwoColumnProof,
 } from "@/lib/adding";
-import type { RowComparison, StatementReadingResult } from "@/lib/reading";
+import type {
+  ReadDispute,
+  RowComparison,
+  StatementReadingResult,
+} from "@/lib/reading";
 import {
   secondReaderCellKey,
   type SecondReaderCellResult,
@@ -32,6 +36,8 @@ export type ResultNumberRow = {
   numbers: [number | null, number | null];
   unread: [boolean, boolean];
   hidden: [boolean, boolean];
+  /** Set for a cell the two readers of an upload read differently. Such a cell is not read. */
+  disputed?: [ReadDispute | null, ReadDispute | null];
 };
 
 export type ResultDisplayRow = ResultHeadingRow | ResultNumberRow;
@@ -127,8 +133,16 @@ export function buildResultDisplayRows(
     isTotal: false,
     rawValues: [readRow.cells[0].raw, readRow.cells[1].raw],
     numbers: [readRow.cells[0].number, readRow.cells[1].number],
-    unread: [readRow.cells[0].hidden, readRow.cells[1].hidden],
+    // A disputed cell has no number, and counts as not read: it never gets a tick.
+    unread: [
+      readRow.cells[0].hidden || Boolean(readRow.cells[0].disputed),
+      readRow.cells[1].hidden || Boolean(readRow.cells[1].disputed),
+    ],
     hidden: [readRow.cells[0].hidden, readRow.cells[1].hidden],
+    disputed: [
+      readRow.cells[0].disputed ?? null,
+      readRow.cells[1].disputed ?? null,
+    ],
   }));
 }
 

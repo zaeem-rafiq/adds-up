@@ -30,8 +30,10 @@ import {
   type RebuildResult,
   type TwoColumnProof,
 } from "@/lib/adding";
+import { normalizeReadLabel } from "@/lib/merge-readings";
 import type {
   ReadingProgressEvent,
+  ReadRow,
   StatementReadingResult,
 } from "@/lib/reading";
 import type { Statement } from "@/lib/statements";
@@ -324,6 +326,36 @@ type HistoryEntry = {
   text: string;
   tone?: "normal" | "error";
 };
+
+/**
+ * A hide or a change re-reads the picture with one reader. A number the two readers
+ * disputed on the first reading stays NOT READ in that view, so it never gets a tick.
+ */
+function keepDisputedCells(
+  base: StatementReadingResult,
+  next: StatementReadingResult,
+): StatementReadingResult {
+  if (!base.rows.some((row) => row.cells.some((cell) => cell.disputed))) {
+    return next;
+  }
+  const rows = next.rows.map((row, index): ReadRow => {
+    const before = base.rows[index];
+    if (
+      !before ||
+      normalizeReadLabel(before.label) !== normalizeReadLabel(row.label)
+    ) {
+      return row;
+    }
+    return {
+      ...row,
+      cells: [
+        before.cells[0].disputed ? before.cells[0] : row.cells[0],
+        before.cells[1].disputed ? before.cells[1] : row.cells[1],
+      ],
+    };
+  });
+  return { ...next, rows };
+}
 
 function makeUploadTableStatement(fileName: string): Statement {
   return {
@@ -973,7 +1005,7 @@ export function UploadView({
         return;
       }
 
-      const finalResult: StatementReadingResult = modResult;
+      const finalResult = keepDisputedCells(baseResult, modResult);
       const nextDisplayRows = buildResultDisplayRows(uploadStatement, finalResult);
       const nextNumberRows = nextDisplayRows.filter(
         (r): r is ResultNumberRow => r.kind === "number",
@@ -1172,7 +1204,7 @@ export function UploadView({
         return;
       }
 
-      const finalResult: StatementReadingResult = modResult;
+      const finalResult = keepDisputedCells(baseResult, modResult);
       const nextDisplayRows = buildResultDisplayRows(uploadStatement, finalResult);
       const nextNumberRows = nextDisplayRows.filter(
         (r): r is ResultNumberRow => r.kind === "number",
@@ -1482,6 +1514,7 @@ export function UploadView({
       containingTotalLabel,
       totalGroup,
       formattedValue,
+      disputed: row.disputed?.[col] ?? null,
     };
   })();
 
@@ -1709,6 +1742,33 @@ export function UploadView({
                     )
                   )}
                 </div>
+
+                {modState.kind === "none" &&
+                  activeResult.crossCheck &&
+                  activeResult.crossCheck.disputedCount > 0 && (
+                    <p
+                      data-disputed-note="true"
+                      className="mt-2 text-xs font-medium text-[#9a5b00] sm:text-[13px]"
+                    >
+                      {activeResult.crossCheck.disputedCount}{" "}
+                      {activeResult.crossCheck.disputedCount === 1
+                        ? "number was"
+                        : "numbers were"}{" "}
+                      read differently by the two readers and got no tick.
+                    </p>
+                  )}
+
+                {modState.kind === "none" &&
+                  activeResult.crossCheck &&
+                  !activeResult.crossCheck.answered && (
+                    <p
+                      data-second-reader-note="true"
+                      className="mt-2 text-xs font-medium text-[#9a5b00] sm:text-[13px]"
+                    >
+                      The second reader did not answer. Ticks rest on one
+                      reading.
+                    </p>
+                  )}
 
                 {modState.kind === "none" && (
                   <p className="mt-2 text-xs text-slate-600 sm:text-[13px]">
@@ -2010,6 +2070,19 @@ export function UploadView({
                   <li className="flex items-start gap-2.5 text-slate-600">
                     <PendingStepIcon />
                     <span>Sits outside every total on this balance sheet.</span>
+                  </li>
+                )}
+                {selectedCellInfo.disputed && (
+                  <li
+                    data-disputed-reason="true"
+                    className="flex items-start gap-2.5 font-medium text-[#9a5b00]"
+                  >
+                    <OutlineWarningTriangleIcon />
+                    <span>
+                      Two readers disagree:{" "}
+                      {selectedCellInfo.disputed.first || "no value"} and{" "}
+                      {selectedCellInfo.disputed.second || "no value"}.
+                    </span>
                   </li>
                 )}
               </ul>

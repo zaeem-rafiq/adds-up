@@ -308,9 +308,10 @@ describe("readUploadedPicture", () => {
       expect(first.result.rows).toHaveLength(13);
       expect(first.result.comparison.rows).toEqual([]);
       expect(first.result.comparison.matchCount).toBe(0);
-      expect(first.result.modelCalls).toBe(1);
+      // Two readers: one call each.
+      expect(first.result.modelCalls).toBe(2);
     }
-    expect(readSpy).toHaveBeenCalledTimes(1);
+    expect(readSpy).toHaveBeenCalledTimes(2);
     expect(readSpy.mock.calls[0][0].prompt).toBe(READING_PROMPT);
     expect(readSpy.mock.calls[0][0].mimeType).toBe("image/png");
     expect(events.some((e) => e.type === "done")).toBe(true);
@@ -335,7 +336,7 @@ describe("readUploadedPicture", () => {
       expect(second.result.fromCache).toBe(true);
       expect(second.result.modelCalls).toBe(0);
     }
-    expect(readSpy).toHaveBeenCalledTimes(1);
+    expect(readSpy).toHaveBeenCalledTimes(2);
   });
 
   test("returns no_statement for holiday-* fixture and when fewer than 3 number rows are returned", async () => {
@@ -438,7 +439,8 @@ describe("readUploadedPicture", () => {
       }),
     ).rejects.toBeInstanceOf(ReadingTimeoutError);
 
-    expect(calls).toBe(2);
+    // Each of the two readers makes its call and one repeat.
+    expect(calls).toBe(4);
     expect(events.some((e) => e.type === "slow")).toBe(true);
   });
 
@@ -466,7 +468,8 @@ describe("readUploadedPicture", () => {
       }),
     ).rejects.toBeInstanceOf(ReadingFailedError);
 
-    expect(calls).toBe(2);
+    // Each of the two readers makes its call and one repeat.
+    expect(calls).toBe(4);
   });
 });
 

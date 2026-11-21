@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import { expect, test } from "@playwright/test";
 
@@ -103,6 +104,54 @@ test("uploads statement-apple.png from the start screen, proves 26 of 26 numbers
 
   expect(consoleErrors).toEqual([]);
   expect(failedRequests).toEqual([]);
+});
+
+test("uploads dispute-apple.png where the two readers differ on one number and gives that number no tick", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  // A file whose name starts with "dispute" makes the test-mode second reader change one number.
+  await page.locator('input[data-upload-input="true"]').setInputFiles({
+    name: "dispute-apple.png",
+    mimeType: "image/png",
+    buffer: readFileSync(STATEMENT_FIXTURE),
+  });
+
+  await expect(page).toHaveURL(/\/upload\/[a-zA-Z0-9-]+$/);
+  const verdictBand = page.locator('[data-verdict-band="true"]');
+  await expect(
+    verdictBand.locator('[data-disputed-note="true"]'),
+  ).toHaveText(
+    "1 number was read differently by the two readers and got no tick.",
+  );
+  await expect(page.locator('[data-second-reader-note="true"]')).toHaveCount(0);
+  await expect(verdictBand).not.toContainText("26 of 26 numbers proven");
+
+  // The first left-hand number is the one that was changed: not read, no tick.
+  const disputedCell = page.locator('tr[data-row-index="0"] td[data-col="0"]');
+  await expect(disputedCell).toHaveAttribute("data-proof-status", "unread");
+  await expect(disputedCell).toContainText("Not read");
+  await expect(
+    page.locator('tr[data-row-index="0"] [data-proof-mark="proven"]'),
+  ).toHaveCount(0);
+
+  await page.locator('[data-cell-button="0-0"]').click();
+  const selectedPanel = page.locator('[data-selected-panel="true"]');
+  await expect(selectedPanel).toContainText("Two readers disagree:");
+  await expect(selectedPanel).toContainText("Needs your eye");
+
+  for (const width of [375, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect(
+      verdictBand.locator('[data-disputed-note="true"]'),
+    ).toBeVisible();
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    );
+    expect(hasHorizontalOverflow).toBe(false);
+  }
 });
 
 test("uploads holiday-photo.png and shows the no-statement screen from design/desktop-badupload.png at 375, 768 and 1440 pixels", async ({

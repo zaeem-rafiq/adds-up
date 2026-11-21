@@ -17,7 +17,7 @@ const INVALID_UPLOAD_MESSAGE =
   "Could not read the uploaded file. Upload a PNG or JPEG picture.";
 
 export async function POST(request: NextRequest) {
-  // Count the attempt first, before any of the body is read: 20 uploads per address per hour.
+  // Count the attempt first, before any of the body is read: 60 uploads per address per hour by default.
   const ip = extractClientIp(request.headers);
   const uploadDecision = getGlobalRateLimiter().checkAndConsumeUpload(ip);
   if (!uploadDecision.allowed) {
