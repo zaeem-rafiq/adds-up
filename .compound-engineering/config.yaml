@@ -1,0 +1,5 @@
+# Compound Engineering settings for this project.
+# "off" stops reviews from sending code to other AI providers without the owner's approval.
+cross_model_review_mode: off
+plan_model: fable
+brainstorm_model: fable
